@@ -94,3 +94,9 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#random files
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
