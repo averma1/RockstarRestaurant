@@ -16,3 +16,6 @@ https://tinyurl.com/y4xfdf5d
 
 Draw.io Class Diagram
 https://drive.google.com/file/d/1UWNYVCPGpz5FMwzvg3IiDkkp0-wLZO0c/view?usp=sharing
+
+Sequence diagram for Splitting the Check
+https://www.draw.io/#G18TW8KnRek-9cEFv08AKFYn9QML2krKwh
