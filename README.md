@@ -20,3 +20,5 @@ The motivation behind this software is to allow a faster more efficient system u
 * [Waiter Splits a Bill](https://drive.google.com/file/d/18TW8KnRek-9cEFv08AKFYn9QML2krKwh/view)
   * [Draw.io link](https://www.draw.io/#G18TW8KnRek-9cEFv08AKFYn9QML2krKwh)
 
+## Sprint Goal
+The goal is to manage tables and basic stock implementation.
