@@ -8,14 +8,17 @@ The intended users of this software would be for those who work at a restaurant 
 
 The motivation behind this software is to allow a faster more efficient system ultimately creating a better customer experience as well as generating more revenue for the restaurant.
 
-Narratives and Scenarios
-https://docs.google.com/document/d/1mbCA1XFlC16uW3GntGZr3oNSqvGuuPp9TkEMHZ1b8vo/edit
+## [Waffle.io](https://waffle.io/averma1/RockstarRestaurant)
+ 
+## [Narratives and Scenarios](https://docs.google.com/document/d/1mbCA1XFlC16uW3GntGZr3oNSqvGuuPp9TkEMHZ1b8vo/edit)
 
-Use Case Diagram
-https://tinyurl.com/y4xfdf5d
+## [Use Case Diagram](https://tinyurl.com/y4xfdf5d)
 
-Draw.io Class Diagram
-https://drive.google.com/file/d/1UWNYVCPGpz5FMwzvg3IiDkkp0-wLZO0c/view?usp=sharing
+## [Class Diagram](https://drive.google.com/file/d/1KtjoG9M0u61bb8D0lDHYeMyxjLdIlp0j/view?usp=sharing)
 
-Sequence Diagram for Splitting the Check
-https://drive.google.com/file/d/18TW8KnRek-9cEFv08AKFYn9QML2krKwh/view?usp=sharing
+## Sequence Diagrams
+* [Waiter Splits a Bill](https://drive.google.com/file/d/18TW8KnRek-9cEFv08AKFYn9QML2krKwh/view)
+  * [Draw.io link](https://www.draw.io/#G18TW8KnRek-9cEFv08AKFYn9QML2krKwh)
+
+## Sprint Goal
+The goal is to manage tables and basic stock implementation.
