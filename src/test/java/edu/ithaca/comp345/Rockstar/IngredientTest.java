@@ -1,4 +1,4 @@
 package edu.ithaca.comp345.Rockstar;
 
-public class ItemTest {
+public class IngredientTest {
 }

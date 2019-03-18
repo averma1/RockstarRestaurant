@@ -1,11 +1,11 @@
 package edu.ithaca.comp345.Rockstar;
 
-public class Item {
-    public String name;
-    public double cost;
-    public int quantity;
+public class Ingredient {
+    private String name;
+    private double cost;
+    private int quantity;
 
-    public Item(String nameIn, double costIn, int quantityIn){
+    public Ingredient(String nameIn, double costIn, int quantityIn){
         this.name = nameIn;
         this.cost = costIn;
         this.quantity = quantityIn;
