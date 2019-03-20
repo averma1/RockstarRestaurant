@@ -4,10 +4,20 @@ public class Table {
     public boolean isEmpty;
     private int numOfSeats;
     private int tableNumber;
+    public boolean isMultiTable;
+
+    public Table(){
+        this.numOfSeats= 0;
+        this.tableNumber= 0;
+        isEmpty=true;
+        isMultiTable=false;
+    }
+
     public Table(int tableNumber, int numOfSeats){
         this.numOfSeats= numOfSeats;
         this.tableNumber= tableNumber;
         isEmpty=true;
+        isMultiTable=false;
     }
     public int getTableNumber(){
         return this.tableNumber;

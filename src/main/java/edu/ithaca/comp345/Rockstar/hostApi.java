@@ -12,7 +12,7 @@ public class hostApi {
 
         if(index1!=-1 && index2!=-1){
             int num= table1.getNumOfSeats()+table2.getNumOfSeats();
-            Table newTable= new Table(table1.getTableNumber(), num);
+            Table newTable= new MultiTable(table1.getTableNumber(), num, table1.getNumOfSeats(), table2.getNumOfSeats());
             return newTable;
         }
         else{
@@ -21,12 +21,17 @@ public class hostApi {
     }
 
     public static Table splitTable(Table table){
+        int index= findTable(table);
+        if(table.isMultiTable){
+            
+        }
 
         return
     }
 
     public static void removeTable(Table table){
-
+        int index=findTable(table);
+        allTables.remove(index);
     }
 
     public static void clearTable(Table table){
