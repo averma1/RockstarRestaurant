@@ -24,7 +24,8 @@ public class Ingredient {
     }
 
     public boolean checkIfAvailable(int amountNeeded) {
-        //TODO
+        if(amountNeeded <= quantity)
+            return true;
         return false;
     }
 
