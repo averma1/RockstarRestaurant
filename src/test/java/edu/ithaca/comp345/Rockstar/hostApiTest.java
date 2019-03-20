@@ -20,33 +20,43 @@ public class hostApiTest {
     public void splitTableTest(){
         int tableNumber1=1, tableNumber2=4;
         Table table= new Table(0,4);
-        table=hostApi.splitTable(table, tableNumber1,tableNumber2);
+        table=hostApi.splitTable(table);
         assertNotEquals(table.getTableNumber(),tableNumber1);
 
     }
 
     @Test
-    public void removeTables(){}
+    public void removeTableTest(){
+
+    }
 
     @Test
     public void clearTableTest(){
         Table table= new Table(0,4);
-        assertTrue(clearTable(table));
-        assertFalse(clearTable(table));
+        hostApi.clearTable(table);
+        assertTrue(table.isEmpty);
     }
 
     @Test
     public void seatCustomersTest(){
         Table table= new Table(0,4);
-        assertTrue(seatCustomers(table));
-        assertFalse(seatCustomers(table));
+        hostApi.seatCustomers(table, 3);
+        assertTrue(table.getNumOfSeats()==1);
+        assertFalse(table.getNumOfSeats()==0);
     }
 
     @Test
-    public void viewTableTest(){
+    public void viewAllTablesTest(){
 
     }
 
     @Test
-    public void searchTableBySize(){}
+    public void printTableDataTest(){
+
+    }
+
+    @Test
+    public void searchTableBySizeTest(){
+
+    }
 }

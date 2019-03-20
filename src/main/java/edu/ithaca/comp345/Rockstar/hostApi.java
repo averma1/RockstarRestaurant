@@ -23,10 +23,10 @@ public class hostApi {
     public static Table splitTable(Table table){
         int index= findTable(table);
         if(table.isMultiTable){
-            
+
         }
 
-        return
+        return table;
     }
 
     public static void removeTable(Table table){
@@ -46,7 +46,7 @@ public class hostApi {
 
     }
 
-    public static void printTabledata(Table table){
+    public static void printTableData(Table table){
 
     }
 
