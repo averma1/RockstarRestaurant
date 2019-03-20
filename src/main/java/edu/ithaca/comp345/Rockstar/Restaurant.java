@@ -6,7 +6,7 @@ import java.util.List;
 public class Restaurant {
     public String name;
     private List<Table> Tables= new ArrayList<>();
-    private List<Item> Stock= new ArrayList<>();
+    private Stock stock = new Stock();
 
     public Restaurant(String name){
         this.name=name;
