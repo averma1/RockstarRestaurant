@@ -16,6 +16,7 @@ public class hostApiTest {
         assertNotEquals(1,table3.getNumOfSeats());
 
     }
+
     @Test
     public void splitTableTest(){
         int tableNumber1=1, tableNumber2=4;

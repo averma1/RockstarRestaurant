@@ -13,6 +13,8 @@ public class hostApi {
         if(index1!=-1 && index2!=-1){
             int num= table1.getNumOfSeats()+table2.getNumOfSeats();
             Table newTable= new MultiTable(table1.getTableNumber(), num, table1.getNumOfSeats(), table2.getNumOfSeats());
+            allTables.remove(index2);
+            allTables.set(index1, newTable);
             return newTable;
         }
         else{
@@ -39,6 +41,12 @@ public class hostApi {
     }
 
     public static void seatCustomers(Table table, int numOfPeople){
+        if(numOfPeople<table.getNumOfSeats() && table.isTableEmpty()) {
+            table.setNumOfSeatsFilled(numOfPeople);
+            table.peopleSeated();
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
 
     }
 
