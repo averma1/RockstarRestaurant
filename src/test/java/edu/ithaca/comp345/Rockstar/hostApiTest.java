@@ -31,7 +31,7 @@ public class hostApiTest {
         hostApi.splitTable(bigTable.getTableNumber());
         hostApi.printTableData(tableNumber1);
         hostApi.printTableData(tableNumber2);
-        assertNull(bigTable);
+        assertNotNull(bigTable);
 
     }
 
@@ -39,20 +39,21 @@ public class hostApiTest {
     public void removeTablesTest(){
         hostApi.createTable(0,5);
         hostApi.removeTable(0);
+        assertEquals(-1,hostApi.findTable(0));
     }
 
     @Test
     public void clearTableTest(){
         hostApi.createTable(0,5);
         hostApi.clearTable(0);
-        //assertTrue(table.isTableEmpty());
+        assertTrue(hostApi.allTables.get(0).isTableEmpty());
     }
 
     @Test
     public void seatCustomersTest(){
         Table table= new Table(0,4);
         hostApi.seatCustomers(0, 3);
-        assertTrue(table.getNumOfSeats()==4);
+        assertEquals(4,table.getNumOfSeats());
         assertFalse(table.getNumOfSeats()==0);
     }
 
@@ -84,12 +85,13 @@ public class hostApiTest {
 
     @Test
     public void searchTableBySizeTest(){
+        int tableSizeTester=4;
         Table table1= new Table(1,4);
         Table table2= new Table(2,6);
         Table table3= new Table(3,2);
         Restaurant restaurant=new Restaurant("test");
         List tableSizeTestList;
-        tableSizeTestList=hostApi.searchTableBySize(1);
+        tableSizeTestList=hostApi.searchTableBySize(4);
         assertEquals(1,tableSizeTestList.size());
 
     }

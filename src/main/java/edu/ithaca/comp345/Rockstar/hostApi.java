@@ -91,7 +91,7 @@ public class hostApi {
         return tablesOfSize;
     }
 
-    private static int findTable(int table){
+    public static int findTable(int table){
         int index=-1;
         for(int i=0; i<allTables.size(); i++){
             if(table==allTables.get(i).getTableNumber()){
