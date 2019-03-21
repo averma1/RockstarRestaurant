@@ -13,8 +13,8 @@ public class hostApiTest {
         Table table1= new Table(5,5);
         Table table2= new Table(6,5);
         Table table3;
-        hostApi.addTableToList(table1);
-        hostApi.addTableToList(table2);
+        hostApi.createTable(5,5);
+        hostApi.createTable(6,5);
         table3=hostApi.pushTables(table1,table2);
         assertEquals(table3.getNumOfSeats(),(table1.getNumOfSeats()+table2.getNumOfSeats()));
         assertNotEquals(0,table3.getNumOfSeats());
