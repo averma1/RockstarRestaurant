@@ -6,19 +6,21 @@ import java.util.List;
 public class hostApi {
     public static  List<Table> allTables= new ArrayList<>();
 
-    public static void addTableToList(Table table){
+    public static void createTable(int tableNumber, int numOfSeats){
+        Table table= new Table(tableNumber, numOfSeats);
         allTables.add(table);
     }
 
-    public static Table pushTables(Table table1, Table table2){
+    public static Table pushTables(int table1, int table2){
         int index1= findTable(table1);
         int index2= findTable(table2);
 
         if(index1!=-1 && index2!=-1){
-            int num= table1.getNumOfSeats()+table2.getNumOfSeats();
-            Table newTable= new MultiTable(table1.getTableNumber(), num, table1.getNumOfSeats(), table2.getNumOfSeats());
+            int num= allTables.get(index1).getNumOfSeats()+allTables.get(index2).getNumOfSeats();
+            Table newTable= new MultiTable(allTables.size()+1, num, allTables.get(index1).getNumOfSeats(), allTables.get(index2).getNumOfSeats());
             allTables.remove(index2);
-            allTables.set(index1, newTable);
+            allTables.remove(index1);
+            allTables.add(newTable);
             return newTable;
         }
         else{
@@ -26,28 +28,28 @@ public class hostApi {
         }
     }
 
-    public static Table splitTable(Table table){
-        int index= findTable(table);
-        if(table.isMultiTable){
+    public static void splitTable(int tableNum){
+        int index= findTable(tableNum);
+        if(allTables.get(index).isMultiTable){
 
         }
 
-        return table;
     }
 
-    public static void removeTable(Table table){
-        int index=findTable(table);
+    public static void removeTable(int tableNum){
+        int index=findTable(tableNum);
         allTables.remove(index);
     }
 
-    public static void clearTable(Table table){
+    public static void clearTable(int tableNum){
 
     }
 
-    public static void seatCustomers(Table table, int numOfPeople){
-        if(numOfPeople<table.getNumOfSeats() && table.isTableEmpty()) {
-            table.setNumOfSeatsFilled(numOfPeople);
-            table.peopleSeated();
+    public static void seatCustomers(int tableNum, int numOfPeople){
+        int index=findTable(tableNum);
+        if(numOfPeople<allTables.get(index).getNumOfSeats() && allTables.get(index).isTableEmpty()) {
+            allTables.get(index).setNumOfSeatsFilled(numOfPeople);
+            allTables.get(index).peopleSeated();
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -58,7 +60,7 @@ public class hostApi {
 
     }
 
-    public static void printTableData(Table table){
+    public static void printTableData(int tableNum){
 
     }
 
@@ -72,10 +74,10 @@ public class hostApi {
         return tablesOfSize;
     }
 
-    private static int findTable(Table table){
+    private static int findTable(int table){
         int index=-1;
         for(int i=0; i<allTables.size(); i++){
-            if(table.getTableNumber()==allTables.get(i).getTableNumber()){
+            if(table==allTables.get(i).getTableNumber()){
                 index=i;
             }
         }
