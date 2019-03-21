@@ -24,4 +24,8 @@ public class IngredientTest {
         assertTrue(ingredient.checkIfAvailable(10));
         assertFalse(ingredient.checkIfAvailable(11));
     }
+
+    @Test
+    public void isCostValidTest(){
+    }
 }

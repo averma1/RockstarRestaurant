@@ -39,7 +39,6 @@ public class Ingredient {
     }
 
     public boolean isCostValid(double costIn){
-        //asd
         return false;
     }
 }
