@@ -6,6 +6,10 @@ import java.util.List;
 public class hostApi {
     public static  List<Table> allTables= new ArrayList<>();
 
+    public static void addTableToList(Table table){
+        allTables.add(table);
+    }
+
     public static Table pushTables(Table table1, Table table2){
         int index1= findTable(table1);
         int index2= findTable(table2);
