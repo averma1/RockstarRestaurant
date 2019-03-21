@@ -1,6 +1,10 @@
 package edu.ithaca.comp345.Rockstar;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class hostApiTest {
@@ -29,7 +33,7 @@ public class hostApiTest {
     }
 
     @Test
-    public void removeTables(){
+    public void removeTablesTest(){
         Table table= new Table(0,4);
         hostApi.removeTable(table);
         assertNull(table);
@@ -54,17 +58,23 @@ public class hostApiTest {
     @Test
     public void viewTableTest(){
         Table table = new Table(0,4);
-        //Deleted original implementation
-        //Methodolgy TBD tomorrow.
+
+    }
+    @Test
+    public void viewAllTablesTest(){
+        Table table = new Table(0,4);
+
     }
 
     @Test
-    public void searchTableBySize(){ //TODO Finish this after discussion with team
+    public void searchTableBySizeTest(){ //TODO Finish this after discussion with team
         Table table1= new Table(1,4);
         Table table2= new Table(2,6);
         Table table3= new Table(3,2);
         Restaurant restaurant=new Restaurant("test");
-        //Stuck on how to exactly implement getting the list of tables to then search said tables by size.
+        List tableSizeTestList= new ArrayList();
+        tableSizeTestList=hostApi.searchTableBySize(1);
+        assertEquals(1,tableSizeTestList.size());
 
     }
 }
