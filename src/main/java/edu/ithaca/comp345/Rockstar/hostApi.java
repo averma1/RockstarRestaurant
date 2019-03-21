@@ -64,7 +64,11 @@ public class hostApi {
 
     public static ArrayList<Table> searchTableBySize(int size){
         ArrayList<Table> tablesOfSize = new ArrayList<>();
-
+        for(int i = 0; i < allTables.size(); i++){
+            if(allTables.get(i).getNumOfSeats() == size){
+                tablesOfSize.add(allTables.get(i));
+            }
+        }
         return tablesOfSize;
     }
 
