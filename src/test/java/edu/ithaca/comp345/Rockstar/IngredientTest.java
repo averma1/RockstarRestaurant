@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class IngredientTest {
@@ -27,5 +27,39 @@ public class IngredientTest {
 
     @Test
     public void isCostValidTest(){
+        assertFalse(Ingredient.isCostValid(-1.0));
+        assertFalse(Ingredient.isCostValid(-0.001));
+        assertTrue(Ingredient.isCostValid(.001));
+        assertTrue(Ingredient.isCostValid(1.0));
+        assertTrue(Ingredient.isCostValid(1000));
+    }
+
+    @Test
+    public void changeCostTest(){
+        Ingredient ingredient = new Ingredient("onion", 1, 10);
+
+        //check if cost is correct
+        assertEquals(1,ingredient.getCost());
+
+        //change cost
+        ingredient.changeCost(2);
+
+        //did it change?
+        assertEquals(2,ingredient.getCost());
+    }
+
+    @Test
+    public void changeQuantityTest(){
+        Ingredient ingredient = new Ingredient("onion", 1, 10);
+
+        //check if quantity is correct
+        assertEquals(10,ingredient.getQuantity());
+
+        //change quantity
+        ingredient.changeQuantity(40);
+
+        //did it change?
+        assertEquals(40,ingredient.getQuantity());
+
     }
 }

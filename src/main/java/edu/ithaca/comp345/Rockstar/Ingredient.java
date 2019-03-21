@@ -38,7 +38,7 @@ public class Ingredient {
         cost = costIn;
     }
 
-    public boolean isCostValid(double costIn){
+    public static boolean isCostValid(double costIn){
         return false;
     }
 }
