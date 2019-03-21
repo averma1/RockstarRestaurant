@@ -57,7 +57,10 @@ public class hostApi {
     }
 
     public static void viewAllTables(){
+        //calls printTableData on all tables
+        for(int i = 0; i < allTables.size(); i++){
 
+        }
     }
 
     public static void printTableData(int tableNum){
