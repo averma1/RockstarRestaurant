@@ -62,11 +62,14 @@ public class hostApiTest {
 
     @Test
     public void viewTableTest(){
+        //anika
         Table table = new Table(0,4);
 
     }
+
     @Test
     public void viewAllTablesTest(){
+        //anika
         Table table = new Table(0,4);
 
     }
