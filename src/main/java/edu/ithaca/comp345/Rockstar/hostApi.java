@@ -35,7 +35,7 @@ public class hostApi {
         if(allTables.get(index).isMultiTable){
             int index2= findInMulti(tableNum);
             for(int i=0; i<MultiTables.get(index2).tables.size(); i++){
-                Table table= new Table(MultiTables.get(index2).getTableNumber(), MultiTables.get(index2).getNumOfSeats());
+                Table table= new Table(MultiTables.get(index2).tables.get(i).getTableNumber(), MultiTables.get(index2).tables.get(i).getNumOfSeats());
                 allTables.add(table);
             }
             allTables.remove(index);

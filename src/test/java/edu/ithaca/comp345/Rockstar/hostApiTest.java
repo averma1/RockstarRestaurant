@@ -10,13 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class hostApiTest {
     @Test
     public void pushTablesTest(){
-        Table table1= new Table(5,5);
-        Table table2= new Table(6,5);
         Table table3;
         hostApi.createTable(5,5);
         hostApi.createTable(6,5);
         table3=hostApi.pushTables(5,6);
-        assertEquals(table3.getNumOfSeats(),(table1.getNumOfSeats()+table2.getNumOfSeats()));
+        assertEquals(table3.getNumOfSeats(),10);
         assertNotEquals(0,table3.getNumOfSeats());
         assertNotEquals(-1,table3.getNumOfSeats());
         assertNotEquals(1,table3.getNumOfSeats());
@@ -39,17 +37,15 @@ public class hostApiTest {
 
     @Test
     public void removeTablesTest(){
-        Table table= new Table(0,4);
+        hostApi.createTable(0,5);
         hostApi.removeTable(0);
-        assertNull(table);
-
     }
 
     @Test
     public void clearTableTest(){
-        Table table= new Table(0,4);
+        hostApi.createTable(0,5);
         hostApi.clearTable(0);
-        assertTrue(table.isTableEmpty());
+        //assertTrue(table.isTableEmpty());
     }
 
     @Test
