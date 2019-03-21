@@ -64,9 +64,10 @@ public class hostApi {
 
     }
 
-    public static List<Table> searchTableBySize(int size){
+    public static ArrayList<Table> searchTableBySize(int size){
+        ArrayList<Table> tablesOfSize = new ArrayList<>();
 
-        return
+        return tablesOfSize;
     }
 
     private static int findTable(int table){
