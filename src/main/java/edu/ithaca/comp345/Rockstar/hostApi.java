@@ -60,8 +60,10 @@ public class hostApi {
 
     public static void viewAllTables(){
         //calls printTableData on all tables
+        int myTableNum = 0;
         for(int i = 0; i < allTables.size(); i++){
-
+            myTableNum = allTables.get(i).getTableNumber();
+            printTableData(myTableNum);
         }
     }
 
