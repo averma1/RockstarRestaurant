@@ -24,21 +24,28 @@ public class Ingredient {
     }
 
     public boolean checkIfAvailable(int amountNeeded) {
-        if(amountNeeded <= quantity)
+        if(amountNeeded + quantity >= 0)
             return true;
         return false;
     }
 
     public void changeQuantity(int amount) { //amount can be + or -
-        //TODO check if amount is available?
-        quantity = quantity + amount;
+        if (checkIfAvailable(amount)){
+            quantity = quantity + amount;
+        }
+        else{
+            throw new IllegalArgumentException("The requested amount is not available");
+        }
     }
 
     public void changeCost(double costIn){
         cost = costIn;
     }
 
-    public boolean isCostValid(double costIn){
-        return false;
+    public static boolean isCostValid(double costIn){
+        if (costIn < 0){
+            return false;
+        }
+        return true;
     }
 }
