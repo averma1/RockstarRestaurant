@@ -76,9 +76,9 @@ public class hostApi {
         }
     }
 
-    public static void printTableData(int tableNum){
+    public static String printTableData(int tableNum){
         int index=findTable(tableNum);
-        System.out.println("Table number: "+allTables.get(index).getTableNumber()+", Number of Seats: "+allTables.get(index).getNumOfSeats()+", Available: "+allTables.get(index).isTableEmpty());
+        return ("Table number: "+allTables.get(index).getTableNumber()+", Number of Seats: "+allTables.get(index).getNumOfSeats()+", Available: "+allTables.get(index).isTableEmpty());
     }
 
     public static ArrayList<Table> searchTableBySize(int size){
