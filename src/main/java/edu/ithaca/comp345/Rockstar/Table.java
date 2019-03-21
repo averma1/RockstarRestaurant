@@ -46,9 +46,9 @@ public class Table {
         return this.filledSeats;
     }
 
-    public void peopleSeated(){
-        isEmpty=false;
-    }
+    public void peopleSeated(){isEmpty=false;}
+
+    public void clearTable(){isEmpty=true;}
 
     public boolean isTableEmpty(){ return isEmpty ;}
 
