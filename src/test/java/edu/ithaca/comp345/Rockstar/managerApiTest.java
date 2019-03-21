@@ -13,6 +13,8 @@ public class managerApiTest {
     @Test
     public void addAndGetIngredientTest(){
         //add Ingredients
+
+
         managerApi.addIngredient("chicken", 9.50, 30);
         managerApi.addIngredient("potatoes", 1.30, 50);
         managerApi.addIngredient("onion", 2.00, 20);
@@ -37,7 +39,6 @@ public class managerApiTest {
         //check if Available
         assertTrue(managerApi.isIngredientAvailable("chicken"));
         assertFalse(managerApi.isIngredientAvailable("pickels"));
-
         //remove Ingredients
         managerApi.removeIngredient("chicken");
 

@@ -27,7 +27,7 @@ public class Stock {
     }
 
     public void removeIngredient(String nameToFind){
-        //TODO
+        ingredientMap.remove(nameToFind);
     }
 
     public void changeIngredientName(String nameToFind){
@@ -44,6 +44,10 @@ public class Stock {
 
     public HashMap getIngredientsList(){
         return ingredientMap;
+    }
+
+    public boolean isIngredientAvailable(String nameToFind){
+        return ingredientMap.containsKey(nameToFind);
     }
 
 }
