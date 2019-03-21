@@ -17,7 +17,7 @@ public class hostApi {
 
         if(index1!=-1 && index2!=-1){
             int num= allTables.get(index1).getNumOfSeats()+allTables.get(index2).getNumOfSeats();
-            Table newTable= new MultiTable(allTables.size()+1, num, allTables.get(index1).getNumOfSeats(), allTables.get(index2).getNumOfSeats());
+            Table newTable= new MultiTable(allTables.size()+1, allTables.get(index1), allTables.get(index2));
             allTables.remove(index2);
             allTables.remove(index1);
             allTables.add(newTable);
@@ -42,7 +42,9 @@ public class hostApi {
     }
 
     public static void clearTable(int tableNum){
-
+        int index=findTable(tableNum);
+        allTables.get(index).setNumOfSeatsFilled(0);
+        allTables.get(index).clearTable();
     }
 
     public static void seatCustomers(int tableNum, int numOfPeople){

@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MultiTable extends Table {
-    public List<Integer> tableSizes= new ArrayList<>();
+    public List<Table> tableSizes= new ArrayList<>();
 
-    public MultiTable(int tableNumber, int numOfSeats, int size1, int size2){
-        super(tableNumber, numOfSeats);
-        tableSizes.add(size1);
-        tableSizes.add(size2);
+    public MultiTable(int tableNumber, Table table1, Table table2){
+        super(tableNumber, table1.getNumOfSeats()+table2.getNumOfSeats());
+        tableSizes.add(table1);
+        tableSizes.add(table2);
         isMultiTable=true;
     }
 
-    public void addAnotherTable(int size){
-        tableSizes.add(size);
-        super.setNumOfSeats(super.getNumOfSeats()+size);
+    public void addAnotherTable(Table table){
+        tableSizes.add(table);
+        super.setNumOfSeats(super.getNumOfSeats()+table.getNumOfSeats());
     }
 }
