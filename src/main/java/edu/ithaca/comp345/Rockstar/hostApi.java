@@ -5,22 +5,24 @@ import java.util.List;
 
 public class hostApi {
     public static  List<Table> allTables= new ArrayList<>();
+    public static  List<MultiTable> MultiTables= new ArrayList<>();
 
     public static void createTable(int tableNumber, int numOfSeats){
         Table table= new Table(tableNumber, numOfSeats);
         allTables.add(table);
     }
 
-    public static Table pushTables(int table1, int table2){
+    public static MultiTable pushTables(int table1, int table2){
         int index1= findTable(table1);
         int index2= findTable(table2);
 
         if(index1!=-1 && index2!=-1){
             int num= allTables.get(index1).getNumOfSeats()+allTables.get(index2).getNumOfSeats();
-            Table newTable= new MultiTable(allTables.size()+1, allTables.get(index1), allTables.get(index2));
+            MultiTable newTable= new MultiTable(allTables.size()+1, allTables.get(index1), allTables.get(index2));
             allTables.remove(index2);
             allTables.remove(index1);
             allTables.add(newTable);
+            MultiTables.add(newTable);
             return newTable;
         }
         else{
@@ -31,9 +33,16 @@ public class hostApi {
     public static void splitTable(int tableNum){
         int index= findTable(tableNum);
         if(allTables.get(index).isMultiTable){
-
+            int index2= findInMulti(tableNum);
+            for(int i=0; i<MultiTables.get(index2).tables.size(); i++){
+                Table table= new Table(MultiTables.get(index2).getTableNumber(), MultiTables.get(index2).getNumOfSeats());
+                allTables.add(table);
+            }
+            allTables.remove(index);
+            MultiTables.remove(index2);
+        } else {
+            throw new IndexOutOfBoundsException();
         }
-
     }
 
     public static void removeTable(int tableNum){
@@ -86,5 +95,16 @@ public class hostApi {
         }
         return index;
     }
+
+    private static int findInMulti(int table){
+        int index=-1;
+        for(int i=0; i<MultiTables.size(); i++){
+            if(table==MultiTables.get(i).getTableNumber()){
+                index=i;
+            }
+        }
+        return index;
+    }
+
 
 }
