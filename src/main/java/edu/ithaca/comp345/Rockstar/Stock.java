@@ -30,15 +30,15 @@ public class Stock {
         ingredientMap.remove(nameToFind);
     }
 
-    public void changeIngredientName(String nameToFind){
+    public void changeIngredientName(String nameToFind, String changeTo){
         //TODO
     }
 
-    public void changeIngredientCost(String nameToFind){
+    public void changeIngredientCost(String nameToFind, double cost){
         //TODO
     }
 
-    public void changeIngredientQuantity(String nameToFind){
+    public void changeIngredientQuantity(String nameToFind, int quantity){
         //TODO
     }
 

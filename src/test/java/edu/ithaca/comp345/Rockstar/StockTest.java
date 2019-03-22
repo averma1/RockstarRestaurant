@@ -87,8 +87,43 @@ public class StockTest {
     }
 
 
+    @Test
+    public void changeIngredientNameTest(){
+        Stock stock = new Stock();
+        stock.addIngredient("chicken", 2.0, 100);
 
+        assertTrue(stock.getIngredientsList().containsKey("chicken"));
+        assertEquals("chicken", stock.getIngredient("chicken").getName());
 
+        stock.changeIngredientName("chicken", "fish");
+        assertFalse(stock.getIngredientsList().containsKey("chicken"));
+        assertTrue(stock.getIngredientsList().containsKey("fish"));
+    }
 
+    @Test
+    public void changeIngredientCostTest(){
+        Stock stock = new Stock();
+        stock.addIngredient("chicken", 2.0, 100);
+
+        assertTrue(stock.getIngredientsList().containsKey("chicken"));
+
+        assertEquals(2.0, stock.getIngredient("chicken").getCost());
+        stock.changeIngredientCost("chicken", 4.4);
+
+        assertEquals(4.4, stock.getIngredient("chicken").getCost());
+    }
+
+    @Test
+    public void changeIngredientQuantityTest(){
+        Stock stock = new Stock();
+        stock.addIngredient("chicken", 2.0, 100);
+
+        assertTrue(stock.getIngredientsList().containsKey("chicken"));
+
+        assertEquals(100, stock.getIngredient("chicken").getQuantity());
+        stock.changeIngredientQuantity("chicken", 200);
+
+        assertEquals(200, stock.getIngredient("chicken").getQuantity());
+    }
 
 }
