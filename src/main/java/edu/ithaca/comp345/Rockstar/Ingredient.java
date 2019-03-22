@@ -15,6 +15,18 @@ public class Ingredient {
         return name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setCost(double cost){
+        this.cost = cost;
+    }
+
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+    }
+
     public double getCost(){
         return cost;
     }
@@ -39,6 +51,9 @@ public class Ingredient {
     }
 
     public void changeCost(double costIn){
+        if (costIn < 0){
+            throw new IllegalArgumentException("The cost is less than zero");
+        }
         cost = costIn;
     }
 

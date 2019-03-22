@@ -31,15 +31,23 @@ public class Stock {
     }
 
     public void changeIngredientName(String nameToFind, String changeTo){
-        //TODO
+
+         Ingredient ingredient = ingredientMap.get(nameToFind);
+         double cost = ingredient.getCost();
+         int quantity = ingredient.getQuantity();
+
+         Ingredient newIngredient = new Ingredient(changeTo, cost, quantity);
+
+         ingredientMap.remove(nameToFind);
+         ingredientMap.put(changeTo, newIngredient);
     }
 
     public void changeIngredientCost(String nameToFind, double cost){
-        //TODO
+        ingredientMap.get(nameToFind).setCost(cost);
     }
 
     public void changeIngredientQuantity(String nameToFind, int quantity){
-        //TODO
+        ingredientMap.get(nameToFind).setQuantity(quantity);
     }
 
     public HashMap getIngredientsList(){

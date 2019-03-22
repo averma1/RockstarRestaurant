@@ -22,7 +22,8 @@ public class IngredientTest {
         Ingredient ingredient = new Ingredient("onion", 1, 10);
         assertTrue(ingredient.checkIfAvailable(5));
         assertTrue(ingredient.checkIfAvailable(10));
-        assertFalse(ingredient.checkIfAvailable(11));
+        assertFalse(ingredient.checkIfAvailable(-11));
+        assertTrue(ingredient.checkIfAvailable(-10));
     }
 
     @Test
