@@ -76,7 +76,6 @@ public class TableTest {
 
     }
 
-
     //should add exception if a table with 0 seats is created
     //also should have a maximum capacity for the number of tables to have
     //two tables can't have the same number
