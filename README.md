@@ -22,3 +22,5 @@ The motivation behind this software is to allow a faster more efficient system u
 
 ## Sprint Goal
 The goal is to manage tables and basic stock implementation.
+
+## [Sprint 1 Review](https://docs.google.com/document/d/1b6TADBY9yr2_nvlvTwweWDfXvAhB_9j4gVBQJEeIV34/edit?usp=sharing)
