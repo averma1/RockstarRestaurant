@@ -58,28 +58,12 @@ public class hostApiTest {
     }
 
     @Test
-    public void printTableDataTest(){
-        //anika
-        Table table1 = new Table(0,4);
-        assertEquals( "Table number: 0, Number of Seats: 4, Available: true", hostApi.printTableData(0));
-
-    }
-
-    @Test
     public void viewAllTablesTest(){
-        //anika
         Table table1 = new Table(0,4);
         Table table2 = new Table(1, 3);
         Table table3 = new Table(2, 6);
-
-        hostApi.viewAllTables();
-
-        List<Table> tableList = new ArrayList<>();
-        tableList.add(table1);
-        tableList.add(table2);
-        tableList.add(table3);
-
-
+        int myTables = hostApi.viewAllTables();
+        assertEquals(3, myTables);
 
     }
 

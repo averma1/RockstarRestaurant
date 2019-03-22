@@ -67,18 +67,20 @@ public class hostApi {
 
     }
 
-    public static void viewAllTables(){
-        //calls printTableData on all tables
+    public static int viewAllTables(){
         int myTableNum = 0;
+        int count = 1;
         for(int i = 0; i < allTables.size(); i++){
             myTableNum = allTables.get(i).getTableNumber();
             printTableData(myTableNum);
+            count++;
         }
+        return count;
     }
 
-    public static String printTableData(int tableNum){
+    public static void printTableData(int tableNum){
         int index=findTable(tableNum);
-        return ("Table number: "+allTables.get(index).getTableNumber()+", Number of Seats: "+allTables.get(index).getNumOfSeats()+", Available: "+allTables.get(index).isTableEmpty());
+        System.out.println(("Table number: "+allTables.get(index).getTableNumber()+", Number of Seats: "+allTables.get(index).getNumOfSeats()+", Available: "+allTables.get(index).isTableEmpty()));
     }
 
     public static ArrayList<Table> searchTableBySize(int size){
