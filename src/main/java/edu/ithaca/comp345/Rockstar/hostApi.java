@@ -103,7 +103,7 @@ public class hostApi {
         return index;
     }
 
-    private static int findInMulti(int table){
+    public static int findInMulti(int table){
         int index=-1;
         for(int i=0; i<MultiTables.size(); i++){
             if(table==MultiTables.get(i).getTableNumber()){

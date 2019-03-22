@@ -31,8 +31,7 @@ public class hostApiTest {
         hostApi.splitTable(bigTable.getTableNumber());
         hostApi.printTableData(tableNumber1);
         hostApi.printTableData(tableNumber2);
-        assertNotNull(bigTable);
-
+        assertEquals(-1,hostApi.findInMulti(3));
     }
 
     @Test
