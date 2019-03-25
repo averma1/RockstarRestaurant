@@ -15,6 +15,11 @@ public class Table {
         filledSeats=0;
     }
 
+    /**
+     * creates a table
+     * @param tableNumber
+     * @param numOfSeats
+     */
     public Table(int tableNumber, int numOfSeats){
         this.numOfSeats= numOfSeats;
         this.tableNumber= tableNumber;
@@ -22,34 +27,80 @@ public class Table {
         isEmpty=true;
         isMultiTable=false;
     }
+
+    /**
+     * gets the table number
+     * @return returns table number
+     */
     public int getTableNumber(){
         return this.tableNumber;
     }
+
+    /**
+     * sets the table number
+     * @param tableNumber: table number to set
+     * @return returns table number
+     */
     public int setTableNumber(int tableNumber){
         this.tableNumber=tableNumber;
         return this.tableNumber;
     }
 
+    /**
+     * gets the number of seats
+     * @return returns the number of seats
+     */
     public int getNumOfSeats(){
         return this.numOfSeats;
     }
+
+    /**
+     * sets the number of sears
+     * @param numOfSeats: number of seats to be set
+     * @return number of seats
+     */
     public int setNumOfSeats(int numOfSeats){
         this.numOfSeats=numOfSeats;
         return this.numOfSeats;
     }
 
+    /**
+     * gets the number of seats filled
+     * @return returns the number of seats that are filled
+     */
     public int getNumOfSeatsFilled(){
         return this.filledSeats;
     }
+
+    /**
+     * sets the number of seats that are filled
+     * @param numOfSeats: the number of seats that are filled
+     * @return returns the number of seats filled
+     */
     public int setNumOfSeatsFilled(int numOfSeats){
         this.filledSeats=numOfSeats;
         return this.filledSeats;
     }
 
+
+    /**
+     * sets the table to be no longer empty
+     * @return returns that the table is no longer empty
+     */
     public void peopleSeated(){isEmpty=false;}
 
+
+    /**
+     * sets the table to be empty
+     * @return returns that the table is empty
+     */
     public void clearTable(){isEmpty=true;}
 
+
+    /**
+     * checks to see if the table is empty or not
+     * @return returns the the table is empty or not
+     */
     public boolean isTableEmpty(){ return isEmpty ;}
 
 }
