@@ -9,20 +9,23 @@ The intended users of this software would be for those who work at a restaurant 
 The motivation behind this software is to allow a faster more efficient system ultimately creating a better customer experience as well as generating more revenue for the restaurant.
 
 ## [Waffle.io](https://waffle.io/averma1/RockstarRestaurant)
- 
+
 ## [Narratives and Scenarios](https://docs.google.com/document/d/1mbCA1XFlC16uW3GntGZr3oNSqvGuuPp9TkEMHZ1b8vo/edit)
 
-## [Use Case Diagram](https://tinyurl.com/y4xfdf5d)
+# Sprint 1
+The goal is to manage tables and basic stock implementation.
 
-## [Class Diagram](https://drive.google.com/file/d/1KtjoG9M0u61bb8D0lDHYeMyxjLdIlp0j/view?usp=sharing)
-
-## Sequence Diagrams
+### Sequence Diagrams
 * [Waiter Splits a Bill](https://drive.google.com/file/d/18TW8KnRek-9cEFv08AKFYn9QML2krKwh/view)
   * [Draw.io link](https://www.draw.io/#G18TW8KnRek-9cEFv08AKFYn9QML2krKwh)
 
-## Sprint Goal
-The goal is to manage tables and basic stock implementation.
+### [Sprint 1 Review](https://docs.google.com/document/d/1b6TADBY9yr2_nvlvTwweWDfXvAhB_9j4gVBQJEeIV34/edit?usp=sharing)
 
-## [Sprint 1 Review](https://docs.google.com/document/d/1b6TADBY9yr2_nvlvTwweWDfXvAhB_9j4gVBQJEeIV34/edit?usp=sharing)
+### [Sprint 1 Retrospective](https://docs.google.com/document/d/1e6vEyx1DYNL8DnPfbvZjvyMukJiv3SkaMRM_2HIk88o/edit?usp=sharing)
 
-## [Sprint 1 Retrospective](https://docs.google.com/document/d/1e6vEyx1DYNL8DnPfbvZjvyMukJiv3SkaMRM_2HIk88o/edit?usp=sharing)
+# Sprint 2
+Full menu implementation with server functionality, finish the Manager API, and basic bartender API.
+
+### [Use Case Diagram](https://tinyurl.com/y4xfdf5d)
+
+### [Class Diagram](https://drive.google.com/file/d/1KtjoG9M0u61bb8D0lDHYeMyxjLdIlp0j/view?usp=sharing)

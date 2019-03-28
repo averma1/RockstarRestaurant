@@ -1,6 +1,10 @@
 package edu.ithaca.comp345.Rockstar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Table {
+    public List<Order> orders= new ArrayList<>();
     private boolean isEmpty;
     private int numOfSeats;
     private int filledSeats;
