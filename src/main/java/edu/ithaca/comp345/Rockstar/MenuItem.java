@@ -8,7 +8,7 @@ public class MenuItem {
     private ArrayList<Ingredient> ingredients;
     String itemName;
 
-    public MenuItem(ArrayList<Ingredient> ingredients, double price, double itemName){
+    public MenuItem(ArrayList<Ingredient> ingredients, double price, String itemName){
 
     }
 
