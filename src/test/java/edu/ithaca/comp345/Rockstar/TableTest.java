@@ -2,6 +2,7 @@ package edu.ithaca.comp345.Rockstar;
 
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -79,5 +80,34 @@ public class TableTest {
     //should add exception if a table with 0 seats is created
     //also should have a maximum capacity for the number of tables to have
     //two tables can't have the same number
+    @Test
+    public void findOrderTest(){
+
+    }
+
+    @Test
+    public void createOrderTest(){
+
+    }
+
+    @Test
+    public void addtoOrderTest(){
+
+    }
+
+    @Test
+    public void getItemsTest(){
+
+    }
+
+    @Test
+    public void getOrderPriceTest(){
+
+    }
+
+    @Test
+    public void getOrdersTotalPriceTest(){
+
+    }
 
 }

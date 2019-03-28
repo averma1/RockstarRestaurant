@@ -107,4 +107,27 @@ public class Table {
      */
     public boolean isTableEmpty(){ return isEmpty ;}
 
+    public int findOrder(int number){
+
+    }
+
+    public void createOrder(int number){
+
+    }
+
+    public void addtoOrder(MenuItem item, int number){
+
+    }
+
+    public List<MenuItems> getItems(int number){
+
+    }
+
+    public double getOrderPrice(int number){
+
+    }
+
+    public double getOrdersTotalPrice(){
+
+    }
 }
