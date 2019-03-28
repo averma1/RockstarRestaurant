@@ -107,4 +107,11 @@ public class Stock {
         return ingredientMap.containsKey(nameToFind);
     }
 
+    /**
+     * loads in ingredients to the stock based on the data in a file
+     * @param fileName the name of the file to load in
+     */
+    public void loadFromFile(String fileName){
+
+    }
 }
