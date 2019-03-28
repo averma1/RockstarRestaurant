@@ -56,7 +56,7 @@ public class OrderTest {
         actual.add(beer);
         List<MenuItem> returned= test1.getItems();
         for(int i=0; i<test1.items.size(); i++){
-            assertEquals(returned.get(i).getName, actual.get(i).getName);
+            assertEquals(actual.get(i).getName,returned.get(i).getName );
         }
     }
 
@@ -70,6 +70,6 @@ public class OrderTest {
         Menuitem beer= new MenuItem(beer, 5.25);
         test1.addItem(beer);
 
-        assertEquals(test1.getTotalPrice(), 125.75);
+        assertEquals( 125.75, test1.getTotalPrice());
     }
 }

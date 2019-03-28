@@ -107,7 +107,7 @@ public class Table {
      */
     public boolean isTableEmpty(){ return isEmpty ;}
 
-    public int findOrder(int number){
+    private int findOrder(int number){
 
     }
 
