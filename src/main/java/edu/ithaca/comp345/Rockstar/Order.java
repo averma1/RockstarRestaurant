@@ -7,6 +7,10 @@ public class Order {
     public int number;
     protected List<MenuItem> items= new ArrayList<>();
 
+    public Order(int num){
+        number=num;
+    }
+
     public int getNumber(){
 
     }
