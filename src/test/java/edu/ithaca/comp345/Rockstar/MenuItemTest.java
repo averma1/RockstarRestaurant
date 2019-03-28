@@ -57,4 +57,31 @@ public class MenuItemTest {
         assertEquals("pepper", item1.getIngredients().get(3).getName());
     }
 
+    @Test
+    public void removeIngredientTest(){
+
+        Ingredient i1 = new Ingredient("chicken", 1.00, 1);
+        Ingredient i2 = new Ingredient("mushrooms", 2.20, 5);
+        Ingredient i3 = new Ingredient("oregano", 0.50, 8);
+
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+
+        MenuItem item1 = new MenuItem(ingredients, 25.00, "chicken dish");
+
+        //check that the current items are there
+        assertEquals(3, item1.getIngredients().size());
+        assertEquals("chicken", item1.getIngredients().get(0).getName());
+        assertEquals("mushrooms", item1.getIngredients().get(1).getName());
+        assertEquals("oregano", item1.getIngredients().get(2).getName());
+
+        //remove the ingredient
+        item1.removeIngredient(i2);
+
+        //check that the correct items are there
+        assertEquals(2, item1.getIngredients().size());
+        assertEquals("chicken", item1.getIngredients().get(0).getName());
+        assertEquals("oregano", item1.getIngredients().get(1).getName());
+
+    }
+
 }
