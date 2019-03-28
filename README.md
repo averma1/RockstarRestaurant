@@ -15,7 +15,7 @@ The motivation behind this software is to allow a faster more efficient system u
 # Sprint 1
 The goal is to manage tables and basic stock implementation.
 
-### [Class Diagram](https://drive.google.com/file/d/1S33BPhCZ0eY9-FxwYIpQDhat-m-TnDhq/view?usp=sharing)
+### [Class Diagram](https://drive.google.com/file/d/1dowYfQLj7E97GtGc-_MCFGe-19lHiee7/view?usp=sharing)
 
 ### Sequence Diagrams
 * [Waiter Splits a Bill](https://drive.google.com/file/d/18TW8KnRek-9cEFv08AKFYn9QML2krKwh/view)
