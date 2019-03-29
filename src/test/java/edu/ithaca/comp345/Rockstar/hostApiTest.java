@@ -78,4 +78,14 @@ public class hostApiTest {
         assertEquals(1,tableSizeTestList.size());
 
     }
+
+    @Test
+    public void addToWaitlistTest(){
+
+    }
+
+    @Test
+    public void removeFromWaitlistTest(){
+
+    }
 }

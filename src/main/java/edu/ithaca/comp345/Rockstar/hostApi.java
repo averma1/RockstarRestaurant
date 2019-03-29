@@ -1,12 +1,15 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class hostApi {
 
     public static  List<Table> allTables= new ArrayList<>();
     public static  List<MultiTable> MultiTables= new ArrayList<>();
+    public static Queue<Party> waitlist= new LinkedList<>();
 
     /**
      * @param tableNumber: table number of the table to create
@@ -95,7 +98,6 @@ public class hostApi {
 
     }
 
-
     /**
      * prints out all the tables
      * @return returns the number of tables there are in the master table list
@@ -163,6 +165,18 @@ public class hostApi {
             }
         }
         return index;
+    }
+
+    private static int findParty(String name){
+
+    }
+
+    public static void addToWaitlist(String name, int number){
+
+    }
+
+    public static void removeFromWaitlist(String name){
+
     }
 
 
