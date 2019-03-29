@@ -21,8 +21,12 @@ public class hostApi {
      * creates a table
      */
     public static void createTable(int tableNumber, int numOfSeats){
-        Table table= new Table(tableNumber, numOfSeats);
-        allTables.add(table);
+        if(findTable(tableNumber)==-1) {
+            Table table = new Table(tableNumber, numOfSeats);
+            allTables.add(table);
+        } else {
+            throw new IndexOutOfBoundsException("Already a table with that number");
+        }
     }
 
     /**
@@ -44,7 +48,7 @@ public class hostApi {
             return newTable;
         }
         else{
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("One or both of those tables do not exist");
         }
     }
     /**
@@ -63,7 +67,7 @@ public class hostApi {
             allTables.remove(index);
             MultiTables.remove(index2);
         } else {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("That table is not a multitable");
         }
     }
 
@@ -72,8 +76,12 @@ public class hostApi {
      * removes a table from master list of tables
      */
     public static void removeTable(int tableNum){
-        int index=findTable(tableNum);
-        allTables.remove(index);
+        if(findTable(tableNum)!=-1) {
+            int index = findTable(tableNum);
+            allTables.remove(index);
+        } else {
+            throw new IndexOutOfBoundsException("That table does not exist");
+        }
     }
 
     /**
@@ -81,9 +89,13 @@ public class hostApi {
      * clears the table: sets the number of seats filled at that table back to 0
      */
     public static void clearTable(int tableNum){
-        int index=findTable(tableNum);
-        allTables.get(index).setNumOfSeatsFilled(0);
-        allTables.get(index).clearTable();
+        if(findTable(tableNum)!=-1) {
+            int index=findTable(tableNum);
+            allTables.get(index).setNumOfSeatsFilled(0);
+            allTables.get(index).clearTable();
+        } else {
+            throw new IndexOutOfBoundsException("That table does not exist");
+        }
     }
 
     /**

@@ -12,28 +12,37 @@ import static org.junit.jupiter.api.Assertions.*;
 public class hostApiTest {
     @Test
     public void pushTablesTest(){
+        hostApi testin= new hostApi();
         Table table3;
-        hostApi.createTable(5,5);
-        hostApi.createTable(6,5);
+        testin.createTable(5,5);
+        testin.createTable(6,5);
         table3=hostApi.pushTables(5,6);
+
         assertEquals(table3.getNumOfSeats(),10);
         assertNotEquals(0,table3.getNumOfSeats());
         assertNotEquals(-1,table3.getNumOfSeats());
         assertNotEquals(1,table3.getNumOfSeats());
 
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testin.pushTables(2,5); });
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testin.pushTables(5,2); });
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testin.pushTables(2,8); });
     }
 
     @Test
     public void splitTableTest(){
-        int tableNumber1=1, tableNumber2=4;
-        hostApi.createTable(tableNumber1,4);
-        hostApi.createTable(tableNumber2,5);
-        Table bigTable= hostApi.pushTables(tableNumber1,tableNumber2);
-        hostApi.printTableData(bigTable.getTableNumber());
-        hostApi.splitTable(bigTable.getTableNumber());
-        hostApi.printTableData(tableNumber1);
-        hostApi.printTableData(tableNumber2);
-        assertEquals(-1,hostApi.findInMulti(3));
+        hostApi testin= new hostApi();
+        testin.createTable(1,4);
+        testin.createTable(4,5);
+        Table bigTable= testin.pushTables(1,4);
+
+        testin.printTableData(bigTable.getTableNumber());
+        testin.splitTable(bigTable.getTableNumber());
+        testin.printTableData(1);
+        testin.printTableData(4);
+        assertEquals(-1,testin.findInMulti(3));
+
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testin.splitTable(10); });
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testin.splitTable(1); });
     }
 
     @Test
@@ -42,21 +51,30 @@ public class hostApiTest {
         testin.createTable(0,5);
         testin.removeTable(0);
         assertEquals(-1,testin.findTable(0));
+
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testin.removeTable(7); });
     }
 
     @Test
     public void clearTableTest(){
-        hostApi.createTable(0,5);
-        hostApi.clearTable(0);
-        assertTrue(hostApi.allTables.get(0).isTableEmpty());
+        hostApi testin= new hostApi();
+        testin.createTable(0,5);
+        testin.clearTable(0);
+        assertTrue(testin.allTables.get(0).isTableEmpty());
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testin.clearTable(7); });
     }
 
     @Test
     public void seatCustomersTest(){
-        Table table= new Table(0,4);
-        hostApi.seatCustomers(0, 3);
-        assertEquals(4,table.getNumOfSeats());
-        assertFalse(table.getNumOfSeats()==0);
+        hostApi testin= new hostApi();
+        testin.createTable(0,4);
+        testin.createTable(1,5);
+        testin.seatCustomers(0, 3);
+        assertEquals(4,testin.allTables.get(0).getNumOfSeats());
+        assertFalse(testin.allTables.get(0).getNumOfSeats()==0);
+
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testin.seatCustomers(7,5); });
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testin.seatCustomers(1,10); });
     }
 
     @Test
@@ -72,7 +90,6 @@ public class hostApiTest {
 
     @Test
     public void searchTableBySizeTest(){
-        int tableSizeTester=4;
         hostApi testin= new hostApi();
         testin.createTable(1,4);
         testin.createTable(2,6);
