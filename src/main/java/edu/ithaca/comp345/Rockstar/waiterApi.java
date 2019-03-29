@@ -1,11 +1,13 @@
 package edu.ithaca.comp345.Rockstar;
 
+import java.util.List;
+
 public class waiterApi {
     public static void takeOrder(MenuItem item, int tebleNum, int orderNum){
 
     }
 
-    public double void payTotalBill(int tableNum){
+    public double payTotalBill(int tableNum){
 
     }
 
@@ -13,7 +15,7 @@ public class waiterApi {
 
     }
 
-    public static void splitTotalByItem(int tableNum){
+    public static List<Order> splitBillByItem(int tableNum){
 
     }
 
