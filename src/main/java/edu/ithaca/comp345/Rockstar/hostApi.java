@@ -7,9 +7,15 @@ import java.util.Queue;
 
 public class hostApi {
 
-    public static  List<Table> allTables= new ArrayList<>();
-    public static  List<MultiTable> MultiTables= new ArrayList<>();
-    public static Queue<Party> waitlist= new LinkedList<>();
+    public static  List<Table> allTables;
+    public static  List<MultiTable> MultiTables;
+    public static List<Party> waitlist;
+
+    public hostApi(){
+        allTables= new ArrayList<>();
+        MultiTables=new ArrayList<>();
+        waitlist= new ArrayList<>();
+    }
 
     /**
      * @param tableNumber: table number of the table to create
@@ -168,24 +174,35 @@ public class hostApi {
     }
 
     public static int findParty(String name){
-        return 1;
+        int index= -1;
+        for(int i=0; i<waitlist.size(); i++){
+            if(waitlist.get(i).name==name){
+                index=i;
+            }
+        }
+        return index;
     }
 
     public static void addToWaitlist(String name, int number){
-
+        if(findParty(name)==-1) {
+            Party partyNew = new Party(name, number);
+            waitlist.add(partyNew);
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     public static void removeFromWaitlist(String name){
-
+        if(findParty(name)!=-1) {
+            Party removed= waitlist.get(0);
+            waitlist.remove(removed);
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     public static List<Party> viewWaitlist(){
-        List<Party> returned= new ArrayList<>();
-        Queue<Party> copy= waitlist;
-        for(int i=0; i<waitlist.size(); i++){
-            returned.add(copy.remove());
-        }
-        return returned;
+        return waitlist;
     }
 
 

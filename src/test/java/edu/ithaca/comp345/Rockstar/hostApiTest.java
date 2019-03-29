@@ -83,30 +83,32 @@ public class hostApiTest {
 
     @Test
     public void addToWaitlistTest(){
-        hostApi.addToWaitlist("Susan", 5);
+        hostApi testing= new hostApi();
+        testing.addToWaitlist("Susan", 5);
         assertEquals(0, hostApi.findParty("Susan"));
 
-        hostApi.addToWaitlist("John", 0);
+        testing.addToWaitlist("John", 0);
         assertEquals(1, hostApi.findParty("John"));
 
-        hostApi.addToWaitlist("Bill", 15);
+        testing.addToWaitlist("Bill", 15);
         assertEquals(2, hostApi.findParty("Bill"));
     }
 
     @Test
     public void viewWaitlistTest(){
+        hostApi testing= new hostApi();
         List<Party> actual= new LinkedList<>();
         Party test1= new Party("Susan", 5);
         ((LinkedList<Party>) actual).add(test1);
-        hostApi.addToWaitlist("Susan", 5);
+        testing.addToWaitlist("Susan", 5);
         Party test2= new Party("John", 5);
         ((LinkedList<Party>) actual).add(test2);
-        hostApi.addToWaitlist("John", 5);
+        testing.addToWaitlist("John", 5);
         Party test3= new Party("Bill", 5);
         ((LinkedList<Party>) actual).add(test3);
-        hostApi.addToWaitlist("Bill", 5);
+        testing.addToWaitlist("Bill", 5);
 
-        List<Party> returned= hostApi.viewWaitlist();
+        List<Party> returned= testing.viewWaitlist();
 
         for(int i=0; i<actual.size(); i++){
             assertEquals(actual.get(i).name, returned.get(i).name);
@@ -116,18 +118,19 @@ public class hostApiTest {
 
     @Test
     public void removeFromWaitlistTest(){
+        hostApi testing= new hostApi();
         List<Party> actual= new LinkedList<>();
-        hostApi.addToWaitlist("Susan", 5);
+        testing.addToWaitlist("Susan", 5);
         Party test2= new Party("John", 5);
         ((LinkedList<Party>) actual).add(test2);
-        hostApi.addToWaitlist("John", 5);
+        testing.addToWaitlist("John", 5);
         Party test3= new Party("Bill", 5);
         ((LinkedList<Party>) actual).add(test3);
-        hostApi.addToWaitlist("Bill", 5);
+        testing.addToWaitlist("Bill", 5);
 
-        hostApi.removeFromWaitlist("Susan");
+        testing.removeFromWaitlist("Susan");
 
-        List<Party> returned= hostApi.viewWaitlist();
+        List<Party> returned= testing.viewWaitlist();
 
         for(int i=0; i<actual.size(); i++){
             assertEquals(actual.get(i).name, returned.get(i).name);
