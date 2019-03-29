@@ -110,7 +110,7 @@ public class hostApi {
      */
     public static int viewAllTables(){
         int myTableNum = 0;
-        int count = 1;
+        int count = 0;
         for(int i = 0; i < allTables.size(); i++){
             myTableNum = allTables.get(i).getTableNumber();
             printTableData(myTableNum);
@@ -173,6 +173,14 @@ public class hostApi {
         return index;
     }
 
+    private static int getTotalSeats(){
+        int seats=0;
+        for(int i=0; i<allTables.size(); i++){
+            seats+=allTables.get(i).getNumOfSeats();
+        }
+        return seats;
+    }
+
     public static int findParty(String name){
         int index= -1;
         for(int i=0; i<waitlist.size(); i++){
@@ -184,11 +192,14 @@ public class hostApi {
     }
 
     public static void addToWaitlist(String name, int number){
+        if(number<=0 || number>getTotalSeats()){
+            throw new IndexOutOfBoundsException("Invalid number");
+        }
         if(findParty(name)==-1) {
             Party partyNew = new Party(name, number);
             waitlist.add(partyNew);
         } else {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Invalid name");
         }
     }
 
@@ -197,7 +208,7 @@ public class hostApi {
             Party removed= waitlist.get(0);
             waitlist.remove(removed);
         } else {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Invalid name");
         }
     }
 

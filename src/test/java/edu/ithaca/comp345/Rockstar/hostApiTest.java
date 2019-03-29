@@ -38,9 +38,10 @@ public class hostApiTest {
 
     @Test
     public void removeTablesTest(){
-        hostApi.createTable(0,5);
-        hostApi.removeTable(0);
-        assertEquals(-1,hostApi.findTable(0));
+        hostApi testin= new hostApi();
+        testin.createTable(0,5);
+        testin.removeTable(0);
+        assertEquals(-1,testin.findTable(0));
     }
 
     @Test
@@ -60,10 +61,11 @@ public class hostApiTest {
 
     @Test
     public void viewAllTablesTest(){
-        Table table1 = new Table(0,4);
-        Table table2 = new Table(1, 3);
-        Table table3 = new Table(2, 6);
-        int myTables = hostApi.viewAllTables();
+        hostApi testin= new hostApi();
+        testin.createTable(0,4);
+        testin.createTable(1,3);
+        testin.createTable(2,6);
+        int myTables = testin.viewAllTables();
         assertEquals(3, myTables);
 
     }
@@ -71,12 +73,13 @@ public class hostApiTest {
     @Test
     public void searchTableBySizeTest(){
         int tableSizeTester=4;
-        Table table1= new Table(1,4);
-        Table table2= new Table(2,6);
-        Table table3= new Table(3,2);
-        Restaurant restaurant=new Restaurant("test");
+        hostApi testin= new hostApi();
+        testin.createTable(1,4);
+        testin.createTable(2,6);
+        testin.createTable(3,2);
+
         List tableSizeTestList;
-        tableSizeTestList=hostApi.searchTableBySize(4);
+        tableSizeTestList=testin.searchTableBySize(4);
         assertEquals(1,tableSizeTestList.size());
 
     }
@@ -84,19 +87,26 @@ public class hostApiTest {
     @Test
     public void addToWaitlistTest(){
         hostApi testing= new hostApi();
+        testing.createTable(1,100);
         testing.addToWaitlist("Susan", 5);
         assertEquals(0, hostApi.findParty("Susan"));
 
-        testing.addToWaitlist("John", 0);
+        testing.addToWaitlist("John", 2);
         assertEquals(1, hostApi.findParty("John"));
 
         testing.addToWaitlist("Bill", 15);
         assertEquals(2, hostApi.findParty("Bill"));
+
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testing.addToWaitlist("Bill", 10); });
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testing.addToWaitlist("Chase", 0); });
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testing.addToWaitlist("Cher", -10); });
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testing.addToWaitlist("Kyle", 1000); });
     }
 
     @Test
     public void viewWaitlistTest(){
         hostApi testing= new hostApi();
+        testing.createTable(1,100);
         List<Party> actual= new LinkedList<>();
         Party test1= new Party("Susan", 5);
         ((LinkedList<Party>) actual).add(test1);
@@ -119,6 +129,7 @@ public class hostApiTest {
     @Test
     public void removeFromWaitlistTest(){
         hostApi testing= new hostApi();
+        testing.createTable(1,100);
         List<Party> actual= new LinkedList<>();
         testing.addToWaitlist("Susan", 5);
         Party test2= new Party("John", 5);
@@ -136,5 +147,7 @@ public class hostApiTest {
             assertEquals(actual.get(i).name, returned.get(i).name);
             assertEquals(actual.get(i).number, returned.get(i).number);
         }
+
+        assertThrows(IndexOutOfBoundsException.class, ()->{ testing.removeFromWaitlist("Cher"); });
     }
 }
