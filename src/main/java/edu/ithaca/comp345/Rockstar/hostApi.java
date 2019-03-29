@@ -167,8 +167,8 @@ public class hostApi {
         return index;
     }
 
-    private static int findParty(String name){
-
+    public static int findParty(String name){
+        return 1;
     }
 
     public static void addToWaitlist(String name, int number){
@@ -177,6 +177,15 @@ public class hostApi {
 
     public static void removeFromWaitlist(String name){
 
+    }
+
+    public static List<Party> viewWaitlist(){
+        List<Party> returned= new ArrayList<>();
+        Queue<Party> copy= waitlist;
+        for(int i=0; i<waitlist.size(); i++){
+            returned.add(copy.remove());
+        }
+        return returned;
     }
 
 

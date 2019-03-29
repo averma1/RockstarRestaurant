@@ -3,7 +3,9 @@ package edu.ithaca.comp345.Rockstar;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -81,11 +83,55 @@ public class hostApiTest {
 
     @Test
     public void addToWaitlistTest(){
+        hostApi.addToWaitlist("Susan", 5);
+        assertEquals(0, hostApi.findParty("Susan"));
 
+        hostApi.addToWaitlist("John", 0);
+        assertEquals(1, hostApi.findParty("John"));
+
+        hostApi.addToWaitlist("Bill", 15);
+        assertEquals(2, hostApi.findParty("Bill"));
+    }
+
+    @Test
+    public void viewWaitlistTest(){
+        List<Party> actual= new LinkedList<>();
+        Party test1= new Party("Susan", 5);
+        ((LinkedList<Party>) actual).add(test1);
+        hostApi.addToWaitlist("Susan", 5);
+        Party test2= new Party("John", 5);
+        ((LinkedList<Party>) actual).add(test2);
+        hostApi.addToWaitlist("John", 5);
+        Party test3= new Party("Bill", 5);
+        ((LinkedList<Party>) actual).add(test3);
+        hostApi.addToWaitlist("Bill", 5);
+
+        List<Party> returned= hostApi.viewWaitlist();
+
+        for(int i=0; i<actual.size(); i++){
+            assertEquals(actual.get(i).name, returned.get(i).name);
+            assertEquals(actual.get(i).number, returned.get(i).number);
+        }
     }
 
     @Test
     public void removeFromWaitlistTest(){
+        List<Party> actual= new LinkedList<>();
+        hostApi.addToWaitlist("Susan", 5);
+        Party test2= new Party("John", 5);
+        ((LinkedList<Party>) actual).add(test2);
+        hostApi.addToWaitlist("John", 5);
+        Party test3= new Party("Bill", 5);
+        ((LinkedList<Party>) actual).add(test3);
+        hostApi.addToWaitlist("Bill", 5);
 
+        hostApi.removeFromWaitlist("Susan");
+
+        List<Party> returned= hostApi.viewWaitlist();
+
+        for(int i=0; i<actual.size(); i++){
+            assertEquals(actual.get(i).name, returned.get(i).name);
+            assertEquals(actual.get(i).number, returned.get(i).number);
+        }
     }
 }
