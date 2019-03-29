@@ -139,15 +139,20 @@ public class hostApiTest {
         ((LinkedList<Party>) actual).add(test3);
         testing.addToWaitlist("Bill", 5);
 
-        testing.removeFromWaitlist("Susan");
+        Party removed= testing.removeFromWaitlist(5);
+        assertEquals("Susan", removed.name);
+        assertEquals(5, removed.number);
 
-        List<Party> returned= testing.viewWaitlist();
+        removed= testing.removeFromWaitlist(5);
+        assertEquals("John", removed.name);
+        assertEquals(5, removed.number);
 
-        for(int i=0; i<actual.size(); i++){
-            assertEquals(actual.get(i).name, returned.get(i).name);
-            assertEquals(actual.get(i).number, returned.get(i).number);
-        }
+        removed= testing.removeFromWaitlist(5);
+        assertEquals("Bill", removed.name);
+        assertEquals(5, removed.number);
 
-        assertThrows(IndexOutOfBoundsException.class, ()->{ testing.removeFromWaitlist("Cher"); });
+        removed= testing.removeFromWaitlist(5);
+        assertEquals(null, removed);
+
     }
 }

@@ -1,9 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class hostApi {
 
@@ -173,6 +171,10 @@ public class hostApi {
         return index;
     }
 
+    /**
+     * finds the total amount of seats in the restaurant
+     * @return returns the the total amount of seats
+     */
     private static int getTotalSeats(){
         int seats=0;
         for(int i=0; i<allTables.size(); i++){
@@ -181,6 +183,11 @@ public class hostApi {
         return seats;
     }
 
+    /**
+     * finds the position of the party in the waitlist
+     * @param name: String name of the party to sinf
+     * @return returns the index of where the party number is at
+     */
     public static int findParty(String name){
         int index= -1;
         for(int i=0; i<waitlist.size(); i++){
@@ -191,6 +198,11 @@ public class hostApi {
         return index;
     }
 
+    /**
+     * creates a new party and adds it to the end of the waitlist
+     * @param name: String name of the party
+     *        number: int number of people in the party
+     */
     public static void addToWaitlist(String name, int number){
         if(number<=0 || number>getTotalSeats()){
             throw new IndexOutOfBoundsException("Invalid number");
@@ -203,15 +215,24 @@ public class hostApi {
         }
     }
 
-    public static void removeFromWaitlist(String name){
-        if(findParty(name)!=-1) {
-            Party removed= waitlist.get(0);
-            waitlist.remove(removed);
-        } else {
-            throw new IndexOutOfBoundsException("Invalid name");
+    /**
+     * remove the first party from the waitlist
+     * @param size: int size of the party to remove
+     */
+    public static Party removeFromWaitlist(int size){
+        for(int i=0; i<waitlist.size(); i++) {
+            if(waitlist.get(i).number==size) {
+                Party removed = waitlist.get(i);
+                waitlist.remove(removed);
+                return removed;
+            }
         }
+        return null;
     }
 
+    /**
+     * @return returns the entire waitlist
+     */
     public static List<Party> viewWaitlist(){
         return waitlist;
     }
