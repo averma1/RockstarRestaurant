@@ -12,22 +12,26 @@ public class Order {
     }
 
     public int getNumber(){
-
+        return number;
     }
 
     public void setNumber(int num){
-
+        number=num;
     }
 
     public List<MenuItem> getItems(){
-
+        return items;
     }
 
     public void addItem(MenuItem item){
-
+        items.add(item);
     }
 
     public double getTotalPrice(){
-
+        int price=0;
+        for(int i=0; i<items.size(); i++){
+            price+=items.get(i).cost;
+        }
+        return price;
     }
 }
