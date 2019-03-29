@@ -14,18 +14,23 @@ public class waiterApiTest {
         List menuOrderList= new LinkedList();
         hostApi.createTable(0,3);
         hostApi.seatCustomers(0,3);
-        waiterApiTester.takeOrder("Chicken Parm",1,1);
-        waiterApiTester.takeOrder("Spinach Ravioli",1,2);
-        waiterApiTester.takeOrder("Vegan Lasagna",1,3);
-        assertEquals(waiterApi.viewOrder(1,1)=="Chicken Parm");
-        assertNotEquals(waiterApiTest.viewOrder(1,2)!="Chicken Parm");
+        Menuitem chickenParm= new MenuItem(pasta, 10.25);
+        waiterApiTester.takeOrder(chickenParm,1,1);
+        Menuitem spinachRavioli= new MenuItem(pasta, 10.25);
+        waiterApiTester.takeOrder(spinachRavioli,1,2);
+        Menuitem veganLasagna= new MenuItem(pasta, 10.25);
+        waiterApiTester.takeOrder(veganLasagna,1,3);
+
+        List<MenuItem> returned= waiterApi.viewOrder(1,1);
+        assertEquals(waiterApi.viewOrder(returned.get(0).name==chickenParm.name);
+        assertNotEquals(waiterApi.viewOrder(returned.get(1).name!=chickenParm.name;
     }
 
     @Test
     public void payTotalBillTest(){
         hostApi.createTable(0,3);
         hostApi.seatCustomers(0,3);
-        int testPrice =waiterApi.payTotalBill(0);
+        double testPrice =waiterApi.payTotalBill(0);
         assertEquals(testPrice,waiterApi.getPrice());
         assertNotEquals(testPrice,-1);
 
