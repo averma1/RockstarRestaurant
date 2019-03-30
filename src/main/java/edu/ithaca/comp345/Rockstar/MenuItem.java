@@ -9,7 +9,9 @@ public class MenuItem {
     String itemName;
 
     public MenuItem(ArrayList<Ingredient> ingredients, double price, String itemName){
-
+        this.price = price;
+        this.itemName = itemName;
+        this.ingredients = ingredients;
     }
 
     /**
