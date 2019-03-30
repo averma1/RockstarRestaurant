@@ -51,7 +51,7 @@ public class MenuItem {
      * @return the price of the menu item
      */
     public double getPrice(){
-        return 0.0;
+        return price;
     }
 
     /**
@@ -59,7 +59,7 @@ public class MenuItem {
      * @return the name of the menu item
      */
     public String getItemName(){
-        return "";
+        return itemName;
     }
 
 }
