@@ -126,4 +126,23 @@ public class StockTest {
         assertEquals(200, stock.getIngredient("chicken").getQuantity());
     }
 
+    @Test
+    public void loadStockFromFileTest(){
+        Stock stock = new Stock();
+
+        stock.loadFromFile("stockTestFile1.txt");
+
+        assertTrue(stock.isIngredientAvailable("chicken"));
+        assertTrue(stock.getQuantity("chicken") == 40);
+        assertTrue(stock.getCost("chicken") == 3.5);
+        assertTrue(stock.isIngredientAvailable("onion"));
+        assertTrue(stock.getQuantity("onion") == 20);
+        assertTrue(stock.getCost("onion") == 1.5);
+        assertTrue(stock.isIngredientAvailable("pepper"));
+        assertTrue(stock.getQuantity("pepper") == 30);
+        assertTrue(stock.getCost("pepper") == 2);
+
+    }
+
+
 }
