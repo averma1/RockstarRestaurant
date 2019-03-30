@@ -27,7 +27,7 @@ public class MenuItem {
      * @param ingredientToRemove the ingredient object to remove
      */
     public void removeIngredient(Ingredient ingredientToRemove){
-
+        ingredients.remove(ingredientToRemove);
     }
 
     /**
