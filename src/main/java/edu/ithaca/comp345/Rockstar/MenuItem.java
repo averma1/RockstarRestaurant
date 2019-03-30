@@ -19,7 +19,7 @@ public class MenuItem {
      * @param ingredientToAdd the Ingredient object to add
      */
     public void addIngredient(Ingredient ingredientToAdd){
-
+        ingredients.add(ingredientToAdd);
     }
 
     /**
