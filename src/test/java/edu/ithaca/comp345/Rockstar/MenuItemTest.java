@@ -35,6 +35,10 @@ public class MenuItemTest {
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
 
+        ingredients.add(i1);
+        ingredients.add(i2);
+        ingredients.add(i3);
+
         MenuItem item1 = new MenuItem(ingredients, 25.00, "chicken dish");
 
         //check that the current items are there
@@ -65,6 +69,10 @@ public class MenuItemTest {
         Ingredient i3 = new Ingredient("oregano", 0.50, 8);
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
+
+        ingredients.add(i1);
+        ingredients.add(i2);
+        ingredients.add(i3);
 
         MenuItem item1 = new MenuItem(ingredients, 25.00, "chicken dish");
 
