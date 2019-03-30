@@ -35,7 +35,7 @@ public class MenuItem {
      * @param newPrice the new price to set for the menuItem
      */
     public void changePrice(double newPrice){
-
+        this.price = newPrice;
     }
 
     /**
