@@ -2,6 +2,7 @@ package edu.ithaca.comp345.Rockstar;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -43,11 +44,11 @@ public class OrderTest {
     @Test
     public void getItemsTest(){
         Order test1= new Order(5);
-        Menuitem pasta= new MenuItem(pasta, 12.15);
+        MenuItem pasta= new MenuItem(null,10.25, "pasta");
         test1.addItem(pasta);
-        Menuitem steak= new MenuItem(pasta, 121.34);
+        MenuItem steak= new MenuItem(null, 110.25, "steak");
         test1.addItem(steak);
-        Menuitem beer= new MenuItem(beer, 1.25);
+        MenuItem beer= new MenuItem(null, 5.25, "beer");
         test1.addItem(beer);
 
         List<MenuItem> actual= new ArrayList<>();
@@ -56,18 +57,18 @@ public class OrderTest {
         actual.add(beer);
         List<MenuItem> returned= test1.getItems();
         for(int i=0; i<test1.items.size(); i++){
-            assertEquals(actual.get(i).getName,returned.get(i).getName );
+            assertEquals(actual.get(i).getItemName(),returned.get(i).getItemName() );
         }
     }
 
     @Test
     public void getTotalPriceTest(){
         Order test1= new Order(5);
-        Menuitem pasta= new MenuItem(pasta, 10.25);
+        MenuItem pasta= new MenuItem(null,10.25, "pasta");
         test1.addItem(pasta);
-        Menuitem steak= new MenuItem(pasta, 110.25);
+        MenuItem steak= new MenuItem(null, 110.25, "steak");
         test1.addItem(steak);
-        Menuitem beer= new MenuItem(beer, 5.25);
+        MenuItem beer= new MenuItem(null, 5.25, "beer");
         test1.addItem(beer);
 
         assertEquals( 125.75, test1.getTotalPrice());

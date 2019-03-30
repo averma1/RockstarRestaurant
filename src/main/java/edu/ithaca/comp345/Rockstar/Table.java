@@ -130,15 +130,15 @@ public class Table {
 
     }
 
-    public List<MenuItems> getItems(int number){
-
+    public List<MenuItem> getItems(int number){
+        return null;
     }
 
     public double getOrderPrice(int number){
-
+        return 0;
     }
 
     public double getOrdersTotalPrice(){
-
+        return 0;
     }
 }
