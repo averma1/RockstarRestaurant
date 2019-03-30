@@ -84,4 +84,20 @@ public class MenuItemTest {
 
     }
 
+    @Test
+    public void changePriceTest(){
+
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        MenuItem item1 = new MenuItem(ingredients, 25.00, "chicken dish");
+
+        assertEquals(25.00, item1.getPrice());
+
+        //change the price
+        item1.changePrice(12.40);
+
+        //check if the price changed
+        assertEquals(12.40, item1.getPrice());
+
+    }
+
 }
