@@ -108,26 +108,37 @@ public class Table {
     public boolean isTableEmpty(){ return isEmpty ;}
 
     private int findOrder(int number){
-
+        int index=-1;
+        for(int i=0; i<orders.size(); i++){
+            if(orders.get(i).getNumber()==number){
+                index=i;
+            }
+        }
+        return index;
     }
 
     public void createOrder(int number){
-
+        if(findOrder(number)==-1){
+            Order newOrder= new Order(number);
+            orders.add(newOrder);
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     public void addtoOrder(MenuItem item, int number){
 
     }
 
-    public List<MenuItems> getItems(int number){
-
+    public List<MenuItem> getItems(int number){
+        return null;
     }
 
     public double getOrderPrice(int number){
-
+        return 0;
     }
 
     public double getOrdersTotalPrice(){
-
+        return 0;
     }
 }

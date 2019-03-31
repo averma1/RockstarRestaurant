@@ -94,25 +94,25 @@ public class TableTest {
     public void addtoOrderTest(){
         Table test1= new Table(1, 10);
         test1.createOrder(1);
-        MenuItem pasta= new MenuItem(pasta, 10.25);
+        MenuItem pasta= new MenuItem(null,10.25, "pasta");
         test1.addtoOrder(pasta,1);
         List<MenuItem> returned= test1.orders.get(0).getItems();
-        assertEquals(pasta, returned.get(0).name);
-        assertEquals(10.25, returned.get(0).cost);
+        assertEquals("pasta", returned.get(0).getItemName());
+        assertEquals(10.25, returned.get(0).getPrice());
 
         test1.createOrder(2);
-        Menuitem steak= new MenuItem(steak, 110.25);
+        MenuItem steak= new MenuItem(null, 110.25, "steak");
         test1.addtoOrder(steak,2);
-        List<MenuItem> returned= test1.orders.get(1).getItems();
-        assertEquals(steak, returned.get(0).name);
-        assertEquals(110.25, returned.get(0).cost);
+        returned= test1.orders.get(1).getItems();
+        assertEquals("steak", returned.get(0).getItemName());
+        assertEquals(110.25, returned.get(0).getPrice());
 
         test1.createOrder(3);
-        Menuitem beer= new MenuItem(beer, 5.25);
+        MenuItem beer= new MenuItem(null, 5.25, "beer");
         test1.addtoOrder(beer,3);
-        List<MenuItem> returned= test1.orders.get(2).getItems();
-        assertEquals(beer, returned.get(0).name);
-        assertEquals(5.25, returned.get(0).cost);
+        returned= test1.orders.get(2).getItems();
+        assertEquals("beer", returned.get(0).getItemName());
+        assertEquals(5.25, returned.get(0).getPrice());
     }
 
     @Test
@@ -121,20 +121,20 @@ public class TableTest {
         test1.createOrder(1);
 
         List<MenuItem> actual= new ArrayList<>();
-        MenuItem pasta= new MenuItem(pasta, 10.25);
+        MenuItem pasta= new MenuItem(null,10.25, "pasta");
         test1.addtoOrder(pasta,1);
         actual.add(pasta);
-        Menuitem steak= new MenuItem(steak, 110.25);
+        MenuItem steak= new MenuItem(null, 110.25, "steak");
         test1.addtoOrder(steak,1);
         actual.add(steak);
-        Menuitem beer= new MenuItem(beer, 5.25);
+        MenuItem beer= new MenuItem(null, 5.25, "beer");
         test1.addtoOrder(beer,1);
         actual.add(beer);
 
         List<MenuItem> returned= test1.orders.get(0).getItems();
         for(int i=0; i<returned.size(); i++) {
-            assertEquals(actual.get(i).name, returned.get(i).name);
-            assertEquals(actual.get(i).cost, returned.get(i).cost);
+            assertEquals(actual.get(i).getItemName(), returned.get(i).getItemName());
+            assertEquals(actual.get(i).getPrice(), returned.get(i).getPrice());
         }
     }
 
@@ -143,11 +143,11 @@ public class TableTest {
         Table test1= new Table(1, 10);
         test1.createOrder(1);
 
-        MenuItem pasta= new MenuItem(pasta, 10.25);
+        MenuItem pasta= new MenuItem(null,10.25, "pasta");
         test1.addtoOrder(pasta,1);
-        Menuitem steak= new MenuItem(steak, 110.25);
+        MenuItem steak= new MenuItem(null, 110.25, "steak");
         test1.addtoOrder(steak,1);
-        Menuitem beer= new MenuItem(beer, 5.25);
+        MenuItem beer= new MenuItem(null, 5.25, "beer");
         test1.addtoOrder(beer,1);
 
         assertEquals(125.75, test1.getOrderPrice(1));
@@ -157,16 +157,16 @@ public class TableTest {
     public void getOrdersTotalPriceTest(){
         Table test1= new Table(1, 10);
         test1.createOrder(1);
-        MenuItem pasta= new MenuItem(pasta, 10.25);
+        MenuItem pasta= new MenuItem(null,10.25, "pasta");
         test1.addtoOrder(pasta,1);
 
 
         test1.createOrder(2);
-        Menuitem steak= new MenuItem(steak, 110.25);
+        MenuItem steak= new MenuItem(null, 110.25, "steak");
         test1.addtoOrder(steak,2);
 
         test1.createOrder(3);
-        Menuitem beer= new MenuItem(beer, 5.25);
+        MenuItem beer= new MenuItem(null, 5.25, "beer");
         test1.addtoOrder(beer,3);
 
         assertEquals(125.75, test1.getOrdersTotalPrice());
