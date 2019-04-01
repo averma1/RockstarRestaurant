@@ -1,8 +1,13 @@
 package edu.ithaca.comp345.Rockstar;
 
+import java.lang.reflect.InaccessibleObjectException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class waiterApi {
+
+    public static hostApi tableAccess= new hostApi();
+
     public static void takeOrder(MenuItem item, int tebleNum, int orderNum){
 
     }
@@ -19,8 +24,24 @@ public class waiterApi {
         return null;
     }
 
-    public static List<MenuItem> viewOrder(int tableNum, int orderNum){
-        return null;
+    public static Order viewOrder(int tableNum, int orderNum){
+        int index= tableAccess.findTable(tableNum);
+        if(index!=-1) {
+            Table table = tableAccess.allTables.get(index);
+            return table.getOrder(orderNum);
+        } else {
+            throw new InaccessibleObjectException();
+        }
+    }
+
+    public static List<Order> viewTableOrders(int tableNum){
+        int index= tableAccess.findTable(tableNum);
+        if(index!=-1) {
+            Table table = tableAccess.allTables.get(index);
+            return table.getAllOrders();
+        } else {
+            throw new InaccessibleObjectException();
+        }
     }
 }
 

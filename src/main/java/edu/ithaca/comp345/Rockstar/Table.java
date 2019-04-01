@@ -108,7 +108,7 @@ public class Table {
      */
     public boolean isTableEmpty(){ return isEmpty ;}
 
-    private int findOrder(int number){
+    public int findOrder(int number){
         int index=-1;
         for(int i=0; i<orders.size(); i++){
             if(orders.get(i).getNumber()==number){
@@ -167,5 +167,18 @@ public class Table {
             count += orders.get(i).getTotalPrice();
         }
         return count;
+    }
+
+    public Order getOrder(int number){
+        int index= findOrder(number);
+        if(index!=-1){
+            return orders.get(index);
+        } else {
+            throw new InaccessibleObjectException();
+        }
+    }
+
+    public List<Order> getAllOrders(){
+        return orders;
     }
 }

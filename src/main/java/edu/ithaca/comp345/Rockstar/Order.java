@@ -28,7 +28,7 @@ public class Order {
     }
 
     public double getTotalPrice(){
-        int price=0;
+        double price=0;
         for(int i=0; i<items.size(); i++){
             price+=items.get(i).getPrice();
         }

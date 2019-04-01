@@ -19,7 +19,7 @@ public class waiterApiTest {
         waiterApiTester.takeOrder(spinachRavioli,1,2);
         MenuItem veganLasagna= new MenuItem(null, 10.25, "vegan lasagna");
         waiterApiTester.takeOrder(veganLasagna,1,3);
-        List<MenuItem> returned= waiterApi.viewOrder(1,1);
+        //List<MenuItem> returned= waiterApi.viewOrder(1,1);
         //assertEquals(waiterApi.viewOrder(returned.get(0).getItemName())==chickenParm.getItemName()));
         //assertNotEquals(waiterApi.viewOrder(returned.get(1).getItemName())!=chickenParm.getItemName()));
     }
