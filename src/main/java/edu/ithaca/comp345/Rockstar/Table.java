@@ -1,5 +1,6 @@
 package edu.ithaca.comp345.Rockstar;
 
+import java.lang.reflect.InaccessibleObjectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,17 +129,43 @@ public class Table {
 
     public void addtoOrder(MenuItem item, int number){
 
+        for(int i = 0; i < orders.size(); i++){
+            if(orders.get(i).getNumber() == number){
+                orders.get(i).addItem(item);
+            }
+        }
     }
 
     public List<MenuItem> getItems(int number){
-        return null;
+
+        List<MenuItem> itemsInOrder = new ArrayList<>();
+        for(int i = 0; i < orders.size(); i++){
+            if(orders.get(i).getNumber() == number){
+                return orders.get(i).getItems();
+            }
+            else{
+                throw new InaccessibleObjectException();
+            }
+        }
+        return itemsInOrder;
+
     }
 
     public double getOrderPrice(int number){
+
+        for(int i = 0; i < orders.size(); i++){
+            if(orders.get(i).getNumber() == number){
+                return orders.get(i).getTotalPrice();
+            }
+        }
         return 0;
     }
 
     public double getOrdersTotalPrice(){
-        return 0;
+        double count = 0;
+        for(int i = 0; i < orders.size(); i++){
+            count += orders.get(i).getTotalPrice();
+        }
+        return count;
     }
 }
