@@ -1,0 +1,3 @@
+chicken#40$3.5
+onion#20$1.5
+pepper#30$2

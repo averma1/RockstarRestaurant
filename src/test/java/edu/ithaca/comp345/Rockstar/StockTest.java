@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.util.*;
 
 public class StockTest {
@@ -127,11 +128,11 @@ public class StockTest {
     }
 
     @Test
-    public void loadStockFromFileTest(){
+    public void loadStockFromFileTest()throws IOException {
+
+        //Load in 3 ingredient to an empty stock from file
         Stock stock = new Stock();
-
         stock.loadFromFile("stockTestFile1.txt");
-
         assertTrue(stock.isIngredientAvailable("chicken"));
         assertTrue(stock.getQuantity("chicken") == 40);
         assertTrue(stock.getCost("chicken") == 3.5);
@@ -142,6 +143,21 @@ public class StockTest {
         assertTrue(stock.getQuantity("pepper") == 30);
         assertTrue(stock.getCost("pepper") == 2);
 
+        //add ingredients that already exist in stock from a file
+        stock.loadFromFile("stockTestFile1.txt");
+        assertTrue(stock.isIngredientAvailable("chicken"));
+        assertTrue(stock.getQuantity("chicken") == 80);
+        assertTrue(stock.getCost("chicken") == 3.5);
+        assertTrue(stock.isIngredientAvailable("onion"));
+        assertTrue(stock.getQuantity("onion") == 40);
+        assertTrue(stock.getCost("onion") == 1.5);
+        assertTrue(stock.isIngredientAvailable("pepper"));
+        assertTrue(stock.getQuantity("pepper") == 60);
+        assertTrue(stock.getCost("pepper") == 2);
+        assertFalse(stock.getQuantity("chicken") == 35);
+
+        //load a slightly invalid stock file
+        //the file should successfully add 5 chicken, but fail to add anything else due to incorrect formatting
     }
 
 
