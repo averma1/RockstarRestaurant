@@ -158,6 +158,10 @@ public class StockTest {
 
         //load a slightly invalid stock file
         //the file should successfully add 5 chicken, but fail to add anything else due to incorrect formatting
+        stock.loadFromFile("stockTestFile2.txt");
+        assertTrue(stock.getQuantity("chicken") == 85);
+        assertTrue(stock.getQuantity("onion") == 40);
+        assertTrue(stock.getQuantity("pepper") == 60);
     }
 
 
