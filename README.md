@@ -8,6 +8,8 @@ The intended users of this software would be for those who work at a restaurant 
 
 The motivation behind this software is to allow a faster more efficient system ultimately creating a better customer experience as well as generating more revenue for the restaurant.
 
+## CircleCI [![CircleCI](https://circleci.com/gh/averma1/RockstarRestaurant.svg?style=svg)](https://circleci.com/gh/averma1/RockstarRestaurant)
+
 ## [Waffle.io](https://waffle.io/averma1/RockstarRestaurant)
 
 ## [Narratives and Scenarios](https://docs.google.com/document/d/1mbCA1XFlC16uW3GntGZr3oNSqvGuuPp9TkEMHZ1b8vo/edit)
