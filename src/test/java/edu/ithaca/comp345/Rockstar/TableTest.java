@@ -154,22 +154,24 @@ public class TableTest {
     }
 
     @Test
-    public void getOrdersTotalPriceTest(){
-        Table test1= new Table(1, 10);
+    public void getOrdersTotalPriceTest() {
+        Table test1 = new Table(1, 10);
         test1.createOrder(1);
-        MenuItem pasta= new MenuItem(null,10.25, "pasta");
-        test1.addtoOrder(pasta,1);
+        MenuItem pasta = new MenuItem(null, 10.25, "pasta");
+        test1.addtoOrder(pasta, 1);
 
 
         test1.createOrder(2);
-        MenuItem steak= new MenuItem(null, 110.25, "steak");
-        test1.addtoOrder(steak,2);
+        MenuItem steak = new MenuItem(null, 110.25, "steak");
+        test1.addtoOrder(steak, 2);
 
         test1.createOrder(3);
-        MenuItem beer= new MenuItem(null, 5.25, "beer");
-        test1.addtoOrder(beer,3);
+        MenuItem beer = new MenuItem(null, 5.25, "beer");
+        test1.addtoOrder(beer, 3);
 
         assertEquals(125.75, test1.getOrdersTotalPrice());
     }
+
+
 
 }
