@@ -73,16 +73,20 @@ public class waiterApiTest {
 
     @Test
     public void viewOrderTest(){
-        hostApi.createTable(1,3);
-        hostApi.seatCustomers(1,3);
+        waiterApi testing= new waiterApi();
+        testing.tableAccess.createTable(1,3);
+        //testing.tableAccess.seatCustomers(1,3);
+
         MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
-        waiterApi.takeOrder(chickenParm,1,1);
+        testing.takeOrder(chickenParm,1,1);
         MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
-        waiterApi.takeOrder(spinachRavioli,1,2);
+        testing.takeOrder(spinachRavioli,1,2);
         MenuItem veganLasagna= new MenuItem(null, 10.25, "vegan lasagna");
-        waiterApi.takeOrder(veganLasagna,1,3);
-        List<MenuItem> viewStatus= waiterApi.viewOrder(1,1);
+        testing.takeOrder(veganLasagna,1,3);
+
+        List<MenuItem> viewStatus= testing.viewOrder(1,1);
+        List<MenuItem> viewStatus2= testing.viewOrder(1,2);
         assertEquals(viewStatus.get(0).getItemName(),chickenParm.getItemName());
-        assertNotEquals(viewStatus.get(2).getItemName(),veganLasagna.getItemName());
+        assertNotEquals(viewStatus2.get(0).getItemName(),veganLasagna.getItemName());
     }
 }
