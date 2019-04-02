@@ -105,7 +105,7 @@ public class waiterApiTest {
 
         List<MenuItem> viewStatus= testing.viewOrder(1,1);
         List<MenuItem> viewStatus2= testing.viewOrder(1,2);
-        assertEquals(viewStatus.get(0).getItemName(),chickenParm.getItemName());
-        assertNotEquals(viewStatus2.get(0).getItemName(),veganLasagna.getItemName());
+        assertEquals(chickenParm.getItemName(), viewStatus.get(0).getItemName());
+        assertNotEquals(veganLasagna.getItemName(), viewStatus2.get(0).getItemName());
     }
 }
