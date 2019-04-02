@@ -76,9 +76,9 @@ public class waiterApiTest {
 
         MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
         waiterApiTester.takeOrder(chickenParm,1,1);
-        MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
+        MenuItem spinachRavioli= new MenuItem(null, 7.35, "spinach ravioli");
         waiterApiTester.takeOrder(spinachRavioli,1,2);
-        MenuItem veganLasagna= new MenuItem(null, 10.25, "vegan lasagna");
+        MenuItem veganLasagna= new MenuItem(null, 12.25, "vegan lasagna");
         waiterApiTester.takeOrder(veganLasagna,1,3);
 
         List<Order> itemSplitBill= waiterApiTester.splitBillByItem(1);
@@ -88,6 +88,14 @@ public class waiterApiTest {
         assertNotEquals(itemSplitBill.get(0).getTotalPrice(),-1);
         assertNotEquals(itemSplitBill.get(0).getTotalPrice(),27.85);
         assertEquals(itemSplitBill.get(1).getTotalPrice(),7.35);
+
+        assertEquals(10.25, itemSplitBill.get(0).getTotalPrice());
+        assertNotEquals(7.35, itemSplitBill.get(0).getTotalPrice());
+        assertNotEquals(-1, itemSplitBill.get(0).getTotalPrice());
+        assertNotEquals(27.85, itemSplitBill.get(0).getTotalPrice());
+        assertEquals(7.35, itemSplitBill.get(1).getTotalPrice());
+        assertEquals(12.25, itemSplitBill.get(2).getTotalPrice());
+
     }
 
     @Test

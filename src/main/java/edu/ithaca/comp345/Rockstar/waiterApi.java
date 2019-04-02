@@ -44,8 +44,18 @@ public class waiterApi extends Restaurant{
         }
     }
 
+    /**
+     * @param tableNum
+     * @return list of total orders in the table
+     */
     public static List<Order> splitBillByItem(int tableNum){
-        return null;
+        int index = findTable(tableNum);
+        if(index != -1){
+            Table table = allTables.get(index);
+            return table.orders;
+        } else{
+            throw new InaccessibleObjectException();
+        }
     }
 
     public static List<MenuItem> viewOrder(int tableNum, int orderNum){
