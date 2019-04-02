@@ -26,7 +26,7 @@ public class waiterApiTest {
     public void payTotalBillTest(){
         Restaurant main= new Restaurant("Test");
         waiterApi waiterApiTester= main.waiter;
-        main.createTable(0,3);
+        main.createTable(1,3);
 
         MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
         waiterApiTester.takeOrder(chickenParm,1,1);
@@ -34,7 +34,9 @@ public class waiterApiTest {
         waiterApiTester.takeOrder(spinachRavioli,1,2);
         MenuItem veganLasagna= new MenuItem(null, 10.25, "vegan lasagna");
         waiterApiTester.takeOrder(veganLasagna,1,3);
+
         double testCost= waiterApiTester.payTotalBill(1);
+
         assertEquals(30.75,testCost);
         assertFalse(testCost==10.25);
         assertFalse(testCost==20.50);

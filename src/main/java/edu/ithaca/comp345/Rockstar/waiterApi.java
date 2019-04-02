@@ -22,7 +22,13 @@ public class waiterApi extends Restaurant{
     }
 
     public double payTotalBill(int tableNum){
-        return 0;
+        int index= findTable(tableNum);
+        if(index!=-1) {
+            Table table = allTables.get(index);
+            return table.getOrdersTotalPrice();
+        } else {
+            throw new InaccessibleObjectException();
+        }
     }
 
     public static double splitBillByTotal(int tableNum, int split){
