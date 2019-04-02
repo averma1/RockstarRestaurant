@@ -36,7 +36,9 @@ public class waiterApi extends Restaurant{
         if(index!=-1) {
             Table table = allTables.get(index);
             double price= table.getOrdersTotalPrice();
-            return price/split;
+            price= price/split;
+            price= Math.round(price * 100.0) / 100.0;
+            return price;
         } else {
             throw new InaccessibleObjectException();
         }

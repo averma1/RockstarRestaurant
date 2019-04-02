@@ -60,6 +60,11 @@ public class waiterApiTest {
         double price=waiterApiTester.splitBillByTotal(1,3);
         assertNotEquals(9, price);
         assertEquals(10.0, price);
+
+        MenuItem Lasagna= new MenuItem(null, 9.50, "vegan lasagna");
+        waiterApiTester.takeOrder(Lasagna,1,3);
+        price=waiterApiTester.splitBillByTotal(1,3);
+        assertEquals(13.17, price);
     }
 
 
