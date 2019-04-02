@@ -48,13 +48,18 @@ public class waiterApiTest {
     public void splitBillByTotalTest(){
         Restaurant main= new Restaurant("Test");
         waiterApi waiterApiTester= main.waiter;
-        main.createTable(0,3);
+        main.createTable(1,3);
 
-        int testPrice=9;
-        int testSplitPrice=3;
-        double price=waiterApiTester.splitBillByTotal(0,3);
-        assertNotEquals(price,testPrice);
-        assertEquals(testSplitPrice,price);
+        MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
+        waiterApiTester.takeOrder(chickenParm,1,1);
+        MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
+        waiterApiTester.takeOrder(spinachRavioli,1,2);
+        MenuItem veganLasagna= new MenuItem(null, 9.50, "vegan lasagna");
+        waiterApiTester.takeOrder(veganLasagna,1,3);
+
+        double price=waiterApiTester.splitBillByTotal(1,3);
+        assertNotEquals(9, price);
+        assertEquals(10.0, price);
     }
 
 

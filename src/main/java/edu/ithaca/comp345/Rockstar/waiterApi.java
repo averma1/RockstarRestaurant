@@ -32,7 +32,14 @@ public class waiterApi extends Restaurant{
     }
 
     public static double splitBillByTotal(int tableNum, int split){
-        return 0;
+        int index= findTable(tableNum);
+        if(index!=-1) {
+            Table table = allTables.get(index);
+            double price= table.getOrdersTotalPrice();
+            return price/split;
+        } else {
+            throw new InaccessibleObjectException();
+        }
     }
 
     public static List<Order> splitBillByItem(int tableNum){
