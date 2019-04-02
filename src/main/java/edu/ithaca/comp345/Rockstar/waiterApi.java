@@ -4,15 +4,20 @@ import java.lang.reflect.InaccessibleObjectException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class waiterApi {
+public class waiterApi extends Restaurant{
 
-    public static hostApi tableAccess;
 
-    public waiterApi(){
-        tableAccess= new hostApi();
-    }
-
-    public static void takeOrder(MenuItem item, int tebleNum, int orderNum){
+    public static void takeOrder(MenuItem item, int tableNum, int orderNum){
+        int index= findTable(tableNum);
+        if(index!=-1) {
+            Table table = allTables.get(index);
+            if(table.findOrder(orderNum)==-1){
+                table.createOrder(orderNum);
+            }
+            table.addtoOrder(item, orderNum);
+        } else {
+            throw new InaccessibleObjectException();
+        }
 
     }
 
@@ -29,9 +34,9 @@ public class waiterApi {
     }
 
     public static List<MenuItem> viewOrder(int tableNum, int orderNum){
-        int index= tableAccess.findTable(tableNum);
+        int index= findTable(tableNum);
         if(index!=-1) {
-            Table table = tableAccess.allTables.get(index);
+            Table table = allTables.get(index);
             Order items= table.getOrder(orderNum);
             if(items!=null){
                 return items.items;
@@ -39,6 +44,7 @@ public class waiterApi {
         }
         throw new InaccessibleObjectException();
     }
+
 
 }
 
