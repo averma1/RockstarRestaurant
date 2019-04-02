@@ -10,72 +10,102 @@ import static org.junit.jupiter.api.Assertions.*;
 public class waiterApiTest {
     @Test
     public void takeOrderTest(){
-        waiterApi waiterApiTester= new waiterApi();
-        hostApi.createTable(0,3);
-        hostApi.seatCustomers(1,3);
+        Restaurant main= new Restaurant("Test");
+        main.createTable(1,5);
+
+        MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
+        main.waiter.takeOrder(chickenParm,1,1);
+        MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
+        main.waiter.takeOrder(spinachRavioli,1,2);
+        MenuItem veganLasagna= new MenuItem(null, 10.25, "vegan lasagna");
+        main.waiter.takeOrder(veganLasagna,1,3);
+
+    }
+
+    @Test
+    public void payTotalBillTest(){
+        Restaurant main= new Restaurant("Test");
+        waiterApi waiterApiTester= main.waiter;
+        main.createTable(1,3);
+
         MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
         waiterApiTester.takeOrder(chickenParm,1,1);
         MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
         waiterApiTester.takeOrder(spinachRavioli,1,2);
         MenuItem veganLasagna= new MenuItem(null, 10.25, "vegan lasagna");
         waiterApiTester.takeOrder(veganLasagna,1,3);
-        List<MenuItem> returned= waiterApi.viewOrder(1,1);
-        //assertEquals(waiterApi.viewOrder(returned.get(0).getItemName())==chickenParm.getItemName()));
-        //assertNotEquals(waiterApi.viewOrder(returned.get(1).getItemName())!=chickenParm.getItemName()));
-    }
 
-    @Test
-    public void payTotalBillTest(){
-        hostApi.createTable(0,3);
-        hostApi.seatCustomers(1,3);
-//        double testPrice =waiterApi.payTotalBill(0);
-//        assertEquals(testPrice,waiterApi.getPrice());
-        //assertNotEquals(testPrice,-1);
+        double testCost= waiterApiTester.payTotalBill(1);
+
+        assertEquals(30.75,testCost);
+        assertFalse(testCost==10.25);
+        assertFalse(testCost==20.50);
+
 
     }
 
     @Test
     public void splitBillByTotalTest(){
-        hostApi.createTable(0,3);
-        hostApi.seatCustomers(0,3);
-        int testPrice=9;
-        int testSplitPrice=3;
-        double price=waiterApi.splitBillByTotal(0,3);
-        assertNotEquals(price,testPrice);
-        assertEquals(testSplitPrice,price);
+        Restaurant main= new Restaurant("Test");
+        waiterApi waiterApiTester= main.waiter;
+        main.createTable(1,3);
+
+        MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
+        waiterApiTester.takeOrder(chickenParm,1,1);
+        MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
+        waiterApiTester.takeOrder(spinachRavioli,1,2);
+        MenuItem veganLasagna= new MenuItem(null, 9.50, "vegan lasagna");
+        waiterApiTester.takeOrder(veganLasagna,1,3);
+
+        double price=waiterApiTester.splitBillByTotal(1,3);
+        assertNotEquals(9, price);
+        assertEquals(10.0, price);
+
+        MenuItem Lasagna= new MenuItem(null, 9.50, "vegan lasagna");
+        waiterApiTester.takeOrder(Lasagna,1,3);
+        price=waiterApiTester.splitBillByTotal(1,3);
+        assertEquals(13.17, price);
     }
 
 
     @Test
     public void splitBillByItemTest(){
-        hostApi.createTable(1,3);
-        hostApi.seatCustomers(1,3);
+        Restaurant main= new Restaurant("Test");
+        waiterApi waiterApiTester= main.waiter;
+        main.createTable(1,3);
+
         MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
-        waiterApi.takeOrder(chickenParm,1,1);
+        waiterApiTester.takeOrder(chickenParm,1,1);
         MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
-        waiterApi.takeOrder(spinachRavioli,1,2);
+        waiterApiTester.takeOrder(spinachRavioli,1,2);
         MenuItem veganLasagna= new MenuItem(null, 10.25, "vegan lasagna");
-        waiterApi.takeOrder(veganLasagna,1,3);
-        List itemSplitBill= waiterApi.splitBillByItem(1);
-//        assertEquals(itemSplitBill.get(0)==10.25);
-//        assertNotEquals(itemSplitBill.get(0)==7.35);
-//        assertNotEquals(itemSplitBill.get(0)==-1);
-//        assertNotEquals(itemSplitBill.get(0)==27.85);
-//        assertEquals(itemSplitBill.get(1)==7.35);
+        waiterApiTester.takeOrder(veganLasagna,1,3);
+
+        List<Order> itemSplitBill= waiterApiTester.splitBillByItem(1);
+
+        assertEquals(itemSplitBill.get(0).getTotalPrice(),10.25);
+        assertNotEquals(itemSplitBill.get(0).getTotalPrice(),7.35);
+        assertNotEquals(itemSplitBill.get(0).getTotalPrice(),-1);
+        assertNotEquals(itemSplitBill.get(0).getTotalPrice(),27.85);
+        assertEquals(itemSplitBill.get(1).getTotalPrice(),7.35);
     }
 
     @Test
     public void viewOrderTest(){
-        hostApi.createTable(1,3);
-        hostApi.seatCustomers(1,3);
+        Restaurant main= new Restaurant("Test");
+        waiterApi testing= main.waiter;
+        main.createTable(1,5);
+
         MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
-        waiterApi.takeOrder(chickenParm,1,1);
+        testing.takeOrder(chickenParm,1,1);
         MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
-        waiterApi.takeOrder(spinachRavioli,1,2);
+        testing.takeOrder(spinachRavioli,1,2);
         MenuItem veganLasagna= new MenuItem(null, 10.25, "vegan lasagna");
-        waiterApi.takeOrder(veganLasagna,1,3);
-        waiterApi.viewOrder(1,1);
-        assertEquals(waiterApi.viewOrder(1,1),chickenParm.getItemName());
-        assertNotEquals(waiterApi.viewOrder(1,1),veganLasagna.getItemName());
+        testing.takeOrder(veganLasagna,1,3);
+
+        List<MenuItem> viewStatus= testing.viewOrder(1,1);
+        List<MenuItem> viewStatus2= testing.viewOrder(1,2);
+        assertEquals(viewStatus.get(0).getItemName(),chickenParm.getItemName());
+        assertNotEquals(viewStatus2.get(0).getItemName(),veganLasagna.getItemName());
     }
 }

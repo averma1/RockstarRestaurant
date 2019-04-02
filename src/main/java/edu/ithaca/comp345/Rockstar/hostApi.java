@@ -3,19 +3,14 @@ package edu.ithaca.comp345.Rockstar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class hostApi {
+public class hostApi extends Restaurant{
 
-    public static  List<Table> allTables= new ArrayList<>();
-    public static  List<MultiTable> MultiTables= new ArrayList<>();
+    public static  List<MultiTable> MultiTables;
+    public static List<Party> waitlist;
 
-    /**
-     * @param tableNumber: table number of the table to create
-     * @param numOfSeats: number of seats at the table to create
-     * creates a table
-     */
-    public static void createTable(int tableNumber, int numOfSeats){
-        Table table= new Table(tableNumber, numOfSeats);
-        allTables.add(table);
+    public hostApi(){
+        MultiTables=new ArrayList<>();
+        waitlist= new ArrayList<>();
     }
 
     /**
@@ -37,7 +32,7 @@ public class hostApi {
             return newTable;
         }
         else{
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("One or both of those tables do not exist");
         }
     }
     /**
@@ -56,7 +51,7 @@ public class hostApi {
             allTables.remove(index);
             MultiTables.remove(index2);
         } else {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("That table is not a multitable");
         }
     }
 
@@ -65,8 +60,12 @@ public class hostApi {
      * removes a table from master list of tables
      */
     public static void removeTable(int tableNum){
-        int index=findTable(tableNum);
-        allTables.remove(index);
+        if(findTable(tableNum)!=-1) {
+            int index = findTable(tableNum);
+            allTables.remove(index);
+        } else {
+            throw new IndexOutOfBoundsException("That table does not exist");
+        }
     }
 
     /**
@@ -74,9 +73,13 @@ public class hostApi {
      * clears the table: sets the number of seats filled at that table back to 0
      */
     public static void clearTable(int tableNum){
-        int index=findTable(tableNum);
-        allTables.get(index).setNumOfSeatsFilled(0);
-        allTables.get(index).clearTable();
+        if(findTable(tableNum)!=-1) {
+            int index=findTable(tableNum);
+            allTables.get(index).setNumOfSeatsFilled(0);
+            allTables.get(index).clearTable();
+        } else {
+            throw new IndexOutOfBoundsException("That table does not exist");
+        }
     }
 
     /**
@@ -95,14 +98,13 @@ public class hostApi {
 
     }
 
-
     /**
      * prints out all the tables
      * @return returns the number of tables there are in the master table list
      */
     public static int viewAllTables(){
         int myTableNum = 0;
-        int count = 1;
+        int count = 0;
         for(int i = 0; i < allTables.size(); i++){
             myTableNum = allTables.get(i).getTableNumber();
             printTableData(myTableNum);
@@ -136,21 +138,6 @@ public class hostApi {
     }
 
     /**
-     * finds the position of the table in the master list of tables
-     * @param table:table number of the table
-     * @return returns the index of where the table number is at
-     */
-    public static int findTable(int table){
-        int index=-1;
-        for(int i=0; i<allTables.size(); i++){
-            if(table==allTables.get(i).getTableNumber()){
-                index=i;
-            }
-        }
-        return index;
-    }
-
-    /**
      * returns the position of the table in the list of multi tables
      * @param table: table number of the multi table
      * @return returns the index of where the table number is at
@@ -163,6 +150,72 @@ public class hostApi {
             }
         }
         return index;
+    }
+
+    /**
+     * finds the total amount of seats in the restaurant
+     * @return returns the the total amount of seats
+     */
+    private static int getTotalSeats(){
+        int seats=0;
+        for(int i=0; i<allTables.size(); i++){
+            seats+=allTables.get(i).getNumOfSeats();
+        }
+        return seats;
+    }
+
+    /**
+     * finds the position of the party in the waitlist
+     * @param name: String name of the party to sinf
+     * @return returns the index of where the party number is at
+     */
+    public static int findParty(String name){
+        int index= -1;
+        for(int i=0; i<waitlist.size(); i++){
+            if(waitlist.get(i).name==name){
+                index=i;
+            }
+        }
+        return index;
+    }
+
+    /**
+     * creates a new party and adds it to the end of the waitlist
+     * @param name: String name of the party
+     *        number: int number of people in the party
+     */
+    public static void addToWaitlist(String name, int number){
+        if(number<=0 || number>getTotalSeats()){
+            throw new IndexOutOfBoundsException("Invalid number");
+        }
+        if(findParty(name)==-1) {
+            Party partyNew = new Party(name, number);
+            waitlist.add(partyNew);
+        } else {
+            throw new IndexOutOfBoundsException("Invalid name");
+        }
+    }
+
+    /**
+     * remove the first party from the waitlist
+     * @param size: int size of the party to remove
+     */
+    public static Party removeFromWaitlist(int size){
+        for(int i=0; i<waitlist.size(); i++) {
+            if(waitlist.get(i).number==size) {
+                Party removed = waitlist.get(i);
+                waitlist.remove(removed);
+                return removed;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @return returns the entire waitlist
+     */
+    public static List<Party> viewWaitlist(){
+        return waitlist;
     }
 
 
