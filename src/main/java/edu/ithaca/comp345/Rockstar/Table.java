@@ -108,6 +108,12 @@ public class Table {
      */
     public boolean isTableEmpty(){ return isEmpty ;}
 
+
+    /**
+     * finds the order
+     * @param number: the order number
+     * @return index: the index of the order number in the list of orders if found, else -1
+     */
     public int findOrder(int number){
         int index=-1;
         for(int i=0; i<orders.size(); i++){
@@ -118,6 +124,11 @@ public class Table {
         return index;
     }
 
+
+    /**
+     * creates an order and adds it to the list of orders
+     * @param number: order number
+     */
     public void createOrder(int number){
         if(findOrder(number)==-1){
             Order newOrder= new Order(number);
@@ -127,41 +138,76 @@ public class Table {
         }
     }
 
+
+    /**
+     * adds a MenuItem to the order
+     * @param item: the menuItem to be added to the order
+     * @param number: the order number
+     */
     public void addtoOrder(MenuItem item, int number){
 
-        for(int i = 0; i < orders.size(); i++){
-            if(orders.get(i).getNumber() == number){
-                orders.get(i).addItem(item);
+        if(findOrder(number) != -1){
+            for(int i = 0; i < orders.size(); i++){
+                if(orders.get(i).getNumber() == number){
+                    orders.get(i).addItem(item);
+                }
             }
+        }
+        else{
+            throw new InaccessibleObjectException();
         }
     }
 
+
+    /**
+     * gets a list of all the items in the order
+     * @param number: the order number
+     * @return: a list of all the menu items in the order
+     */
     public List<MenuItem> getItems(int number){
 
         List<MenuItem> itemsInOrder = new ArrayList<>();
-        for(int i = 0; i < orders.size(); i++){
-            if(orders.get(i).getNumber() == number){
-                return orders.get(i).getItems();
+        if(findOrder(number) != -1) {
+            for (int i = 0; i < orders.size(); i++) {
+                if (orders.get(i).getNumber() == number) {
+                    return orders.get(i).getItems();
+                }
             }
-            else{
-                throw new InaccessibleObjectException();
-            }
+        }
+        else{
+            throw new InaccessibleObjectException();
         }
         return itemsInOrder;
 
     }
 
-    public double getOrderPrice(int number){
 
-        for(int i = 0; i < orders.size(); i++){
-            if(orders.get(i).getNumber() == number){
-                return orders.get(i).getTotalPrice();
+    /**
+     * gets the total price for that specific order
+     * @param number: the order number
+     * @return: a double with the entire order price, -1 if that order is not found
+     */
+    public double getOrderPrice(int number){
+        if(findOrder(number) != -1) {
+            for (int i = 0; i < orders.size(); i++) {
+                if (orders.get(i).getNumber() == number) {
+                    return orders.get(i).getTotalPrice();
+                }
             }
         }
-        return 0;
+        else {
+            throw new InaccessibleObjectException();
+        }
+        return -1;
     }
 
+
+    /**
+     * gets the total price of every order in the restaurant
+     * @return count: the running count of price in the restaurant
+     */
     public double getOrdersTotalPrice(){
+
         double count = 0;
         for(int i = 0; i < orders.size(); i++){
             count += orders.get(i).getTotalPrice();
@@ -169,6 +215,11 @@ public class Table {
         return count;
     }
 
+    /**
+     * gets the order of the table number
+     * @param number: the table number to get the order for
+     * @return index: the index at which the order is at
+     */
     public Order getOrder(int number){
         int index= findOrder(number);
         if(index!=-1){
@@ -178,6 +229,11 @@ public class Table {
         }
     }
 
+
+    /**
+     * gets all the orders in the restaurant
+     * @return orders: the list of orders
+     */
     public List<Order> getAllOrders(){
         return orders;
     }
