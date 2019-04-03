@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
@@ -162,6 +163,9 @@ public class StockTest {
         assertTrue(stock.getQuantity("chicken") == 85);
         assertTrue(stock.getQuantity("onion") == 40);
         assertTrue(stock.getQuantity("pepper") == 60);
+
+        //bad file name
+        assertThrows(FileNotFoundException.class, ()-> stock.loadFromFile("thisIsNotAFile.txt"));
     }
 
 
