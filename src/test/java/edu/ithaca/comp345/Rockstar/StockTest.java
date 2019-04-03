@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class StockTest {
@@ -171,10 +170,38 @@ public class StockTest {
     @Test
     public void saveStockToFileTest()throws IOException {
 
+        //Load in 3 ingredient to an empty stock from file and test to see that they exist
+        Stock stock = new Stock();
+        stock.loadFromFile("stockTestFile1.txt");
+        assertTrue(stock.isIngredientAvailable("chicken"));
+        assertTrue(stock.getQuantity("chicken") == 40);
+        assertTrue(stock.getCost("chicken") == 3.5);
+        assertTrue(stock.isIngredientAvailable("onion"));
+        assertTrue(stock.getQuantity("onion") == 20);
+        assertTrue(stock.getCost("onion") == 1.5);
+        assertTrue(stock.isIngredientAvailable("pepper"));
+        assertTrue(stock.getQuantity("pepper") == 30);
+        assertTrue(stock.getCost("pepper") == 2);
 
+        //save the current stock to the new file
+        stock.saveStockToFile("stockOutputTest.txt");
+
+
+        //create File object for both files being compared
+        File file1 = new File("stockOutputTest.txt");
+        File file2 = new File("stockTestFile1.txt");
+
+        BufferedReader br1 = new BufferedReader(new FileReader(file1));
+        BufferedReader br2 = new BufferedReader(new FileReader(file2));
+
+        String st1;
+        String st2;
+
+        //iterate through both files line by line to see if they are identical
+        while ((st1 = br1.readLine()) != null && (st2 = br2.readLine()) != null ){
+            assertEquals(st1,st2);
+        }
     }
-
-
 
 
 }
