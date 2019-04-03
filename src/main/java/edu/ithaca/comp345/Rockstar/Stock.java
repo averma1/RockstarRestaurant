@@ -158,4 +158,8 @@ public class Stock {
 
     }
 
+    public void saveStockToFile(String fileName) throws IOException {
+
+    }
+
 }

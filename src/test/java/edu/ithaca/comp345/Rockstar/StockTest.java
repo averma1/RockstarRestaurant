@@ -168,5 +168,13 @@ public class StockTest {
         assertThrows(FileNotFoundException.class, ()-> stock.loadFromFile("thisIsNotAFile.txt"));
     }
 
+    @Test
+    public void saveStockToFileTest()throws IOException {
+
+
+    }
+
+
+
 
 }
