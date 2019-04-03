@@ -128,15 +128,15 @@ public class Stock {
      * @param fileName the name of the file to load in
      */
     public void loadFromFile(String fileName) throws IOException {
-        File file = new File(fileName);
         BufferedReader br = null;
 
         try
         {
+            File file = new File(fileName);
             br = new BufferedReader(new FileReader(file));
         }
         catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new FileNotFoundException("The file " + fileName + " doesn't exist!");
         }
 
         String st;
