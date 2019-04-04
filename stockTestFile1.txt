@@ -1,3 +1,6 @@
 chicken#40$3.5
 onion#20$1.5
-pepper#30$2
+pepper#30$2.0
+fish#30$2.0
+soda#30$2.0
+salt#30$2.0

@@ -183,24 +183,38 @@ public class StockTest {
         assertTrue(stock.getQuantity("pepper") == 30);
         assertTrue(stock.getCost("pepper") == 2);
 
+        HashMap<String, Ingredient> originalMap = stock.getIngredientsList();
+
         //save the current stock to the new file
         stock.saveStockToFile("stockOutputTest.txt");
 
+        Stock stock2 = new Stock();
+        stock2.loadFromFile("stockOutputTest.txt");
 
-        //create File object for both files being compared
-        File file1 = new File("stockOutputTest.txt");
-        File file2 = new File("stockTestFile1.txt");
+        HashMap<String, Ingredient> newMap = stock2.getIngredientsList();
 
-        BufferedReader br1 = new BufferedReader(new FileReader(file1));
-        BufferedReader br2 = new BufferedReader(new FileReader(file2));
+        assertEquals(originalMap.size(),newMap.size());
 
-        String st1;
-        String st2;
+        assertEquals(true, newMap.equals(originalMap));
 
-        //iterate through both files line by line to see if they are identical
-        while ((st1 = br1.readLine()) != null && (st2 = br2.readLine()) != null ){
-            assertEquals(st1,st2);
-        }
+//        //create File object for both files being compared
+//        File file1 = new File("stockOutputTest.txt");
+//        File file2 = new File("stockTestFile1.txt");
+//
+//        BufferedReader br1 = new BufferedReader(new FileReader(file1));
+//        BufferedReader br2 = new BufferedReader(new FileReader(file2));
+//
+//        String st1;
+//        String st2;
+//
+//        //iterate through both files line by line to see if they are identical
+//        st1 = br1.readLine();
+//        st2 = br2.readLine();
+//        while (st1 != null || st2 != null ){
+//            assertEquals(st1,st2);
+//            st1 = br1.readLine();
+//            st2 = br2.readLine();
+//        }
     }
 
 

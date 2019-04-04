@@ -4,6 +4,11 @@ package edu.ithaca.comp345.Rockstar;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class Stock {
     private HashMap<String, Ingredient> ingredientMap;
@@ -158,8 +163,50 @@ public class Stock {
 
     }
 
+    /**
+     * saves the current stock to a new file
+     * @param fileName the filename to save the stock to
+     * @throws IOException
+     */
     public void saveStockToFile(String fileName) throws IOException {
+        FileWriter fileWriter = new FileWriter("stockOutputTest.txt");
+        PrintWriter printWriter = new PrintWriter(fileWriter);
 
+        String name = "";
+        double cost = 0.0;
+        int quantity = 0;
+
+        Collection<Ingredient> collection = ingredientMap.values();
+
+        Iterator<Ingredient> iterator = collection.iterator();
+
+        Ingredient current = null;
+
+        ArrayList<String> array = new ArrayList<>();
+
+        while (iterator.hasNext()) {
+            current = iterator.next();
+            name = current.getName();
+            cost = current.getCost();
+            quantity = current.getQuantity();
+
+            if (iterator.hasNext()){
+                printWriter.println(name + "#" + quantity + "$" + cost);
+            }
+            else{
+                printWriter.print(name + "#" + quantity + "$" + cost);
+            }
+        }
+
+//        String newadd = array.get(0);
+//        array.add(newadd);
+//        for (int i = 0;i<array.size();i++){
+//            if (array.size() == i-1){
+//                printWriter.print(array.get(i));
+//            }
+//            printWriter.println(array.get(i));
+//        }
+        printWriter.close();
     }
 
 }
