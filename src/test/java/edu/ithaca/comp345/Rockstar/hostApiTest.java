@@ -12,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class hostApiTest {
     @Test
     public void pushTablesTest(){
-        hostApi testin= new hostApi();
+        Restaurant main= new Restaurant("Test");
+        hostApi testin= main.host;
         Table table3;
         testin.createTable(5,5);
         testin.createTable(6,5);
@@ -30,7 +31,8 @@ public class hostApiTest {
 
     @Test
     public void splitTableTest(){
-        hostApi testin= new hostApi();
+        Restaurant main= new Restaurant("Test");
+        hostApi testin= main.host;
         testin.createTable(1,4);
         testin.createTable(4,5);
         Table bigTable= testin.pushTables(1,4);
@@ -47,7 +49,8 @@ public class hostApiTest {
 
     @Test
     public void removeTablesTest(){
-        hostApi testin= new hostApi();
+        Restaurant main= new Restaurant("Test");
+        hostApi testin= main.host;
         testin.createTable(0,5);
         testin.removeTable(0);
         assertEquals(-1,testin.findTable(0));
@@ -57,7 +60,8 @@ public class hostApiTest {
 
     @Test
     public void clearTableTest(){
-        hostApi testin= new hostApi();
+        Restaurant main= new Restaurant("Test");
+        hostApi testin= main.host;
         testin.createTable(0,5);
         testin.clearTable(0);
         assertTrue(testin.allTables.get(0).isTableEmpty());
@@ -66,7 +70,8 @@ public class hostApiTest {
 
     @Test
     public void seatCustomersTest(){
-        hostApi testin= new hostApi();
+        Restaurant main= new Restaurant("Test");
+        hostApi testin= main.host;
         testin.createTable(0,4);
         testin.createTable(1,5);
         testin.seatCustomers(0, 3);
@@ -79,7 +84,8 @@ public class hostApiTest {
 
     @Test
     public void viewAllTablesTest(){
-        hostApi testin= new hostApi();
+        Restaurant main= new Restaurant("Test");
+        hostApi testin= main.host;
         testin.createTable(0,4);
         testin.createTable(1,3);
         testin.createTable(2,6);
@@ -90,7 +96,8 @@ public class hostApiTest {
 
     @Test
     public void searchTableBySizeTest(){
-        hostApi testin= new hostApi();
+        Restaurant main= new Restaurant("Test");
+        hostApi testin= main.host;
         testin.createTable(1,4);
         testin.createTable(2,6);
         testin.createTable(3,2);
@@ -103,7 +110,8 @@ public class hostApiTest {
 
     @Test
     public void addToWaitlistTest(){
-        hostApi testing= new hostApi();
+        Restaurant main= new Restaurant("Test");
+        hostApi testing= main.host;
         testing.createTable(1,100);
         testing.addToWaitlist("Susan", 5);
         assertEquals(0, hostApi.findParty("Susan"));
@@ -122,7 +130,8 @@ public class hostApiTest {
 
     @Test
     public void viewWaitlistTest(){
-        hostApi testing= new hostApi();
+        Restaurant main= new Restaurant("Test");
+        hostApi testing= main.host;
         testing.createTable(1,100);
         List<Party> actual= new LinkedList<>();
         Party test1= new Party("Susan", 5);
@@ -145,7 +154,8 @@ public class hostApiTest {
 
     @Test
     public void removeFromWaitlistTest(){
-        hostApi testing= new hostApi();
+        Restaurant main= new Restaurant("Test");
+        hostApi testing= main.host;
         testing.createTable(1,100);
         List<Party> actual= new LinkedList<>();
         testing.addToWaitlist("Susan", 5);
