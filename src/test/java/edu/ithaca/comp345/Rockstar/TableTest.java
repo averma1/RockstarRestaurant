@@ -1,7 +1,10 @@
 package edu.ithaca.comp345.Rockstar;
 
 import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -79,5 +82,96 @@ public class TableTest {
     //should add exception if a table with 0 seats is created
     //also should have a maximum capacity for the number of tables to have
     //two tables can't have the same number
+
+    @Test
+    public void createOrderTest(){
+        Table test1= new Table(1, 10);
+        test1.createOrder(1);
+        assertEquals(1, test1.orders.get(0).getNumber());
+    }
+
+    @Test
+    public void addtoOrderTest(){
+        Table test1= new Table(1, 10);
+        test1.createOrder(1);
+        MenuItem pasta= new MenuItem(null,10.25, "pasta");
+        test1.addtoOrder(pasta,1);
+        List<MenuItem> returned= test1.orders.get(0).getItems();
+        assertEquals("pasta", returned.get(0).getItemName());
+        assertEquals(10.25, returned.get(0).getPrice());
+
+        test1.createOrder(2);
+        MenuItem steak= new MenuItem(null, 110.25, "steak");
+        test1.addtoOrder(steak,2);
+        returned= test1.orders.get(1).getItems();
+        assertEquals("steak", returned.get(0).getItemName());
+        assertEquals(110.25, returned.get(0).getPrice());
+
+        test1.createOrder(3);
+        MenuItem beer= new MenuItem(null, 5.25, "beer");
+        test1.addtoOrder(beer,3);
+        returned= test1.orders.get(2).getItems();
+        assertEquals("beer", returned.get(0).getItemName());
+        assertEquals(5.25, returned.get(0).getPrice());
+    }
+
+    @Test
+    public void getItemsTest(){
+        Table test1= new Table(1, 10);
+        test1.createOrder(1);
+
+        List<MenuItem> actual= new ArrayList<>();
+        MenuItem pasta= new MenuItem(null,10.25, "pasta");
+        test1.addtoOrder(pasta,1);
+        actual.add(pasta);
+        MenuItem steak= new MenuItem(null, 110.25, "steak");
+        test1.addtoOrder(steak,1);
+        actual.add(steak);
+        MenuItem beer= new MenuItem(null, 5.25, "beer");
+        test1.addtoOrder(beer,1);
+        actual.add(beer);
+
+        List<MenuItem> returned= test1.orders.get(0).getItems();
+        for(int i=0; i<returned.size(); i++) {
+            assertEquals(actual.get(i).getItemName(), returned.get(i).getItemName());
+            assertEquals(actual.get(i).getPrice(), returned.get(i).getPrice());
+        }
+    }
+
+    @Test
+    public void getOrderPriceTest(){
+        Table test1= new Table(1, 10);
+        test1.createOrder(1);
+
+        MenuItem pasta= new MenuItem(null,10.25, "pasta");
+        test1.addtoOrder(pasta,1);
+        MenuItem steak= new MenuItem(null, 110.25, "steak");
+        test1.addtoOrder(steak,1);
+        MenuItem beer= new MenuItem(null, 5.25, "beer");
+        test1.addtoOrder(beer,1);
+
+        assertEquals(125.75, test1.getOrderPrice(1));
+    }
+
+    @Test
+    public void getOrdersTotalPriceTest() {
+        Table test1 = new Table(1, 10);
+        test1.createOrder(1);
+        MenuItem pasta = new MenuItem(null, 10.25, "pasta");
+        test1.addtoOrder(pasta, 1);
+
+
+        test1.createOrder(2);
+        MenuItem steak = new MenuItem(null, 110.25, "steak");
+        test1.addtoOrder(steak, 2);
+
+        test1.createOrder(3);
+        MenuItem beer = new MenuItem(null, 5.25, "beer");
+        test1.addtoOrder(beer, 3);
+
+        assertEquals(125.75, test1.getOrdersTotalPrice());
+    }
+
+
 
 }
