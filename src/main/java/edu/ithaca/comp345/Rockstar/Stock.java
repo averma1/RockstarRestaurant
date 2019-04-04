@@ -197,15 +197,6 @@ public class Stock {
                 printWriter.print(name + "#" + quantity + "$" + cost);
             }
         }
-
-//        String newadd = array.get(0);
-//        array.add(newadd);
-//        for (int i = 0;i<array.size();i++){
-//            if (array.size() == i-1){
-//                printWriter.print(array.get(i));
-//            }
-//            printWriter.println(array.get(i));
-//        }
         printWriter.close();
     }
 

@@ -193,28 +193,29 @@ public class StockTest {
 
         HashMap<String, Ingredient> newMap = stock2.getIngredientsList();
 
-        assertEquals(originalMap.size(),newMap.size());
+        System.out.println(originalMap.size());
+        System.out.println(newMap.size());
 
-        assertEquals(true, newMap.equals(originalMap));
+        //a collection of the original map
+        Collection<Ingredient> collection = originalMap.values();
+        Iterator<Ingredient> iterator = collection.iterator();
 
-//        //create File object for both files being compared
-//        File file1 = new File("stockOutputTest.txt");
-//        File file2 = new File("stockTestFile1.txt");
-//
-//        BufferedReader br1 = new BufferedReader(new FileReader(file1));
-//        BufferedReader br2 = new BufferedReader(new FileReader(file2));
-//
-//        String st1;
-//        String st2;
-//
-//        //iterate through both files line by line to see if they are identical
-//        st1 = br1.readLine();
-//        st2 = br2.readLine();
-//        while (st1 != null || st2 != null ){
-//            assertEquals(st1,st2);
-//            st1 = br1.readLine();
-//            st2 = br2.readLine();
-//        }
+        //check going both ways to make sure the keys of one map are present as the names of objects in the other
+        Ingredient current = null;
+        while (iterator.hasNext()) {
+            current = iterator.next();
+            assertTrue(newMap.containsKey(current.getName()));
+        }
+
+        //a collection of the new map
+        Collection<Ingredient> collection2 = newMap.values();
+        Iterator<Ingredient> iterator2 = collection2.iterator();
+
+        current = null;
+        while (iterator2.hasNext()) {
+            current = iterator2.next();
+            assertTrue(originalMap.containsKey(current.getName()));
+        }
     }
 
 
