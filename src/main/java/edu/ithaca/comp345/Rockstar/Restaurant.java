@@ -9,6 +9,8 @@ public class Restaurant {
     public waiterApi waiter;
     public hostApi host;
     private Stock stock = new Stock();
+    private static int barNumber=420;
+    public bartenderApi bartender;
 
     public Restaurant(){}
 
@@ -17,6 +19,7 @@ public class Restaurant {
         this.name=name;
         host= new hostApi();
         waiter= new waiterApi();
+        bartender= new bartenderApi();
     }
 
     public String getName(){
@@ -54,5 +57,11 @@ public class Restaurant {
             }
         }
         return index;
+    }
+
+    public static void createBar(int seatNumber){
+        createTable(barNumber, seatNumber);
+        bartenderApi.setSeats(seatNumber);
+        bartenderApi.giveBar(allTables.get(findTable(420)));
     }
 }
