@@ -6,9 +6,6 @@ import org.junit.jupiter.api.Test;
 public class bartenderApiTest {
 
     @Test
-    public void bartenderApiTest(){}
-
-    @Test
     public void createOrderTest(){}
 
     @Test
