@@ -11,7 +11,6 @@ public class bartenderApiTest {
     @Test
     public void addToOrderTest(){
         Order orderTester= new Order(0);
-        Table table= new Table();
         MenuItem ChickenParmSoda = new MenuItem(null, 4.25, "Chicken Parm Soda");
         MenuItem BulmersCider = new MenuItem(null,9.50,"Bulmers Hard Cider");
         bartenderApi bartenderApiTester= new bartenderApi();
@@ -27,7 +26,19 @@ public class bartenderApiTest {
     }
 
     @Test
-    public void payTest(){}
+    public void payTest(){
+        Order orderTester= new Order(0);
+        MenuItem ChickenParmSoda = new MenuItem(null, 4.25, "Chicken Parm Soda");
+        MenuItem BulmersCider = new MenuItem(null,9.50,"Bulmers Hard Cider");
+        bartenderApi bartenderApiTester= new bartenderApi();
+        bartenderApiTester.addToOrder(0,ChickenParmSoda);
+        assertTrue(orderTester.items.size()==1);
+        bartenderApiTester.addToOrder(0,BulmersCider);
+        bartenderApiTester.pay(0);
+        assertTrue(orderTester.getTotalPrice()==0.00);
+        assertNotEquals(orderTester.getTotalPrice(),13.75);
+
+    }
 
     @Test
     public void giveBarTest(){}
