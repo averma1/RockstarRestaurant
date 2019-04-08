@@ -28,7 +28,7 @@ public class Menu {
      * @param name the name of the item to remove
      */
     public void removeMenuItem(String name){
-
+        menuItemMap.remove(name);
     }
 
     /**
