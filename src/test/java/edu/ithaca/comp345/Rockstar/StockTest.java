@@ -193,9 +193,6 @@ public class StockTest {
 
         HashMap<String, Ingredient> newMap = stock2.getIngredientsList();
 
-        System.out.println(originalMap.size());
-        System.out.println(newMap.size());
-
         //a collection of the original map
         Collection<Ingredient> collection = originalMap.values();
         Iterator<Ingredient> iterator = collection.iterator();
