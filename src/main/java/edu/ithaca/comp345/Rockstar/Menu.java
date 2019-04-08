@@ -20,7 +20,7 @@ public class Menu {
      * @param item the MenuItem object to add
      */
     public void addMenuItem(MenuItem item){
-
+        menuItemMap.put(item.getItemName(), item);
     }
 
     /**
