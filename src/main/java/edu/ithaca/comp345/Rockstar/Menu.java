@@ -10,7 +10,9 @@ public class Menu {
     private String name;
 
     public Menu(String name, Stock stock){
-
+        this.name = name;
+        this.stock = stock;
+        menuItemMap = new HashMap<>();
     }
 
     /**
