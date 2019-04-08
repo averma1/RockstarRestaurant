@@ -7,6 +7,7 @@ public class Menu {
 
     private HashMap<String, MenuItem> menuItemMap;
     private Stock stock;
+    private String name;
 
     public Menu(String name, Stock stock){
 
@@ -22,6 +23,14 @@ public class Menu {
 
     public MenuItem getMenuItem(String name){
         return new MenuItem(new ArrayList<Ingredient>(), 4, "new dish");
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public Stock getStock(){
+        return stock;
     }
 
 }
