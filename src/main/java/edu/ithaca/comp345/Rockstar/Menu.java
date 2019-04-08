@@ -1,6 +1,5 @@
 package edu.ithaca.comp345.Rockstar;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Menu {
