@@ -54,4 +54,12 @@ public class Menu {
         return stock;
     }
 
+    /**
+     * gets the HashMap of MenuItem objects
+     * @return the HashMap of MenuItem objects
+     */
+    public HashMap<String, MenuItem> getMenuItemMap(){
+        return menuItemMap;
+    }
+
 }
