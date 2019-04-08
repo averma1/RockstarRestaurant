@@ -28,7 +28,12 @@ public class Menu {
      * @param name the name of the item to remove
      */
     public void removeMenuItem(String name){
-        menuItemMap.remove(name);
+        if (isNameValid(name)) {
+            menuItemMap.remove(name);
+        }
+        else{
+            throw new IllegalArgumentException("The item does not exist");
+        }
     }
 
     /**
@@ -37,7 +42,14 @@ public class Menu {
      * @return the MenuItem object that was found
      */
     public MenuItem getMenuItem(String name){
-        return menuItemMap.get(name);
+        if (isNameValid(name))
+        {
+            return menuItemMap.get(name);
+        }
+        else{
+            throw new IllegalArgumentException("The item does not exist");
+        }
+
     }
 
     /**

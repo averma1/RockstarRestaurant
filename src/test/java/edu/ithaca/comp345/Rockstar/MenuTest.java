@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MenuTest {
 
@@ -94,6 +95,10 @@ public class MenuTest {
         assertFalse(menu.getMenuItemMap().containsKey("the other dish"));
         assertTrue(menu.getMenuItemMap().containsKey("the best dish"));
 
+        //check that the exception is thrown
+        assertThrows(IllegalArgumentException.class, ()-> menu.removeMenuItem("not in the map"));
+        assertThrows(IllegalArgumentException.class, ()-> menu.removeMenuItem(""));
+
     }
 
     @Test
@@ -131,6 +136,10 @@ public class MenuTest {
         assertEquals("fish", menu.getMenuItemMap().get("the other dish").getIngredients().get(1).getName());
         assertEquals("duck", menu.getMenuItemMap().get("the other dish").getIngredients().get(2).getName());
 
+        //check that the exception is thrown
+        assertThrows(IllegalArgumentException.class, ()-> menu.getMenuItem("not in the map"));
+        assertThrows(IllegalArgumentException.class, ()-> menu.getMenuItem(""));
+
 
     }
 
@@ -167,7 +176,6 @@ public class MenuTest {
 
         assertFalse(menu.isNameValid("a dish"));
         assertFalse(menu.isNameValid(""));
-
 
     }
 
