@@ -73,7 +73,7 @@ public class MenuTest {
         Stock stock = new Stock();
         Menu menu = new Menu("Spring Menu", stock);
 
-        //create a new MenuItem with the list of ingredients and add it to the menu
+        //create new MenuItems with the list of ingredients and add them to the menu
         MenuItem item = new MenuItem(ingredients, 4.0, "new dish");
         MenuItem item2 = new MenuItem(ingredients, 4.3, "the other dish");
         MenuItem item3 = new MenuItem(ingredients, 4.3, "the best dish");
@@ -94,8 +94,47 @@ public class MenuTest {
         assertFalse(menu.getMenuItemMap().containsKey("the other dish"));
         assertTrue(menu.getMenuItemMap().containsKey("the best dish"));
 
+    }
+
+    @Test
+    public void getMenuItemTest(){
+
+        //create the Ingredient objects
+        Ingredient i1 = new Ingredient("chicken", 2.0, 301);
+        Ingredient i2 = new Ingredient("fish", 3.40, 400);
+        Ingredient i3 = new Ingredient("duck", 10.0, 30);
+
+        //create the ArrayList of Ingredient objects and add the objects to the list
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(i1);
+        ingredients.add(i2);
+        ingredients.add(i3);
+
+        //create a new Stock and Menu object
+        Stock stock = new Stock();
+        Menu menu = new Menu("Spring Menu", stock);
+
+        //create new MenuItems with the list of ingredients and add them to the menu
+        MenuItem item = new MenuItem(ingredients, 4.0, "new dish");
+        MenuItem item2 = new MenuItem(ingredients, 4.3, "the other dish");
+        MenuItem item3 = new MenuItem(ingredients, 4.3, "the best dish");
+        menu.addMenuItem(item);
+        menu.addMenuItem(item2);
+        menu.addMenuItem(item3);
+
+        //check to see if we found the correct menu item
+        MenuItem menuItem = menu.getMenuItem("the other dish");
+
+        assertEquals("the other dish", menuItem.getItemName());
+        assertEquals(4.3, menuItem.getPrice());
+        assertEquals("chicken", menu.getMenuItemMap().get("the other dish").getIngredients().get(0).getName());
+        assertEquals("fish", menu.getMenuItemMap().get("the other dish").getIngredients().get(1).getName());
+        assertEquals("duck", menu.getMenuItemMap().get("the other dish").getIngredients().get(2).getName());
+
 
     }
+
+
 
 
 
