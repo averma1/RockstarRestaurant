@@ -47,11 +47,11 @@ public class MenuTest {
         menu.addMenuItem(item);
 
         //test that everything in the menu exists
-        assertEquals("New Dish", menu.getMenuItemMap().get("New Dish").getItemName());
-        assertEquals(4.0, menu.getMenuItemMap().get("New Dish").getPrice());
-        assertEquals("chicken", menu.getMenuItemMap().get("New Dish").getIngredients().get(0).getName());
-        assertEquals("fish", menu.getMenuItemMap().get("New Dish").getIngredients().get(1).getName());
-        assertEquals("duck", menu.getMenuItemMap().get("New Dish").getIngredients().get(2).getName());
+        assertEquals("new dish", menu.getMenuItemMap().get("new dish").getItemName());
+        assertEquals(4.0, menu.getMenuItemMap().get("new dish").getPrice());
+        assertEquals("chicken", menu.getMenuItemMap().get("new dish").getIngredients().get(0).getName());
+        assertEquals("fish", menu.getMenuItemMap().get("new dish").getIngredients().get(1).getName());
+        assertEquals("duck", menu.getMenuItemMap().get("new dish").getIngredients().get(2).getName());
 
     }
 
@@ -82,7 +82,7 @@ public class MenuTest {
         menu.addMenuItem(item3);
 
         //verify the MenuItem exist
-        assertTrue(menu.getMenuItemMap().containsKey("New Dish"));
+        assertTrue(menu.getMenuItemMap().containsKey("new dish"));
         assertTrue( menu.getMenuItemMap().containsKey("the other dish"));
         assertTrue(menu.getMenuItemMap().containsKey("the best dish"));
 
@@ -90,7 +90,7 @@ public class MenuTest {
         menu.removeMenuItem("the other dish");
 
         //verify the MenuItem was removed
-        assertTrue(menu.getMenuItemMap().containsKey("New Dish"));
+        assertTrue(menu.getMenuItemMap().containsKey("new dish"));
         assertFalse(menu.getMenuItemMap().containsKey("the other dish"));
         assertTrue(menu.getMenuItemMap().containsKey("the best dish"));
 
