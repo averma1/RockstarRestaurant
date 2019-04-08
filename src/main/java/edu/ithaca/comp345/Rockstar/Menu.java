@@ -46,6 +46,9 @@ public class Menu {
      * @return true of the menu item exists and false if it does not
      */
     public boolean isNameValid(String name){
+        if (menuItemMap.containsKey(name)){
+            return true;
+        }
         return false;
     }
 
