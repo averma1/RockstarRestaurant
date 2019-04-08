@@ -13,22 +13,43 @@ public class Menu {
 
     }
 
+    /**
+     * adds a menu item to the menu based on a MenuItem object
+     * @param item the MenuItem object to add
+     */
     public void addMenuItem(MenuItem item){
 
     }
 
+    /**
+     * removes a menu item based on the name of the item
+     * @param name the name of the item to remove
+     */
     public void removeMenuItem(String name){
 
     }
 
+    /**
+     * gets a MenuItem object based on the name of the menu item
+     * @param name the name of the menu item to get
+     * @return the MenuItem object that was found
+     */
     public MenuItem getMenuItem(String name){
         return new MenuItem(new ArrayList<Ingredient>(), 4, "new dish");
     }
 
+    /**
+     * gets the name of the menu
+     * @return the name of the menu
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * get the Stock object in the menu
+     * @return the Stock object
+     */
     public Stock getStock(){
         return stock;
     }

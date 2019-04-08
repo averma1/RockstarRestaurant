@@ -19,7 +19,6 @@ public class MenuTest {
        //check that the stock and ingredients exist
        assertEquals(0, menu.getStock().getIngredientsList().size());
 
-
     }
 
 }
