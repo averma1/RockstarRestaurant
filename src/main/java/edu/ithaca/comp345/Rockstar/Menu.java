@@ -37,7 +37,7 @@ public class Menu {
      * @return the MenuItem object that was found
      */
     public MenuItem getMenuItem(String name){
-        return new MenuItem(new ArrayList<Ingredient>(), 4, "new dish");
+        return menuItemMap.get(name);
     }
 
     /**
