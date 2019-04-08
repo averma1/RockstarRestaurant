@@ -134,5 +134,42 @@ public class MenuTest {
 
     }
 
+    @Test
+    public void isNameValidTest(){
+
+        //create the Ingredient objects
+        Ingredient i1 = new Ingredient("chicken", 2.0, 301);
+        Ingredient i2 = new Ingredient("fish", 3.40, 400);
+        Ingredient i3 = new Ingredient("duck", 10.0, 30);
+
+        //create the ArrayList of Ingredient objects and add the objects to the list
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(i1);
+        ingredients.add(i2);
+        ingredients.add(i3);
+
+        //create a new Stock and Menu object
+        Stock stock = new Stock();
+        Menu menu = new Menu("Spring Menu", stock);
+
+        //create new MenuItems with the list of ingredients and add them to the menu
+        MenuItem item = new MenuItem(ingredients, 4.0, "new dish");
+        MenuItem item2 = new MenuItem(ingredients, 4.3, "the other dish");
+        MenuItem item3 = new MenuItem(ingredients, 4.3, "the best dish");
+        menu.addMenuItem(item);
+        menu.addMenuItem(item2);
+        menu.addMenuItem(item3);
+
+        //check if the name is valid
+        assertTrue(menu.isNameValid("new dish"));
+        assertTrue(menu.isNameValid("the other dish"));
+        assertTrue(menu.isNameValid("the best dish"));
+
+        assertFalse(menu.isNameValid("a dish"));
+        assertFalse(menu.isNameValid(""));
+
+
+    }
+
 
 }

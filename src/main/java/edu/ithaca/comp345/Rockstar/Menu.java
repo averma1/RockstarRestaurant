@@ -41,6 +41,15 @@ public class Menu {
     }
 
     /**
+     * determines if a given name is present in the HashMap
+     * @param name the name of the menu item to find
+     * @return true of the menu item exists and false if it does not
+     */
+    public boolean isNameValid(String name){
+        return false;
+    }
+
+    /**
      * gets the name of the menu
      * @return the name of the menu
      */
