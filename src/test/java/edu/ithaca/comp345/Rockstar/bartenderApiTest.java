@@ -39,7 +39,4 @@ public class bartenderApiTest {
         assertNotEquals(orderTester.getTotalPrice(),13.75);
 
     }
-
-    @Test
-    public void giveBarTest(){}
 }
