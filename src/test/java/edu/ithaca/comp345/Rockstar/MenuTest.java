@@ -187,8 +187,16 @@ public class MenuTest {
         //set up a menu and stock
         Stock myStock = new Stock();
         myStock.loadFromFile("stockTestFile3.txt");
-
         Menu myMenu = new Menu("Test Menu", myStock);
+
+        //load in from file
+        myMenu.loadMenuFromFile("menuTestFile1.txt");
+
+        //check if the menuItems are in the menu
+        assertTrue(myMenu.getMenuItem("Chicken Parm").itemName == "Chicken Parm");
+
+        //check that nonexistent items do not exist
+        assertFalse(myMenu.getMenuItem("Beef Stew").itemName == "Beef Stew");
     }
 
 }
