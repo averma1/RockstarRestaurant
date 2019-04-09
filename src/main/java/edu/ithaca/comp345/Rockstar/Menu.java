@@ -87,4 +87,7 @@ public class Menu {
         return menuItemMap;
     }
 
+    public void loadMenuFromFile(String fileName){
+
+    }
 }

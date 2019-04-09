@@ -1,13 +1,16 @@
 package edu.ithaca.comp345.Rockstar;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.testng.Assert.assertEquals;
 
 public class MenuTest {
 
@@ -18,10 +21,10 @@ public class MenuTest {
         Menu menu = new Menu("Spring Menu", stock);
 
         //check the name
-       assertEquals("Spring Menu", menu.getName());
+       Assertions.assertEquals("Spring Menu", menu.getName());
 
        //check that the stock and ingredients exist
-       assertEquals(0, menu.getStock().getIngredientsList().size());
+       Assertions.assertEquals(0, menu.getStock().getIngredientsList().size());
 
     }
 
@@ -48,11 +51,11 @@ public class MenuTest {
         menu.addMenuItem(item);
 
         //test that everything in the menu exists
-        assertEquals("new dish", menu.getMenuItemMap().get("new dish").getItemName());
-        assertEquals(4.0, menu.getMenuItemMap().get("new dish").getPrice());
-        assertEquals("chicken", menu.getMenuItemMap().get("new dish").getIngredients().get(0).getName());
-        assertEquals("fish", menu.getMenuItemMap().get("new dish").getIngredients().get(1).getName());
-        assertEquals("duck", menu.getMenuItemMap().get("new dish").getIngredients().get(2).getName());
+        Assertions.assertEquals("new dish", menu.getMenuItemMap().get("new dish").getItemName());
+        Assertions.assertEquals(4.0, menu.getMenuItemMap().get("new dish").getPrice());
+        Assertions.assertEquals("chicken", menu.getMenuItemMap().get("new dish").getIngredients().get(0).getName());
+        Assertions.assertEquals("fish", menu.getMenuItemMap().get("new dish").getIngredients().get(1).getName());
+        Assertions.assertEquals("duck", menu.getMenuItemMap().get("new dish").getIngredients().get(2).getName());
 
     }
 
@@ -130,11 +133,11 @@ public class MenuTest {
         //check to see if we found the correct menu item
         MenuItem menuItem = menu.getMenuItem("the other dish");
 
-        assertEquals("the other dish", menuItem.getItemName());
-        assertEquals(4.3, menuItem.getPrice());
-        assertEquals("chicken", menu.getMenuItemMap().get("the other dish").getIngredients().get(0).getName());
-        assertEquals("fish", menu.getMenuItemMap().get("the other dish").getIngredients().get(1).getName());
-        assertEquals("duck", menu.getMenuItemMap().get("the other dish").getIngredients().get(2).getName());
+        Assertions.assertEquals("the other dish", menuItem.getItemName());
+        Assertions.assertEquals(4.3, menuItem.getPrice());
+        Assertions.assertEquals("chicken", menu.getMenuItemMap().get("the other dish").getIngredients().get(0).getName());
+        Assertions.assertEquals("fish", menu.getMenuItemMap().get("the other dish").getIngredients().get(1).getName());
+        Assertions.assertEquals("duck", menu.getMenuItemMap().get("the other dish").getIngredients().get(2).getName());
 
         //check that the exception is thrown
         assertThrows(IllegalArgumentException.class, ()-> menu.getMenuItem("not in the map"));
@@ -179,5 +182,13 @@ public class MenuTest {
 
     }
 
+    @Test
+    public void loadMenuFromFile() throws IOException{
+        //set up a menu and stock
+        Stock myStock = new Stock();
+        myStock.loadFromFile("stockTestFile3.txt");
+
+        Menu myMenu = new Menu("Test Menu", myStock);
+    }
 
 }
