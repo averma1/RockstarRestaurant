@@ -61,7 +61,7 @@ public class Restaurant {
 
     public static void createBar(int seatNumber){
         createTable(barNumber, seatNumber);
+        bartenderApi.setBar(barNumber);
         bartenderApi.setSeats(seatNumber);
-        bartenderApi.setBar(420);
     }
 }

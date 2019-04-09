@@ -13,16 +13,22 @@ public class bartenderApiTest {
         Order orderTester= new Order(0);
         MenuItem ChickenParmSoda = new MenuItem(null, 4.25, "Chicken Parm Soda");
         MenuItem BulmersCider = new MenuItem(null,9.50,"Bulmers Hard Cider");
-        bartenderApi bartenderApiTester= new bartenderApi();
+
+        Restaurant main= new Restaurant("test");
+        main.createBar(50);
+        bartenderApi bartenderApiTester= main.bartender;
+        bartenderApiTester.createOrder(0);
+
         bartenderApiTester.addToOrder(0,ChickenParmSoda);
-        assertTrue(orderTester.items.size()==1);
+        assertTrue(main.waiter.viewOrder(420, 0).size()==1);
         bartenderApiTester.addToOrder(0,BulmersCider);
-        assertTrue(orderTester.items.size()==2);
-        assertNotEquals(orderTester.items.size(),1);
-        assertNotEquals(orderTester.items.size(),0);
-        assertEquals(orderTester.items.get(0).getItemName(),"Chicken Parm Soda");
-        assertEquals(orderTester.items.get(1).getPrice(),9.50);
-        assertNotEquals(orderTester.items.get(0).getItemName(),"Bulmers Hard Cider");
+        assertTrue(main.waiter.viewOrder(420, 0).size()==2);
+        assertNotEquals(main.waiter.viewOrder(420, 0).size(),1);
+        assertNotEquals(main.waiter.viewOrder(420, 0),0);
+
+        assertEquals(main.waiter.viewOrder(420, 0).get(0).getItemName(),"Chicken Parm Soda");
+        assertEquals(main.waiter.viewOrder(420, 0).get(1).getPrice(),9.50);
+        assertNotEquals(main.waiter.viewOrder(420, 0).get(0).getItemName(),"Bulmers Hard Cider");
     }
 
     @Test
@@ -30,9 +36,14 @@ public class bartenderApiTest {
         Order orderTester= new Order(0);
         MenuItem ChickenParmSoda = new MenuItem(null, 4.25, "Chicken Parm Soda");
         MenuItem BulmersCider = new MenuItem(null,9.50,"Bulmers Hard Cider");
-        bartenderApi bartenderApiTester= new bartenderApi();
+
+        Restaurant main= new Restaurant("test");
+        main.createBar(50);
+        bartenderApi bartenderApiTester= main.bartender;
+
+        bartenderApiTester.createOrder(0);
         bartenderApiTester.addToOrder(0,ChickenParmSoda);
-        assertTrue(orderTester.items.size()==1);
+        assertTrue(main.waiter.viewOrder(420, 0).size()==1);
         bartenderApiTester.addToOrder(0,BulmersCider);
         bartenderApiTester.pay(0);
         assertTrue(orderTester.getTotalPrice()==0.00);

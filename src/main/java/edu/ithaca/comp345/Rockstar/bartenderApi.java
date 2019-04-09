@@ -14,10 +14,9 @@ public class bartenderApi extends waiterApi{
         //menu= null;
     }
 
-    public void createOrder(int orderNum, MenuItem item){
+    public void createOrder(int orderNum){
         Table barTable= allTables.get(findTable(bar));
         barTable.createOrder(orderNum);
-        barTable.addtoOrder(item,orderNum);
     }
 
     public void addToOrder(int orderNum, MenuItem item){
