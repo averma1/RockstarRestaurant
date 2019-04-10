@@ -115,6 +115,34 @@ public class TableTest {
         assertEquals(5.25, returned.get(0).getPrice());
     }
 
+
+    @Test
+    public void removeOrderTest(){
+        //adding to order first
+        Table test1 = new Table(1, 5);
+        test1.createOrder(2);
+        MenuItem rice = new MenuItem(null, 2.25, "rice");
+        test1.addtoOrder(rice, 2);
+        List<MenuItem> items = test1.orders.get(0).getItems();
+        assertEquals("rice", items.get(0).getItemName());
+        assertEquals(2.25, items.get(0).getPrice());
+
+        test1.createOrder(3);
+        MenuItem chicken = new MenuItem(null, 5.50, "chicken");
+        items.add(1, chicken);
+        assertEquals("chicken", items.get(1).getItemName());
+        assertEquals(5.50, items.get(1).getPrice());
+
+        //removing order of chicken
+        test1.removeOrder(3);
+        assertEquals(-1 , test1.findOrder(3));
+
+        test1.removeOrder(2);
+        assertEquals(-1 , test1.findOrder(3));
+
+
+    }
+
     @Test
     public void getItemsTest(){
         Table test1= new Table(1, 10);
@@ -171,6 +199,7 @@ public class TableTest {
 
         assertEquals(125.75, test1.getOrdersTotalPrice());
     }
+
 
 
 

@@ -158,6 +158,19 @@ public class Table {
         }
     }
 
+    public void removeOrder(int number){
+        if(findOrder(number) != -1){
+            for(int i = 0; i < orders.size(); i++){
+                if(orders.get(i).getNumber() == number){
+                    orders.remove(orders.get(i));
+                }
+            }
+        }
+        else{
+            throw new InaccessibleObjectException();
+        }
+    }
+
 
     /**
      * gets a list of all the items in the order
