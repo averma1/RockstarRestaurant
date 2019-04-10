@@ -16,6 +16,11 @@ public class StockTest {
     }
 
     @Test
+    public void removeMenuItem(){
+        
+    }
+
+    @Test
     public void addIngredientTest(){
         Stock stock = new Stock();
         stock.addIngredient("chicken", 2.0, 100);

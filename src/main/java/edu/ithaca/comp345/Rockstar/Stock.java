@@ -2,6 +2,7 @@ package edu.ithaca.comp345.Rockstar;
 
 
 import java.io.*;
+import java.lang.reflect.InaccessibleObjectException;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -39,6 +40,22 @@ public class Stock {
      */
     public Ingredient getIngredient(String nameToFind) {
         return ingredientMap.get(nameToFind);
+    }
+
+    /**
+     * decrement stock based on an ordered menuItem
+     *
+     * @param item the menuItems whose items need to be removed
+     */
+    public void removeMenuItem(MenuItem item){
+        for(int i=0; i<item.getIngredients().size(); i++){
+            Ingredient current= item.getIngredients().get(i);
+            if(isIngredientAvailable(current.getName())){
+                removeIngredient(current.getName());
+            } else {
+                throw new InaccessibleObjectException();
+            }
+        }
     }
 
     /**
