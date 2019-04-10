@@ -41,9 +41,9 @@ public class MenuItemTest {
 
         //check that the current items are there
         assertEquals(3, item1.getIngredients().size());
-        assertEquals("chicken", item1.getIngredients().get(0).getName());
-        assertEquals("mushrooms", item1.getIngredients().get(1).getName());
-        assertEquals("oregano", item1.getIngredients().get(2).getName());
+        assertEquals("chicken", item1.getIngredient("chicken").getName());
+        assertEquals("mushrooms", item1.getIngredient("mushrooms").getName());
+        assertEquals("oregano", item1.getIngredient("oregano").getName());
 
         //ingredient to add
         Ingredient i4 = new Ingredient("pepper", 0.2, 3);
@@ -52,11 +52,10 @@ public class MenuItemTest {
         item1.addIngredient(i4, 1);
 
         //check that all the items are there
-        assertEquals(4, item1.getIngredients().size());
-        assertEquals("chicken", item1.getIngredients().get(0).getName());
-        assertEquals("mushrooms", item1.getIngredients().get(1).getName());
-        assertEquals("oregano", item1.getIngredients().get(2).getName());
-        assertEquals("pepper", item1.getIngredients().get(3).getName());
+        assertEquals("chicken", item1.getIngredient("chicken").getName());
+        assertEquals("mushrooms", item1.getIngredient("mushrooms").getName());
+        assertEquals("oregano", item1.getIngredient("oregano").getName());
+        assertEquals("pepper", item1.getIngredient("pepper").getName());
     }
 
     @Test
@@ -73,17 +72,18 @@ public class MenuItemTest {
 
         //check that the current items are there
         assertEquals(3, item1.getIngredients().size());
-        assertEquals("chicken", item1.getIngredients().get(0).getName());
-        assertEquals("mushrooms", item1.getIngredients().get(1).getName());
-        assertEquals("oregano", item1.getIngredients().get(2).getName());
+        assertEquals("chicken", item1.getIngredient("chicken").getName());
+        assertEquals("mushrooms", item1.getIngredient("mushrooms").getName());
+        assertEquals("oregano", item1.getIngredient("oregano").getName());
 
         //remove the ingredient
         item1.removeIngredient(i2);
 
         //check that the correct items are there
         assertEquals(2, item1.getIngredients().size());
-        assertEquals("chicken", item1.getIngredients().get(0).getName());
-        assertEquals("oregano", item1.getIngredients().get(1).getName());
+        assertEquals("chicken", item1.getIngredient("chicken").getName());
+        assertEquals("oregano", item1.getIngredient("oregano").getName());
+        assertEquals(null, item1.getIngredient("mushrooms"));
 
     }
 

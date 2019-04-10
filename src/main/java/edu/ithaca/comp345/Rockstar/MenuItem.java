@@ -28,8 +28,7 @@ public class MenuItem {
      * @param ingredientToRemove the ingredient object to remove
      */
     public void removeIngredient(Ingredient ingredientToRemove){
-
-        //ingredients.remove(ingredientToRemove);
+        ingredients.remove(ingredientToRemove);
     }
 
     /**
@@ -45,7 +44,17 @@ public class MenuItem {
      * @return the list of ingredients
      */
     public ArrayList<Ingredient> getIngredients(){
+        ArrayList<Ingredient> toReturn = new ArrayList<>();
+        for(Ingredient currIngredient : ingredients.keySet())
+            toReturn.add(currIngredient);
+        return toReturn;
+    }
 
+    public Ingredient getIngredient(String ingredientName){
+        for(Ingredient currIngredient : ingredients.keySet())
+            if(currIngredient.getName() == ingredientName)
+                return currIngredient;
+        //ingredient doesn't exist
         return null;
     }
 

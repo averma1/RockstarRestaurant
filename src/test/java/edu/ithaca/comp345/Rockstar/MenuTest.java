@@ -57,9 +57,9 @@ public class MenuTest {
         //test that everything in the menu exists
         Assertions.assertEquals("new dish", menu.getMenuItemMap().get("new dish").getItemName());
         Assertions.assertEquals(4.0, menu.getMenuItemMap().get("new dish").getPrice());
-        Assertions.assertEquals("chicken", menu.getMenuItemMap().get("new dish").getIngredients().get(0).getName());
-        Assertions.assertEquals("fish", menu.getMenuItemMap().get("new dish").getIngredients().get(1).getName());
-        Assertions.assertEquals("duck", menu.getMenuItemMap().get("new dish").getIngredients().get(2).getName());
+        Assertions.assertEquals("chicken", menu.getMenuItemMap().get("new dish").getIngredient("chicken").getName());
+        Assertions.assertEquals("fish", menu.getMenuItemMap().get("new dish").getIngredient("fish").getName());
+        Assertions.assertEquals("duck", menu.getMenuItemMap().get("new dish").getIngredient("duck").getName());
 
     }
 
@@ -159,9 +159,9 @@ public class MenuTest {
 
         Assertions.assertEquals("the other dish", menuItem.getItemName());
         Assertions.assertEquals(4.3, menuItem.getPrice());
-        Assertions.assertEquals("chicken", menu.getMenuItemMap().get("the other dish").getIngredients().get(0).getName());
-        Assertions.assertEquals("fish", menu.getMenuItemMap().get("the other dish").getIngredients().get(1).getName());
-        Assertions.assertEquals("duck", menu.getMenuItemMap().get("the other dish").getIngredients().get(2).getName());
+        Assertions.assertEquals("chicken", menu.getMenuItemMap().get("the other dish").getIngredient("chicken").getName());
+        Assertions.assertEquals("fish", menu.getMenuItemMap().get("the other dish").getIngredient("fish").getName());
+        Assertions.assertEquals("duck", menu.getMenuItemMap().get("the other dish").getIngredient("duck").getName());
 
         //check that the exception is thrown
         assertThrows(IllegalArgumentException.class, ()-> menu.getMenuItem("not in the map"));
@@ -231,7 +231,6 @@ public class MenuTest {
             for(Ingredient currIngredient : entry.getValue().getIngredients()){
                 System.out.println(currIngredient.getName());
             }
-
         }
 
         //check if the menuItems are in the menu
