@@ -11,6 +11,7 @@ public class Restaurant {
     public static Stock stock;
     private static int barNumber=420;
     public bartenderApi bartender;
+    public Menu menu;
 
     public Restaurant(){}
 
@@ -23,6 +24,7 @@ public class Restaurant {
         waiter= new waiterApi();
         bartender= new bartenderApi();
         stock= new Stock();
+        menu= new Menu("main", stock);
     }
 
     public String getName(){

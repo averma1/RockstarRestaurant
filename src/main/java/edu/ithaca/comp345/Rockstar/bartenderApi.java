@@ -4,14 +4,14 @@ package edu.ithaca.comp345.Rockstar;
 public class bartenderApi extends waiterApi{
     public int seats;
     public static int bar;
-    public Stock stock;
-    //public Menu menu;
+    public Stock barStock;
+    public Menu barMenu;
 
     public bartenderApi(){
         seats= 0;
         bar= 0;
-        stock= null;
-        //menu= null;
+        barStock= null;
+        barMenu= null;
     }
 
     public void addToOrder(int orderNum, MenuItem item){
@@ -19,8 +19,8 @@ public class bartenderApi extends waiterApi{
         if(barTable.findOrder(orderNum)==-1){
             barTable.createOrder(orderNum);
         }
-        if(stock!=null) {
-            stock.removeMenuItem(item);
+        if(barStock!=null) {
+            barStock.removeMenuItem(item);
         }
         barTable.addtoOrder(item,orderNum);
     }
