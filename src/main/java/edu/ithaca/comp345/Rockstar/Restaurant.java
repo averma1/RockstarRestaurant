@@ -12,6 +12,8 @@ public class Restaurant {
 
     public Restaurant(){}
 
+    public Restaurant(String fileName, int nothing){}
+
     public Restaurant(String name){
         allTables= new ArrayList<>();
         this.name=name;
