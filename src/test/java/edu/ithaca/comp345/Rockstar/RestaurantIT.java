@@ -27,8 +27,11 @@ public class RestaurantIT {
         main.waiter.takeOrder(item4, 2, 4);
         main.waiter.takeOrder(item5, 2, 2);
         main.waiter.takeOrder(item6, 2, 3);
-        //check that stock is lowered somehow?
+        assertEquals(15, main.stock.getQuantity("ravioli"));
+        assertEquals(50, main.stock.getQuantity("chicken"));
+        assertEquals(300, main.stock.getQuantity("bread sticks"));
         assertEquals(57.47, main.waiter.payTotalBill(1));
+        main.saveToFile("test.txt");
     }
 
     @Test
@@ -47,10 +50,13 @@ public class RestaurantIT {
         main.bartender.addToOrder(4, item4);
         main.bartender.addToOrder(8, item5);
         main.bartender.addToOrder(2, item6);
-        //check that stock is lowered somehow?
+        assertEquals(15, main.stock.getQuantity("tequila"));
+        assertEquals(50, main.stock.getQuantity("beer"));
+        assertEquals(300, main.stock.getQuantity("soup"));
         assertEquals(10.25, main.bartender.pay(8));
         Table bar= main.allTables.get(main.findTable(main.bartender.getBar()));
         assertEquals(3, bar.orders.size());
         assertEquals(-1, bar.findOrder(8));
+        main.saveToFile("test.txt");
     }
 }

@@ -69,4 +69,8 @@ public class Restaurant {
         bartenderApi.setBar(barNumber);
         bartenderApi.setSeats(seatNumber);
     }
+
+    public static void saveToFile(String fileName){
+
+    }
 }
