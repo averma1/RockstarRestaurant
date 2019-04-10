@@ -234,7 +234,7 @@ public class MenuTest {
         }
 
         //check if the menuItems are in the menu
-
+        assertTrue(myMenu.getMenuItem("Chicken Parm").getIngredient("sauce").checkIfAvailable(1));
 
         //check that nonexistent items do not exist
         assertThrows(IllegalArgumentException.class,()-> myMenu.getMenuItem("Beef Stew"));
