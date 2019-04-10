@@ -110,22 +110,34 @@ public class Menu {
 
         while((st = br.readLine()) != null){
             ingredients = new HashMap<>();
-            menuItemCost = 0;
+            menuItemName = "";
             try{
-                if(st.charAt(0) == '$'){
-                    menuItemCost = st.indexOf(1);
-                }
-                if(st.charAt(0) == '@'){
+                if(st.charAt(0) == '@')
+                {
                     menuItemName = st.substring(1);
-                    while((st = br.readLine()) != null && st.charAt(0) == '-'){
+                }
+                st = br.readLine();
+                if(st.charAt(0) == '$')
+                {
+                    menuItemCost = Double.parseDouble(st.substring(1));
+
+                    while((st = br.readLine()) != null && st.charAt(0) == '-') //get all the ingredients
+                    {
                         System.out.println(".." + st.substring(1));
-                        Ingredient ingredientToAdd = stock.getIngredient(st.substring(1, st.charAt(st.indexOf(','))));
-                        int ingredientQuantity = Integer.parseInt(st.substring(st.indexOf(',')));
+                        Ingredient ingredientToAdd = stock.getIngredient(st.substring(1, st.indexOf(',')));
+                        int ingredientQuantity = Integer.parseInt(st.substring(st.indexOf(',') + 1));
                         ingredients.put(ingredientToAdd, ingredientQuantity);
                     }
+
+                    //create the menuItem
                     MenuItem newMenuItem = new MenuItem(menuItemName, menuItemCost);
-                    for(Map.Entry<Ingredient, Integer> currIngredientEntry : ingredients.entrySet())
+
+                    //add all the ingredients
+                    for(Map.Entry<Ingredient, Integer> currIngredientEntry : ingredients.entrySet()){
+                        System.out.println(currIngredientEntry.getKey().getName() + "--" + currIngredientEntry.getValue());
                         newMenuItem.addIngredient(currIngredientEntry.getKey(), currIngredientEntry.getValue());
+                    }
+
                     addMenuItem(newMenuItem);
                 }
             }
