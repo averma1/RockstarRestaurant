@@ -17,13 +17,13 @@ public class MenuItemTest {
         Ingredient i2 = new Ingredient("mushrooms", 2.20, 5);
         Ingredient i3 = new Ingredient("oregano", 0.50, 8);
 
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
-
-        MenuItem item1 = new MenuItem(ingredients, 25.00, "chicken dish");
+        MenuItem item1 = new MenuItem("chicken dish", 25.00);
+        item1.addIngredient(i1);
+        item1.addIngredient(i2);
+        item1.addIngredient(i3);
 
         assertEquals(25.00, item1.getPrice());
         assertEquals("chicken dish", item1.getItemName());
-        assertEquals(ingredients, item1.getIngredients());
     }
 
     @Test
@@ -33,13 +33,11 @@ public class MenuItemTest {
         Ingredient i2 = new Ingredient("mushrooms", 2.20, 5);
         Ingredient i3 = new Ingredient("oregano", 0.50, 8);
 
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-        ingredients.add(i1);
-        ingredients.add(i2);
-        ingredients.add(i3);
-
-        MenuItem item1 = new MenuItem(ingredients, 25.00, "chicken dish");
+        MenuItem item1 = new MenuItem("chicken dish", 25.00);
+        item1.addIngredient(i1);
+        item1.addIngredient(i2);
+        item1.addIngredient(i3);
 
         //check that the current items are there
         assertEquals(3, item1.getIngredients().size());
@@ -68,13 +66,10 @@ public class MenuItemTest {
         Ingredient i2 = new Ingredient("mushrooms", 2.20, 5);
         Ingredient i3 = new Ingredient("oregano", 0.50, 8);
 
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
-
-        ingredients.add(i1);
-        ingredients.add(i2);
-        ingredients.add(i3);
-
-        MenuItem item1 = new MenuItem(ingredients, 25.00, "chicken dish");
+        MenuItem item1 = new MenuItem("chicken dish", 25.00);
+        item1.addIngredient(i1);
+        item1.addIngredient(i2);
+        item1.addIngredient(i3);
 
         //check that the current items are there
         assertEquals(3, item1.getIngredients().size());
@@ -96,7 +91,7 @@ public class MenuItemTest {
     public void changePriceTest(){
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
-        MenuItem item1 = new MenuItem(ingredients, 25.00, "chicken dish");
+        MenuItem item1 = new MenuItem("chicken dish", 25.00);
 
         assertEquals(25.00, item1.getPrice());
 

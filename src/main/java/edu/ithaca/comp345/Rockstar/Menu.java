@@ -1,5 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Menu {
@@ -18,7 +20,8 @@ public class Menu {
      * adds a menu item to the menu based on a MenuItem object
      * @param item the MenuItem object to add
      */
-    public void addMenuItem(MenuItem item){
+    public void addMenuItem(MenuItem item)
+    {
         menuItemMap.put(item.getItemName(), item);
     }
 
@@ -87,7 +90,45 @@ public class Menu {
         return menuItemMap;
     }
 
-    public void loadMenuFromFile(String fileName){
+    public void loadMenuFromFile(String fileName) throws IOException {
+        BufferedReader br = null;
 
+        try
+        {
+            File file = new File(fileName);
+            br = new BufferedReader(new FileReader(file));
+        }
+        catch (FileNotFoundException e) {
+            throw new FileNotFoundException("The file " + fileName + " doesn't exist!");
+        }
+
+        String st;
+        String menuItemName;
+        double menuItemCost;
+        ArrayList<Ingredient> ingredients;
+        while((st = br.readLine()) != null){
+            ingredients = new ArrayList<>();
+            menuItemCost = 0;
+            try{
+                if(st.charAt(0) == '$'){
+                    menuItemCost = st.indexOf(1);
+                }
+
+                if(st.charAt(0) == '@'){
+                    menuItemName = st.substring(1);
+                    while((st = br.readLine()) != null && st.charAt(0) == '-'){
+                        //TODO
+                        Ingredient ingredientToAdd = stock.getIngredient(st.substring(1));
+                        ingredients.add(ingredientToAdd);
+                    }
+                    MenuItem newMenuItem = new MenuItem(menuItemName, menuItemCost);
+                    //TODO add the ingredients!
+                    addMenuItem(newMenuItem);
+                }
+            }
+            catch(StringIndexOutOfBoundsException | IllegalArgumentException e){
+                System.out.println("Invalid Input: " + st);
+            }
+        }
     }
 }

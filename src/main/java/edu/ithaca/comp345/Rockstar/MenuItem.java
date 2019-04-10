@@ -5,13 +5,11 @@ import java.util.ArrayList;
 public class MenuItem {
 
     private double price;
-    private ArrayList<Ingredient> ingredients;
     String itemName;
 
-    public MenuItem(ArrayList<Ingredient> ingredients, double price, String itemName){
+    public MenuItem(String itemName, double price){
         this.price = price;
         this.itemName = itemName;
-        this.ingredients = ingredients;
     }
 
     /**
@@ -19,7 +17,7 @@ public class MenuItem {
      * @param ingredientToAdd the Ingredient object to add
      */
     public void addIngredient(Ingredient ingredientToAdd){
-        ingredients.add(ingredientToAdd);
+        //ingredients.add(ingredientToAdd);
     }
 
     /**
@@ -27,7 +25,8 @@ public class MenuItem {
      * @param ingredientToRemove the ingredient object to remove
      */
     public void removeIngredient(Ingredient ingredientToRemove){
-        ingredients.remove(ingredientToRemove);
+
+        //ingredients.remove(ingredientToRemove);
     }
 
     /**
@@ -43,7 +42,8 @@ public class MenuItem {
      * @return the list of ingredients
      */
     public ArrayList<Ingredient> getIngredients(){
-        return ingredients;
+
+        return null;
     }
 
     /**

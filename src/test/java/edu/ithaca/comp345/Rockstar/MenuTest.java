@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -47,7 +48,10 @@ public class MenuTest {
         Menu menu = new Menu("Spring Menu", stock);
 
         //create a new MenuItem with the list of ingredients and add it to the menu
-        MenuItem item = new MenuItem(ingredients, 4.0, "new dish");
+        MenuItem item = new MenuItem("new dish", 4.0);
+        item.addIngredient(i1);
+        item.addIngredient(i2);
+        item.addIngredient(i3);
         menu.addMenuItem(item);
 
         //test that everything in the menu exists
@@ -78,9 +82,19 @@ public class MenuTest {
         Menu menu = new Menu("Spring Menu", stock);
 
         //create new MenuItems with the list of ingredients and add them to the menu
-        MenuItem item = new MenuItem(ingredients, 4.0, "new dish");
-        MenuItem item2 = new MenuItem(ingredients, 4.3, "the other dish");
-        MenuItem item3 = new MenuItem(ingredients, 4.3, "the best dish");
+        MenuItem item = new MenuItem("new dish", 4.0);
+        item.addIngredient(i1);
+        item.addIngredient(i2);
+        item.addIngredient(i3);
+        MenuItem item2 = new MenuItem("the other dish", 4.3);
+        item2.addIngredient(i1);
+        item2.addIngredient(i2);
+        item2.addIngredient(i3);
+        MenuItem item3 = new MenuItem("the best dish", 4.3);
+        item3.addIngredient(i1);
+        item3.addIngredient(i2);
+        item3.addIngredient(i3);
+
         menu.addMenuItem(item);
         menu.addMenuItem(item2);
         menu.addMenuItem(item3);
@@ -123,9 +137,19 @@ public class MenuTest {
         Menu menu = new Menu("Spring Menu", stock);
 
         //create new MenuItems with the list of ingredients and add them to the menu
-        MenuItem item = new MenuItem(ingredients, 4.0, "new dish");
-        MenuItem item2 = new MenuItem(ingredients, 4.3, "the other dish");
-        MenuItem item3 = new MenuItem(ingredients, 4.3, "the best dish");
+        MenuItem item = new MenuItem("new dish", 4.0);
+        item.addIngredient(i1);
+        item.addIngredient(i2);
+        item.addIngredient(i3);
+        MenuItem item2 = new MenuItem("the other dish", 4.3);
+        item2.addIngredient(i1);
+        item2.addIngredient(i2);
+        item2.addIngredient(i3);
+        MenuItem item3 = new MenuItem("the best dish", 4.3);
+        item3.addIngredient(i1);
+        item3.addIngredient(i2);
+        item3.addIngredient(i3);
+
         menu.addMenuItem(item);
         menu.addMenuItem(item2);
         menu.addMenuItem(item3);
@@ -165,9 +189,19 @@ public class MenuTest {
         Menu menu = new Menu("Spring Menu", stock);
 
         //create new MenuItems with the list of ingredients and add them to the menu
-        MenuItem item = new MenuItem(ingredients, 4.0, "new dish");
-        MenuItem item2 = new MenuItem(ingredients, 4.3, "the other dish");
-        MenuItem item3 = new MenuItem(ingredients, 4.3, "the best dish");
+        MenuItem item = new MenuItem("new dish", 4.0);
+        item.addIngredient(i1);
+        item.addIngredient(i2);
+        item.addIngredient(i3);
+        MenuItem item2 = new MenuItem("the other dish", 4.3);
+        item2.addIngredient(i1);
+        item2.addIngredient(i2);
+        item2.addIngredient(i3);
+        MenuItem item3 = new MenuItem("the best dish", 4.3);
+        item3.addIngredient(i1);
+        item3.addIngredient(i2);
+        item3.addIngredient(i3);
+
         menu.addMenuItem(item);
         menu.addMenuItem(item2);
         menu.addMenuItem(item3);
@@ -192,11 +226,19 @@ public class MenuTest {
         //load in from file
         myMenu.loadMenuFromFile("menuTestFile1.txt");
 
+        for(Map.Entry<String, MenuItem> entry : myMenu.getMenuItemMap().entrySet()){
+            System.out.println("!!!" + entry.getKey());
+            for(Ingredient currIngredient : entry.getValue().getIngredients()){
+                System.out.println(currIngredient.getName());
+            }
+
+        }
+
         //check if the menuItems are in the menu
-        assertTrue(myMenu.getMenuItem("Chicken Parm").itemName == "Chicken Parm");
+
 
         //check that nonexistent items do not exist
-        assertFalse(myMenu.getMenuItem("Beef Stew").itemName == "Beef Stew");
+        assertThrows(IllegalArgumentException.class,()-> myMenu.getMenuItem("Beef Stew"));
     }
 
 }
