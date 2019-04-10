@@ -123,7 +123,6 @@ public class Menu {
 
                     while((st = br.readLine()) != null && st.charAt(0) == '-') //get all the ingredients
                     {
-                        System.out.println(".." + st.substring(1));
                         Ingredient ingredientToAdd = stock.getIngredient(st.substring(1, st.indexOf(',')));
                         int ingredientQuantity = Integer.parseInt(st.substring(st.indexOf(',') + 1));
                         ingredients.put(ingredientToAdd, ingredientQuantity);
@@ -134,7 +133,6 @@ public class Menu {
 
                     //add all the ingredients
                     for(Map.Entry<Ingredient, Integer> currIngredientEntry : ingredients.entrySet()){
-                        System.out.println(currIngredientEntry.getKey().getName() + "--" + currIngredientEntry.getValue());
                         newMenuItem.addIngredient(currIngredientEntry.getKey(), currIngredientEntry.getValue());
                     }
 

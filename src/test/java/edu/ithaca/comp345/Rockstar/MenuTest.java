@@ -226,17 +226,15 @@ public class MenuTest {
         //load in from file
         myMenu.loadMenuFromFile("menuTestFile1.txt");
 
-//        for(Map.Entry<String, MenuItem> entry : myMenu.getMenuItemMap().entrySet()){
-//            System.out.println("!!!" + entry.getKey());
-//            for(Ingredient currIngredient : entry.getValue().getIngredients()){
-//                System.out.println(currIngredient.getName());
-//            }
-//        }
-
         //check if the menuItems are in the menu
-        System.out.println(myMenu.getMenuItem("Chicken Parm").getIngredient("sauce").getQuantity());
+        assertEquals("Chicken Parm", myMenu.getMenuItem("Chicken Parm").getItemName());
+        assertEquals("Cheese Burger", myMenu.getMenuItem("Cheese Burger").getItemName());
 
-        //assertTrue(myMenu.getMenuItem("Chicken Parm").getIngredient("sauce").getName()=="sauce");
+        //get ingredients from the menu
+        ArrayList<Ingredient> chickenParmIngredients = myMenu.getMenuItem("Chicken Parm").getIngredients();
+        assertTrue(chickenParmIngredients.contains(myStock.getIngredient("chicken")));
+        assertTrue(chickenParmIngredients.contains(myStock.getIngredient("cheese")));
+        assertTrue(chickenParmIngredients.contains(myStock.getIngredient("sauce")));
 
         //check that nonexistent items do not exist
         assertThrows(IllegalArgumentException.class,()-> myMenu.getMenuItem("Beef Stew"));
