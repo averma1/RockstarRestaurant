@@ -43,7 +43,7 @@ public class Stock {
     }
 
     /**
-     * decrement stock based on an ordered menuItem
+     * decrement stock based on an ordered menuItem's ingredients
      *
      * @param item the menuItems whose items need to be removed
      */
@@ -57,6 +57,12 @@ public class Stock {
         }
     }
 
+    /**
+     * decrement the quantity of a certain ingredient by a set amount
+     *
+     * @param name name of the ingredient
+     *        quantity amount to decrement by
+     */
     public void removeSeveralIngredients(String name, int quantity){
         if(isIngredientAvailable(name)){
             int current= ingredientMap.get(name).getQuantity();
