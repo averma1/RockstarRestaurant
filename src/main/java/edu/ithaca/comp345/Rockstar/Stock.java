@@ -51,10 +51,12 @@ public class Stock {
         if(item.getIngredients()!=null) {
             for (int i = 0; i < item.getIngredients().size(); i++) {
                 Ingredient current = item.getIngredients().get(i);
-                if (isIngredientAvailable(current.getName())) {
-                    removeIngredient(current.getName());
-                } else {
-                    throw new InaccessibleObjectException();
+                for(int x=0; x<item.ingredients.get(current); x++) {
+                    if (isIngredientAvailable(current.getName())) {
+                        removeIngredient(current.getName());
+                    } else {
+                        throw new InaccessibleObjectException();
+                    }
                 }
             }
         }

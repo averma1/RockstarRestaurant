@@ -121,14 +121,14 @@ public class TableTest {
         //adding to order first
         Table test1 = new Table(1, 5);
         test1.createOrder(2);
-        MenuItem rice = new MenuItem(null, 2.25, "rice");
+        MenuItem rice = new MenuItem("rice", 2.25);
         test1.addtoOrder(rice, 2);
         List<MenuItem> items = test1.orders.get(0).getItems();
         assertEquals("rice", items.get(0).getItemName());
         assertEquals(2.25, items.get(0).getPrice());
 
         test1.createOrder(3);
-        MenuItem chicken = new MenuItem(null, 5.50, "chicken");
+        MenuItem chicken = new MenuItem("chicken", 5.50 );
         items.add(1, chicken);
         assertEquals("chicken", items.get(1).getItemName());
         assertEquals(5.50, items.get(1).getPrice());

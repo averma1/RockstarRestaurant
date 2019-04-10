@@ -8,8 +8,8 @@ public class bartenderApiTest {
     @Test
     public void addToOrderTest(){
         Order orderTester= new Order(0);
-        MenuItem ChickenParmSoda = new MenuItem(null, 4.25, "Chicken Parm Soda");
-        MenuItem BulmersCider = new MenuItem(null,9.50,"Bulmers Hard Cider");
+        MenuItem ChickenParmSoda = new MenuItem("Chicken Parm Soda", 4.25);
+        MenuItem BulmersCider = new MenuItem("Bulmers Hard Cider", 9.50);
 
         Restaurant main= new Restaurant("test");
         main.createBar(50);
@@ -30,8 +30,8 @@ public class bartenderApiTest {
     @Test
     public void payTest(){
         Order orderTester= new Order(0);
-        MenuItem ChickenParmSoda = new MenuItem(null, 4.25, "Chicken Parm Soda");
-        MenuItem BulmersCider = new MenuItem(null,9.50,"Bulmers Hard Cider");
+        MenuItem ChickenParmSoda = new MenuItem("Chicken Parm Soda", 4.25 );
+        MenuItem BulmersCider = new MenuItem("Bulmers Hard Cider",9.50);
 
         Restaurant main= new Restaurant("test");
         main.createBar(50);
