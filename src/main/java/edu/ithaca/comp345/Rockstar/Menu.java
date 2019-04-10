@@ -3,6 +3,7 @@ package edu.ithaca.comp345.Rockstar;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Menu {
 
@@ -105,24 +106,26 @@ public class Menu {
         String st;
         String menuItemName;
         double menuItemCost;
-        ArrayList<Ingredient> ingredients;
+        HashMap<Ingredient, Integer> ingredients;
+
         while((st = br.readLine()) != null){
-            ingredients = new ArrayList<>();
+            ingredients = new HashMap<>();
             menuItemCost = 0;
             try{
                 if(st.charAt(0) == '$'){
                     menuItemCost = st.indexOf(1);
                 }
-
                 if(st.charAt(0) == '@'){
                     menuItemName = st.substring(1);
                     while((st = br.readLine()) != null && st.charAt(0) == '-'){
-                        //TODO
-                        Ingredient ingredientToAdd = stock.getIngredient(st.substring(1));
-                        ingredients.add(ingredientToAdd);
+                        System.out.println(".." + st.substring(1));
+                        Ingredient ingredientToAdd = stock.getIngredient(st.substring(1, st.charAt(st.indexOf(','))));
+                        int ingredientQuantity = Integer.parseInt(st.substring(st.indexOf(',')));
+                        ingredients.put(ingredientToAdd, ingredientQuantity);
                     }
                     MenuItem newMenuItem = new MenuItem(menuItemName, menuItemCost);
-                    //TODO add the ingredients!
+                    for(Map.Entry<Ingredient, Integer> currIngredientEntry : ingredients.entrySet())
+                        newMenuItem.addIngredient(currIngredientEntry.getKey(), currIngredientEntry.getValue());
                     addMenuItem(newMenuItem);
                 }
             }
