@@ -48,12 +48,14 @@ public class Stock {
      * @param item the menuItems whose items need to be removed
      */
     public void removeMenuItem(MenuItem item){
-        for(int i=0; i<item.getIngredients().size(); i++){
-            Ingredient current= item.getIngredients().get(i);
-            if(isIngredientAvailable(current.getName())){
-                removeIngredient(current.getName());
-            } else {
-                throw new InaccessibleObjectException();
+        if(item.getIngredients()!=null) {
+            for (int i = 0; i < item.getIngredients().size(); i++) {
+                Ingredient current = item.getIngredients().get(i);
+                if (isIngredientAvailable(current.getName())) {
+                    removeIngredient(current.getName());
+                } else {
+                    throw new InaccessibleObjectException();
+                }
             }
         }
     }

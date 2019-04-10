@@ -17,7 +17,7 @@ public class StockTest {
 
     @Test
     public void removeMenuItem(){
-        
+
     }
 
     @Test

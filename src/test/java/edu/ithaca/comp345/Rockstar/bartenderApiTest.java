@@ -14,7 +14,6 @@ public class bartenderApiTest {
         Restaurant main= new Restaurant("test");
         main.createBar(50);
         bartenderApi bartenderApiTester= main.bartender;
-        bartenderApiTester.createOrder(0);
 
         bartenderApiTester.addToOrder(0,ChickenParmSoda);
         assertTrue(main.waiter.viewOrder(420, 0).size()==1);
@@ -38,7 +37,6 @@ public class bartenderApiTest {
         main.createBar(50);
         bartenderApi bartenderApiTester= main.bartender;
 
-        bartenderApiTester.createOrder(0);
         bartenderApiTester.addToOrder(0,ChickenParmSoda);
         assertTrue(main.waiter.viewOrder(420, 0).size()==1);
         bartenderApiTester.addToOrder(0,BulmersCider);

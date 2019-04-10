@@ -8,7 +8,7 @@ public class Restaurant {
     public static  List<Table> allTables;
     public waiterApi waiter;
     public hostApi host;
-    private Stock stock = new Stock();
+    public static Stock stock;
     private static int barNumber=420;
     public bartenderApi bartender;
 
@@ -22,6 +22,7 @@ public class Restaurant {
         host= new hostApi();
         waiter= new waiterApi();
         bartender= new bartenderApi();
+        stock= new Stock();
     }
 
     public String getName(){

@@ -14,13 +14,14 @@ public class bartenderApi extends waiterApi{
         //menu= null;
     }
 
-    public void createOrder(int orderNum){
-        Table barTable= allTables.get(findTable(bar));
-        barTable.createOrder(orderNum);
-    }
-
     public void addToOrder(int orderNum, MenuItem item){
         Table barTable= allTables.get(findTable(bar));
+        if(barTable.findOrder(orderNum)==-1){
+            barTable.createOrder(orderNum);
+        }
+        if(stock!=null) {
+            stock.removeMenuItem(item);
+        }
         barTable.addtoOrder(item,orderNum);
     }
 
