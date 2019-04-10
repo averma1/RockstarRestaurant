@@ -31,7 +31,7 @@ public class StockTest {
         item2.addIngredient(stock.getIngredient("mouse"), 100);
         item2.addIngredient(stock.getIngredient("fish"), 5);
         item2.addIngredient(stock.getIngredient("chicken"), 50);
-        stock.removeMenuItem(item);
+        stock.removeMenuItem(item2);
         assertEquals(15, stock.getQuantity("fish"));
         assertEquals(50, stock.getQuantity("chicken"));
         assertEquals(300, stock.getQuantity("mouse"));
