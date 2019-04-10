@@ -18,9 +18,9 @@ public class MenuItemTest {
         Ingredient i3 = new Ingredient("oregano", 0.50, 8);
 
         MenuItem item1 = new MenuItem("chicken dish", 25.00);
-        item1.addIngredient(i1);
-        item1.addIngredient(i2);
-        item1.addIngredient(i3);
+        item1.addIngredient(i1, 1);
+        item1.addIngredient(i2, 1);
+        item1.addIngredient(i3, 1);
 
         assertEquals(25.00, item1.getPrice());
         assertEquals("chicken dish", item1.getItemName());
@@ -35,9 +35,9 @@ public class MenuItemTest {
 
 
         MenuItem item1 = new MenuItem("chicken dish", 25.00);
-        item1.addIngredient(i1);
-        item1.addIngredient(i2);
-        item1.addIngredient(i3);
+        item1.addIngredient(i1, 1);
+        item1.addIngredient(i2, 1);
+        item1.addIngredient(i3, 1);
 
         //check that the current items are there
         assertEquals(3, item1.getIngredients().size());
@@ -49,7 +49,7 @@ public class MenuItemTest {
         Ingredient i4 = new Ingredient("pepper", 0.2, 3);
 
         //add the ingredient
-        item1.addIngredient(i4);
+        item1.addIngredient(i4, 1);
 
         //check that all the items are there
         assertEquals(4, item1.getIngredients().size());
@@ -67,9 +67,9 @@ public class MenuItemTest {
         Ingredient i3 = new Ingredient("oregano", 0.50, 8);
 
         MenuItem item1 = new MenuItem("chicken dish", 25.00);
-        item1.addIngredient(i1);
-        item1.addIngredient(i2);
-        item1.addIngredient(i3);
+        item1.addIngredient(i1, 1);
+        item1.addIngredient(i2, 1);
+        item1.addIngredient(i3, 1);
 
         //check that the current items are there
         assertEquals(3, item1.getIngredients().size());

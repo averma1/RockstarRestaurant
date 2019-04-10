@@ -1,23 +1,26 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MenuItem {
 
     private double price;
     String itemName;
+    HashMap<Ingredient, Integer> ingredients;
 
     public MenuItem(String itemName, double price){
         this.price = price;
         this.itemName = itemName;
+        ingredients = new HashMap<>();
     }
 
     /**
      * adds an ingredient object to the list of ingredients for this menu item
      * @param ingredientToAdd the Ingredient object to add
      */
-    public void addIngredient(Ingredient ingredientToAdd){
-        //ingredients.add(ingredientToAdd);
+    public void addIngredient(Ingredient ingredientToAdd, int amountUsed){
+        ingredients.put(ingredientToAdd, amountUsed);
     }
 
     /**

@@ -49,9 +49,9 @@ public class MenuTest {
 
         //create a new MenuItem with the list of ingredients and add it to the menu
         MenuItem item = new MenuItem("new dish", 4.0);
-        item.addIngredient(i1);
-        item.addIngredient(i2);
-        item.addIngredient(i3);
+        item.addIngredient(i1, 1);
+        item.addIngredient(i2, 1);
+        item.addIngredient(i3, 1);
         menu.addMenuItem(item);
 
         //test that everything in the menu exists
@@ -83,17 +83,17 @@ public class MenuTest {
 
         //create new MenuItems with the list of ingredients and add them to the menu
         MenuItem item = new MenuItem("new dish", 4.0);
-        item.addIngredient(i1);
-        item.addIngredient(i2);
-        item.addIngredient(i3);
+        item.addIngredient(i1, 1);
+        item.addIngredient(i2, 1);
+        item.addIngredient(i3, 1);
         MenuItem item2 = new MenuItem("the other dish", 4.3);
-        item2.addIngredient(i1);
-        item2.addIngredient(i2);
-        item2.addIngredient(i3);
+        item2.addIngredient(i1, 1);
+        item2.addIngredient(i2, 1);
+        item2.addIngredient(i3, 1);
         MenuItem item3 = new MenuItem("the best dish", 4.3);
-        item3.addIngredient(i1);
-        item3.addIngredient(i2);
-        item3.addIngredient(i3);
+        item3.addIngredient(i1, 1);
+        item3.addIngredient(i2, 1);
+        item3.addIngredient(i3, 1);
 
         menu.addMenuItem(item);
         menu.addMenuItem(item2);
@@ -138,17 +138,17 @@ public class MenuTest {
 
         //create new MenuItems with the list of ingredients and add them to the menu
         MenuItem item = new MenuItem("new dish", 4.0);
-        item.addIngredient(i1);
-        item.addIngredient(i2);
-        item.addIngredient(i3);
+        item.addIngredient(i1, 1);
+        item.addIngredient(i2, 1);
+        item.addIngredient(i3, 1);
         MenuItem item2 = new MenuItem("the other dish", 4.3);
-        item2.addIngredient(i1);
-        item2.addIngredient(i2);
-        item2.addIngredient(i3);
+        item2.addIngredient(i1, 1);
+        item2.addIngredient(i2, 1);
+        item2.addIngredient(i3, 1);
         MenuItem item3 = new MenuItem("the best dish", 4.3);
-        item3.addIngredient(i1);
-        item3.addIngredient(i2);
-        item3.addIngredient(i3);
+        item3.addIngredient(i1, 1);
+        item3.addIngredient(i2, 1);
+        item3.addIngredient(i3, 1);
 
         menu.addMenuItem(item);
         menu.addMenuItem(item2);
@@ -190,17 +190,17 @@ public class MenuTest {
 
         //create new MenuItems with the list of ingredients and add them to the menu
         MenuItem item = new MenuItem("new dish", 4.0);
-        item.addIngredient(i1);
-        item.addIngredient(i2);
-        item.addIngredient(i3);
+        item.addIngredient(i1, 1);
+        item.addIngredient(i2, 1);
+        item.addIngredient(i3, 1);
         MenuItem item2 = new MenuItem("the other dish", 4.3);
-        item2.addIngredient(i1);
-        item2.addIngredient(i2);
-        item2.addIngredient(i3);
+        item2.addIngredient(i1, 1);
+        item2.addIngredient(i2, 1);
+        item2.addIngredient(i3, 1);
         MenuItem item3 = new MenuItem("the best dish", 4.3);
-        item3.addIngredient(i1);
-        item3.addIngredient(i2);
-        item3.addIngredient(i3);
+        item3.addIngredient(i1, 1);
+        item3.addIngredient(i2, 1);
+        item3.addIngredient(i3, 1);
 
         menu.addMenuItem(item);
         menu.addMenuItem(item2);
