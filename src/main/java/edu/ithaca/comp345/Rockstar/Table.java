@@ -158,6 +158,10 @@ public class Table {
         }
     }
 
+    /**
+     * removes an order from the table
+     * @param number: the order number to remove
+     */
     public void removeOrder(int number){
         if(findOrder(number) != -1){
             for(int i = 0; i < orders.size(); i++){
