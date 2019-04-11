@@ -44,7 +44,7 @@ public class RestaurantTest {
         assertEquals(60.00, main.waiter.payTotalBill(2));
         main.saveToFile("test.txt");
     }
-
+/*
     @Test
     public void bartenderPlaceOrderTest(){
         //should read a file and create a menu, stock, create bar, and tables
@@ -70,4 +70,5 @@ public class RestaurantTest {
         assertEquals(-1, bar.findOrder(8));
         main.saveToFile("test.txt");
     }
+    */
 }

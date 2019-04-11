@@ -6,11 +6,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+//import static org.testng.Assert.assertEquals;
 
 public class MenuTest {
 
@@ -225,20 +225,68 @@ public class MenuTest {
         //load in from file
         myMenu.loadMenuFromFile("menuTestFile1.txt");
 
-//        for(Map.Entry<String, MenuItem> entry : myMenu.getMenuItemMap().entrySet()){
-//            System.out.println("!!!" + entry.getKey());
-//            for(Ingredient currIngredient : entry.getValue().getIngredients()){
-//                System.out.println(currIngredient.getName());
-//            }
-//        }
-
         //check if the menuItems are in the menu
-        System.out.println(myMenu.getMenuItem("Chicken Parm").getIngredient("sauce").getQuantity());
+        assertEquals("Chicken Parm", myMenu.getMenuItem("Chicken Parm").getItemName());
+        assertEquals("Cheese Burger", myMenu.getMenuItem("Cheese Burger").getItemName());
 
-        //assertTrue(myMenu.getMenuItem("Chicken Parm").getIngredient("sauce").getName()=="sauce");
+        //get ingredients from the menu
+        ArrayList<Ingredient> chickenParmIngredients = myMenu.getMenuItem("Chicken Parm").getIngredients();
+        assertTrue(chickenParmIngredients.contains(myStock.getIngredient("chicken")));
+        assertTrue(chickenParmIngredients.contains(myStock.getIngredient("cheese")));
+        assertTrue(chickenParmIngredients.contains(myStock.getIngredient("sauce")));
 
         //check that nonexistent items do not exist
         assertThrows(IllegalArgumentException.class,()-> myMenu.getMenuItem("Beef Stew"));
+    }
+
+
+    @Test
+    public void saveMenuToFileTest() throws IOException{
+
+        Stock myStock = new Stock();
+        myStock.loadFromFile("stockTestFile3.txt");
+        Menu myMenu = new Menu("Test Menu", myStock);
+
+        Stock myStock2 = new Stock();
+        myStock.loadFromFile("stockTestFile3.txt");
+        Menu myMenu2 = new Menu("Test Menu 2", myStock2);
+
+
+
+        myMenu.loadMenuFromFile("menuTestFile1.txt");
+
+        myMenu.saveMenuToFile("menuOutputFile.txt");
+
+        myMenu2.loadMenuFromFile("menuOutputFile.txt");
+
+
+
+        HashMap<String, MenuItem> map1 = myMenu.getMenuItemMap();
+
+        HashMap<String, MenuItem> map2 = myMenu2.getMenuItemMap();
+
+        //a collection of the original map
+        Collection<MenuItem> collection = map1.values();
+        Iterator<MenuItem> iterator = collection.iterator();
+
+        //check going both ways to make sure the keys of one map are present as the names of objects in the other
+        MenuItem current = null;
+        while (iterator.hasNext()) {
+            current = iterator.next();
+            assertTrue(map2.containsKey(current.getItemName()));
+        }
+
+        //a collection of the new map
+        Collection<MenuItem> collection2 = map2.values();
+        Iterator<MenuItem> iterator2 = collection2.iterator();
+
+        current = null;
+        while (iterator2.hasNext()) {
+            current = iterator2.next();
+            assertTrue(map1.containsKey(current.getItemName()));
+        }
+
+
     }
 
 }
