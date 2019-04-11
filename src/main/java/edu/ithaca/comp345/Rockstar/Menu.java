@@ -1,9 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Menu {
 
@@ -91,6 +89,11 @@ public class Menu {
         return menuItemMap;
     }
 
+    /**
+     * loads data from a text file with proper formatting into the menu
+     * @param fileName the filename of the file to use to create the menu
+     * @throws IOException
+     */
     public void loadMenuFromFile(String fileName) throws IOException {
         BufferedReader br = null;
 
@@ -123,7 +126,6 @@ public class Menu {
 
                     while((st = br.readLine()) != null && st.charAt(0) == '-') //get all the ingredients
                     {
-                        System.out.println(".." + st.substring(1));
                         Ingredient ingredientToAdd = stock.getIngredient(st.substring(1, st.indexOf(',')));
                         int ingredientQuantity = Integer.parseInt(st.substring(st.indexOf(',') + 1));
                         ingredients.put(ingredientToAdd, ingredientQuantity);
@@ -134,7 +136,6 @@ public class Menu {
 
                     //add all the ingredients
                     for(Map.Entry<Ingredient, Integer> currIngredientEntry : ingredients.entrySet()){
-                        System.out.println(currIngredientEntry.getKey().getName() + "--" + currIngredientEntry.getValue());
                         newMenuItem.addIngredient(currIngredientEntry.getKey(), currIngredientEntry.getValue());
                     }
 
@@ -145,5 +146,26 @@ public class Menu {
                 System.out.println("Invalid Input: " + st);
             }
         }
+    }
+
+    /**
+     * saves the menu information that is in the system to a text file, including each menu item and its cost, and each ingredient and its quantity
+     * @param fileName the filename to use to save the data
+     * @throws IOException
+     */
+    public void saveMenuToFile(String fileName) throws IOException {
+
+        FileWriter fileWriter = new FileWriter(fileName);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        for(Map.Entry<String, MenuItem> currEntry : menuItemMap.entrySet()){
+            printWriter.println("@" + currEntry.getKey());
+            printWriter.println("$" + currEntry.getValue().getPrice());
+            for(Ingredient currIngredient : currEntry.getValue().ingredients.keySet()){
+                printWriter.println("-" + currIngredient.getName()+","+currIngredient.getQuantity());
+            }
+            printWriter.println("...");
+        }
+        printWriter.close();
     }
 }
