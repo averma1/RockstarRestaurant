@@ -13,11 +13,11 @@ public class waiterApiTest {
         Restaurant main= new Restaurant("Test");
         main.createTable(1,5);
 
-        MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
+        MenuItem chickenParm= new MenuItem("chicken parm", 10.25);
         main.waiter.takeOrder(chickenParm,1,1);
-        MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
+        MenuItem spinachRavioli= new MenuItem("spinach ravioli", 10.25);
         main.waiter.takeOrder(spinachRavioli,1,2);
-        MenuItem veganLasagna= new MenuItem(null, 10.25, "vegan lasagna");
+        MenuItem veganLasagna= new MenuItem("vegan lasagna", 10.25);
         main.waiter.takeOrder(veganLasagna,1,3);
 
     }
@@ -28,11 +28,11 @@ public class waiterApiTest {
         waiterApi waiterApiTester= main.waiter;
         main.createTable(1,3);
 
-        MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
+        MenuItem chickenParm= new MenuItem("chicken parm", 10.25);
         waiterApiTester.takeOrder(chickenParm,1,1);
-        MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
+        MenuItem spinachRavioli= new MenuItem("spinach ravioli", 10.25);
         waiterApiTester.takeOrder(spinachRavioli,1,2);
-        MenuItem veganLasagna= new MenuItem(null, 10.25, "vegan lasagna");
+        MenuItem veganLasagna= new MenuItem("vegan lasagna", 10.25);
         waiterApiTester.takeOrder(veganLasagna,1,3);
 
         double testCost= waiterApiTester.payTotalBill(1);
@@ -50,18 +50,18 @@ public class waiterApiTest {
         waiterApi waiterApiTester= main.waiter;
         main.createTable(1,3);
 
-        MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
+        MenuItem chickenParm= new MenuItem("chicken parm", 10.25);
         waiterApiTester.takeOrder(chickenParm,1,1);
-        MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
+        MenuItem spinachRavioli= new MenuItem("spinach ravioli", 10.25);
         waiterApiTester.takeOrder(spinachRavioli,1,2);
-        MenuItem veganLasagna= new MenuItem(null, 9.50, "vegan lasagna");
+        MenuItem veganLasagna= new MenuItem("vegan lasagna", 9.50);
         waiterApiTester.takeOrder(veganLasagna,1,3);
 
         double price=waiterApiTester.splitBillByTotal(1,3);
         assertNotEquals(9, price);
         assertEquals(10.0, price);
 
-        MenuItem Lasagna= new MenuItem(null, 9.50, "vegan lasagna");
+        MenuItem Lasagna= new MenuItem("vegan lasagna", 9.50);
         waiterApiTester.takeOrder(Lasagna,1,3);
         price=waiterApiTester.splitBillByTotal(1,3);
         assertEquals(13.17, price);
@@ -74,11 +74,11 @@ public class waiterApiTest {
         waiterApi waiterApiTester= main.waiter;
         main.createTable(1,3);
 
-        MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
+        MenuItem chickenParm= new MenuItem("chicken parm", 10.25);
         waiterApiTester.takeOrder(chickenParm,1,1);
-        MenuItem spinachRavioli= new MenuItem(null, 7.35, "spinach ravioli");
+        MenuItem spinachRavioli= new MenuItem("spinach ravioli", 7.35);
         waiterApiTester.takeOrder(spinachRavioli,1,2);
-        MenuItem veganLasagna= new MenuItem(null, 12.25, "vegan lasagna");
+        MenuItem veganLasagna= new MenuItem("vegan lasagna", 12.25);
         waiterApiTester.takeOrder(veganLasagna,1,3);
 
         List<Order> itemSplitBill= waiterApiTester.splitBillByItem(1);
@@ -104,11 +104,11 @@ public class waiterApiTest {
         waiterApi testing= main.waiter;
         main.createTable(1,5);
 
-        MenuItem chickenParm= new MenuItem(null, 10.25, "chicken parm");
+        MenuItem chickenParm = new MenuItem("chicken parm", 10.25);
         testing.takeOrder(chickenParm,1,1);
-        MenuItem spinachRavioli= new MenuItem(null, 10.25, "spinach ravioli");
+        MenuItem spinachRavioli= new MenuItem("spinach ravioli", 10.25);
         testing.takeOrder(spinachRavioli,1,2);
-        MenuItem veganLasagna= new MenuItem(null, 10.25, "vegan lasagna");
+        MenuItem veganLasagna= new MenuItem("vegan lasagna", 10.25);
         testing.takeOrder(veganLasagna,1,3);
 
         List<MenuItem> viewStatus= testing.viewOrder(1,1);
