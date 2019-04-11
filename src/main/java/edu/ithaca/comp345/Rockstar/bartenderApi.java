@@ -10,8 +10,8 @@ public class bartenderApi extends waiterApi{
     public bartenderApi(){
         seats= 0;
         bar= 0;
-        barStock= null;
-        barMenu= null;
+        barStock= new Stock();
+        barMenu= new Menu("bar", barStock);
     }
 
     public void addToOrder(int orderNum, MenuItem item){
