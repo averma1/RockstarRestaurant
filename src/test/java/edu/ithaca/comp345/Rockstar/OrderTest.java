@@ -44,11 +44,11 @@ public class OrderTest {
     @Test
     public void getItemsTest(){
         Order test1= new Order(5);
-        MenuItem pasta= new MenuItem(null,10.25, "pasta");
+        MenuItem pasta= new MenuItem("pasta",10.25);
         test1.addItem(pasta);
-        MenuItem steak= new MenuItem(null, 110.25, "steak");
+        MenuItem steak= new MenuItem("steak", 110.25);
         test1.addItem(steak);
-        MenuItem beer= new MenuItem(null, 5.25, "beer");
+        MenuItem beer= new MenuItem("beer", 5.25);
         test1.addItem(beer);
 
         List<MenuItem> actual= new ArrayList<>();
@@ -64,11 +64,11 @@ public class OrderTest {
     @Test
     public void getTotalPriceTest(){
         Order test1= new Order(5);
-        MenuItem pasta= new MenuItem(null,10.25, "pasta");
+        MenuItem pasta= new MenuItem("pasta",10.25);
         test1.addItem(pasta);
-        MenuItem steak= new MenuItem(null, 110.25, "steak");
+        MenuItem steak= new MenuItem("steak", 110.25);
         test1.addItem(steak);
-        MenuItem beer= new MenuItem(null, 5.25, "beer");
+        MenuItem beer= new MenuItem("beer", 5.25);
         test1.addItem(beer);
 
         assertEquals( 125.75, test1.getTotalPrice());
