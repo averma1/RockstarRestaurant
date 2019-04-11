@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.*;
+import java.lang.reflect.InaccessibleObjectException;
 import java.util.*;
 
 public class StockTest {
@@ -13,6 +14,45 @@ public class StockTest {
     public void createStockTest(){
         Stock stock = new Stock();
         assertEquals(0, stock.getIngredientsList().size());
+    }
+
+    @Test
+    public void removeMenuItem(){
+        Stock stock = new Stock();
+        stock.addIngredient("chicken", 2.0, 100);
+        stock.addIngredient("fish", 8.34, 23);
+        stock.addIngredient("mouse", .34, 400);
+
+        MenuItem item= new MenuItem("fish stew", 12.05);
+        item.addIngredient(stock.getIngredient("fish"), 3);
+        stock.removeMenuItem(item);
+        assertEquals(20, stock.getQuantity("fish"));
+
+        MenuItem item2= new MenuItem("a really weird bagel", 12.05);
+        item2.addIngredient(stock.getIngredient("mouse"), 100);
+        item2.addIngredient(stock.getIngredient("fish"), 5);
+        item2.addIngredient(stock.getIngredient("chicken"), 50);
+        stock.removeMenuItem(item2);
+        assertEquals(15, stock.getQuantity("fish"));
+        assertEquals(50, stock.getQuantity("chicken"));
+        assertEquals(300, stock.getQuantity("mouse"));
+    }
+
+    @Test
+    public void removeSeveralIngredientsTest(){
+        Stock stock = new Stock();
+        stock.addIngredient("chicken", 2.0, 100);
+        stock.addIngredient("fish", 8.34, 20);
+        stock.addIngredient("mouse", .34, 400);
+        stock.removeSeveralIngredients("fish", 5);
+        stock.removeSeveralIngredients("chicken", 50);
+        stock.removeSeveralIngredients("mouse", 100);
+        assertEquals(15, stock.getQuantity("fish"));
+        assertEquals(50, stock.getQuantity("chicken"));
+        assertEquals(300, stock.getQuantity("mouse"));
+
+        assertThrows(InaccessibleObjectException.class, ()->{ stock.removeSeveralIngredients("fish", 200); });
+        assertThrows(InaccessibleObjectException.class, ()->{ stock.removeSeveralIngredients("cabbage", 200); });
     }
 
     @Test
