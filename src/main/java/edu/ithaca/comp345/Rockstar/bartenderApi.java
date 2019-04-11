@@ -29,7 +29,7 @@ public class bartenderApi extends waiterApi{
         }
         barTable.createOrder(orderNum);
     }
-    
+
     /**
      * allows the user to pay
      * @param orderNum
