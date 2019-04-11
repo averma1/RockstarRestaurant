@@ -27,7 +27,7 @@ public class bartenderApi extends waiterApi{
         if(barStock!=null) {
             barStock.removeMenuItem(item);
         }
-        barTable.createOrder(orderNum);
+        barTable.addtoOrder(item, orderNum);
     }
 
     /**
