@@ -1,25 +1,26 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MenuItem {
 
     private double price;
-    private ArrayList<Ingredient> ingredients;
     String itemName;
+    HashMap<Ingredient, Integer> ingredients;
 
-    public MenuItem(ArrayList<Ingredient> ingredients, double price, String itemName){
+    public MenuItem(String itemName, double price){
         this.price = price;
         this.itemName = itemName;
-        this.ingredients = ingredients;
+        ingredients = new HashMap<>();
     }
 
     /**
      * adds an ingredient object to the list of ingredients for this menu item
      * @param ingredientToAdd the Ingredient object to add
      */
-    public void addIngredient(Ingredient ingredientToAdd){
-        ingredients.add(ingredientToAdd);
+    public void addIngredient(Ingredient ingredientToAdd, int amountUsed){
+        ingredients.put(ingredientToAdd, amountUsed);
     }
 
     /**
@@ -43,7 +44,18 @@ public class MenuItem {
      * @return the list of ingredients
      */
     public ArrayList<Ingredient> getIngredients(){
-        return ingredients;
+        ArrayList<Ingredient> toReturn = new ArrayList<>();
+        for(Ingredient currIngredient : ingredients.keySet())
+            toReturn.add(currIngredient);
+        return toReturn;
+    }
+
+    public Ingredient getIngredient(String ingredientName){
+        for(Ingredient currIngredient : ingredients.keySet())
+            if(currIngredient.getName() == ingredientName)
+                return currIngredient;
+        //ingredient doesn't exist
+        return null;
     }
 
     /**

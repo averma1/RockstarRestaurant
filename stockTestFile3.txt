@@ -1,0 +1,7 @@
+chicken#40$3.5
+onion#20$1.5
+pepper#30$2.0
+sauce#30$2.0
+ground beef#30$2.0
+bun#30$1.0
+cheese#10$6.0
