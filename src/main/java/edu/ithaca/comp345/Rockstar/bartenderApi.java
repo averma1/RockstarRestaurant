@@ -12,6 +12,7 @@ public class bartenderApi extends waiterApi{
         bar= 0;
         barStock= new Stock();
         barMenu= new Menu("bar", barStock);
+
     }
 
     /**

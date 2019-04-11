@@ -13,6 +13,7 @@ public class Restaurant {
     public bartenderApi bartender;
     public Menu menu;
 
+
     public Restaurant(){}
 
     public Restaurant(String fileName, int nothing){
@@ -78,6 +79,7 @@ public class Restaurant {
         bartender= new bartenderApi();
         stock= new Stock();
         menu= new Menu("main", stock);
+
     }
 
     public String getName(){
@@ -126,4 +128,5 @@ public class Restaurant {
     public static void saveToFile(String fileName){
 
     }
+
 }
