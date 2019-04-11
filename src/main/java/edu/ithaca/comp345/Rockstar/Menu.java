@@ -89,6 +89,11 @@ public class Menu {
         return menuItemMap;
     }
 
+    /**
+     * loads data from a text file with proper formatting into the menu
+     * @param fileName the filename of the file to use to create the menu
+     * @throws IOException
+     */
     public void loadMenuFromFile(String fileName) throws IOException {
         BufferedReader br = null;
 
@@ -143,6 +148,11 @@ public class Menu {
         }
     }
 
+    /**
+     * saves the menu information that is in the system to a text file, including each menu item and its cost, and each ingredient and its quantity
+     * @param fileName the filename to use to save the data
+     * @throws IOException
+     */
     public void saveMenuToFile(String fileName) throws IOException {
 
         FileWriter fileWriter = new FileWriter(fileName);
