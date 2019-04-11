@@ -194,7 +194,7 @@ public class Stock {
                 printWriter.println(name + "#" + quantity + "$" + cost);
             }
             else{
-                printWriter.print(name + "#" + quantity + "$" + cost);
+                printWriter.println(name + "#" + quantity + "$" + cost);
             }
         }
         printWriter.close();
