@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RestaurantIT {
 
     @Test
-    public void waiterPlaceOrderTest(){
+    public void waiterPlaceOrderIT(){
         //should read a file and create a menu, stock, and tables
         Restaurant main= new Restaurant("test.txt", 1);
         main.host.seatCustomers(2, 4);
@@ -35,7 +35,7 @@ public class RestaurantIT {
     }
 
     @Test
-    public void bartenderPlaceOrderTest(){
+    public void bartenderPlaceOrderIT(){
         //should read a file and create a menu, stock, create bar, and tables
         Restaurant main= new Restaurant("test.txt", 1);
         MenuItem item1= main.bartender.menu.getMenuItem("margarita");
