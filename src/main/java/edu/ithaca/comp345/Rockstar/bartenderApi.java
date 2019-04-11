@@ -14,16 +14,30 @@ public class bartenderApi extends waiterApi{
         //menu= null;
     }
 
+    /**
+     * creates an order, adds it to the bar
+     * @param orderNum
+     */
     public void createOrder(int orderNum){
         Table barTable= allTables.get(findTable(bar));
         barTable.createOrder(orderNum);
     }
 
+    /**
+     * adds an item to a given order
+     * @param orderNum
+     * @param item item to add
+     */
     public void addToOrder(int orderNum, MenuItem item){
         Table barTable= allTables.get(findTable(bar));
         barTable.addtoOrder(item,orderNum);
     }
 
+    /**
+     * allows the user to pay
+     * @param orderNum
+     * @return: price to pay
+     */
     public double pay(int orderNum){
         Table barTable= allTables.get(findTable(bar));
         double price= barTable.getOrderPrice(orderNum);
