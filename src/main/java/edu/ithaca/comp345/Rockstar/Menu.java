@@ -1,9 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Menu {
 
@@ -143,5 +141,21 @@ public class Menu {
                 System.out.println("Invalid Input: " + st);
             }
         }
+    }
+
+    public void saveMenuToFile(String fileName) throws IOException {
+
+        FileWriter fileWriter = new FileWriter(fileName);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        for(Map.Entry<String, MenuItem> currEntry : menuItemMap.entrySet()){
+            printWriter.println("@" + currEntry.getKey());
+            printWriter.println("$" + currEntry.getValue().getPrice());
+            for(Ingredient currIngredient : currEntry.getValue().ingredients.keySet()){
+                printWriter.println("-" + currIngredient.getName()+","+currIngredient.getQuantity());
+            }
+            printWriter.println("...");
+        }
+        printWriter.close();
     }
 }
