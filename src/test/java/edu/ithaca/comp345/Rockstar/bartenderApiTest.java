@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class bartenderApiTest {
 
-    /*
+
     @Test
     public void addToOrderTest(){
         Order orderTester= new Order(0);
@@ -46,5 +46,4 @@ public class bartenderApiTest {
         assertNotEquals(orderTester.getTotalPrice(),13.75);
 
     }
-    */
 }
