@@ -37,3 +37,5 @@ Full menu implementation with server functionality, finish the Manager API, and 
 ### [Class Diagram](https://drive.google.com/file/d/1KtjoG9M0u61bb8D0lDHYeMyxjLdIlp0j/view?usp=sharing)
 
 ### [Sprint 2 Review](https://docs.google.com/document/d/1T6OzB9iUFD4uO4X0xuN80hMNOxQLJEZ5wmQjA4wYib8/edit?usp=sharing)
+
+### [Sprint 2 Retrospective](https://docs.google.com/document/d/1LiI8w_6d3YgNq7nVNhmyCjj1ePDpLhPNA--ovC-gAgE/edit?usp=sharing)
