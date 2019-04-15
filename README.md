@@ -10,7 +10,7 @@ The motivation behind this software is to allow a faster more efficient system u
 
 ## CircleCI [![CircleCI](https://circleci.com/gh/averma1/RockstarRestaurant.svg?style=svg)](https://circleci.com/gh/averma1/RockstarRestaurant)
 
-## [Waffle.io](https://waffle.io/averma1/RockstarRestaurant)
+## [![Waffle.io - Columns and their card count](https://badge.waffle.io/averma1/RockstarRestaurant.svg?columns=all)](https://waffle.io/averma1/RockstarRestaurant)
 
 ## [Narratives and Scenarios](https://docs.google.com/document/d/1mbCA1XFlC16uW3GntGZr3oNSqvGuuPp9TkEMHZ1b8vo/edit)
 
