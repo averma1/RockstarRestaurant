@@ -12,6 +12,7 @@ public class Restaurant {
     private static int barNumber=420;
     public bartenderApi bartender;
     public Menu menu;
+    public List<Employee> employees;
 
 
     public Restaurant(){}
@@ -79,6 +80,7 @@ public class Restaurant {
         bartender= new bartenderApi();
         stock= new Stock();
         menu= new Menu("main", stock);
+        employees= new ArrayList<>();
 
     }
 
@@ -123,6 +125,10 @@ public class Restaurant {
         createTable(barNumber, seatNumber);
         bartenderApi.setBar(barNumber);
         bartenderApi.setSeats(seatNumber);
+    }
+
+    public static int findEmployee(){
+        return 1;
     }
 
     public static void saveToFile(String fileName){

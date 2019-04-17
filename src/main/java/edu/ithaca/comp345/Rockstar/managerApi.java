@@ -1,31 +1,37 @@
 package edu.ithaca.comp345.Rockstar;
 
-public class managerApi {
-    //TODO this will be changed to the stock of a real restaurant
-    public static Stock managerStock = new Stock();
-
+public class managerApi extends Restaurant{
     public static void addIngredient(String name, double cost, int quantity){
-        managerStock.addIngredient(name, cost, quantity);
+        stock.addIngredient(name, cost, quantity);
     }
 
     public static void removeIngredient(String name){
-        managerStock.removeIngredient(name);
+        stock.removeIngredient(name);
     }
 
     public static Ingredient getIngredient(String nameToFind){
-        return managerStock.getIngredient(nameToFind);
+        return stock.getIngredient(nameToFind);
     }
 
     public static double getCostOfIngredient(String nameToFind){
-        return managerStock.getCost(nameToFind);
+        return stock.getCost(nameToFind);
     }
 
     public static int getQuantityOfIngredient(String nameToFind){
-        return managerStock.getQuantity(nameToFind);
+        return stock.getQuantity(nameToFind);
     }
 
     public static boolean isIngredientAvailable(String ingredientName){
-        return managerStock.isIngredientAvailable(ingredientName);
+        return stock.isIngredientAvailable(ingredientName);
     }
+
+    public static void addEmployee(){
+
+    }
+
+    public static void removeEmployee(){
+
+    }
+
 
 }
