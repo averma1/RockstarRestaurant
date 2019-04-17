@@ -45,4 +45,11 @@ class RestaurantTest {
         assertThrows(IndexOutOfBoundsException.class, ()-> testRest.loadTablesFromFile("tableTestFile1.txt"));
 
     }
+
+    @Test
+    public void loadTablesToFileTest() throws Exception{
+
+
+
+    }
 }

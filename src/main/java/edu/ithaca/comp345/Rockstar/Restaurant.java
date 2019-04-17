@@ -82,4 +82,10 @@ public class Restaurant {
             }
         }
     }
+
+    public void saveTableToFile(String filename) throws Exception{
+
+
+
+    }
 }
