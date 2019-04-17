@@ -55,4 +55,8 @@ public class Restaurant {
         }
         return index;
     }
+
+    public void loadTablesFromFile(String fileName){
+
+    }
 }
