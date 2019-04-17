@@ -75,8 +75,7 @@ public class Restaurant {
         String st;
         while ((st = br.readLine()) != null){
             try {
-                Table newTable = new Table(Integer.parseInt(st.substring(0,st.indexOf(","))), Integer.parseInt(st.substring(st.indexOf(",")+1)));
-                allTables.add(newTable);
+                createTable(Integer.parseInt(st.substring(0,st.indexOf(","))), Integer.parseInt(st.substring(st.indexOf(",")+1)));
             }
             catch(StringIndexOutOfBoundsException | NumberFormatException e){
                 System.out.println("Invalid Input: " + st);

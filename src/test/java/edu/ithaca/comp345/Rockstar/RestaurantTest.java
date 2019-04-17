@@ -42,9 +42,7 @@ class RestaurantTest {
         assertTrue(testRest.allTables.get(3).getNumOfSeats() == 4);
 
         //try to load the same file again (shouldn't create any tables due to duplicate table numbers)
-        testRest.loadTablesFromFile("tableTestFile1.txt");
-        System.out.println(testRest.allTables.size());
-        //assertTrue();
+        assertThrows(IndexOutOfBoundsException.class, ()-> testRest.loadTablesFromFile("tableTestFile1.txt"));
 
     }
 }
