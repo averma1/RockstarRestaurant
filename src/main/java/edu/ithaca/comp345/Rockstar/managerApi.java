@@ -33,5 +33,13 @@ public class managerApi extends Restaurant{
 
     }
 
+    public static void changeEmployeePin(){
+
+    }
+
+    public static void changeEmployeeType(){
+
+    }
+
 
 }

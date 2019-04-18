@@ -46,5 +46,25 @@ public class managerApiTest {
         assertFalse(managerApi.isIngredientAvailable("chicken"));
     }
 
+    @Test
+    public void addEmployeeTest(){
+
+    }
+
+    @Test
+    public void removeEmployeeTest(){
+
+    }
+
+    @Test
+    public void changeEmployeePinTest(){
+
+    }
+
+    @Test
+    public void changeEmployeeTypeTest(){
+
+    }
+
 
 }
