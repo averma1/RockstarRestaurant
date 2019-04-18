@@ -25,20 +25,28 @@ public class managerApi extends Restaurant{
         return stock.isIngredientAvailable(ingredientName);
     }
 
-    public static void addEmployee(){
+    public static void addEmployee(int pin, String name, String type){
 
     }
 
-    public static void removeEmployee(){
+    private static boolean isPinValid(int pin){
+        return true;
+    }
+
+    public static void removeEmployee(int pin, String name){
 
     }
 
-    public static void changeEmployeePin(){
+    public static void changeEmployeePin(int pinOld, String name, int pinNew){
 
     }
 
-    public static void changeEmployeeType(){
+    public static void changeEmployeeType(int pin, String name, String typeNew){
 
+    }
+
+    private int findEmployee(String name){
+        return -1;
     }
 
 

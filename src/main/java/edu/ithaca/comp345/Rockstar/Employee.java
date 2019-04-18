@@ -10,7 +10,7 @@ public class Employee {
         name=nameIn;
         type=typeIn;
     }
-    
+
     public void setPin(int pinIn){
         pin=pinIn;
     }

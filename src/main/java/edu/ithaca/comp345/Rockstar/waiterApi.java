@@ -2,10 +2,12 @@ package edu.ithaca.comp345.Rockstar;
 
 import java.lang.reflect.InaccessibleObjectException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class waiterApi extends Restaurant{
 
+    public HashMap<Employee, List<Table>> waiters;
 
     /**
      * takes the order and adds to list of orders

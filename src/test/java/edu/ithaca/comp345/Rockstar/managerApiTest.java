@@ -48,22 +48,26 @@ public class managerApiTest {
 
     @Test
     public void addEmployeeTest(){
-
+        Restaurant main= new Restaurant("test");
+        managerApi manager= main.manager;
     }
 
     @Test
     public void removeEmployeeTest(){
-
+        Restaurant main= new Restaurant("test");
+        managerApi manager= main.manager;
     }
 
     @Test
     public void changeEmployeePinTest(){
-
+        Restaurant main= new Restaurant("test");
+        managerApi manager= main.manager;
     }
 
     @Test
     public void changeEmployeeTypeTest(){
-
+        Restaurant main= new Restaurant("test");
+        managerApi manager= main.manager;
     }
 
 
