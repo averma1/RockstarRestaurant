@@ -29,8 +29,14 @@ public class managerApi extends Restaurant{
 
     }
 
-    private static boolean isPinValid(int pin){
-        return true;
+    private boolean isPinValid(int pin){
+        int length = (int) (Math.log10(pin) + 1);
+        if(length==4) {
+            if (!pins.containsKey(pin)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void removeEmployee(int pin, String name){
@@ -46,7 +52,13 @@ public class managerApi extends Restaurant{
     }
 
     private int findEmployee(String name){
-        return -1;
+        int index=-1;
+        for(int i=0; i<employees.size(); i++){
+            if(name==employees.get(i).getName()){
+                index=i;
+            }
+        }
+        return index;
     }
 
     public void assignTablesToWaiter(int pin, String Name, Table tablenum){
