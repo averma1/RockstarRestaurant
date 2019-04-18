@@ -1,9 +1,6 @@
 package edu.ithaca.comp345.Rockstar;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,9 +80,16 @@ public class Restaurant {
         }
     }
 
-    public void saveTableToFile(String filename) throws Exception{
+    public void saveTablesToFile(String filename) throws Exception{
 
+        FileWriter fileWriter = new FileWriter(filename);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
 
+        for (int i = 0;i<allTables.size();i++){
+            printWriter.println(allTables.get(i).getTableNumber() + "," + allTables.get(i).getNumOfSeats());
+        }
+
+        printWriter.close();
 
     }
 }
