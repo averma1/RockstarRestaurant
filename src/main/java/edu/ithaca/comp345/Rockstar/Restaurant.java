@@ -1,6 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Restaurant {
@@ -13,6 +14,7 @@ public class Restaurant {
     public bartenderApi bartender;
     public Menu menu;
     public List<Employee> employees;
+    public HashMap<Integer, String> pins;
 
 
     public Restaurant(){}
@@ -81,6 +83,7 @@ public class Restaurant {
         stock= new Stock();
         menu= new Menu("main", stock);
         employees= new ArrayList<>();
+        pins= new HashMap<>();
 
     }
 
