@@ -104,6 +104,10 @@ public class waiterApi extends Restaurant{
         throw new InaccessibleObjectException();
     }
 
+    public static List<Table> getWaitersTables(int pin, String name){
+        return null;
+    }
+
 
 }
 

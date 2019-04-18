@@ -49,5 +49,13 @@ public class managerApi extends Restaurant{
         return -1;
     }
 
+    public void assignTablesToWaiter(int pin, String Name, Table tablenum){
+
+    }
+
+    public void removeTablesFromWaiter(int pin, String Name, Table tablenum){
+
+    }
+
 
 }

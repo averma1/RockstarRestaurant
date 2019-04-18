@@ -116,4 +116,9 @@ public class waiterApiTest {
         assertEquals(chickenParm.getItemName(), viewStatus.get(0).getItemName());
         assertNotEquals(veganLasagna.getItemName(), viewStatus2.get(0).getItemName());
     }
+
+    @Test
+    public void getWaitersTablesTest(){
+
+    }
 }
