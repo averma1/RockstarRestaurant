@@ -20,6 +20,9 @@ public class waiterApi extends Restaurant{
             if(table.findOrder(orderNum)==-1){
                 table.createOrder(orderNum);
             }
+            if(stock!=null) {
+                stock.removeMenuItem(item);
+            }
             table.addtoOrder(item, orderNum);
         } else {
             throw new InaccessibleObjectException();
