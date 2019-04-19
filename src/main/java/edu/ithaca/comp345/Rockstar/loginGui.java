@@ -22,6 +22,9 @@ public class loginGui extends JPanel {
     }
 
     public static void main(String[] args) {
+        int width=JFrame.MAXIMIZED_HORIZ;
+        int height=JFrame.MAXIMIZED_VERT;
+
         testDisplay displayPanel = new testDisplay();
         displayPanel.setBackground(Color.cyan);
         JButton button = new JButton();
@@ -29,7 +32,8 @@ public class loginGui extends JPanel {
         button.addActionListener(listener);
 
 
-        JTextArea pinEnter = new JTextArea("Enter Pin...");
+
+        JTextField pinEnter= new javax.swing.JTextField("Enter Pin");
         pinEnter.setEditable(false);
         JPanel content = new JPanel();
         content.setLayout(new BorderLayout());
@@ -38,12 +42,22 @@ public class loginGui extends JPanel {
         int col = 3;
         int row = 4;
         content.setLayout(new GridLayout(row, col));
-        for (int i = 9; i >= 0; i--) {
+         for (int i = 9; i >= 0; i--) {
             button = new JButton(Integer.toString(i));
             content.add(button);
             button.addActionListener(listener);
         }
 
+        /**
+        button.setLocation(100,100);
+        button.addActionListener(listener);
+        content.add(button);
+        for (int i=9; i >=0; i--) {
+            button = new JButton(Integer.toString(i));
+            button.setLocation(button.getWidth()-width/2,button.getY()-height/2);
+            content.add(button);
+            button.addActionListener(listener);
+        }**/
         JFrame window = new JFrame("GUI Test");
         window.setContentPane(content);
         window.setSize(250, 100);
