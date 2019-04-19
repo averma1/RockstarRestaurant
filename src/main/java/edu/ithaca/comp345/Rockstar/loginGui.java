@@ -8,10 +8,11 @@ import java.awt.GridLayout;
 
 public class loginGui extends JPanel {
 
-    public static class testDisplay extends JPanel {
+    private static class LoginTextDisplay extends JPanel {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawString("Hello World!", 80, 30);
+            g.setFont(new Font("Times", Font.BOLD, 50));
+            g.drawString( "Login!", 600, 100 );
         }
     }
 
@@ -25,7 +26,7 @@ public class loginGui extends JPanel {
         int width=JFrame.MAXIMIZED_HORIZ;
         int height=JFrame.MAXIMIZED_VERT;
 
-        testDisplay displayPanel = new testDisplay();
+        LoginTextDisplay displayPanel = new LoginTextDisplay();
         displayPanel.setBackground(Color.cyan);
         JButton button = new JButton();
         ButtonHandler listener = new ButtonHandler();
@@ -61,9 +62,15 @@ public class loginGui extends JPanel {
         JFrame window = new JFrame("GUI Test");
         window.setContentPane(content);
         window.setSize(250, 100);
+
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setResizable(false);
         window.pack();
         window.setVisible(true);
+
+
+
     }
+
+
 }
