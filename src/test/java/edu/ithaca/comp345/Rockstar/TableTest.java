@@ -200,7 +200,4 @@ public class TableTest {
         assertEquals(125.75, test1.getOrdersTotalPrice());
     }
 
-
-
-
 }

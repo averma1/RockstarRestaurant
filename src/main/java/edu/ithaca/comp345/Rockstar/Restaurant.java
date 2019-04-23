@@ -1,5 +1,6 @@
 package edu.ithaca.comp345.Rockstar;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,6 +120,42 @@ public class Restaurant {
         return index;
     }
 
+    public void loadTablesFromFile(String fileName) throws Exception{
+        BufferedReader br = null;
+
+        try
+        {
+            File file = new File(fileName);
+            br = new BufferedReader(new FileReader(file));
+        }
+        catch (FileNotFoundException e) {
+            throw new FileNotFoundException("The file " + fileName + " doesn't exist!");
+        }
+
+        String st;
+        while ((st = br.readLine()) != null){
+            try {
+                createTable(Integer.parseInt(st.substring(0,st.indexOf(","))), Integer.parseInt(st.substring(st.indexOf(",")+1)));
+            }
+            catch(StringIndexOutOfBoundsException | NumberFormatException e){
+                System.out.println("Invalid Input: " + st);
+            }
+        }
+    }
+
+    public void saveTablesToFile(String filename) throws Exception{
+
+        FileWriter fileWriter = new FileWriter(filename);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        for (int i = 0;i<allTables.size();i++){
+            printWriter.println(allTables.get(i).getTableNumber() + "," + allTables.get(i).getNumOfSeats());
+        }
+
+        printWriter.close();
+
+    }
+
     public static void createBar(int seatNumber){
         createTable(barNumber, seatNumber);
         bartenderApi.setBar(barNumber);
@@ -128,5 +165,6 @@ public class Restaurant {
     public static void saveToFile(String fileName){
 
     }
+
 
 }

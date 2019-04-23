@@ -21,6 +21,70 @@ public class RestaurantTest {
         assertFalse(testRest.getName()!="Luna");
     }
 
+
+    @Test void loadTablesFromFileTests() throws Exception{
+        Restaurant testRest = new Restaurant("My Restaurant");
+
+        //the restaurant currently has no tables
+        assertTrue(testRest.allTables.size() == 0);
+
+        //load in a file
+        testRest.loadTablesFromFile("tableTestFile1.txt");
+
+        //confirm that the tables are created
+        assertTrue(testRest.allTables.get(0).getTableNumber() == 1);
+        assertTrue(testRest.allTables.get(0).getNumOfSeats() == 4);
+        assertTrue(testRest.allTables.get(1).getTableNumber() == 2);
+        assertTrue(testRest.allTables.get(1).getNumOfSeats() == 8);
+        assertTrue(testRest.allTables.get(2).getTableNumber() == 3);
+        assertTrue(testRest.allTables.get(2).getNumOfSeats() == 6);
+        assertTrue(testRest.allTables.get(3).getTableNumber() == 4);
+        assertTrue(testRest.allTables.get(3).getNumOfSeats() == 4);
+
+        //try to load the same file again (shouldn't create any tables due to duplicate table numbers)
+        assertThrows(IndexOutOfBoundsException.class, ()-> testRest.loadTablesFromFile("tableTestFile1.txt"));
+
+    }
+
+    @Test
+    public void loadTablesToFileTest() throws Exception{
+
+        Restaurant testRest = new Restaurant("My Restaurant");
+
+        //load in a file
+        testRest.loadTablesFromFile("tableTestFile1.txt");
+
+        //confirm that the tables are created
+        assertTrue(testRest.allTables.get(0).getTableNumber() == 1);
+        assertTrue(testRest.allTables.get(0).getNumOfSeats() == 4);
+        assertTrue(testRest.allTables.get(1).getTableNumber() == 2);
+        assertTrue(testRest.allTables.get(1).getNumOfSeats() == 8);
+        assertTrue(testRest.allTables.get(2).getTableNumber() == 3);
+        assertTrue(testRest.allTables.get(2).getNumOfSeats() == 6);
+        assertTrue(testRest.allTables.get(3).getTableNumber() == 4);
+        assertTrue(testRest.allTables.get(3).getNumOfSeats() == 4);
+
+        //save the tables to the file
+        testRest.saveTablesToFile("tableOutputFile.txt");
+
+        //create a new restaurant
+        Restaurant newRes = new Restaurant("My new Restaurant");
+
+        //load the outut of tables to a new Resturant
+        newRes.loadTablesFromFile("tableOutputFile.txt");
+
+        //check that this new restaurant now has the same tables
+        assertTrue(newRes.allTables.get(0).getTableNumber() == 1);
+        assertTrue(newRes.allTables.get(0).getNumOfSeats() == 4);
+        assertTrue(newRes.allTables.get(1).getTableNumber() == 2);
+        assertTrue(newRes.allTables.get(1).getNumOfSeats() == 8);
+        assertTrue(newRes.allTables.get(2).getTableNumber() == 3);
+        assertTrue(newRes.allTables.get(2).getNumOfSeats() == 6);
+        assertTrue(newRes.allTables.get(3).getTableNumber() == 4);
+        assertTrue(newRes.allTables.get(3).getNumOfSeats() == 4);
+
+    }
+
     @Test
     public void waiterPlaceOrderTest(){
         //should read a file and create a menu, stock, and tables
@@ -70,5 +134,6 @@ public class RestaurantTest {
         assertEquals(-1, bar.findOrder(8));
         main.saveToFile("test.txt");
     }
+
 
 }
