@@ -119,6 +119,13 @@ public class waiterApiTest {
 
     @Test
     public void getWaitersTablesTest(){
+        Restaurant main= new Restaurant("test");
+        managerApi manager= main.manager;
+
+        manager.addEmployee(1234, "Kaylee", "manager");
+        manager.addEmployee(2345, "Julia", "host");
+        manager.addEmployee(3234, "John", "waiter");
+        manager.addEmployee(4234, "Priya", "bartender");
 
     }
 }

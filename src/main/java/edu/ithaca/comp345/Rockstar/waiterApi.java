@@ -7,7 +7,6 @@ import java.util.List;
 
 public class waiterApi extends Restaurant{
 
-    public HashMap<Employee, List<Table>> waiters;
 
     /**
      * takes the order and adds to list of orders

@@ -51,7 +51,7 @@ public class managerApi extends Restaurant{
 
     }
 
-    private int findEmployee(String name){
+    public int findEmployee(String name){
         int index=-1;
         for(int i=0; i<employees.size(); i++){
             if(name==employees.get(i).getName()){
@@ -66,6 +66,10 @@ public class managerApi extends Restaurant{
     }
 
     public void removeTablesFromWaiter(int pin, String Name, Table tablenum){
+
+    }
+
+    public void addTableToWaiter(int tablenum, int pin, String name){
 
     }
 

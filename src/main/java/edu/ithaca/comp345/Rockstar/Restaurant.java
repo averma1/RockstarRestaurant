@@ -16,6 +16,7 @@ public class Restaurant {
     public List<Employee> employees;
     public HashMap<Integer, String> pins;
     public managerApi manager;
+    public HashMap<Employee, List<Table>> waiters;
 
 
     public Restaurant(){}
@@ -86,6 +87,7 @@ public class Restaurant {
         employees= new ArrayList<>();
         pins= new HashMap<>();
         manager= new managerApi();
+        waiters= new HashMap<>();
 
     }
 
