@@ -14,9 +14,9 @@ public class Restaurant {
     public bartenderApi bartender;
     public Menu menu;
     public static List<Employee> employees;
-    public HashMap<Integer, String> pins;
+    public static List<Integer> pins;
     public managerApi manager;
-    public HashMap<Employee, List<Table>> waiters;
+    public static HashMap<Employee, List<Table>> waiters;
 
 
     public Restaurant(){}
@@ -85,7 +85,7 @@ public class Restaurant {
         stock= new Stock();
         menu= new Menu("main", stock);
         employees= new ArrayList<>();
-        pins= new HashMap<>();
+        pins= new ArrayList<>();
         manager= new managerApi();
         waiters= new HashMap<>();
 
@@ -134,8 +134,14 @@ public class Restaurant {
         bartenderApi.setSeats(seatNumber);
     }
 
-    public static int findEmployee(){
-        return 1;
+    public static int findEmployee(int pin){
+        int index=-1;
+        for(int i=0; i<employees.size(); i++){
+            if(pin==employees.get(i).getPin()) {
+                index = i;
+            }
+        }
+        return index;
     }
 
     public static void saveToFile(String fileName){

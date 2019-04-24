@@ -2,6 +2,7 @@ package edu.ithaca.comp345.Rockstar;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.InaccessibleObjectException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -138,19 +139,24 @@ public class waiterApiTest {
         manager.addTableToWaiter(3, 3234, "John");
         manager.addTableToWaiter(4, 3234, "John");
 
-        List<Table> table1= new ArrayList<>();
-        table1.add(main.allTables.get(main.findTable(1)));
-        table1.add(main.allTables.get(main.findTable(2)));
-        List<Table> table2= new ArrayList<>();
-        table2.add(main.allTables.get(main.findTable(3)));
-        table2.add(main.allTables.get(main.findTable(4)));
+        Employee test1= main.employees.get(manager.findEmployee(1234));
+        Employee test2= main.employees.get(manager.findEmployee(3234));
 
-        assertEquals(table1, main.waiter.getWaitersTables(1234, "Kaylee"));
-        assertEquals(table2, main.waiter.getWaitersTables(3234, "John"));
+        List<Table> shouldBe= main.waiters.get(test1);
+        List<Table> is= main.waiter.getWaitersTables(1234, "Kaylee");
+        for(int i=0; i<is.size(); i++){
+            assertEquals(shouldBe.get(i).getTableNumber(), is.get(i).getTableNumber());
+        }
 
-        assertThrows(IndexOutOfBoundsException.class, ()->{main.waiter.getWaitersTables(2345, "Julia");});
-        assertThrows(IndexOutOfBoundsException.class, ()->{main.waiter.getWaitersTables(9999, "Julia");});
-        assertThrows(IndexOutOfBoundsException.class, ()->{main.waiter.getWaitersTables(1234, "Kay");});
+        shouldBe= main.waiters.get(test2);
+        is= main.waiter.getWaitersTables(3234, "John");
+        for(int i=0; i<is.size(); i++){
+            assertEquals(shouldBe.get(i).getTableNumber(), is.get(i).getTableNumber());
+        }
+
+        assertThrows(InaccessibleObjectException.class, ()->{main.waiter.getWaitersTables(2345, "Julia");});
+        assertThrows(InaccessibleObjectException.class, ()->{main.waiter.getWaitersTables(9999, "Julia");});
+        assertThrows(InaccessibleObjectException.class, ()->{main.waiter.getWaitersTables(1234, "Kay");});
 
     }
 }

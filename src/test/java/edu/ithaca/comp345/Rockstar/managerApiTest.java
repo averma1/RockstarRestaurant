@@ -3,6 +3,7 @@ package edu.ithaca.comp345.Rockstar;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.lang.reflect.InaccessibleObjectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,29 +52,24 @@ public class managerApiTest {
         Restaurant main= new Restaurant("test");
         managerApi manager= main.manager;
 
-        List<String> names= new ArrayList<>();
         List<Integer> pins= new ArrayList<>();
         manager.addEmployee(1234, "Kaylee", "manager");
-        names.add("Kaylee");
         pins.add(1234);
         manager.addEmployee(2345, "Julia", "host");
-        names.add("Julia");
         pins.add(2345);
         manager.addEmployee(3234, "John", "waiter");
-        names.add("John");
         pins.add(3234);
         manager.addEmployee(4234, "Priya", "bartender");
-        names.add("Priya");
         pins.add(4234);
 
         for(int i=0; i<manager.employees.size(); i++){
-            assertNotEquals(-1, manager.findEmployee(pins.get(i), names.get(i)));
+            assertNotEquals(-1, manager.findEmployee(pins.get(i)));
         }
 
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.addEmployee(4234, "Alexia", "bartender"); });
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.addEmployee(42341, "Ben", "bartender"); });
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.addEmployee(6666, "Lydia", "busboy"); });
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.addEmployee(423, "Jen", "bartender"); });
+        assertThrows(InaccessibleObjectException.class, ()->{manager.addEmployee(4234, "Alexia", "bartender"); });
+        assertThrows(InaccessibleObjectException.class, ()->{manager.addEmployee(42341, "Ben", "bartender"); });
+        assertThrows(InaccessibleObjectException.class, ()->{manager.addEmployee(6666, "Lydia", "busboy"); });
+        assertThrows(InaccessibleObjectException.class, ()->{manager.addEmployee(423, "Jen", "bartender"); });
     }
 
     @Test
@@ -87,13 +83,12 @@ public class managerApiTest {
         manager.addEmployee(4234, "Priya", "bartender");
 
         manager.removeEmployee(3234, "John");
-        assertEquals(-1, manager.findEmployee(3234,"John"));
+        assertEquals(-1, manager.findEmployee(3234));
 
         manager.removeEmployee(2345, "Julia");
-        assertEquals(-1, manager.findEmployee(2345,"Julia"));
+        assertEquals(-1, manager.findEmployee(2345));
 
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.removeEmployee(2345, "Julia"); });
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.removeEmployee(4234, "Julia"); });
+        assertThrows(InaccessibleObjectException.class, ()->{manager.removeEmployee(2345, "Julia"); });
     }
 
     @Test
@@ -102,12 +97,11 @@ public class managerApiTest {
         managerApi manager= main.manager;
 
         manager.addEmployee(1234, "Kaylee", "manager");
-        manager.changeEmployeePin(1234, "Kaylee", 5432);
-        Employee test1= manager.employees.get(manager.findEmployee(5432,"Kaylee"));
+        manager.changeEmployeePin(1234, 5432);
+        Employee test1= manager.employees.get(manager.findEmployee(5432));
         assertEquals(5432, test1.getPin());
 
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.changeEmployeePin(5432, "Kaylee", 54321); });
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.changeEmployeePin(5432, "Kay", 5431);  });
+        assertThrows(InaccessibleObjectException.class, ()->{manager.changeEmployeePin(5432, 54321); });
     }
 
     @Test
@@ -118,12 +112,10 @@ public class managerApiTest {
         manager.addEmployee(1234, "Kaylee", "manager");
         manager.addEmployee(2345, "Julia", "host");
         manager.changeEmployeeType(1234, "Kaylee", "waiter");
-        Employee test1= manager.employees.get(manager.findEmployee(1234,"Kaylee"));
+        Employee test1= manager.employees.get(manager.findEmployee(1234));
         assertEquals("waiter", test1.getType());
 
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.changeEmployeeType(2345, "Kaylee", "waiter");});
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.changeEmployeeType(1234, "Kayl", "waiter"); });
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.changeEmployeeType(1234, "Kaylee", "busboy");  });
+        assertThrows(InaccessibleObjectException.class, ()->{manager.changeEmployeeType(1234, "Kaylee", "busboy");  });
     }
 
     @Test
@@ -146,8 +138,8 @@ public class managerApiTest {
         manager.addTableToWaiter(3, 3234, "John");
         manager.addTableToWaiter(4, 3234, "John");
 
-        Employee test1= manager.employees.get(manager.findEmployee(1234,"Kaylee"));
-        Employee test2= manager.employees.get(manager.findEmployee(3234,"John"));
+        Employee test1= manager.employees.get(manager.findEmployee(1234));
+        Employee test2= manager.employees.get(manager.findEmployee(3234));
 
         List<Table> table1= new ArrayList<>();
         table1.add(main.allTables.get(main.findTable(1)));
@@ -159,13 +151,8 @@ public class managerApiTest {
         assertEquals(table1, main.waiters.get(test1));
         assertEquals(table2, main.waiters.get(test2));
 
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.addTableToWaiter(5, 1234, "Jen");});
-        assertThrows(IndexOutOfBoundsException.class, ()->{ manager.addTableToWaiter(5, 1237, "Kaylee");});
-        assertThrows(IndexOutOfBoundsException.class, ()->{ manager.addTableToWaiter(5, 2345, "Julia");});
-        assertThrows(IndexOutOfBoundsException.class, ()->{ manager.addTableToWaiter(3, 1234, "Kaylee");});
-        assertThrows(IndexOutOfBoundsException.class, ()->{manager.addTableToWaiter(420, 1234, "Kaylee"); });
+        assertThrows(InaccessibleObjectException.class, ()->{ manager.addTableToWaiter(5, 1237, "Kaylee");});
+        assertThrows(InaccessibleObjectException.class, ()->{ manager.addTableToWaiter(5, 2345, "Julia");});
 
     }
-
-
 }

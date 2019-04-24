@@ -4,7 +4,8 @@ public class Login extends Restaurant {
 
     public Login(int pin){
         if(isValidPin(pin)) {
-            String mode1 = pins.get(pin);
+            Employee current= employees.get(findEmployee(pin));
+            String mode1 = current.getType();
             UIMode mode = UIMode.valueOf(mode1);
 
             if (mode == UIMode.manager) {
@@ -26,7 +27,7 @@ public class Login extends Restaurant {
     public boolean isValidPin(int pin){
         int length = (int) (Math.log10(pin) + 1);
         if(length==4) {
-            if (pins.containsKey(pin)) {
+            if (pins.contains(pin)) {
                 return true;
             }
         }

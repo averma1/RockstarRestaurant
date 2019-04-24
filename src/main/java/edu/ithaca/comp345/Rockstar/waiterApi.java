@@ -104,8 +104,17 @@ public class waiterApi extends Restaurant{
     }
 
     public static List<Table> getWaitersTables(int pin, String name){
-        int index= managerApi.findEmployee(pin, name);
-        return null;
+        int index= managerApi.findEmployee(pin);
+        if(index==-1){
+            throw new InaccessibleObjectException();
+        } else {
+            Employee waiter= employees.get(index);
+            if(waiter.getType()!="waiter"){
+                throw new InaccessibleObjectException();
+            } else {
+                return waiters.get(waiter);
+            }
+        }
     }
 
 
