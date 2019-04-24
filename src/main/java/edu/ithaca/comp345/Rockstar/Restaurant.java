@@ -19,8 +19,16 @@ public class Restaurant {
     public managerApi manager;
     public static HashMap<Employee, List<Table>> waiters;
 
+    Restaurant(){}
 
-    public Restaurant(){}
+    public final String defaultStockFileName = "";
+    public final String defaultTableFileName = "";
+    public final String defaultMenuFileName = "";
+    public final String defaultPinFileName = "";
+
+    public Restaurant(String name, String stockFileName, String tableFileName, String menuFileName){
+        //TODO once all the file I/O is ready
+    }
 
     public Restaurant(String name){
         allTables= new ArrayList<>();

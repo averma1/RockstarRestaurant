@@ -188,5 +188,23 @@ public class RestaurantTest {
         main.saveToFile("test.txt");
     }
 
+    @Test
+    public void PinFileIOTest(){
+        Restaurant testRest = new Restaurant();
+
+        //load in Employees and Pins from a file
+
+        //check if they exist
+
+        //save to file
+
+        //load saved file into new Restaurant
+
+        //check if they exist
+
+
+
+    }
+
 
 }
