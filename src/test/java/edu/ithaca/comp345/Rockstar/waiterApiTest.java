@@ -2,6 +2,8 @@ package edu.ithaca.comp345.Rockstar;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.InaccessibleObjectException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -115,5 +117,45 @@ public class waiterApiTest {
         List<MenuItem> viewStatus2= testing.viewOrder(1,2);
         assertEquals(chickenParm.getItemName(), viewStatus.get(0).getItemName());
         assertNotEquals(veganLasagna.getItemName(), viewStatus2.get(0).getItemName());
+    }
+
+    @Test
+    public void getWaitersTablesTest(){
+        Restaurant main= new Restaurant("test");
+        managerApi manager= main.manager;
+
+        manager.addEmployee(1234, "Kaylee", "waiter");
+        manager.addEmployee(3234, "John", "waiter");
+        manager.addEmployee(2345, "Julia", "host");
+
+        main.createTable(1, 10);
+        main.createTable(2, 10);
+        main.createTable(3, 10);
+        main.createTable(4, 10);
+        main.createTable(5, 10);
+
+        manager.addTableToWaiter(1, 1234, "Kaylee");
+        manager.addTableToWaiter(2, 1234, "Kaylee");
+        manager.addTableToWaiter(3, 3234, "John");
+        manager.addTableToWaiter(4, 3234, "John");
+
+        Employee test1= main.employees.get(manager.findEmployee(1234));
+        Employee test2= main.employees.get(manager.findEmployee(3234));
+
+        List<Table> shouldBe= main.waiters.get(test1);
+        List<Table> is= main.waiter.getWaitersTables(1234, "Kaylee");
+        for(int i=0; i<is.size(); i++){
+            assertEquals(shouldBe.get(i).getTableNumber(), is.get(i).getTableNumber());
+        }
+
+        shouldBe= main.waiters.get(test2);
+        is= main.waiter.getWaitersTables(3234, "John");
+        for(int i=0; i<is.size(); i++){
+            assertEquals(shouldBe.get(i).getTableNumber(), is.get(i).getTableNumber());
+        }
+
+        assertThrows(InaccessibleObjectException.class, ()->{main.waiter.getWaitersTables(2345, "Julia");});
+        assertThrows(InaccessibleObjectException.class, ()->{main.waiter.getWaitersTables(9999, "Julia");});
+
     }
 }
