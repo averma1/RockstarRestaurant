@@ -51,11 +51,13 @@ public class managerApi extends Restaurant{
 
     }
 
-    public int findEmployee(String name){
+    public static int findEmployee(int pin, String name){
         int index=-1;
         for(int i=0; i<employees.size(); i++){
             if(name==employees.get(i).getName()){
-                index=i;
+                if(pin==employees.get(i).getPin()) {
+                    index = i;
+                }
             }
         }
         return index;

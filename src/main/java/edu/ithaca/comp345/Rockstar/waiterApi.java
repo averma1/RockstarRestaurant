@@ -104,6 +104,7 @@ public class waiterApi extends Restaurant{
     }
 
     public static List<Table> getWaitersTables(int pin, String name){
+        int index= managerApi.findEmployee(pin, name);
         return null;
     }
 

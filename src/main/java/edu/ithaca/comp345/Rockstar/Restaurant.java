@@ -13,7 +13,7 @@ public class Restaurant {
     private static int barNumber=420;
     public bartenderApi bartender;
     public Menu menu;
-    public List<Employee> employees;
+    public static List<Employee> employees;
     public HashMap<Integer, String> pins;
     public managerApi manager;
     public HashMap<Employee, List<Table>> waiters;

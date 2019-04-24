@@ -2,6 +2,7 @@ package edu.ithaca.comp345.Rockstar;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -122,10 +123,34 @@ public class waiterApiTest {
         Restaurant main= new Restaurant("test");
         managerApi manager= main.manager;
 
-        manager.addEmployee(1234, "Kaylee", "manager");
-        manager.addEmployee(2345, "Julia", "host");
+        manager.addEmployee(1234, "Kaylee", "waiter");
         manager.addEmployee(3234, "John", "waiter");
-        manager.addEmployee(4234, "Priya", "bartender");
+        manager.addEmployee(2345, "Julia", "host");
+
+        main.createTable(1, 10);
+        main.createTable(2, 10);
+        main.createTable(3, 10);
+        main.createTable(4, 10);
+        main.createTable(5, 10);
+
+        manager.addTableToWaiter(1, 1234, "Kaylee");
+        manager.addTableToWaiter(2, 1234, "Kaylee");
+        manager.addTableToWaiter(3, 3234, "John");
+        manager.addTableToWaiter(4, 3234, "John");
+
+        List<Table> table1= new ArrayList<>();
+        table1.add(main.allTables.get(main.findTable(1)));
+        table1.add(main.allTables.get(main.findTable(2)));
+        List<Table> table2= new ArrayList<>();
+        table2.add(main.allTables.get(main.findTable(3)));
+        table2.add(main.allTables.get(main.findTable(4)));
+
+        assertEquals(table1, main.waiter.getWaitersTables(1234, "Kaylee"));
+        assertEquals(table2, main.waiter.getWaitersTables(3234, "John"));
+
+        assertThrows(IndexOutOfBoundsException.class, ()->{main.waiter.getWaitersTables(2345, "Julia");});
+        assertThrows(IndexOutOfBoundsException.class, ()->{main.waiter.getWaitersTables(9999, "Julia");});
+        assertThrows(IndexOutOfBoundsException.class, ()->{main.waiter.getWaitersTables(1234, "Kay");});
 
     }
 }

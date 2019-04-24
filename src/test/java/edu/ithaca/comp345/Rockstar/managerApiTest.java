@@ -52,17 +52,22 @@ public class managerApiTest {
         managerApi manager= main.manager;
 
         List<String> names= new ArrayList<>();
+        List<Integer> pins= new ArrayList<>();
         manager.addEmployee(1234, "Kaylee", "manager");
         names.add("Kaylee");
+        pins.add(1234);
         manager.addEmployee(2345, "Julia", "host");
         names.add("Julia");
+        pins.add(2345);
         manager.addEmployee(3234, "John", "waiter");
         names.add("John");
+        pins.add(3234);
         manager.addEmployee(4234, "Priya", "bartender");
         names.add("Priya");
+        pins.add(4234);
 
         for(int i=0; i<manager.employees.size(); i++){
-            assertNotEquals(-1, manager.findEmployee(names.get(i)));
+            assertNotEquals(-1, manager.findEmployee(pins.get(i), names.get(i)));
         }
 
         assertThrows(IndexOutOfBoundsException.class, ()->{manager.addEmployee(4234, "Alexia", "bartender"); });
@@ -82,10 +87,10 @@ public class managerApiTest {
         manager.addEmployee(4234, "Priya", "bartender");
 
         manager.removeEmployee(3234, "John");
-        assertEquals(-1, manager.findEmployee("John"));
+        assertEquals(-1, manager.findEmployee(3234,"John"));
 
         manager.removeEmployee(2345, "Julia");
-        assertEquals(-1, manager.findEmployee("Julia"));
+        assertEquals(-1, manager.findEmployee(2345,"Julia"));
 
         assertThrows(IndexOutOfBoundsException.class, ()->{manager.removeEmployee(2345, "Julia"); });
         assertThrows(IndexOutOfBoundsException.class, ()->{manager.removeEmployee(4234, "Julia"); });
@@ -98,7 +103,7 @@ public class managerApiTest {
 
         manager.addEmployee(1234, "Kaylee", "manager");
         manager.changeEmployeePin(1234, "Kaylee", 5432);
-        Employee test1= manager.employees.get(manager.findEmployee("Kaylee"));
+        Employee test1= manager.employees.get(manager.findEmployee(5432,"Kaylee"));
         assertEquals(5432, test1.getPin());
 
         assertThrows(IndexOutOfBoundsException.class, ()->{manager.changeEmployeePin(5432, "Kaylee", 54321); });
@@ -113,7 +118,7 @@ public class managerApiTest {
         manager.addEmployee(1234, "Kaylee", "manager");
         manager.addEmployee(2345, "Julia", "host");
         manager.changeEmployeeType(1234, "Kaylee", "waiter");
-        Employee test1= manager.employees.get(manager.findEmployee("Kaylee"));
+        Employee test1= manager.employees.get(manager.findEmployee(1234,"Kaylee"));
         assertEquals("waiter", test1.getType());
 
         assertThrows(IndexOutOfBoundsException.class, ()->{manager.changeEmployeeType(2345, "Kaylee", "waiter");});
@@ -141,8 +146,8 @@ public class managerApiTest {
         manager.addTableToWaiter(3, 3234, "John");
         manager.addTableToWaiter(4, 3234, "John");
 
-        Employee test1= manager.employees.get(manager.findEmployee("Kaylee"));
-        Employee test2= manager.employees.get(manager.findEmployee("John"));
+        Employee test1= manager.employees.get(manager.findEmployee(1234,"Kaylee"));
+        Employee test2= manager.employees.get(manager.findEmployee(3234,"John"));
 
         List<Table> table1= new ArrayList<>();
         table1.add(main.allTables.get(main.findTable(1)));
