@@ -42,3 +42,6 @@ Full menu implementation with server functionality, finish the Manager API, and 
 
 # Sprint 3
 A complete working graphic user interface that implements all the aspects of the previously written code, as well as being able to log into the system with a pin.
+
+# Product Goal
+Provide a POS software that manages the stock, menu, tables and orders of a restaurant all through a intuative and functional GUI.
