@@ -156,7 +156,6 @@ public class waiterApiTest {
 
         assertThrows(InaccessibleObjectException.class, ()->{main.waiter.getWaitersTables(2345, "Julia");});
         assertThrows(InaccessibleObjectException.class, ()->{main.waiter.getWaitersTables(9999, "Julia");});
-        assertThrows(InaccessibleObjectException.class, ()->{main.waiter.getWaitersTables(1234, "Kay");});
 
     }
 }
