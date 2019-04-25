@@ -41,6 +41,17 @@ public class Table {
         return this.tableNumber;
     }
 
+    public int getFilledSeats(){
+        return filledSeats;
+    }
+
+    public void setFilledSeats(int seats){
+        if(seats>=numOfSeats){
+            filledSeats=seats;
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+    }
     /**
      * sets the table number
      * @param tableNumber: table number to set
