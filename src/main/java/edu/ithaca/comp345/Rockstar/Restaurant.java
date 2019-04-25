@@ -1,9 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Restaurant {
     public String name;
@@ -138,5 +136,43 @@ public class Restaurant {
 
     }
 
+    public static void savePinsToFile(String fileName) throws Exception{
+        FileWriter fileWriter = new FileWriter(fileName);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        Iterator<Employee> empItr = employees.iterator();
+        while(empItr.hasNext()){
+            Employee currEmployee = empItr.next();
+            printWriter.println(currEmployee.getPin() + "#" + currEmployee.getName() + "$" + currEmployee.getType());
+        }
+        printWriter.close();
+    }
+
+    public static void loadPinsFromFile(String fileName) throws Exception{
+        BufferedReader br = null;
+        try {
+            File file = new File(fileName);
+            br = new BufferedReader(new FileReader(file));
+        }
+        catch (FileNotFoundException e) {
+            throw new FileNotFoundException("The file " + fileName + " doesn't exist!");
+        }
+
+        String st;
+        int pin;
+        String name;
+        String type;
+        while((st = br.readLine()) != null){
+            try{
+                pin = Integer.parseInt(st.substring(0, st.indexOf('#')));
+                name = st.substring(st.indexOf('#')+1, st.indexOf('$'));
+                type = st.substring(st.indexOf('$')+1);
+                managerApi.addEmployee(pin, name, type);
+            }
+            catch(StringIndexOutOfBoundsException | NumberFormatException e){
+                System.out.println("Invalid Input: " + st);
+            }
+        }
+    }
 
 }

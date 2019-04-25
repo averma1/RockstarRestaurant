@@ -33,8 +33,8 @@ public class managerApi extends Restaurant{
         int index= findEmployee(pin);
         if(index!=-1) {
             throw new InaccessibleObjectException();
-        } if(type!="waiter" && type!="host" && type!="manager" && type!="bartender"){
-                throw new InaccessibleObjectException();
+        } if(!type.equals("waiter")&& !type.equals("host") && !type.equals("manager") && !type.equals("bartender")){
+            throw new InaccessibleObjectException();
         } if(!isPinValid(pin)){
             throw new InaccessibleObjectException();
         }
