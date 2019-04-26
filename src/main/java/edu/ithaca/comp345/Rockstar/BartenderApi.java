@@ -61,10 +61,10 @@ public class BartenderApi extends waiterApi{
         return bar;
     }
 
-    public void seatAtBar(int numOfPeople){
+    public void seatAtBar(){
         Table barTable= allTables.get(findTable(bar));
         int currentSeats= barTable.getFilledSeats();
-        barTable.setNumOfSeats(currentSeats+numOfPeople);
+        barTable.setNumOfSeatsFilled(currentSeats+1);
     }
 
     public int seeFilledSeats(){

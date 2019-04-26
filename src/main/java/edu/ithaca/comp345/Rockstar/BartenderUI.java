@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BartenderUI implements ActionListener {
-    public static final String ORDER = "order";
-    public static final String PAY = "pay";
-    public static final String SEAT = "seat";
+    public static final String ORDER = "Add to Order";
+    public static final String PAY = "Pay Order";
+    public static final String SEAT = "Seat Customer";
 
     public BartenderGui GUI;
     public BartenderApi API;
@@ -28,9 +28,10 @@ public class BartenderUI implements ActionListener {
         } else if(ORDER.equals(actionCommand)){
 
         } else if(SEAT.equals(actionCommand)){
-            seatPerson(1);
+            seatPerson();
         }
 
+        GUI.updateView();
     }
 
     public boolean addToOrderUI(int orderNum, MenuItem item){
@@ -51,9 +52,9 @@ public class BartenderUI implements ActionListener {
         }
     }
 
-    public boolean seatPerson(int numOfPeople){
+    public boolean seatPerson(){
         try{
-            API.seatAtBar(numOfPeople);
+            API.seatAtBar();
             return true;
         } catch (IndexOutOfBoundsException e){
             return false;
@@ -62,5 +63,13 @@ public class BartenderUI implements ActionListener {
 
     public int getRemainingSeatsUI(){
         return API.getSeats()- API.seeFilledSeats();
+    }
+
+    public boolean canSeat(){
+        if(API.seeFilledSeats()+1>API.getSeats()){
+            return false;
+        } else {
+            return true;
+        }
     }
 }

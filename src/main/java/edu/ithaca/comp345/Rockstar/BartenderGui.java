@@ -69,7 +69,7 @@ class BartenderGui extends JPanel {
     public void updateView(){
         String amount= ""+controller.getRemainingSeatsUI();
         seatDisplay.setText(amount);
-        if (controller.seatPerson(1)){
+        if (controller.canSeat()){
             seatButton.setEnabled(true);
         }
         else {
