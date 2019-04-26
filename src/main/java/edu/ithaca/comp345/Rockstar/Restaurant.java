@@ -12,7 +12,7 @@ public class Restaurant {
     public hostApi host;
     public static Stock stock;
     private static int barNumber=420;
-    public bartenderApi bartender;
+    public BartenderApi bartender;
     public Menu menu;
     public static List<Employee> employees;
     public static List<Integer> pins;
@@ -35,7 +35,7 @@ public class Restaurant {
         this.name=name;
         host= new hostApi();
         waiter= new waiterApi();
-        bartender= new bartenderApi();
+        bartender= new BartenderApi();
         stock= new Stock();
         menu= new Menu("main", stock);
         employees= new ArrayList<>();
@@ -120,8 +120,8 @@ public class Restaurant {
 
     public static void createBar(int seatNumber){
         createTable(barNumber, seatNumber);
-        bartenderApi.setBar(barNumber);
-        bartenderApi.setSeats(seatNumber);
+        BartenderApi.setBar(barNumber);
+        BartenderApi.setSeats(seatNumber);
     }
 
     public static int findEmployee(int pin){

@@ -1,13 +1,13 @@
 package edu.ithaca.comp345.Rockstar;
 
 
-public class bartenderApi extends waiterApi{
+public class BartenderApi extends waiterApi{
     public int seats;
     public static int bar;
     public Stock barStock;
     public Menu barMenu;
 
-    public bartenderApi(){
+    public BartenderApi(){
         seats= 0;
         bar= 0;
         barStock= new Stock();
