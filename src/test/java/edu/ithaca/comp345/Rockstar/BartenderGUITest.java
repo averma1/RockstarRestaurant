@@ -53,7 +53,7 @@ public class BartenderGUITest {
         main.bartender.barMenu.addMenuItem(item12);
 
         main.createBar(50);
-        main.bartender.addToOrder(3, "soup");
+        //main.bartender.addToOrder(3, "soup");
 
         return main;
     }

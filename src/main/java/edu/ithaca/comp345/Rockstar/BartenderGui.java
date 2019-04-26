@@ -13,6 +13,8 @@ class BartenderGui extends JPanel {
     private JButton seatButton;
     private JButton payButton;
     private DefaultListModel listModel;
+    private JList<Integer> orderList;
+    private JList<String> menuList;
 
     public BartenderGui(BartenderApi BartenderAPI){
         this.controller = new BartenderUI(this, BartenderAPI);
@@ -48,12 +50,12 @@ class BartenderGui extends JPanel {
             addToOrderList(all.get(i).number);
         }
 
-        JList<Integer> list = new JList<>(listModel);
-        list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-        list.setVisibleRowCount(-1);
+        orderList = new JList<>(listModel);
+        orderList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        orderList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        orderList.setVisibleRowCount(-1);
 
-        JScrollPane orderListScroller = new JScrollPane(list);
+        JScrollPane orderListScroller = new JScrollPane(orderList);
         orderListScroller.setPreferredSize(new Dimension(200, 200));
 
         orderDisplayPanel.add(orderListScroller);
@@ -70,17 +72,29 @@ class BartenderGui extends JPanel {
         listModel.removeElement(num);
     }
 
+    public String menuItemSelected(){
+        return menuList.getSelectedValue();
+    }
+
+    public int orderSelected(){
+        if(orderList.getSelectedValue()==null){
+            return -1;
+        } else {
+            return orderList.getSelectedValue();
+        }
+    }
+
     private JPanel createListOfMenuItemsPanel(){
         JPanel menuDisplayPanel = new JPanel();
 
         String[] data = controller.getMenu();
 
-        JList<String> list = new JList<>(data);
-        list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-        list.setVisibleRowCount(-1);
+        menuList = new JList<>(data);
+        menuList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        menuList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        menuList.setVisibleRowCount(-1);
 
-        JScrollPane listScroller = new JScrollPane(list);
+        JScrollPane listScroller = new JScrollPane(menuList);
         listScroller.setPreferredSize(new Dimension(200, 200));
 
         menuDisplayPanel.add(listScroller);

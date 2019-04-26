@@ -89,11 +89,20 @@ public class BartenderApi extends waiterApi{
 
     public boolean doesOrderExist(int orderNum){
         Table barTable= allTables.get(findTable(bar));
-
         if(barTable.findOrder(orderNum)==-1){
             return false;
         } else {
             return true;
         }
+    }
+
+    public int getNextOrderNum(){
+        Table barTable= allTables.get(findTable(bar));
+        List<Order> orders= barTable.orders;
+        int newNumber= orders.size()+1;
+        while(doesOrderExist(newNumber)){
+            newNumber++;
+        }
+        return newNumber;
     }
 }

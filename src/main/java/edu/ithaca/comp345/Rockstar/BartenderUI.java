@@ -20,25 +20,47 @@ public class BartenderUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        makeChanges(e.getActionCommand());
+        if(GUI.orderSelected()!=-1 && GUI.menuItemSelected()!=null) {
+            makeChanges(e.getActionCommand(), GUI.orderSelected(), GUI.menuItemSelected());
+        } else if(GUI.orderSelected()==-1 && GUI.menuItemSelected()!=null){
+            createOderChange(e.getActionCommand(), GUI.orderSelected(), GUI.menuItemSelected());
+        } else {
+            seatChange(e.getActionCommand());
+        }
     }
 
-    public void makeChanges(String actionCommand){
+    public void makeChanges(String actionCommand, int ordernum, String item){
         if(PAY.equals(actionCommand)){
-            double price= payUI(1);
-            if(price==-1){
-                GUI.showMessage("That order does not exist");
-            } else {
-                GUI.showMessage("You are owed $"+price);
-            }
+            double price= payUI(ordernum);
+            GUI.showMessage("order "+ordernum+" owes you $"+price);
         } else if(ORDER.equals(actionCommand)){
-            if(!addToOrderUI(1, "mojito")){
+            if(!addToOrderUI(ordernum, item)){
                GUI.showMessage("That item does not exist");
             }
         } else if(SEAT.equals(actionCommand)){
             seatPerson();
         }
+        GUI.updateView();
+    }
 
+    public void seatChange(String actionCommand){
+         if(SEAT.equals(actionCommand)){
+            seatPerson();
+        }
+        GUI.updateView();
+    }
+
+    public void createOderChange(String actionCommand, int ordernum, String item){
+        if(PAY.equals(actionCommand)){
+            GUI.showMessage("You did not select an order to pay");
+        } else if(ORDER.equals(actionCommand)){
+            int newOrderNum= API.getNextOrderNum();
+            if(!addToOrderUI(newOrderNum, item)){
+                GUI.showMessage("That item does not exist");
+            }
+        } else if(SEAT.equals(actionCommand)){
+            seatPerson();
+        }
         GUI.updateView();
     }
 
@@ -46,6 +68,8 @@ public class BartenderUI implements ActionListener {
         try{
             if(!API.doesOrderExist(orderNum)){
                 GUI.addToOrderList(orderNum);
+            } else {
+                GUI.showMessage(item+" added to order "+orderNum);
             }
             API.addToOrder(orderNum, item);
             return true;
