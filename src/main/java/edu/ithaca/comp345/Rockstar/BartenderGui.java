@@ -11,6 +11,7 @@ class BartenderGui extends JPanel {
     private JLabel seatDisplay;
     private static JTextArea amountBox;
     private JButton seatButton;
+    private JButton payButton;
 
     public BartenderGui(BartenderApi BartenderAPI){
         this.controller = new BartenderUI(this, BartenderAPI);
@@ -38,7 +39,7 @@ class BartenderGui extends JPanel {
     private JPanel createActionPanel(ActionListener controller){
         amountBox = new JTextArea();
 
-        JButton payButton = new JButton(BartenderUI.PAY);
+        payButton = new JButton(BartenderUI.PAY);
         payButton.setActionCommand(BartenderUI.PAY);
         payButton.addActionListener(controller);
         JPanel payPanel = new JPanel();
@@ -74,6 +75,11 @@ class BartenderGui extends JPanel {
         }
         else {
             seatButton.setEnabled(false);
+        }
+        if(controller.getOrders().size()==0){
+            payButton.setEnabled(false);
+        } else {
+            payButton.setEnabled(true);
         }
     }
 

@@ -16,9 +16,9 @@ public class bartenderApiTest {
         main.createBar(50);
         BartenderApi bartenderApiTester= main.bartender;
 
-        bartenderApiTester.addToOrder(0,ChickenParmSoda);
+        bartenderApiTester.addToOrder(0,"Chicken Parm Soda");
         assertTrue(main.waiter.viewOrder(420, 0).size()==1);
-        bartenderApiTester.addToOrder(0,BulmersCider);
+        bartenderApiTester.addToOrder(0,"Bulmers Hard Cider");
         assertTrue(main.waiter.viewOrder(420, 0).size()==2);
         assertNotEquals(main.waiter.viewOrder(420, 0).size(),1);
         assertNotEquals(main.waiter.viewOrder(420, 0),0);
@@ -38,9 +38,9 @@ public class bartenderApiTest {
         main.createBar(50);
         BartenderApi bartenderApiTester= main.bartender;
 
-        bartenderApiTester.addToOrder(0,ChickenParmSoda);
+        bartenderApiTester.addToOrder(0,"Chicken Parm Soda");
         assertTrue(main.waiter.viewOrder(420, 0).size()==1);
-        bartenderApiTester.addToOrder(0,BulmersCider);
+        bartenderApiTester.addToOrder(0,"Bulmers Hard Cider");
         bartenderApiTester.pay(0);
         assertTrue(orderTester.getTotalPrice()==0.00);
         assertNotEquals(orderTester.getTotalPrice(),13.75);

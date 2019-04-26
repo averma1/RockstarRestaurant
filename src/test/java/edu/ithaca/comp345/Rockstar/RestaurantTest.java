@@ -172,12 +172,12 @@ public class RestaurantTest {
         MenuItem item4= main.bartender.barMenu.getMenuItem("coffee");
         MenuItem item5= main.bartender.barMenu.getMenuItem("mojito");
         MenuItem item6= main.bartender.barMenu.getMenuItem("beer");
-        main.bartender.addToOrder(1, item1);
-        main.bartender.addToOrder(1, item2);
-        main.bartender.addToOrder(4, item3);
-        main.bartender.addToOrder(4, item4);
-        main.bartender.addToOrder(8, item5);
-        main.bartender.addToOrder(2, item6);
+        main.bartender.addToOrder(1, "margarita");
+        main.bartender.addToOrder(1, "red wine");
+        main.bartender.addToOrder(4, "soup");
+        main.bartender.addToOrder(4, "coffee");
+        main.bartender.addToOrder(8, "mojito");
+        main.bartender.addToOrder(2, "beer");
         assertEquals(15, main.bartender.barStock.getQuantity("tequila"));
         assertEquals(50, main.bartender.barStock.getQuantity("beer"));
         assertEquals(300, main.bartender.barStock.getQuantity("soup"));

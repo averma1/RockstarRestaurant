@@ -2,6 +2,8 @@ package edu.ithaca.comp345.Rockstar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.List;
 
 public class BartenderUI implements ActionListener {
     public static final String ORDER = "Add to Order";
@@ -24,9 +26,16 @@ public class BartenderUI implements ActionListener {
 
     public void makeChanges(String actionCommand){
         if(PAY.equals(actionCommand)){
+            double price= payUI(1);
+            if(price==-1){
+                GUI.showMessage("That order does not exist");
+            } else {
 
+            }
         } else if(ORDER.equals(actionCommand)){
-
+            if(!addToOrderUI(1, "mojito")){
+               GUI.showMessage("That item does not exist");
+            }
         } else if(SEAT.equals(actionCommand)){
             seatPerson();
         }
@@ -34,7 +43,7 @@ public class BartenderUI implements ActionListener {
         GUI.updateView();
     }
 
-    public boolean addToOrderUI(int orderNum, MenuItem item){
+    public boolean addToOrderUI(int orderNum, String item){
         try{
             API.addToOrder(orderNum, item);
             return true;
@@ -44,12 +53,14 @@ public class BartenderUI implements ActionListener {
     }
 
     public double payUI(int orderNum){
-        try{
-            double payed= API.pay(orderNum);
-            return payed;
-        } catch (IndexOutOfBoundsException e){
-            return -1;
-        }
+        double payed= API.pay(orderNum);
+        return payed;
+//        try{
+//            double payed= API.pay(orderNum);
+//            return payed;
+//        } catch (IndexOutOfBoundsException e){
+//            return -1;
+//        }
     }
 
     public boolean seatPerson(){
@@ -71,5 +82,13 @@ public class BartenderUI implements ActionListener {
         } else {
             return true;
         }
+    }
+
+    public HashMap<String, MenuItem> getMenu(){
+        return API.barMenu.getMenuItemMap();
+    }
+
+    public List<Order> getOrders(){
+        return API.getOrders();
     }
 }

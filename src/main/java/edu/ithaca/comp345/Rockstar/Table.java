@@ -46,7 +46,7 @@ public class Table {
     }
 
     public void setFilledSeats(int seats){
-        if(seats>=numOfSeats){
+        if(seats<=numOfSeats){
             filledSeats=seats;
         } else {
             throw new IndexOutOfBoundsException();

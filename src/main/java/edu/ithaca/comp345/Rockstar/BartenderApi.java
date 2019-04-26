@@ -1,6 +1,8 @@
 package edu.ithaca.comp345.Rockstar;
 
 
+import java.util.List;
+
 public class BartenderApi extends waiterApi{
     public int seats;
     public static int bar;
@@ -20,15 +22,16 @@ public class BartenderApi extends waiterApi{
      * @param orderNum
      * @param item item to add
      */
-    public void addToOrder(int orderNum, MenuItem item){
+    public void addToOrder(int orderNum, String item){
         Table barTable= allTables.get(findTable(bar));
         if(barTable.findOrder(orderNum)==-1){
             barTable.createOrder(orderNum);
         }
+        MenuItem Item= barMenu.getMenuItem(item);
         if(barStock!=null) {
-            barStock.removeMenuItem(item);
+            barStock.removeMenuItem(Item);
         }
-        barTable.addtoOrder(item, orderNum);
+        barTable.addtoOrder(Item, orderNum);
     }
 
     /**
@@ -40,6 +43,8 @@ public class BartenderApi extends waiterApi{
         Table barTable= allTables.get(findTable(bar));
         double price= barTable.getOrderPrice(orderNum);
         barTable.removeOrder(orderNum);
+        int current= barTable.getFilledSeats();
+        barTable.setFilledSeats(current-1);
         return price;
     }
 
@@ -70,5 +75,10 @@ public class BartenderApi extends waiterApi{
     public int seeFilledSeats(){
         Table barTable= allTables.get(findTable(bar));
         return barTable.getFilledSeats();
+    }
+
+    public List<Order> getOrders(){
+        Table barTable= allTables.get(findTable(bar));
+        return barTable.orders;
     }
 }
