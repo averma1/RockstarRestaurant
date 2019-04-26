@@ -2,6 +2,7 @@ package edu.ithaca.comp345.Rockstar;
 
 import java.awt.event.*;
 import java.awt.*;
+import java.util.List;
 import javax.swing.*;
 
 class BartenderGui extends JPanel {
@@ -11,6 +12,7 @@ class BartenderGui extends JPanel {
     private JLabel seatDisplay;
     private JButton seatButton;
     private JButton payButton;
+    private DefaultListModel listModel;
 
     public BartenderGui(BartenderApi BartenderAPI){
         this.controller = new BartenderUI(this, BartenderAPI);
@@ -21,6 +23,7 @@ class BartenderGui extends JPanel {
         this.add(createListOfOrdersPanel());
         this.add(createListOfMenuItemsPanel());
 
+        this.setSize(1000, 1000);
         updateView();
     }
 
@@ -39,19 +42,32 @@ class BartenderGui extends JPanel {
 
     private JPanel createListOfOrdersPanel(){
         JPanel orderDisplayPanel = new JPanel();
-        Integer[] data = controller.getOrdersList();
+        listModel = new DefaultListModel();
+        List<Order> all= controller.getOrders();
+        for(int i=0; i<all.size(); i++){
+            addToOrderList(all.get(i).number);
+        }
 
-        JList<Integer> list = new JList<>(data);
+        JList<Integer> list = new JList<>(listModel);
         list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         list.setVisibleRowCount(-1);
 
-        JScrollPane listScroller = new JScrollPane(list);
-        listScroller.setPreferredSize(new Dimension(100, 100));
+        JScrollPane orderListScroller = new JScrollPane(list);
+        orderListScroller.setPreferredSize(new Dimension(200, 200));
 
-        orderDisplayPanel.add(listScroller);
+        orderDisplayPanel.add(orderListScroller);
+        orderDisplayPanel.setLocation(100, 0);
 
         return orderDisplayPanel;
+    }
+
+    public void addToOrderList(int num){
+        listModel.addElement(num);
+    }
+
+    public void deleteFromOrderList(int num){
+        listModel.removeElement(num);
     }
 
     private JPanel createListOfMenuItemsPanel(){
@@ -65,9 +81,10 @@ class BartenderGui extends JPanel {
         list.setVisibleRowCount(-1);
 
         JScrollPane listScroller = new JScrollPane(list);
-        listScroller.setPreferredSize(new Dimension(100, 100));
+        listScroller.setPreferredSize(new Dimension(200, 200));
 
         menuDisplayPanel.add(listScroller);
+        menuDisplayPanel.setLocation(100, 150);
 
         return menuDisplayPanel;
     }
@@ -104,6 +121,7 @@ class BartenderGui extends JPanel {
     public void updateView(){
         String amount= ""+controller.getRemainingSeatsUI();
         seatDisplay.setText(amount);
+
         if (controller.canSeat()){
             seatButton.setEnabled(true);
         }
@@ -116,7 +134,6 @@ class BartenderGui extends JPanel {
             payButton.setEnabled(true);
         }
     }
-
 
     public void showMessage(String message){
         JOptionPane.showMessageDialog(this, message);

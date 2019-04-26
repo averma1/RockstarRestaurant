@@ -44,6 +44,9 @@ public class BartenderUI implements ActionListener {
 
     public boolean addToOrderUI(int orderNum, String item){
         try{
+            if(!API.doesOrderExist(orderNum)){
+                GUI.addToOrderList(orderNum);
+            }
             API.addToOrder(orderNum, item);
             return true;
         } catch (IndexOutOfBoundsException e){
@@ -54,6 +57,7 @@ public class BartenderUI implements ActionListener {
     public double payUI(int orderNum){
         try{
             double payed= API.pay(orderNum);
+            GUI.deleteFromOrderList(orderNum);
             return payed;
         } catch (IndexOutOfBoundsException e){
             return -1;

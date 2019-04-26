@@ -86,4 +86,14 @@ public class BartenderApi extends waiterApi{
     public HashMap getMenu(){
         return barMenu.getMenuItemMap();
     }
+
+    public boolean doesOrderExist(int orderNum){
+        Table barTable= allTables.get(findTable(bar));
+
+        if(barTable.findOrder(orderNum)==-1){
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
