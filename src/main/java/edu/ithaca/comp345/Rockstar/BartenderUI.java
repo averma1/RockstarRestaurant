@@ -53,14 +53,12 @@ public class BartenderUI implements ActionListener {
     }
 
     public double payUI(int orderNum){
-        double payed= API.pay(orderNum);
-        return payed;
-//        try{
-//            double payed= API.pay(orderNum);
-//            return payed;
-//        } catch (IndexOutOfBoundsException e){
-//            return -1;
-//        }
+        try{
+            double payed= API.pay(orderNum);
+            return payed;
+        } catch (IndexOutOfBoundsException e){
+            return -1;
+        }
     }
 
     public boolean seatPerson(){
