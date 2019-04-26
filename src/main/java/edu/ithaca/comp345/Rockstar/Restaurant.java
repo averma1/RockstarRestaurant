@@ -24,8 +24,32 @@ public class Restaurant {
     public final String defaultMenuFileName = "";
     public final String defaultPinFileName = "";
 
-    public Restaurant(String name, String stockFileName, String tableFileName, String menuFileName){
-        //TODO once all the file I/O is ready
+    public Restaurant(String name, String stockFileName, String tableFileName, String menuFileName, String employeeFileName) throws Exception{
+        allTables= new ArrayList<>();
+        this.name=name;
+        host= new hostApi();
+        waiter= new waiterApi();
+        bartender= new bartenderApi();
+        stock= new Stock();
+        menu= new Menu("main", stock);
+        employees= new ArrayList<>();
+        pins= new ArrayList<>();
+        manager= new managerApi();
+        waiters= new HashMap<>();
+
+        //load from file
+        this.loadTablesFromFile(tableFileName);
+        stock.loadFromFile(stockFileName);
+        menu.loadMenuFromFile(menuFileName);
+        this.loadPinsFromFile(employeeFileName);
+    }
+
+    public void saveRestaurantToFile(String stockFileName, String tableFileName, String menuFileName, String employeeFileName) throws Exception{
+        savePinsToFile(employeeFileName);
+        stock.saveStockToFile(stockFileName);
+        saveTablesToFile(tableFileName);
+        menu.saveMenuToFile(menuFileName);
+
     }
 
     public Restaurant(String name){
