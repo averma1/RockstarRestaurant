@@ -217,7 +217,7 @@ public class RestaurantTest {
     @Test
     public void loadAndSaveRestaurantToFile() throws Exception{
         //load from file
-        Restaurant testRest = new Restaurant("My Restaurant", "StockTestFile4.txt", "tableTestFile1.txt", "menuTestFile1.txt", "PinTestInputFile.txt");
+        Restaurant testRest = new Restaurant("My Restaurant", "stockTestFile4.txt", "tableTestFile1.txt", "menuTestFile1.txt", "PinTestInputFile.txt");
         assertTrue(testRest.menu.isNameValid("Chicken Parm"));
 
         for(Ingredient currIn : testRest.menu.getMenuItem("Chicken Parm").getIngredients()){
