@@ -212,8 +212,31 @@ public class RestaurantTest {
         assertTrue(testRest2.manager.findEmployee(8866) != -1);
         assertTrue(testRest2.manager.findEmployee(4455) != -1);
         assertTrue(testRest2.manager.findEmployee(4321) != -1);
+    }
+
+    @Test
+    public void loadAndSaveRestaurantToFile() throws Exception{
+        //load from file
+        Restaurant testRest = new Restaurant("My Restaurant", "StockTestFile4.txt", "tableTestFile1.txt", "menuTestFile1.txt", "PinTestInputFile.txt");
+        assertTrue(testRest.menu.isNameValid("Chicken Parm"));
+
+        for(Ingredient currIn : testRest.menu.getMenuItem("Chicken Parm").getIngredients()){
+            System.out.println("as: " + currIn.getName());
+        }
+        for(Ingredient currIn : testRest.menu.getMenuItem("Cheese Burger").getIngredients()){
+            System.out.println("as: " + currIn.getName());
+        }
 
 
+        assertEquals("Chicken Parm", testRest.menu.getMenuItem("Chicken Parm").getItemName());
+        assertEquals("Cheese Burger", testRest.menu.getMenuItem("Cheese Burger").getItemName());
+
+        assertFalse(testRest.menu.isNameValid("Blah"));
+        assertTrue(testRest.allTables.size() == 4);
+        assertTrue(testRest.stock.getQuantity("chicken") == 40);
+
+        //save to file
+        testRest.saveRestaurantToFile("StockTestFileOut1.txt", "tableTestFileOut1.txt", "menuTestFileOut4.txt", "PinTestInputFileOut1.txt");
     }
 
 

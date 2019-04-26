@@ -1,0 +1,10 @@
+chicken#40$3.5
+onion#20$1.5
+pepper#30$2.0
+fish#30$2.0
+soda#30$2.0
+salt#30$2.0
+cheese#10$5.0
+sauce#30$2.0
+bun#40$0.1
+ground beef#30$0.5
