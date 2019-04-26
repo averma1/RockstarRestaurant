@@ -2,8 +2,7 @@ package edu.ithaca.comp345.Rockstar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class BartenderUI implements ActionListener {
     public static final String ORDER = "Add to Order";
@@ -30,7 +29,7 @@ public class BartenderUI implements ActionListener {
             if(price==-1){
                 GUI.showMessage("That order does not exist");
             } else {
-
+                GUI.showMessage("You are owed $"+price);
             }
         } else if(ORDER.equals(actionCommand)){
             if(!addToOrderUI(1, "mojito")){
@@ -82,8 +81,27 @@ public class BartenderUI implements ActionListener {
         }
     }
 
-    public HashMap<String, MenuItem> getMenu(){
-        return API.barMenu.getMenuItemMap();
+    public String[] getMenu(){
+        HashMap gotten= API.getMenu();
+        String list[]= new String[gotten.values().size()];
+        Set items= gotten.keySet();
+        Iterator itemsItr= items.iterator();
+        int i=0;
+        while(itemsItr.hasNext()){
+           Object current= itemsItr.next();
+           list[i]= current.toString();
+           i++;
+        }
+        return list;
+    }
+
+    public Integer[] getOrdersList(){
+        List<Order> gotten= API.getOrders();
+        Integer list[]= new Integer[gotten.size()];
+        for(int i=0; i<gotten.size(); i++){
+            list[i]=gotten.get(i).number;
+        }
+        return list;
     }
 
     public List<Order> getOrders(){

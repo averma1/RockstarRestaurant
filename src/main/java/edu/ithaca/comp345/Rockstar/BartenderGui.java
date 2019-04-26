@@ -9,7 +9,6 @@ class BartenderGui extends JPanel {
 
     //Keep any visualized objects you intend to change as data members
     private JLabel seatDisplay;
-    private static JTextArea amountBox;
     private JButton seatButton;
     private JButton payButton;
 
@@ -19,6 +18,8 @@ class BartenderGui extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.add(createSeatDisplayPanel());
         this.add(createActionPanel(controller));
+        this.add(createListOfOrdersPanel());
+        this.add(createListOfMenuItemsPanel());
 
         updateView();
     }
@@ -36,8 +37,42 @@ class BartenderGui extends JPanel {
         return seatDisplayPanel;
     }
 
+    private JPanel createListOfOrdersPanel(){
+        JPanel orderDisplayPanel = new JPanel();
+        Integer[] data = controller.getOrdersList();
+
+        JList<Integer> list = new JList<>(data);
+        list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        list.setVisibleRowCount(-1);
+
+        JScrollPane listScroller = new JScrollPane(list);
+        listScroller.setPreferredSize(new Dimension(100, 100));
+
+        orderDisplayPanel.add(listScroller);
+
+        return orderDisplayPanel;
+    }
+
+    private JPanel createListOfMenuItemsPanel(){
+        JPanel menuDisplayPanel = new JPanel();
+
+        String[] data = controller.getMenu();
+
+        JList<String> list = new JList<>(data);
+        list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        list.setVisibleRowCount(-1);
+
+        JScrollPane listScroller = new JScrollPane(list);
+        listScroller.setPreferredSize(new Dimension(100, 100));
+
+        menuDisplayPanel.add(listScroller);
+
+        return menuDisplayPanel;
+    }
+
     private JPanel createActionPanel(ActionListener controller){
-        amountBox = new JTextArea();
 
         payButton = new JButton(BartenderUI.PAY);
         payButton.setActionCommand(BartenderUI.PAY);
@@ -59,7 +94,6 @@ class BartenderGui extends JPanel {
 
         JPanel actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
-        actionPanel.add(amountBox, BorderLayout.PAGE_START);
         actionPanel.add(payPanel,BorderLayout.LINE_START);
         actionPanel.add(orderPanel);
         actionPanel.add(seatPanel,BorderLayout.LINE_END);
@@ -83,9 +117,6 @@ class BartenderGui extends JPanel {
         }
     }
 
-    public static String getAmount(){
-        return amountBox.getText();
-    }
 
     public void showMessage(String message){
         JOptionPane.showMessageDialog(this, message);

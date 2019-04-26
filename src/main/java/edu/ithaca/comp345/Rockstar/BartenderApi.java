@@ -1,6 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 public class BartenderApi extends waiterApi{
@@ -80,5 +81,9 @@ public class BartenderApi extends waiterApi{
     public List<Order> getOrders(){
         Table barTable= allTables.get(findTable(bar));
         return barTable.orders;
+    }
+
+    public HashMap getMenu(){
+        return barMenu.getMenuItemMap();
     }
 }
