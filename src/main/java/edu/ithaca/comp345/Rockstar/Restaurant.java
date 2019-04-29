@@ -199,4 +199,11 @@ public class Restaurant {
         }
     }
 
+    public boolean isLoginPinValid(int pinIn){
+        if(pins.contains(pinIn))
+            return true;
+        else
+            return false;
+    }
+
 }
