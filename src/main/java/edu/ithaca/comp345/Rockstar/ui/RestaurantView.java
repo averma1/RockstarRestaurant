@@ -1,6 +1,6 @@
 package edu.ithaca.comp345.Rockstar.ui;
 
-import edu.ithaca.comp345.Rockstar.bartenderApi;
+import edu.ithaca.comp345.Rockstar.BartenderApi;
 import edu.ithaca.comp345.Rockstar.managerApi;
 
 import javax.swing.*;
@@ -9,7 +9,7 @@ public class RestaurantView extends JPanel {
 
 
     managerApi managerAPI;
-    bartenderApi bartenderAPI;
+    BartenderApi bartenderAPI;
 
     public RestaurantView(managerApi managerAPI){
         this.managerAPI = managerAPI;

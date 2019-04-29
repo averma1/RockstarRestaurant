@@ -29,7 +29,7 @@ public class Restaurant {
         this.name=name;
         host= new hostApi();
         waiter= new waiterApi();
-        bartender= new bartenderApi();
+        bartender= new BartenderApi();
         stock= new Stock();
         menu= new Menu("main", stock);
         employees= new ArrayList<>();
