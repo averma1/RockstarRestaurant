@@ -84,7 +84,7 @@ public class LoginController implements ActionListener {
         updateStringView();
     }
     public void updateStringView(){
-        loginView.pin=getPinString();
+        loginView.pinEnter.setText(getPinString());
     }
     public void attemptLogin(String strPin){
         if (managerAPI.isLoginPinValid(Integer.parseInt(strPin))){

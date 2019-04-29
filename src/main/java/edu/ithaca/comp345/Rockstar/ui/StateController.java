@@ -24,13 +24,15 @@ public class StateController {
         } else if (mode == UIMode.host) {
             //call host UI
             System.out.println("youre a host!");
+            restaurantView.moveToHostView(strPin);
         } else if (mode == UIMode.waiter) {
             //call waiter UI
             System.out.println("youre a waiter!");
+            restaurantView.moveToWaiterView(strPin);
         } else if (mode == UIMode.bartender) {
             //call bartender UI
             System.out.println("youre a bartender!");
-
+            restaurantView.moveToBartenderView(strPin);
 
         }
     }

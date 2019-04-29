@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 public class LoginView extends JPanel {
 
     public String pin;
+    public JTextField pinEnter;
 
     public LoginView(managerApi managerAPI, StateController stateController){
 
@@ -33,7 +34,7 @@ public class LoginView extends JPanel {
     public JPanel createPinEnterPanel(){
         pin="Enter Pin";
         JPanel pinEnterPanel= new JPanel();
-        JTextField pinEnter= new javax.swing.JTextField(pin);
+        pinEnter= new javax.swing.JTextField(pin);
         pinEnter.setEditable(false);
         pinEnterPanel.add(pinEnter);
         return pinEnterPanel;
