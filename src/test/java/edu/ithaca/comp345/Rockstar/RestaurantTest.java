@@ -189,21 +189,54 @@ public class RestaurantTest {
     }
 
     @Test
-    public void PinFileIOTest(){
-        Restaurant testRest = new Restaurant();
-
+    public void PinFileIOTest() throws Exception{
         //load in Employees and Pins from a file
+        Restaurant testRest = new Restaurant("Test Restaurant");
+        testRest.loadPinsFromFile("PinTestInputFile.txt");
 
         //check if they exist
+        assertTrue(testRest.manager.findEmployee(1234) != -1);
+        assertTrue(testRest.manager.findEmployee(8866) != -1);
+        assertTrue(testRest.manager.findEmployee(4455) != -1);
+        assertTrue(testRest.manager.findEmployee(4321) != -1);
 
         //save to file
+        testRest.savePinsToFile("PinTestOutputFile.txt");
 
         //load saved file into new Restaurant
+        Restaurant testRest2 = new Restaurant("Test Restaurant");
+        testRest2.loadPinsFromFile("PinTestOutputFile.txt");
 
         //check if they exist
+        assertTrue(testRest2.manager.findEmployee(1234) != -1);
+        assertTrue(testRest2.manager.findEmployee(8866) != -1);
+        assertTrue(testRest2.manager.findEmployee(4455) != -1);
+        assertTrue(testRest2.manager.findEmployee(4321) != -1);
+    }
+
+    @Test
+    public void loadAndSaveRestaurantToFile() throws Exception{
+        //load from file
+        Restaurant testRest = new Restaurant("My Restaurant", "stockTestFile4.txt", "tableTestFile1.txt", "menuTestFile1.txt", "PinTestInputFile.txt");
+        assertTrue(testRest.menu.isNameValid("Chicken Parm"));
+
+        for(Ingredient currIn : testRest.menu.getMenuItem("Chicken Parm").getIngredients()){
+            System.out.println("as: " + currIn.getName());
+        }
+        for(Ingredient currIn : testRest.menu.getMenuItem("Cheese Burger").getIngredients()){
+            System.out.println("as: " + currIn.getName());
+        }
 
 
+        assertEquals("Chicken Parm", testRest.menu.getMenuItem("Chicken Parm").getItemName());
+        assertEquals("Cheese Burger", testRest.menu.getMenuItem("Cheese Burger").getItemName());
 
+        assertFalse(testRest.menu.isNameValid("Blah"));
+        assertTrue(testRest.allTables.size() == 4);
+        assertTrue(testRest.stock.getQuantity("chicken") == 40);
+
+        //save to file
+        testRest.saveRestaurantToFile("StockTestFileOut1.txt", "tableTestFileOut1.txt", "menuTestFileOut4.txt", "PinTestInputFileOut1.txt");
     }
 
 
