@@ -1,6 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.io.IOException;
+import java.util.List;
 
 public class WaiterGUITest {
     public static Restaurant buildBaseRest(){
@@ -70,6 +71,7 @@ public class WaiterGUITest {
 
     public static void main(String[] args) throws IOException {
         Restaurant main= buildBaseRest();
-        SwingTestUtil.showPanelInTestFrame(new WaiterGui(main.waiter, 1234));
+        Employee test1= main.manager.employees.get(main.manager.findEmployee(1234));
+        SwingTestUtil.showPanelInTestFrame(new WaiterGui(main.waiter, test1));
     }
 }

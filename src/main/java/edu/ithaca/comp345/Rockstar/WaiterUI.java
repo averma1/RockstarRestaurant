@@ -6,18 +6,24 @@ import java.util.*;
 
 public class WaiterUI implements ActionListener {
     public static final String ORDER = "Add to Order";
-    public static final String PAY = "Pay Order";
-    public static final String SEAT = "Seat Customer";
+    public static final String SEAT = "Seat Customers";
+    public static final String SEE = "View Table's Orders";
+
+    public static final String PAY = "Pay Total Bill";
+    public static final String SPLITOT = "Split Bill by Number";
+    public static final String SPLITORD = "Split Bill by Order";
 
     public WaiterGui GUI;
     public waiterApi API;
     public List<Table> waitersTables;
+    public Employee waiter;
 
 
-    public WaiterUI(WaiterGui gui, waiterApi api, int waiterPin){
+    public WaiterUI(WaiterGui gui, waiterApi api, Employee waiter){
         GUI = gui;
         API = api;
-        waitersTables= API.waiters.get(waiterPin);
+        waitersTables= API.waiters.get(waiter);
+        this.waiter=waiter;
     }
 
     @Override
@@ -25,6 +31,7 @@ public class WaiterUI implements ActionListener {
         int order= GUI.orderSelected();
         int table= GUI.tableSelected();
         String item= GUI.menuItemSelected();
+        
         if(GUI.orderSelected()!=-1 && GUI.menuItemSelected()!=null) {
             makeChanges(e.getActionCommand(), order, item, table, 0);
         } else if(GUI.orderSelected()==-1 && GUI.menuItemSelected()!=null){
@@ -155,4 +162,6 @@ public class WaiterUI implements ActionListener {
     }
 
     public List<Table> getTables(){return waitersTables;}
+
+    public String getName(){return waiter.getName();}
 }

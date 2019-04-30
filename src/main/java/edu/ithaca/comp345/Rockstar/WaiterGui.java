@@ -18,15 +18,15 @@ public class WaiterGui extends JPanel {
     private JList<String> menuList;
     private JList<Integer> tableList;
 
-    public WaiterGui(waiterApi WaiterAPI, int pin){
-        this.controller = new WaiterUI(this, WaiterAPI, pin);
+    public WaiterGui(waiterApi WaiterAPI, Employee waiter){
+        this.controller = new WaiterUI(this, WaiterAPI, waiter);
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.add(createSeatDisplayPanel());
         this.add(createActionPanel(controller));
-        //.add(createListOfOrdersPanel(0));
         this.add(createListOfMenuItemsPanel());
         this.add(createListOfTablesPanel());
+        this.add(createActionPanel2(controller));
 
         this.setSize(1000, 1000);
         updateView();
@@ -36,8 +36,11 @@ public class WaiterGui extends JPanel {
         JPanel seatDisplayPanel = new JPanel();
         seatDisplayPanel.setLayout(new FlowLayout());
 
-        JLabel seatLabel = new JLabel("Amount of Seats Available:");
+        JLabel seatLabel = new JLabel("Current User:");
         seatDisplayPanel.add(seatLabel);
+
+        JLabel nameLabel = new JLabel(controller.getName());
+        seatDisplayPanel.add(nameLabel);
 
         seatDisplay = new JLabel();
         seatDisplayPanel.add(seatDisplay);
@@ -109,10 +112,11 @@ public class WaiterGui extends JPanel {
     private JPanel createListOfTablesPanel(){
         JPanel tableDisplayPanel = new JPanel();
         tableListModel = new DefaultListModel();
+
         List<Table> all= controller.getTables();
         if(all!=null) {
             for (int i = 0; i < all.size(); i++) {
-                addToOrderList(all.get(i).getTableNumber());
+                addToTableList(all.get(i).getTableNumber());
             }
         }
         tableList = new JList<>(tableListModel);
@@ -120,10 +124,10 @@ public class WaiterGui extends JPanel {
         tableList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         tableList.setVisibleRowCount(-1);
 
-        JScrollPane orderListScroller = new JScrollPane(orderList);
-        orderListScroller.setPreferredSize(new Dimension(200, 200));
+        JScrollPane tableListScroller = new JScrollPane(tableList);
+        tableListScroller.setPreferredSize(new Dimension(200, 200));
 
-        tableDisplayPanel.add(orderListScroller);
+        tableDisplayPanel.add(tableListScroller);
         tableDisplayPanel.setLocation(100, 0);
 
         return tableDisplayPanel;
@@ -146,44 +150,66 @@ public class WaiterGui extends JPanel {
     }
 
     private JPanel createActionPanel(ActionListener controller){
-
-        payButton = new JButton(BartenderUI.PAY);
-        payButton.setActionCommand(BartenderUI.PAY);
-        payButton.addActionListener(controller);
-        JPanel payPanel = new JPanel();
-        payPanel.add(payButton);
-
-        JButton orderButton = new JButton(BartenderUI.ORDER);
-        orderButton.setActionCommand(BartenderUI.ORDER);
+        JButton orderButton = new JButton(WaiterUI.ORDER);
+        orderButton.setActionCommand(WaiterUI.ORDER);
         orderButton.addActionListener(controller);
         JPanel orderPanel = new JPanel();
         orderPanel.add(orderButton);
 
-        seatButton = new JButton(BartenderUI.SEAT);
-        seatButton.setActionCommand(BartenderUI.SEAT);
+        seatButton = new JButton(WaiterUI.SEAT);
+        seatButton.setActionCommand(WaiterUI.SEAT);
         seatButton.addActionListener(controller);
         JPanel seatPanel = new JPanel();
         seatPanel.add(seatButton);
 
+        JButton seeOrdersButton = new JButton(WaiterUI.SEE);
+        seeOrdersButton.setActionCommand(WaiterUI.SEE);
+        seeOrdersButton.addActionListener(controller);
+        JPanel seeOrdersPanel = new JPanel();
+        seeOrdersPanel.add(seeOrdersButton);
+
         JPanel actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
-        actionPanel.add(payPanel,BorderLayout.LINE_START);
-        actionPanel.add(orderPanel);
-        actionPanel.add(seatPanel,BorderLayout.LINE_END);
+        actionPanel.add(seatPanel,BorderLayout.LINE_START);
+        actionPanel.add(seeOrdersPanel);
+        actionPanel.add(orderPanel,BorderLayout.LINE_END);
 
         return actionPanel;
     }
 
-    public void updateView(){
-        String amount= ""+controller.getRemainingSeatsUI(tableSelected());
-        seatDisplay.setText(amount);
+    private JPanel createActionPanel2(ActionListener controller){
+        payButton = new JButton(WaiterUI.PAY);
+        payButton.setActionCommand(WaiterUI.PAY);
+        payButton.addActionListener(controller);
+        JPanel payPanel = new JPanel();
+        payPanel.add(payButton);
 
-        if (controller.canSeat(tableSelected())){
-            seatButton.setEnabled(true);
-        }
-        else {
-            seatButton.setEnabled(false);
-        }
+        JButton splitotButton = new JButton(WaiterUI.SPLITOT);
+        splitotButton.setActionCommand(WaiterUI.SPLITOT);
+        splitotButton.addActionListener(controller);
+        JPanel splitotPanel = new JPanel();
+        splitotPanel.add(splitotButton);
+
+        JButton splitOrdsButton = new JButton(WaiterUI.SPLITORD);
+        splitOrdsButton.setActionCommand(WaiterUI.SPLITORD);
+        splitOrdsButton.addActionListener(controller);
+        JPanel splitOrdPanel = new JPanel();
+        splitOrdPanel.add(splitOrdsButton);
+
+        JPanel actionPanel = new JPanel();
+        actionPanel.setLayout(new BorderLayout());
+        actionPanel.add(payPanel,BorderLayout.LINE_START);
+        actionPanel.add(splitotPanel);
+        actionPanel.add(splitOrdPanel,BorderLayout.LINE_END);
+
+        return actionPanel;
+    }
+
+    public void viewOrders(int tableNum){
+        this.add(createListOfOrdersPanel(tableNum));
+    }
+
+    public void updateView(){
         List<Order> orders=controller.getOrders(tableSelected());
         if(orders==null){
             payButton.setEnabled(false);
