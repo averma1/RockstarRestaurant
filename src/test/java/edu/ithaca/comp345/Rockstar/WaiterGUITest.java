@@ -2,12 +2,14 @@ package edu.ithaca.comp345.Rockstar;
 
 import java.io.IOException;
 
-public class BartenderGUITest {
-
+public class WaiterGUITest {
     public static Restaurant buildBaseRest(){
         Restaurant main= new Restaurant("test.txt");
 
+        main.createTable(1, 10);
         main.createTable(2, 10);
+        main.createTable(3, 10);
+        main.createTable(4, 10);
 
         main.stock.addIngredient("ravioli", .50, 20);
         main.stock.addIngredient("chicken", .50, 60);
@@ -53,11 +55,21 @@ public class BartenderGUITest {
 
         main.createBar(50);
 
+        main.manager.addEmployee(1234, "Kaylee", "waiter");
+        main.manager.addEmployee(2345, "Julia", "host");
+        main.manager.addEmployee(3234, "John", "waiter");
+        main.manager.addEmployee(4234, "Priya", "bartender");
+
+        main.manager.addTableToWaiter(1, 1234, "Kaylee");
+        main.manager.addTableToWaiter(2, 1234, "Kaylee");
+        main.manager.addTableToWaiter(3, 3234, "John");
+        main.manager.addTableToWaiter(4, 3234, "John");
+
         return main;
     }
 
     public static void main(String[] args) throws IOException {
         Restaurant main= buildBaseRest();
-        SwingTestUtil.showPanelInTestFrame(new BartenderGui(main.bartender));
+        SwingTestUtil.showPanelInTestFrame(new WaiterGui(main.waiter, 1234));
     }
 }
