@@ -37,6 +37,10 @@ public class WaiterGUITest {
         main.bartender.barStock.addIngredient("beer", .50, 60);
         main.bartender.barStock.addIngredient("soup", .50, 350);
 
+        main.stock.addIngredient("tequila", .50, 20);
+        main.stock.addIngredient("beer", .50, 60);
+        main.stock.addIngredient("soup", .50, 350);
+
         MenuItem item7= new MenuItem("margarita", 10);
         item7.addIngredient(main.bartender.barStock.getIngredient("tequila"), 5);
         MenuItem item8= new MenuItem("red wine", 10);
