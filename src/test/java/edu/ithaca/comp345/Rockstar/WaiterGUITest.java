@@ -1,7 +1,8 @@
 package edu.ithaca.comp345.Rockstar;
 
+import edu.ithaca.comp345.Rockstar.ui.WaiterGui;
+
 import java.io.IOException;
-import java.util.List;
 
 public class WaiterGUITest {
     public static Restaurant buildBaseRest(){

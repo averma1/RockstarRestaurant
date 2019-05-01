@@ -1,4 +1,8 @@
-package edu.ithaca.comp345.Rockstar;
+package edu.ithaca.comp345.Rockstar.ui;
+
+import edu.ithaca.comp345.Rockstar.Employee;
+import edu.ithaca.comp345.Rockstar.Table;
+import edu.ithaca.comp345.Rockstar.hostApi;
 
 import java.awt.event.*;
 import java.awt.*;

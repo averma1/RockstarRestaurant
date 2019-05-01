@@ -1,7 +1,8 @@
 package edu.ithaca.comp345.Rockstar;
 
+import edu.ithaca.comp345.Rockstar.ui.HostGUI;
+
 import java.io.IOException;
-import java.util.List;
 
 public class HostGUITest {
 

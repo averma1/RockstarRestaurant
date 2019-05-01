@@ -1,4 +1,9 @@
-package edu.ithaca.comp345.Rockstar;
+package edu.ithaca.comp345.Rockstar.ui;
+
+import edu.ithaca.comp345.Rockstar.Employee;
+import edu.ithaca.comp345.Rockstar.Order;
+import edu.ithaca.comp345.Rockstar.Table;
+import edu.ithaca.comp345.Rockstar.waiterApi;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
