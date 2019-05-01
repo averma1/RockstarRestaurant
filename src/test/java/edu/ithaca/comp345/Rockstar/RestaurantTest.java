@@ -148,17 +148,15 @@ public class RestaurantTest {
         MenuItem item3= main.menu.getMenuItem("bread sticks");
         MenuItem item4= main.menu.getMenuItem("coffee");
         MenuItem item5= main.menu.getMenuItem("chocolate cake");
-        MenuItem item6= main.menu.getMenuItem("beer");
-        main.waiter.takeOrder(item1, 2, 1);
-        main.waiter.takeOrder(item2, 2, 2);
-        main.waiter.takeOrder(item3, 2, 3);
-        main.waiter.takeOrder(item4, 2, 4);
-        main.waiter.takeOrder(item5, 2, 2);
-        main.waiter.takeOrder(item6, 2, 3);
+        main.waiter.takeOrder("chicken parm", 2, 1);
+        main.waiter.takeOrder("cheese ravioli", 2, 2);
+        main.waiter.takeOrder("bread sticks", 2, 3);
+        main.waiter.takeOrder("coffee", 2, 4);
+        main.waiter.takeOrder("chocolate cake", 2, 2);
         assertEquals(15, main.stock.getQuantity("ravioli"));
         assertEquals(50, main.stock.getQuantity("chicken"));
         assertEquals(300, main.stock.getQuantity("breadSticks"));
-        assertEquals(60.00, main.waiter.payTotalBill(2));
+        assertEquals(50.00, main.waiter.payTotalBill(2));
         main.saveToFile("test.txt");
     }
 

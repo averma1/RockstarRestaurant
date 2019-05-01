@@ -1,20 +1,18 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.lang.reflect.InaccessibleObjectException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class waiterApi extends Restaurant{
-
-
     /**
      * takes the order and adds to list of orders
      * @param item: the menuitem
      * @param tableNum: the table number
      * @param orderNum: the order number
      */
-    public static void takeOrder(MenuItem item, int tableNum, int orderNum){
+    public static void takeOrder(String item, int tableNum, int orderNum){
+        MenuItem Item= Menu.getMenuItem(item);
         int index= findTable(tableNum);
         if(index!=-1) {
             Table table = allTables.get(index);
@@ -22,16 +20,14 @@ public class waiterApi extends Restaurant{
                 table.createOrder(orderNum);
             }
             if(stock!=null) {
-                stock.removeMenuItem(item);
+                stock.removeMenuItem(Item);
             }
-            table.addtoOrder(item, orderNum);
+            table.addtoOrder(Item, orderNum);
         } else {
             throw new InaccessibleObjectException();
         }
 
     }
-
-
     /**
      * returns the total price of the table (all orders)
      * @param tableNum: table number
@@ -41,14 +37,13 @@ public class waiterApi extends Restaurant{
         int index= findTable(tableNum);
         if(index!=-1) {
             Table table = allTables.get(index);
-            return table.getOrdersTotalPrice();
+            double amount =table.getOrdersTotalPrice();
+            table.clearOrders();
+            return amount;
         } else {
             throw new InaccessibleObjectException();
         }
     }
-
-
-
     /**
      * splits the bill by a given number
      * @param tableNum: table number
@@ -62,13 +57,12 @@ public class waiterApi extends Restaurant{
             double price= table.getOrdersTotalPrice();
             price= price/split;
             price= Math.round(price * 100.0) / 100.0;
+            table.clearOrders();
             return price;
         } else {
             throw new InaccessibleObjectException();
         }
     }
-
-
     /**
      * splits the bill by item
      * @param tableNum
@@ -78,13 +72,28 @@ public class waiterApi extends Restaurant{
         int index = findTable(tableNum);
         if(index != -1){
             Table table = allTables.get(index);
-            return table.orders;
+            List<Order> orders= table.orders;
+            return orders;
         } else{
             throw new InaccessibleObjectException();
         }
     }
 
-
+    public static String splitBillByItemString(int tableNum){
+        int index = findTable(tableNum);
+        if(index != -1){
+            Table table = allTables.get(index);
+            List<Order> orders= table.orders;
+            String message= "";
+            for(int i=0; i<orders.size(); i++){
+                message=message+"Order #"+orders.get(i).number+" owes $"+orders.get(i).getTotalPrice()+"\n";
+            }
+            table.clearOrders();
+            return message;
+        } else{
+            throw new InaccessibleObjectException();
+        }
+    }
     /**
      * returns a list of items in the order
      * @param tableNum: table number
@@ -117,6 +126,44 @@ public class waiterApi extends Restaurant{
         }
     }
 
+    public List<Order> getOrders(int tableNum){
+        Table barTable= allTables.get(findTable(tableNum));
+        return barTable.orders;
+    }
 
+    public HashMap getMenu(){
+        return Menu.getMenuItemMap();
+    }
+
+    public boolean doesOrderExist(int orderNum, int tablenum){
+        Table barTable= allTables.get(findTable(tablenum));
+        if(barTable.findOrder(orderNum)==-1){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public int getNextOrderNum(int tableNum){
+        Table barTable= allTables.get(findTable(tableNum  ));
+        List<Order> orders= barTable.orders;
+        int newNumber= orders.size()+1;
+        while(doesOrderExist(newNumber, tableNum)){
+            newNumber++;
+        }
+        return newNumber;
+    }
+    public void seatAtTable(int tableNum, int numberOfPeople){
+        Table barTable= allTables.get(findTable(tableNum));
+        barTable.setNumOfSeatsFilled(numberOfPeople);
+    }
+    public static int getSeats(int tableNum){
+        Table barTable= allTables.get(findTable(tableNum));
+        return barTable.getNumOfSeats();
+    }
+    public int seeFilledSeats(int tableNum){
+        Table barTable= allTables.get(findTable(tableNum));
+        return barTable.getFilledSeats();
+    }
 }
 

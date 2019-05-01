@@ -1,16 +1,19 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.io.IOException;
+import java.util.List;
 
-public class BartenderGUITest {
-
+public class WaiterGUITest {
     public static Restaurant buildBaseRest(){
         Restaurant main= new Restaurant("test.txt");
 
+        main.createTable(1, 10);
         main.createTable(2, 10);
+        main.createTable(3, 10);
+        main.createTable(4, 10);
 
-        main.stock.addIngredient("ravioli", .50, 20);
-        main.stock.addIngredient("chicken", .50, 60);
+        main.stock.addIngredient("ravioli", .50, 200);
+        main.stock.addIngredient("chicken", .50, 600);
         main.stock.addIngredient("breadSticks", .50, 350);
 
         MenuItem item1= new MenuItem("chicken parm", 10);
@@ -34,6 +37,10 @@ public class BartenderGUITest {
         main.bartender.barStock.addIngredient("beer", .50, 60);
         main.bartender.barStock.addIngredient("soup", .50, 350);
 
+        main.stock.addIngredient("tequila", .50, 20);
+        main.stock.addIngredient("beer", .50, 60);
+        main.stock.addIngredient("soup", .50, 350);
+
         MenuItem item7= new MenuItem("margarita", 10);
         item7.addIngredient(main.bartender.barStock.getIngredient("tequila"), 5);
         MenuItem item8= new MenuItem("red wine", 10);
@@ -53,11 +60,25 @@ public class BartenderGUITest {
 
         main.createBar(50);
 
+        main.manager.addEmployee(1234, "Kaylee", "waiter");
+        main.manager.addEmployee(2345, "Julia", "host");
+        main.manager.addEmployee(3234, "John", "waiter");
+        main.manager.addEmployee(4234, "Priya", "bartender");
+
+        main.manager.addTableToWaiter(1, 1234, "Kaylee");
+        main.manager.addTableToWaiter(2, 1234, "Kaylee");
+        main.manager.addTableToWaiter(3, 3234, "John");
+        main.manager.addTableToWaiter(4, 3234, "John");
+
+        main.waiter.takeOrder("chicken parm", 1, 10);
+        main.waiter.takeOrder("chicken parm", 2, 11);
+
         return main;
     }
 
     public static void main(String[] args) throws IOException {
         Restaurant main= buildBaseRest();
-        SwingTestUtil.showPanelInTestFrame(new BartenderGui(main.bartender));
+        Employee test1= main.manager.employees.get(main.manager.findEmployee(1234));
+        SwingTestUtil.showPanelInTestFrame(new WaiterGui(main.waiter, test1));
     }
 }

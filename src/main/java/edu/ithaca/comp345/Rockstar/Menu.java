@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Menu {
 
-    private HashMap<String, MenuItem> menuItemMap;
+    private static HashMap<String, MenuItem> menuItemMap;
     private Stock stock;
     private String name;
 
@@ -42,7 +42,7 @@ public class Menu {
      * @param name the name of the menu item to get
      * @return the MenuItem object that was found
      */
-    public MenuItem getMenuItem(String name){
+    public static MenuItem getMenuItem(String name){
         if (isNameValid(name))
         {
             return menuItemMap.get(name);
@@ -58,7 +58,7 @@ public class Menu {
      * @param name the name of the menu item to find
      * @return true of the menu item exists and false if it does not
      */
-    public boolean isNameValid(String name){
+    public static boolean isNameValid(String name){
         if (menuItemMap.containsKey(name)){
             return true;
         }
@@ -85,7 +85,7 @@ public class Menu {
      * gets the HashMap of MenuItem objects
      * @return the HashMap of MenuItem objects
      */
-    public HashMap<String, MenuItem> getMenuItemMap(){
+    public static HashMap<String, MenuItem> getMenuItemMap(){
         return menuItemMap;
     }
 

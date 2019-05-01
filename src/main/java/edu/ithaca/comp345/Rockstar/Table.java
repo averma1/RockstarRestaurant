@@ -265,4 +265,8 @@ public class Table {
     public List<Order> getAllOrders(){
         return orders;
     }
+
+    public void clearOrders(){
+        orders.clear();
+    }
 }
