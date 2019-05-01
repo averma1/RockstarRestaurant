@@ -37,7 +37,9 @@ public class waiterApi extends Restaurant{
         int index= findTable(tableNum);
         if(index!=-1) {
             Table table = allTables.get(index);
-            return table.getOrdersTotalPrice();
+            double amount =table.getOrdersTotalPrice();
+            table.clearOrders();
+            return amount;
         } else {
             throw new InaccessibleObjectException();
         }
@@ -55,6 +57,7 @@ public class waiterApi extends Restaurant{
             double price= table.getOrdersTotalPrice();
             price= price/split;
             price= Math.round(price * 100.0) / 100.0;
+            table.clearOrders();
             return price;
         } else {
             throw new InaccessibleObjectException();
@@ -69,7 +72,24 @@ public class waiterApi extends Restaurant{
         int index = findTable(tableNum);
         if(index != -1){
             Table table = allTables.get(index);
-            return table.orders;
+            List<Order> orders= table.orders;
+            return orders;
+        } else{
+            throw new InaccessibleObjectException();
+        }
+    }
+
+    public static String splitBillByItemString(int tableNum){
+        int index = findTable(tableNum);
+        if(index != -1){
+            Table table = allTables.get(index);
+            List<Order> orders= table.orders;
+            String message= "";
+            for(int i=0; i<orders.size(); i++){
+                message=message+"Order #"+orders.get(i).number+" owes $"+orders.get(i).getTotalPrice()+"\n";
+            }
+            table.clearOrders();
+            return message;
         } else{
             throw new InaccessibleObjectException();
         }

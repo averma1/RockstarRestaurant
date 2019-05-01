@@ -12,11 +12,13 @@ public class WaiterGui extends JPanel {
     private JLabel seatDisplay;
     private JButton seatButton;
     private JButton payButton;
+    private JTextArea amountBox;
     private DefaultListModel orderListModel;
     private DefaultListModel tableListModel;
     private JList<Integer> orderList;
     private JList<String> menuList;
     private JList<Integer> tableList;
+    public JPanel orderLists;
 
     public WaiterGui(waiterApi WaiterAPI, Employee waiter){
         this.controller = new WaiterUI(this, WaiterAPI, waiter);
@@ -26,6 +28,8 @@ public class WaiterGui extends JPanel {
         this.add(createActionPanel(controller));
         this.add(createListOfMenuItemsPanel());
         this.add(createListOfTablesPanel());
+        orderLists=(createListOfOrdersPanel());
+        this.add(orderLists);
         this.add(createActionPanel2(controller));
 
         this.setSize(1000, 1000);
@@ -48,14 +52,10 @@ public class WaiterGui extends JPanel {
         return seatDisplayPanel;
     }
 
-    private JPanel createListOfOrdersPanel(int tableNum){
+    private JPanel createListOfOrdersPanel(){
         JPanel orderDisplayPanel = new JPanel();
-        orderListModel = new DefaultListModel();
-        List<Order> all= controller.getOrders(tableNum);
-        for(int i=0; i<all.size(); i++){
-            addToOrderList(all.get(i).number);
-        }
 
+        orderListModel = new DefaultListModel();
         orderList = new JList<>(orderListModel);
         orderList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         orderList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
@@ -70,12 +70,22 @@ public class WaiterGui extends JPanel {
         return orderDisplayPanel;
     }
 
+    public void viewOrders(int tableNum){
+        orderListModel.clear();
+        List<Order> all= controller.getOrders(tableNum);
+        if(all!=null) {
+            for (int i = 0; i < all.size(); i++) {
+                addToOrderList(all.get(i).number);
+            }
+        }
+    }
+
     public void addToOrderList(int num){
         orderListModel.addElement(num);
     }
 
-    public void deleteFromOrderList(int num){
-        orderListModel.removeElement(num);
+    public void clearOrderList(){
+        orderListModel.clear();
     }
 
     public String menuItemSelected(){
@@ -150,6 +160,8 @@ public class WaiterGui extends JPanel {
     }
 
     private JPanel createActionPanel(ActionListener controller){
+        amountBox = new JTextArea();
+
         JButton orderButton = new JButton(WaiterUI.ORDER);
         orderButton.setActionCommand(WaiterUI.ORDER);
         orderButton.addActionListener(controller);
@@ -170,11 +182,16 @@ public class WaiterGui extends JPanel {
 
         JPanel actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
+        actionPanel.add(amountBox, BorderLayout.PAGE_END);
         actionPanel.add(seatPanel,BorderLayout.LINE_START);
         actionPanel.add(seeOrdersPanel);
         actionPanel.add(orderPanel,BorderLayout.LINE_END);
 
         return actionPanel;
+    }
+
+    public String getAmount(){
+        return amountBox.getText();
     }
 
     private JPanel createActionPanel2(ActionListener controller){
@@ -205,20 +222,17 @@ public class WaiterGui extends JPanel {
         return actionPanel;
     }
 
-    public void viewOrders(int tableNum){
-        this.add(createListOfOrdersPanel(tableNum));
-    }
 
     public void updateView(){
-        List<Order> orders=controller.getOrders(tableSelected());
-        if(orders==null){
-            payButton.setEnabled(false);
-        }
-        else if(orders.size()==0){
-            payButton.setEnabled(false);
-        } else {
-            payButton.setEnabled(true);
-        }
+//        List<Order> orders=controller.getOrders(tableSelected());
+//        if(orders==null){
+//            payButton.setEnabled(false);
+//        }
+//        else if(orders.size()==0){
+//            payButton.setEnabled(false);
+//        } else {
+//            payButton.setEnabled(true);
+//        }
     }
 
     public void showMessage(String message){

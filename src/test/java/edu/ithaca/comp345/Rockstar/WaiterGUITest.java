@@ -12,8 +12,8 @@ public class WaiterGUITest {
         main.createTable(3, 10);
         main.createTable(4, 10);
 
-        main.stock.addIngredient("ravioli", .50, 20);
-        main.stock.addIngredient("chicken", .50, 60);
+        main.stock.addIngredient("ravioli", .50, 200);
+        main.stock.addIngredient("chicken", .50, 600);
         main.stock.addIngredient("breadSticks", .50, 350);
 
         MenuItem item1= new MenuItem("chicken parm", 10);
@@ -65,6 +65,9 @@ public class WaiterGUITest {
         main.manager.addTableToWaiter(2, 1234, "Kaylee");
         main.manager.addTableToWaiter(3, 3234, "John");
         main.manager.addTableToWaiter(4, 3234, "John");
+
+        main.waiter.takeOrder("chicken parm", 1, 10);
+        main.waiter.takeOrder("chicken parm", 2, 11);
 
         return main;
     }

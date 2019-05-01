@@ -27,53 +27,32 @@ public class WaiterUI implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent ev) {
         int order= GUI.orderSelected();
         int table= GUI.tableSelected();
         String item= GUI.menuItemSelected();
-        
-        if(GUI.orderSelected()!=-1 && GUI.menuItemSelected()!=null) {
-            makeChanges(e.getActionCommand(), order, item, table, 0);
-        } else if(GUI.orderSelected()==-1 && GUI.menuItemSelected()!=null){
-            createOderChange(e.getActionCommand(), order, item, table, 0);
+        String action= ev.getActionCommand();
+            if (action == ORDER) {
+                ordering(table, order, item);
+            } else if (action == SEAT || action == SEE) {
+                seating(action, table);
+            } else if (action == PAY || action == SPLITOT || action == SPLITORD) {
+                paying(action, table);
+            }
+    }
+
+    public void ordering(int tableNum, int orderNum, String itemName){
+        if(tableNum!=-1) {
+            int newOrderNum = orderNum;
+            if (orderNum == -1) {
+                newOrderNum = API.getNextOrderNum(tableNum);
+            }
+            if (!addToOrderUI(newOrderNum, itemName, tableNum)) {
+                GUI.showMessage("That item does not exist");
+            }
         } else {
-            seatChange(e.getActionCommand(), table, 0);
+            GUI.showMessage("Please choose a table");
         }
-    }
-
-    public void makeChanges(String actionCommand, int ordernum, String item, int table, int numOfPeople){
-        if(PAY.equals(actionCommand)){
-            double price= payUI(ordernum);
-            GUI.showMessage("order "+ordernum+" owes you $"+price);
-        } else if(ORDER.equals(actionCommand)){
-            if(!addToOrderUI(ordernum, item, table)){
-                GUI.showMessage("That item does not exist");
-            }
-        } else if(SEAT.equals(actionCommand)){
-            seatPerson(table, numOfPeople);
-        }
-        GUI.updateView();
-    }
-
-    public void seatChange(String actionCommand, int table, int numOfPeople){
-        if(SEAT.equals(actionCommand)){
-            seatPerson(table, numOfPeople);
-        }
-        GUI.updateView();
-    }
-
-    public void createOderChange(String actionCommand, int ordernum, String item, int tableNum, int numOfPeople){
-        if(PAY.equals(actionCommand)){
-            GUI.showMessage("You did not select an order to pay");
-        } else if(ORDER.equals(actionCommand)){
-            int newOrderNum= API.getNextOrderNum(tableNum);
-            if(!addToOrderUI(newOrderNum, item, tableNum)){
-                GUI.showMessage("That item does not exist");
-            }
-        } else if(SEAT.equals(actionCommand)){
-            seatPerson(tableNum, numOfPeople);
-        }
-        GUI.updateView();
     }
 
     public boolean addToOrderUI(int orderNum, String item, int tableNum){
@@ -90,41 +69,50 @@ public class WaiterUI implements ActionListener {
         }
     }
 
-    public double payUI(int tableNum){
-        try{
-            double payed= API.payTotalBill(tableNum);
-            GUI.deleteFromTableList(tableNum);
-            return payed;
-        } catch (IndexOutOfBoundsException e){
-            return -1;
+    public void seating(String action, int tableNum){
+        String amount= GUI.getAmount();
+        if(action== SEAT){
+            try {
+                int amount2=0;
+                if(amount!=""){
+                    amount2 = Integer.parseInt(amount);
+                }
+                if(amount2<=API.getSeats(tableNum)) {
+                    API.seatAtTable(tableNum, amount2);
+                    GUI.showMessage(API.seeFilledSeats(tableNum)+" people seated at table "+tableNum);
+                } else {
+                    GUI.showMessage("That many people will not fit at this table");
+                }
+            } catch (Exception e) {
+                GUI.showMessage("Something went wrong, please check that there are only numbers in the text field.");
+            }
+        } else if(action==SEE){
+            GUI.viewOrders(tableNum);
         }
     }
 
-    public boolean seatPerson(int tableNum, int numberOfPeople){
-        try{
-            API.seatAtTable(tableNum, numberOfPeople);
-            return true;
-        } catch (IndexOutOfBoundsException e){
-            return false;
-        }
-    }
-
-    public int getRemainingSeatsUI(int tableNum){
-        if(API.findTable(tableNum)==-1){
-            return 0;
-        } else {
-            return API.getSeats(tableNum) - API.seeFilledSeats(tableNum);
-        }
-    }
-
-    public boolean canSeat(int tableNum){
-        if(API.findTable(tableNum)==-1){
-            return false;
-        }
-        if(API.seeFilledSeats(tableNum)+1>API.getSeats(tableNum)){
-            return false;
-        } else {
-            return true;
+    public void paying(String action, int tableNum){
+        if(action== PAY){
+            double amount= API.payTotalBill(tableNum);
+            GUI.showMessage("You are owed: $"+amount);
+            GUI.clearOrderList();
+        } else if(action==SPLITORD){
+            String message= API.splitBillByItemString(tableNum);
+            GUI.showMessage(message);
+            GUI.clearOrderList();
+        } else if(action==SPLITOT){
+            String amount= GUI.getAmount();
+            try {
+                int amount2=0;
+                if(amount!=""){
+                    amount2 = Integer.parseInt(amount);
+                }
+                double cost= API.splitBillByTotal(tableNum, amount2);
+                GUI.showMessage("Each person owes: $"+cost);
+                GUI.clearOrderList();
+            } catch (Exception e) {
+                GUI.showMessage("Something went wrong, please check that there are only numbers in the text field.");
+            }
         }
     }
 
