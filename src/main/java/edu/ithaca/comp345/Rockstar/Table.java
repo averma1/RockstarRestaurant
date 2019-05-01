@@ -94,7 +94,10 @@ public class Table {
      * @return returns the number of seats filled
      */
     public int setNumOfSeatsFilled(int numOfSeats){
-        this.filledSeats=numOfSeats;
+
+        if(numOfSeats<=numOfSeats) {
+            this.filledSeats = numOfSeats;
+        }
         return this.filledSeats;
     }
 

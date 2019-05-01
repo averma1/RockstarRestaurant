@@ -44,6 +44,8 @@ public class BartenderGui extends JPanel {
 
     private JPanel createListOfOrdersPanel(){
         JPanel orderDisplayPanel = new JPanel();
+        JLabel orderLabel = new JLabel("Orders:");
+        orderDisplayPanel.add(orderLabel);
         listModel = new DefaultListModel();
         List<Order> all= controller.getOrders();
         for(int i=0; i<all.size(); i++){
@@ -87,6 +89,8 @@ public class BartenderGui extends JPanel {
     private JPanel createListOfMenuItemsPanel(){
         JPanel menuDisplayPanel = new JPanel();
 
+        JLabel menuLabel = new JLabel("Menu:");
+        menuDisplayPanel.add(menuLabel);
         String[] data = controller.getMenu();
 
         menuList = new JList<>(data);

@@ -98,7 +98,11 @@ public class BartenderUI implements ActionListener {
     }
 
     public int getRemainingSeatsUI(){
-        return API.getSeats()- API.seeFilledSeats();
+        int amount= API.getSeats()- API.seeFilledSeats();
+        if(amount>API.getSeats()){
+            amount=API.getSeats();
+        }
+        return amount;
     }
 
     public boolean canSeat(){
@@ -119,15 +123,6 @@ public class BartenderUI implements ActionListener {
            Object current= itemsItr.next();
            list[i]= current.toString();
            i++;
-        }
-        return list;
-    }
-
-    public Integer[] getOrdersList(){
-        List<Order> gotten= API.getOrders();
-        Integer list[]= new Integer[gotten.size()];
-        for(int i=0; i<gotten.size(); i++){
-            list[i]=gotten.get(i).number;
         }
         return list;
     }

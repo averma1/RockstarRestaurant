@@ -42,8 +42,10 @@ public class BartenderApi extends waiterApi{
      */
     public double pay(int orderNum){
         Table barTable= allTables.get(findTable(bar));
+
         double price= barTable.getOrderPrice(orderNum);
         barTable.removeOrder(orderNum);
+
         int current= barTable.getFilledSeats();
         barTable.setFilledSeats(current-1);
         return price;
@@ -69,8 +71,11 @@ public class BartenderApi extends waiterApi{
 
     public void seatAtBar(){
         Table barTable= allTables.get(findTable(bar));
+
         int currentSeats= barTable.getFilledSeats();
-        barTable.setNumOfSeatsFilled(currentSeats+1);
+        if(currentSeats<barTable.getNumOfSeats()) {
+            barTable.setNumOfSeatsFilled(currentSeats + 1);
+        }
     }
 
     public int seeFilledSeats(){
