@@ -56,15 +56,19 @@ public class WaiterUI implements ActionListener {
     }
 
     public boolean addToOrderUI(int orderNum, String item, int tableNum){
-        try{
-            if(!API.doesOrderExist(orderNum, tableNum)){
+        if(item==null){
+            //GUI.showMessage("Need to choose an menu item to add.");
+            return false;
+        }
+        try {
+            if (!API.doesOrderExist(orderNum, tableNum)) {
                 GUI.addToOrderList(orderNum);
             } else {
-                GUI.showMessage(item+" added to order "+orderNum);
+                GUI.showMessage(item + " added to order " + orderNum);
             }
             API.takeOrder(item, tableNum, orderNum);
             return true;
-        } catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             return false;
         }
     }

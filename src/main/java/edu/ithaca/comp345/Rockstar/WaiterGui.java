@@ -55,6 +55,8 @@ public class WaiterGui extends JPanel {
     private JPanel createListOfOrdersPanel(){
         JPanel orderDisplayPanel = new JPanel();
 
+        JLabel orderLabel = new JLabel("Orders:");
+        orderDisplayPanel.add(orderLabel);
         orderListModel = new DefaultListModel();
         orderList = new JList<>(orderListModel);
         orderList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -103,6 +105,8 @@ public class WaiterGui extends JPanel {
     private JPanel createListOfMenuItemsPanel(){
         JPanel menuDisplayPanel = new JPanel();
 
+        JLabel menuLabel = new JLabel("Menu:");
+        menuDisplayPanel.add(menuLabel);
         String[] data = controller.getMenu();
 
         menuList = new JList<>(data);
@@ -123,6 +127,8 @@ public class WaiterGui extends JPanel {
         JPanel tableDisplayPanel = new JPanel();
         tableListModel = new DefaultListModel();
 
+        JLabel tableLabel = new JLabel("Tables:");
+        tableDisplayPanel.add(tableLabel);
         List<Table> all= controller.getTables();
         if(all!=null) {
             for (int i = 0; i < all.size(); i++) {
