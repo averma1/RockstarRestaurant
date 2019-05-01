@@ -1,6 +1,6 @@
 package edu.ithaca.comp345.Rockstar.ui;
 
-import edu.ithaca.comp345.Rockstar.loginController;
+//import edu.ithaca.comp345.Rockstar.loginController;
 import edu.ithaca.comp345.Rockstar.managerApi;
 
 import javax.swing.*;
@@ -81,17 +81,17 @@ public class LoginView extends JPanel {
         //Backspace Button
         JButton backSpaceButton= new JButton("Delete");
         keypad.add(backSpaceButton);
-        backSpaceButton.setActionCommand(loginController.BACKSPACE);
+        //backSpaceButton.setActionCommand(loginController.BACKSPACE);
         backSpaceButton.addActionListener(controller);
         //0 button
         button=new JButton("0");
         keypad.add(button);
-        button.setActionCommand(loginController.ZERO);
+        //button.setActionCommand(loginController.ZERO);
         button.addActionListener(controller);
         //Enter button
         JButton enterButton= new JButton("Enter");
         keypad.add(enterButton);
-        enterButton.setActionCommand(loginController.ENTER);
+        //enterButton.setActionCommand(loginController.ENTER);
         enterButton.addActionListener(controller);
 
         return keypad;

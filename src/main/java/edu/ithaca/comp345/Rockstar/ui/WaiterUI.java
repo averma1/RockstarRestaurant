@@ -11,7 +11,7 @@ import java.util.*;
 
 public class WaiterUI implements ActionListener {
     public static final String ORDER = "Add to Order";
-    public static final String SEAT = "Seat Customers";
+    public static final String CREATE = "Create Order";
     public static final String SEE = "View Table's Orders";
 
     public static final String PAY = "Pay Total Bill";
@@ -37,25 +37,34 @@ public class WaiterUI implements ActionListener {
         int table= GUI.tableSelected();
         String item= GUI.menuItemSelected();
         String action= ev.getActionCommand();
-            if (action == ORDER) {
-                ordering(table, order, item);
-            } else if (action == SEAT || action == SEE) {
-                seating(action, table);
+            if (action == ORDER || action == CREATE) {
+                ordering(action, table, order, item);
+            } else if (action == SEE) {
+                viewing(table);
             } else if (action == PAY || action == SPLITOT || action == SPLITORD) {
                 paying(action, table);
             }
     }
 
-    public void ordering(int tableNum, int orderNum, String itemName){
-        if(tableNum!=-1) {
-            int newOrderNum = orderNum;
-            if (orderNum == -1) {
-                newOrderNum = API.getNextOrderNum(tableNum);
+    public void ordering(String action, int tableNum, int orderNum, String itemName){
+        if (tableNum != -1) {
+            if (action == ORDER) {
+                if(orderNum==-1){
+                    GUI.showMessage("Please choose and order to add to.");
+                }
+                if (!addToOrderUI(orderNum, itemName, tableNum)) {
+                    GUI.showMessage("That item does not exist");
+                }
+            } else if (action == CREATE) {
+                int newOrderNum = orderNum;
+                if (orderNum == -1) {
+                    newOrderNum = API.getNextOrderNum(tableNum);
+                }
+                if (!addToOrderUI(newOrderNum, itemName, tableNum)) {
+                    GUI.showMessage("That item does not exist");
+                }
             }
-            if (!addToOrderUI(newOrderNum, itemName, tableNum)) {
-                GUI.showMessage("That item does not exist");
-            }
-        } else {
+        }else {
             GUI.showMessage("Please choose a table");
         }
     }
@@ -78,26 +87,8 @@ public class WaiterUI implements ActionListener {
         }
     }
 
-    public void seating(String action, int tableNum){
-        String amount= GUI.getAmount();
-        if(action== SEAT){
-            try {
-                int amount2=0;
-                if(amount!=""){
-                    amount2 = Integer.parseInt(amount);
-                }
-                if(amount2<=API.getSeats(tableNum)) {
-                    API.seatAtTable(tableNum, amount2);
-                    GUI.showMessage(API.seeFilledSeats(tableNum)+" people seated at table "+tableNum);
-                } else {
-                    GUI.showMessage("That many people will not fit at this table");
-                }
-            } catch (Exception e) {
-                GUI.showMessage("Something went wrong, please check that there are only numbers in the text field.");
-            }
-        } else if(action==SEE){
-            GUI.viewOrders(tableNum);
-        }
+    public void viewing(int tableNum){
+        GUI.viewOrders(tableNum);
     }
 
     public void paying(String action, int tableNum){

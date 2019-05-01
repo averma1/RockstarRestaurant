@@ -15,7 +15,7 @@ public class WaiterGui extends JPanel {
 
     //Keep any visualized objects you intend to change as data members
     private JLabel seatDisplay;
-    private JButton seatButton;
+    private JButton createButton;
     private JButton payButton;
     private JTextArea amountBox;
     private DefaultListModel orderListModel;
@@ -166,10 +166,6 @@ public class WaiterGui extends JPanel {
         tableListModel.addElement(num);
     }
 
-    public void deleteFromTableList(int num){
-        tableListModel.removeElement(num);
-    }
-
     private JPanel createActionPanel(ActionListener controller){
         amountBox = new JTextArea();
 
@@ -179,11 +175,11 @@ public class WaiterGui extends JPanel {
         JPanel orderPanel = new JPanel();
         orderPanel.add(orderButton);
 
-        seatButton = new JButton(WaiterUI.SEAT);
-        seatButton.setActionCommand(WaiterUI.SEAT);
-        seatButton.addActionListener(controller);
+        createButton = new JButton(WaiterUI.CREATE);
+        createButton.setActionCommand(WaiterUI.CREATE);
+        createButton.addActionListener(controller);
         JPanel seatPanel = new JPanel();
-        seatPanel.add(seatButton);
+        seatPanel.add(createButton);
 
         JButton seeOrdersButton = new JButton(WaiterUI.SEE);
         seeOrdersButton.setActionCommand(WaiterUI.SEE);
