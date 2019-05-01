@@ -27,18 +27,18 @@ public class ManagerController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (HOST.equals(e.getActionCommand())){
             System.out.println("host");
-            System.exit(0);
-           // restaurantView.moveToHostView(strPin);
+           // System.exit(0);
+            restaurantView.moveToHostView(strPin);
         }
         if (BARTENDER.equals(e.getActionCommand())){
             System.out.println("bartender");
-            System.exit(0);
-           // restaurantView.moveToBartenderView(strPin);
+           // System.exit(0);
+            restaurantView.moveToBartenderView(strPin);
         }
         if (WAITER.equals(e.getActionCommand())){
             System.out.println("waiter");
-            System.exit(0);
-           // restaurantView.moveToWaiterView(strPin);
+           // System.exit(0);
+            restaurantView.moveToWaiterView(strPin);
         }
     }
 

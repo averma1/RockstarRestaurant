@@ -1,9 +1,6 @@
 package edu.ithaca.comp345.Rockstar.ui;
 
-import edu.ithaca.comp345.Rockstar.BartenderApi;
-import edu.ithaca.comp345.Rockstar.hostApi;
-import edu.ithaca.comp345.Rockstar.managerApi;
-import edu.ithaca.comp345.Rockstar.waiterApi;
+import edu.ithaca.comp345.Rockstar.*;
 
 import javax.swing.*;
 
@@ -15,6 +12,7 @@ public class RestaurantView extends JPanel {
     waiterApi waiterAPI;
     hostApi hostAPI;
     RestaurantView restaurantView;
+    Employee employee;
 
 
     public RestaurantView(managerApi managerAPI){
@@ -24,11 +22,11 @@ public class RestaurantView extends JPanel {
     }
 
     public void moveToBartenderView(String pin){
-        //TODO get bartender stuff in order
-//        this.removeAll();
-//        this.add(new BartenderView(pin, bartenderAPI));
-//        this.revalidate();
-//        this.repaint();
+
+        this.removeAll();
+        this.add(new BartenderGui(bartenderAPI));
+        this.revalidate();
+        this.repaint();
     }
 
     public void moveToManagerView(String pin){
@@ -39,18 +37,17 @@ public class RestaurantView extends JPanel {
     }
 
     public void moveToWaiterView(String pin){
-        //TODO connect this w waiter gui
-     /*   this.removeAll();
-        this.add(new WaiterView(pin, waiterAPI));
+
+        this.removeAll();
+        this.add(new WaiterGui(waiterAPI, employee));
         this.revalidate();
-        this.repaint();*/
+        this.repaint();
     }
 
     public void moveToHostView(String pin){
-        //TODO connect this w host gui
-      /*  this.removeAll();
-        this.add(new HostView(pin, hostAPI));
+        this.removeAll();
+        this.add(new HostGUI(hostAPI,employee));
         this.revalidate();
-        this.repaint();*/
+        this.repaint();
     }
 }

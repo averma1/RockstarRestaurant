@@ -8,6 +8,7 @@ public class SwingTestUtil {
         JFrame testFrame = new JFrame();
         testFrame.add(panelToTest);
         testFrame.pack();
+        testFrame.setExtendedState(testFrame.MAXIMIZED_BOTH);
         testFrame.setVisible(true);
         testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

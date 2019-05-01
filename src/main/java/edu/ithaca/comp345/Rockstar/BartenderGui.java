@@ -5,7 +5,7 @@ import java.awt.*;
 import java.util.List;
 import javax.swing.*;
 
-class BartenderGui extends JPanel {
+public class BartenderGui extends JPanel {
     private BartenderUI controller;
 
     //Keep any visualized objects you intend to change as data members
