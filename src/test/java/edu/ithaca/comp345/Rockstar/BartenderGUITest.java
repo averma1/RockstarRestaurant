@@ -33,6 +33,9 @@ public class BartenderGUITest {
         main.bartender.barStock.addIngredient("tequila", .50, 20);
         main.bartender.barStock.addIngredient("beer", .50, 60);
         main.bartender.barStock.addIngredient("soup", .50, 350);
+        main.bartender.barStock.addIngredient("ravioli", .50, 20);
+        main.bartender.barStock.addIngredient("chicken", .50, 60);
+        main.bartender.barStock.addIngredient("breadSticks", .50, 350);
 
         MenuItem item7= new MenuItem("margarita", 10);
         item7.addIngredient(main.bartender.barStock.getIngredient("tequila"), 5);
