@@ -56,9 +56,7 @@ public class BartenderUI implements ActionListener {
             }
         } else if (action == CREATE) {
             int newOrderNum = orderNum;
-            if (orderNum == -1) {
-                newOrderNum = API.getNextOrderNum();
-            }
+            newOrderNum = API.getNextOrderNum();
             if (!addToOrderUI(newOrderNum, itemName)) {
                 GUI.showMessage("That item does not exist");
             }

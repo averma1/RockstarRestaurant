@@ -63,13 +63,13 @@ public class WaiterGUITest {
 
         main.manager.addEmployee(1234, "Kaylee", "waiter");
         main.manager.addEmployee(2345, "Julia", "host");
-        main.manager.addEmployee(3234, "John", "waiter");
+        main.manager.addEmployee(3234, "John", "manager");
         main.manager.addEmployee(4234, "Priya", "bartender");
 
         main.manager.addTableToWaiter(1, 1234, "Kaylee");
         main.manager.addTableToWaiter(2, 1234, "Kaylee");
-        main.manager.addTableToWaiter(3, 3234, "John");
-        main.manager.addTableToWaiter(4, 3234, "John");
+        //main.manager.addTableToWaiter(3, 3234, "John");
+       // main.manager.addTableToWaiter(4, 3234, "John");
 
         return main;
     }

@@ -57,9 +57,7 @@ public class WaiterUI implements ActionListener {
                 }
             } else if (action == CREATE) {
                 int newOrderNum = orderNum;
-                if (orderNum == -1) {
-                    newOrderNum = API.getNextOrderNum(tableNum);
-                }
+                newOrderNum = API.getNextOrderNum(tableNum);
                 if (!addToOrderUI(newOrderNum, itemName, tableNum)) {
                     GUI.showMessage("That item does not exist");
                 }
