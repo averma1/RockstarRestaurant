@@ -71,9 +71,6 @@ public class WaiterGUITest {
         main.manager.addTableToWaiter(3, 3234, "John");
         main.manager.addTableToWaiter(4, 3234, "John");
 
-        main.waiter.takeOrder("chicken parm", 1, 10);
-        main.waiter.takeOrder("chicken parm", 2, 11);
-
         return main;
     }
 

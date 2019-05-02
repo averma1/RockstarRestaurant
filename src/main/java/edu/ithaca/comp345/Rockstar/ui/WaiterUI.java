@@ -52,7 +52,7 @@ public class WaiterUI implements ActionListener {
                 if(orderNum==-1){
                     GUI.showMessage("Please choose and order to add to.");
                 }
-                if (!addToOrderUI(orderNum, itemName, tableNum)) {
+                else if (!addToOrderUI(orderNum, itemName, tableNum)) {
                     GUI.showMessage("That item does not exist");
                 }
             } else if (action == CREATE) {
@@ -71,7 +71,6 @@ public class WaiterUI implements ActionListener {
 
     public boolean addToOrderUI(int orderNum, String item, int tableNum){
         if(item==null){
-            //GUI.showMessage("Need to choose an menu item to add.");
             return false;
         }
         try {
@@ -88,7 +87,13 @@ public class WaiterUI implements ActionListener {
     }
 
     public void viewing(int tableNum){
-        GUI.viewOrders(tableNum);
+        if(tableNum!=-1) {
+            List<Order> orders = API.getOrders(tableNum);
+            GUI.viewOrders(tableNum);
+            GUI.setOrderList(orders);
+        } else {
+            GUI.showMessage("Please choose a table");
+        }
     }
 
     public void paying(String action, int tableNum){
@@ -126,18 +131,6 @@ public class WaiterUI implements ActionListener {
             Object current= itemsItr.next();
             list[i]= current.toString();
             i++;
-        }
-        return list;
-    }
-
-    public Integer[] getOrdersList(int tableNum){
-        if(API.findTable(tableNum)==-1){
-            return null;
-        }
-        List<Order> gotten= API.getOrders(tableNum);
-        Integer list[]= new Integer[gotten.size()];
-        for(int i=0; i<gotten.size(); i++){
-            list[i]=gotten.get(i).number;
         }
         return list;
     }

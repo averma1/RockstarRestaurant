@@ -1,6 +1,7 @@
 package edu.ithaca.comp345.Rockstar.ui;
 
 import edu.ithaca.comp345.Rockstar.Employee;
+import edu.ithaca.comp345.Rockstar.MenuItem;
 import edu.ithaca.comp345.Rockstar.Order;
 import edu.ithaca.comp345.Rockstar.Table;
 import edu.ithaca.comp345.Rockstar.waiterApi;
@@ -15,6 +16,7 @@ public class WaiterGui extends JPanel {
 
     //Keep any visualized objects you intend to change as data members
     private JLabel seatDisplay;
+    private JLabel orderDisplay;
     private JButton createButton;
     private JButton payButton;
     private JTextArea amountBox;
@@ -35,10 +37,24 @@ public class WaiterGui extends JPanel {
         this.add(createListOfTablesPanel());
         orderLists=(createListOfOrdersPanel());
         this.add(orderLists);
+        this.add(createOrderDisplayPanel());
         this.add(createActionPanel2(controller));
 
         this.setSize(1000, 1000);
         updateView();
+    }
+
+    private JPanel createOrderDisplayPanel(){
+        JPanel seatDisplayPanel = new JPanel();
+        seatDisplayPanel.setLayout(new FlowLayout());
+
+        JLabel seatLabel = new JLabel("Order Items:");
+        seatDisplayPanel.add(seatLabel);
+
+        orderDisplay = new JLabel();
+        seatDisplayPanel.add(orderDisplay);
+
+        return seatDisplayPanel;
     }
 
     private JPanel createSeatDisplayPanel(){
@@ -93,6 +109,21 @@ public class WaiterGui extends JPanel {
 
     public void clearOrderList(){
         orderListModel.clear();
+    }
+
+    public void setOrderList(List<Order> orders){
+        String message= "";
+        for(int i=0; i<orders.size(); i++){
+            Order currentOrder= orders.get(i);
+            List<MenuItem> currentItems= currentOrder.getItems();
+            message= message+"Order #"+ currentOrder.getNumber()+": ";
+            for(int x=0; x<currentItems.size(); x++){
+                MenuItem current= currentItems.get(x);
+                message= message+current.getItemName()+" $"+current.getPrice()+" ";
+            }
+            message+="          ";
+        }
+        orderDisplay.setText(message);
     }
 
     public String menuItemSelected(){
@@ -231,15 +262,7 @@ public class WaiterGui extends JPanel {
 
 
     public void updateView(){
-//        List<Order> orders=controller.getOrders(tableSelected());
-//        if(orders==null){
-//            payButton.setEnabled(false);
-//        }
-//        else if(orders.size()==0){
-//            payButton.setEnabled(false);
-//        } else {
-//            payButton.setEnabled(true);
-//        }
+//
     }
 
     public void showMessage(String message){

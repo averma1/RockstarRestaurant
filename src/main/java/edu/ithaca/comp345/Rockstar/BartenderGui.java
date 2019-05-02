@@ -12,6 +12,7 @@ public class BartenderGui extends JPanel {
     private JLabel seatDisplay;
     private JButton seatButton;
     private JButton payButton;
+    private JLabel orderDisplay;
     private DefaultListModel listModel;
     private JList<Integer> orderList;
     private JList<String> menuList;
@@ -22,11 +23,42 @@ public class BartenderGui extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.add(createSeatDisplayPanel());
         this.add(createActionPanel(controller));
+        this.add(createActionPanel2(controller));
         this.add(createListOfOrdersPanel());
         this.add(createListOfMenuItemsPanel());
+        this.add(createOrderDisplayPanel());
+        this.add(createActionPanel3(controller));
 
         this.setSize(1000, 1000);
         updateView();
+    }
+
+    private JPanel createOrderDisplayPanel(){
+        JPanel seatDisplayPanel = new JPanel();
+        seatDisplayPanel.setLayout(new FlowLayout());
+
+        JLabel seatLabel = new JLabel("Order Items:");
+        seatDisplayPanel.add(seatLabel);
+
+        orderDisplay = new JLabel();
+        seatDisplayPanel.add(orderDisplay);
+
+        return seatDisplayPanel;
+    }
+
+    public void setOrderList(List<Order> orders){
+        String message= "";
+        for(int i=0; i<orders.size(); i++){
+            Order currentOrder= orders.get(i);
+            List<MenuItem> currentItems= currentOrder.getItems();
+            message= message+"Order #"+ currentOrder.getNumber()+": ";
+            for(int x=0; x<currentItems.size(); x++){
+                MenuItem current= currentItems.get(x);
+                message= message+current.getItemName()+" $"+current.getPrice()+" ";
+            }
+            message+="          ";
+        }
+        orderDisplay.setText(message);
     }
 
     private JPanel createSeatDisplayPanel(){
@@ -108,19 +140,6 @@ public class BartenderGui extends JPanel {
     }
 
     private JPanel createActionPanel(ActionListener controller){
-
-        payButton = new JButton(BartenderUI.PAY);
-        payButton.setActionCommand(BartenderUI.PAY);
-        payButton.addActionListener(controller);
-        JPanel payPanel = new JPanel();
-        payPanel.add(payButton);
-
-        JButton orderButton = new JButton(BartenderUI.ORDER);
-        orderButton.setActionCommand(BartenderUI.ORDER);
-        orderButton.addActionListener(controller);
-        JPanel orderPanel = new JPanel();
-        orderPanel.add(orderButton);
-
         seatButton = new JButton(BartenderUI.SEAT);
         seatButton.setActionCommand(BartenderUI.SEAT);
         seatButton.addActionListener(controller);
@@ -129,9 +148,50 @@ public class BartenderGui extends JPanel {
 
         JPanel actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
-        actionPanel.add(payPanel,BorderLayout.LINE_START);
+        actionPanel.add(seatPanel);
+
+        return actionPanel;
+    }
+
+    private JPanel createActionPanel2(ActionListener controller){
+        JButton createButton = new JButton(BartenderUI.CREATE);
+        createButton.setActionCommand(BartenderUI.CREATE);
+        createButton.addActionListener(controller);
+        JPanel seatPanel = new JPanel();
+        seatPanel.add(createButton);
+
+        JButton seeOrdersButton = new JButton(BartenderUI.SEE);
+        seeOrdersButton.setActionCommand(BartenderUI.SEE);
+        seeOrdersButton.addActionListener(controller);
+        JPanel seeOrdersPanel = new JPanel();
+        seeOrdersPanel.add(seeOrdersButton);
+
+        JButton orderButton = new JButton(BartenderUI.ORDER);
+        orderButton.setActionCommand(BartenderUI.ORDER);
+        orderButton.addActionListener(controller);
+        JPanel orderPanel = new JPanel();
+        orderPanel.add(orderButton);
+
+
+        JPanel actionPanel = new JPanel();
+        actionPanel.setLayout(new BorderLayout());
+        actionPanel.add(seatPanel,BorderLayout.LINE_START);
         actionPanel.add(orderPanel);
-        actionPanel.add(seatPanel,BorderLayout.LINE_END);
+        actionPanel.add(seeOrdersPanel,BorderLayout.LINE_END);
+
+        return actionPanel;
+    }
+
+    private JPanel createActionPanel3(ActionListener controller){
+        payButton = new JButton(BartenderUI.PAY);
+        payButton.setActionCommand(BartenderUI.PAY);
+        payButton.addActionListener(controller);
+        JPanel payPanel = new JPanel();
+        payPanel.add(payButton);
+
+        JPanel actionPanel = new JPanel();
+        actionPanel.setLayout(new BorderLayout());
+        actionPanel.add(payPanel);
 
         return actionPanel;
     }
