@@ -11,7 +11,6 @@ public class RestaurantView extends JPanel {
     BartenderApi bartenderAPI;
     waiterApi waiterAPI;
     hostApi hostAPI;
-    RestaurantView restaurantView;
     Employee employee;
 
 
@@ -37,7 +36,7 @@ public class RestaurantView extends JPanel {
 
     public void moveToManagerView(String pin){
         this.removeAll();
-        this.add(new ManagerView(pin, managerAPI, restaurantView));
+        this.add(new ManagerView(pin, managerAPI, this));
         this.revalidate();
         this.repaint();
     }

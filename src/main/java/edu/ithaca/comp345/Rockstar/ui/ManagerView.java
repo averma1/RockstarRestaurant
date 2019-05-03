@@ -1,5 +1,6 @@
 package edu.ithaca.comp345.Rockstar.ui;
 
+import edu.ithaca.comp345.Rockstar.Employee;
 import edu.ithaca.comp345.Rockstar.managerApi;
 
 import java.awt.*;

@@ -11,9 +11,9 @@ public class ManagerController implements ActionListener {
     private managerApi managerAPI;
     private RestaurantView restaurantView;
     private String strPin;
-    public static final String HOST="Host";
-    public static final String BARTENDER="Host";
-    public static final String WAITER="Host";
+    public static final String HOST= "Host";
+    public static final String BARTENDER= "Bartender";
+    public static final String WAITER= "Waiter";
 
     public ManagerController(ManagerView managerView, managerApi managerAPI, RestaurantView restaurantView, String strPin){
         this.managerView = managerView;
