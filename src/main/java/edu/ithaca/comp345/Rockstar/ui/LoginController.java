@@ -91,7 +91,6 @@ public class LoginController implements ActionListener {
     }
     public void attemptLogin(String strPin){
         if (managerAPI.isLoginPinValid(Integer.parseInt(strPin))){
-
             //The employee does exist, log them in
             stateController.login(pinString);
         }

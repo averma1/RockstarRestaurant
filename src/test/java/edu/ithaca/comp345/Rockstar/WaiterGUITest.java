@@ -76,6 +76,7 @@ public class WaiterGUITest {
 
     public static void main(String[] args) throws IOException {
         Restaurant main= buildBaseRest();
+
         Employee test1= main.manager.employees.get(main.manager.findEmployee(1234));
         SwingTestUtil.showPanelInTestFrame(new WaiterGui(main.waiter, test1));
     }
