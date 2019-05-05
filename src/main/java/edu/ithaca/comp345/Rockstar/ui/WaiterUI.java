@@ -17,6 +17,8 @@ public class WaiterUI implements ActionListener {
     public static final String PAY = "Pay Total Bill";
     public static final String SPLITOT = "Split Bill by Number";
     public static final String SPLITORD = "Split Bill by Order";
+    public static final String HELP = "Help";
+    public static final String BACK = "Logout";
 
     public WaiterGui GUI;
     public waiterApi API;
