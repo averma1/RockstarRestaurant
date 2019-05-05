@@ -47,24 +47,28 @@ public class ManagerView extends JPanel {
         buttonPanel.setLayout(new GridLayout(2,2));
         JButton hostButton= new JButton("Host");
         hostButton.setPreferredSize(new Dimension(100,100));
+        hostButton.setFont(font);
         buttonPanel.add(hostButton);
         hostButton.setActionCommand(ManagerController.HOST);
         hostButton.addActionListener(controller);
 
         JButton bartenderButton= new JButton("Bartender");
         bartenderButton.setPreferredSize(new Dimension(100,100));
+        bartenderButton.setFont(font);
         buttonPanel.add(bartenderButton);
         bartenderButton.setActionCommand(ManagerController.BARTENDER);
         bartenderButton.addActionListener(controller);
 
         JButton waiterButton= new JButton("Waiter");
         waiterButton.setPreferredSize(new Dimension(100,100));
+        waiterButton.setFont(font);
         buttonPanel.add(waiterButton);
         waiterButton.setActionCommand(ManagerController.WAITER);
         waiterButton.addActionListener(controller);
 
         logoutBtn = new JButton("Logout");
         logoutBtn.setPreferredSize(new Dimension(100,100));
+        logoutBtn.setFont(font);
         buttonPanel.add(logoutBtn);
         logoutBtn.setActionCommand(ManagerController.LOGOUT);
         logoutBtn.addActionListener(controller);

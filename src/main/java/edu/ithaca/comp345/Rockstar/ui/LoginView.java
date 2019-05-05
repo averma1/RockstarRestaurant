@@ -94,19 +94,21 @@ public class LoginView extends JPanel {
         JButton backSpaceButton= new JButton("Delete");
         backSpaceButton.setFont(font);
         keypad.add(backSpaceButton);
-        //backSpaceButton.setActionCommand(loginController.BACKSPACE);
+        backSpaceButton.setActionCommand(LoginController.BACKSPACE);
         backSpaceButton.addActionListener(controller);
+
         //0 button
         button=new JButton("0");
         button.setFont(font);
         keypad.add(button);
-        //button.setActionCommand(loginController.ZERO);
+        button.setActionCommand(LoginController.ZERO);
         button.addActionListener(controller);
+
         //Enter button
         JButton enterButton= new JButton("Enter");
         enterButton.setFont(font);
         keypad.add(enterButton);
-        //enterButton.setActionCommand(loginController.ENTER);
+        enterButton.setActionCommand(LoginController.ENTER);
         enterButton.addActionListener(controller);
 
         return keypad;

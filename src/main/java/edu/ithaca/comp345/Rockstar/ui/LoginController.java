@@ -18,6 +18,7 @@ public class LoginController implements ActionListener {
     public static final String NINE="9";
     public static final String BACKSPACE="Delete";
     public static final String ENTER="Enter";
+    public static final String EXIT="Exit";
     public String pinString="";
 
     private managerApi managerAPI;
@@ -68,6 +69,9 @@ public class LoginController implements ActionListener {
         else if(ENTER.equals(e.getActionCommand())){
             attemptLogin(pinString);
         }
+        else if(EXIT.equals(e.getActionCommand())){
+            exitSystem();
+        }
         /*else {
             throw new RuntimeException("Unrecognized action");
         }*/
@@ -88,6 +92,9 @@ public class LoginController implements ActionListener {
         if (pinString.length()==0){
             loginView.pinEnter.setText(loginView.pin);
         }
+    }
+    public void exitSystem(){
+        System.exit(0);
     }
     public void attemptLogin(String strPin){
         if (managerAPI.isLoginPinValid(Integer.parseInt(strPin))){
