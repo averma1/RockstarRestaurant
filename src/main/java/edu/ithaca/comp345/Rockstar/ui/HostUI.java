@@ -27,7 +27,6 @@ public class HostUI implements ActionListener {
         API = api;
         this.host=host;
         mTables = API.allTables;
-        System.out.println(API.allTables);
         this.restView = restaurantView;
 
     }
@@ -61,13 +60,6 @@ public class HostUI implements ActionListener {
 
     public String getName(){return host.getName();}
 
-    public List<Table> getTables(){
-
-        System.out.println(API.allTables);
-
-        return mTables;
-
-
-    }
+    public List<Table> getTables(){ return mTables; }
 
 }

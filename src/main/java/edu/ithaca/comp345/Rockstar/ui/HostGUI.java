@@ -123,7 +123,9 @@ public class HostGUI extends JPanel{
         List<Table> all = controller.getTables();
         if(all!=null) {
             for (int i = 0; i < all.size(); i++) {
-                addToTableList(all.get(i).getTableNumber());
+                if (all.get(i).getTableNumber() != 420){
+                    addToTableList(all.get(i).getTableNumber());
+                }
             }
         }
         tableList = new JList<>(tableListModel);
@@ -149,8 +151,9 @@ public class HostGUI extends JPanel{
         List<Table> all = controller.getTables();
         if (all != null) {
             for (int i = 0; i < all.size(); i++) {
-                addToFilledSeatsList(all.get(i).getNumOfSeatsFilled());
-                System.out.println(all.get(i).getNumOfSeatsFilled());
+                if (all.get(i).getTableNumber() != 420){
+                    addToFilledSeatsList(all.get(i).getNumOfSeatsFilled());
+                }
             }
         }
 
@@ -173,7 +176,9 @@ public class HostGUI extends JPanel{
         seatsFilledListModel.clear();
         if (all != null) {
             for (int i = 0; i < all.size(); i++) {
-                addToFilledSeatsList(all.get(i).getNumOfSeatsFilled());
+                if (all.get(i).getTableNumber() != 420) {
+                    addToFilledSeatsList(all.get(i).getNumOfSeatsFilled());
+                }
             }
         }
     }
