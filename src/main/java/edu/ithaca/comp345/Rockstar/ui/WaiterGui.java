@@ -44,7 +44,7 @@ public class WaiterGui extends JPanel {
         this.add(createOrderDisplayPanel());
         this.add(createActionPanel2(controller));
 
-        this.setSize(1000, 1000);
+        //this.setSize(1000, 1000);
         updateView();
     }
 
@@ -89,7 +89,7 @@ public class WaiterGui extends JPanel {
         orderList.setVisibleRowCount(-1);
 
         JScrollPane orderListScroller = new JScrollPane(orderList);
-        orderListScroller.setPreferredSize(new Dimension(200, 200));
+        orderListScroller.setPreferredSize(new Dimension(200, 150));
 
         orderDisplayPanel.add(orderListScroller);
         orderDisplayPanel.setLocation(100, 0);
@@ -155,7 +155,7 @@ public class WaiterGui extends JPanel {
         menuList.setVisibleRowCount(-1);
 
         JScrollPane listScroller = new JScrollPane(menuList);
-        listScroller.setPreferredSize(new Dimension(200, 200));
+        listScroller.setPreferredSize(new Dimension(200, 150));
 
         menuDisplayPanel.add(listScroller);
         menuDisplayPanel.setLocation(100, 150);
@@ -181,7 +181,7 @@ public class WaiterGui extends JPanel {
         tableList.setVisibleRowCount(-1);
 
         JScrollPane tableListScroller = new JScrollPane(tableList);
-        tableListScroller.setPreferredSize(new Dimension(200, 200));
+        tableListScroller.setPreferredSize(new Dimension(200, 150));
 
         tableDisplayPanel.add(tableListScroller);
         tableDisplayPanel.setLocation(100, 0);
