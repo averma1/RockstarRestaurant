@@ -10,6 +10,9 @@ public class BartenderUI implements ActionListener {
     public static final String SEAT = "Seat Customer";
     public static final String SEE = "View all orders";
     public static final String CREATE = "Create new Order";
+    public static final String HELP = "Help";
+    public static final String BACK = "Logout";
+    public static final String SPLITOT = "Split Bill by Number";
 
     public BartenderGui GUI;
     public BartenderApi API;

@@ -31,8 +31,10 @@ public class WaiterGui extends JPanel {
         this.controller = new WaiterUI(this, WaiterAPI, waiter);
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.add(createActionPanel4(controller));
         this.add(createSeatDisplayPanel());
         this.add(createActionPanel(controller));
+        this.add(createActionPanel3(controller));
         this.add(createListOfMenuItemsPanel());
         this.add(createListOfTablesPanel());
         orderLists=(createListOfOrdersPanel());
@@ -198,8 +200,6 @@ public class WaiterGui extends JPanel {
     }
 
     private JPanel createActionPanel(ActionListener controller){
-        amountBox = new JTextArea();
-
         JButton orderButton = new JButton(WaiterUI.ORDER);
         orderButton.setActionCommand(WaiterUI.ORDER);
         orderButton.addActionListener(controller);
@@ -220,10 +220,21 @@ public class WaiterGui extends JPanel {
 
         JPanel actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
-        actionPanel.add(amountBox, BorderLayout.PAGE_END);
         actionPanel.add(seatPanel,BorderLayout.LINE_START);
         actionPanel.add(seeOrdersPanel);
         actionPanel.add(orderPanel,BorderLayout.LINE_END);
+
+        return actionPanel;
+    }
+
+    private JPanel createActionPanel3(ActionListener controller){
+        JLabel Label = new JLabel("Enter Values Here:");
+        amountBox = new JTextArea();
+
+        JPanel actionPanel = new JPanel();
+        actionPanel.setLayout(new BorderLayout());
+        actionPanel.add(Label,BorderLayout.LINE_START);
+        actionPanel.add(amountBox,BorderLayout.PAGE_END);
 
         return actionPanel;
     }
@@ -256,6 +267,27 @@ public class WaiterGui extends JPanel {
         actionPanel.add(payPanel,BorderLayout.LINE_START);
         actionPanel.add(splitotPanel);
         actionPanel.add(splitOrdPanel,BorderLayout.LINE_END);
+
+        return actionPanel;
+    }
+
+    private JPanel createActionPanel4(ActionListener controller){
+        JButton helpButton = new JButton(WaiterUI.HELP);
+        helpButton.setActionCommand(WaiterUI.HELP);
+        helpButton.addActionListener(controller);
+        JPanel helpPanel = new JPanel();
+        helpPanel.add(helpButton);
+
+        JButton backButton = new JButton(WaiterUI.BACK);
+        backButton.setActionCommand(WaiterUI.BACK);
+        backButton.addActionListener(controller);
+        JPanel backPanel = new JPanel();
+        backPanel.add(backButton);
+
+        JPanel actionPanel = new JPanel();
+        actionPanel.setLayout(new BorderLayout());
+        actionPanel.add(helpPanel,BorderLayout.LINE_START);
+        actionPanel.add(backPanel,BorderLayout.LINE_END);
 
         return actionPanel;
     }
