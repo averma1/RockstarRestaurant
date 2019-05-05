@@ -4,6 +4,7 @@ package edu.ithaca.comp345.Rockstar.ui;
 import edu.ithaca.comp345.Rockstar.managerApi;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -11,25 +12,29 @@ public class LoginView extends JPanel {
 
     public String pin;
     public JTextField pinEnter;
+    private Font font;
+    private Font welcomeFont;
 
     public LoginView(managerApi managerAPI, StateController stateController){
 
         LoginController loginController = new LoginController(this, managerAPI, stateController);
-        /*
-        JLabel pinLabel = new JLabel("Pin:");
-        pinEntryBox = new JTextArea(1, 15);
-        JButton loginButton = new JButton(LoginController.LOG_IN);
-        loginButton.setActionCommand(LoginController.LOG_IN);
-        loginButton.addActionListener(loginController);
-        */
-        this.setLayout(new FlowLayout());
-        /*
-        this.add(pinLabel);
-        this.add(pinEntryBox);
-        this.add(loginButton);
-        */
-        this.add(createPinEnterPanel());
-        this.add(createKeypadPanel(loginController));
+        this.font= new Font("Verdana", Font.PLAIN, 20);
+        this.welcomeFont= new Font("Crystal",Font.BOLD, 25);
+
+        this.setLayout(new BorderLayout());
+
+        this.add(createTopPanel(),BorderLayout.NORTH);
+        this.add(createPinEnterPanel(),BorderLayout.CENTER);
+        this.add(createKeypadPanel(loginController),BorderLayout.SOUTH);
+    }
+    public JPanel createTopPanel(){
+        JPanel topPanel= new JPanel();
+        JTextArea message= new javax.swing.JTextArea("Welcome to the Rockstar Restaurant!\nLogin with PIN");
+        message.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        topPanel.add(message);
+        message.setFont(welcomeFont);
+        message.setOpaque(false);
+        return topPanel;
     }
     public JPanel createPinEnterPanel(){
         pin="Enter Pin";
@@ -37,6 +42,10 @@ public class LoginView extends JPanel {
         pinEnter= new javax.swing.JTextField(pin);
         pinEnter.setEditable(false);
         pinEnterPanel.add(pinEnter);
+        pinEnter.setPreferredSize(new Dimension(300,100));
+        pinEnter.setHorizontalAlignment(JTextField.CENTER);
+        pinEnter.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        pinEnter.setFont(font);
         return pinEnterPanel;
     }
     public JPanel createKeypadPanel(ActionListener controller){
@@ -45,7 +54,10 @@ public class LoginView extends JPanel {
         keypad.setLayout(new GridLayout(4,3));
         for (int i = 9; i >= 1; i--) {
             button = new JButton(Integer.toString(i));
+            button.setPreferredSize(new Dimension(100,100));
+            button.setFont(font);
             keypad.add(button);
+
             if(i==9){
                 button.setActionCommand(LoginController.NINE);
             }
@@ -80,16 +92,19 @@ public class LoginView extends JPanel {
         //Adds the other three buttons
         //Backspace Button
         JButton backSpaceButton= new JButton("Delete");
+        backSpaceButton.setFont(font);
         keypad.add(backSpaceButton);
         //backSpaceButton.setActionCommand(loginController.BACKSPACE);
         backSpaceButton.addActionListener(controller);
         //0 button
         button=new JButton("0");
+        button.setFont(font);
         keypad.add(button);
         //button.setActionCommand(loginController.ZERO);
         button.addActionListener(controller);
         //Enter button
         JButton enterButton= new JButton("Enter");
+        enterButton.setFont(font);
         keypad.add(enterButton);
         //enterButton.setActionCommand(loginController.ENTER);
         enterButton.addActionListener(controller);

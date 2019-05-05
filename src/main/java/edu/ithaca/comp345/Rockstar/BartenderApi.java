@@ -29,8 +29,8 @@ public class BartenderApi extends waiterApi{
         if(barTable.findOrder(orderNum)==-1){
             barTable.createOrder(orderNum);
         }
-        MenuItem Item= barMenu.getMenuItem(item);
-        if(barStock!=null) {
+        MenuItem Item = barMenu.getMenuItem(item);
+        if (barStock != null) {
             barStock.removeMenuItem(Item);
         }
         barTable.addtoOrder(Item, orderNum);

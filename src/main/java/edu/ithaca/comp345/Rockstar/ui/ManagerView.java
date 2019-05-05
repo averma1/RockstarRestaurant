@@ -13,27 +13,30 @@ public class ManagerView extends JPanel {
     private JLabel managerDisplay;
     private String strPin;
     private JButton logoutBtn;
+    private Font font;
+    private Font managerFont;
     //Visual Objects go here
 
     public ManagerView(String strPin, managerApi managerAPI, RestaurantView restaurantView){
         this.managerController = new ManagerController(this, managerAPI, restaurantView, strPin);
         this.strPin = strPin;
+        this.font= new Font("Verdana", Font.PLAIN, 20);
+        this.managerFont= new Font("Crystal",Font.BOLD, 25);
 
-        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        this.add(createManagerDisplayPanel());
-        this.add(createButtonPanel(managerController));
+        this.setLayout(new BorderLayout());
+        this.add(createManagerDisplayPanel(),BorderLayout.NORTH);
+        this.add(createButtonPanel(managerController),BorderLayout.SOUTH);
 
         }
 
     private JPanel createManagerDisplayPanel(){
         JPanel managerDisplayPanel = new JPanel();
-        managerDisplayPanel.setLayout(new FlowLayout());
 
-        JLabel welcomeLabel = new JLabel("Manager View Panel: " + strPin);
-        managerDisplayPanel.add(welcomeLabel);
-
-        managerDisplay = new JLabel();
-        managerDisplayPanel.add(managerDisplay);
+        JTextField managerMsg = new JTextField("Manager View Panel: " + strPin);
+        managerMsg.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        managerDisplayPanel.add(managerMsg);
+        managerMsg.setFont(managerFont);
+        managerMsg.setOpaque(false);
 
         return managerDisplayPanel;
     }
@@ -43,21 +46,25 @@ public class ManagerView extends JPanel {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2,2));
         JButton hostButton= new JButton("Host");
+        hostButton.setPreferredSize(new Dimension(100,100));
         buttonPanel.add(hostButton);
         hostButton.setActionCommand(ManagerController.HOST);
         hostButton.addActionListener(controller);
 
         JButton bartenderButton= new JButton("Bartender");
+        bartenderButton.setPreferredSize(new Dimension(100,100));
         buttonPanel.add(bartenderButton);
         bartenderButton.setActionCommand(ManagerController.BARTENDER);
         bartenderButton.addActionListener(controller);
 
         JButton waiterButton= new JButton("Waiter");
+        waiterButton.setPreferredSize(new Dimension(100,100));
         buttonPanel.add(waiterButton);
         waiterButton.setActionCommand(ManagerController.WAITER);
         waiterButton.addActionListener(controller);
 
         logoutBtn = new JButton("Logout");
+        logoutBtn.setPreferredSize(new Dimension(100,100));
         buttonPanel.add(logoutBtn);
         logoutBtn.setActionCommand(ManagerController.LOGOUT);
         logoutBtn.addActionListener(controller);
