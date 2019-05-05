@@ -4,6 +4,8 @@ import edu.ithaca.comp345.Rockstar.ui.RestaurantView;
 import edu.ithaca.comp345.Rockstar.ui.WaiterGui;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
 
 public class WaiterGUITest {
     public static Restaurant buildBaseRest(){
@@ -35,6 +37,13 @@ public class WaiterGUITest {
         main.menu.addMenuItem(item5);
         main.menu.addMenuItem(item6);
 
+        main.bartender.barMenu.addMenuItem(item1);
+        main.bartender.barMenu.addMenuItem(item2);
+        main.bartender.barMenu.addMenuItem(item3);
+        main.bartender.barMenu.addMenuItem(item4);
+        main.bartender.barMenu.addMenuItem(item5);
+        main.bartender.barMenu.addMenuItem(item6);
+
         main.bartender.barStock.addIngredient("tequila", .50, 20);
         main.bartender.barStock.addIngredient("beer", .50, 60);
         main.bartender.barStock.addIngredient("soup", .50, 350);
@@ -60,6 +69,13 @@ public class WaiterGUITest {
         main.bartender.barMenu.addMenuItem(item11);
         main.bartender.barMenu.addMenuItem(item12);
 
+        main.menu.addMenuItem(item7);
+        main.menu.addMenuItem(item8);
+        main.menu.addMenuItem(item9);
+        main.menu.addMenuItem(item10);
+        main.menu.addMenuItem(item11);
+        main.menu.addMenuItem(item12);
+
         main.createBar(50);
 
         main.manager.addEmployee(1234, "Kaylee", "waiter");
@@ -69,8 +85,6 @@ public class WaiterGUITest {
 
         main.manager.addTableToWaiter(1, 1234, "Kaylee");
         main.manager.addTableToWaiter(2, 1234, "Kaylee");
-        //main.manager.addTableToWaiter(3, 3234, "John");
-       // main.manager.addTableToWaiter(4, 3234, "John");
 
         return main;
     }
