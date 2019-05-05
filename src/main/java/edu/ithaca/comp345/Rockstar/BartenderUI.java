@@ -33,15 +33,43 @@ public class BartenderUI implements ActionListener {
             viewing();
         } else if(action== CREATE || action==ORDER){
             ordering(action, order, item);
+        } else if(action==SPLITOT){
+            splitPay(order);
+        } else if(action==HELP){
+            help();
+        } else if(action==BACK){
+            logout();
         } else {
-            if (order != -1 && item != null) {
-                makeChanges(action, order, item);
-            } else if (order == -1 && item != null) {
-                createOderChange(action, order, item);
-            } else {
-                seatChange(action);
+                if (order != -1 && item != null) {
+                    makeChanges(action, order, item);
+                } else if (order == -1 && item != null) {
+                    createOderChange(action, order, item);
+                } else {
+                    seatChange(action);
+                }
             }
         }
+
+    public void splitPay(int orderNum) {
+        String amount= GUI.getAmount();
+        try {
+            int amount2=0;
+            if(amount!=""){
+                amount2 = Integer.parseInt(amount);
+            }
+            double cost= API.splitBillByTotal(amount2);
+            GUI.showMessage("Each person owes: $"+cost);
+        } catch (Exception e) {
+            GUI.showMessage("Something went wrong, please check that there are only numbers in the text field.");
+        }
+    }
+
+    public void help() {
+
+    }
+
+    public void logout() {
+
     }
 
     public void viewing(){

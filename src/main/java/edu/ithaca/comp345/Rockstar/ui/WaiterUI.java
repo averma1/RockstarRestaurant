@@ -45,7 +45,29 @@ public class WaiterUI implements ActionListener {
                 viewing(table);
             } else if (action == PAY || action == SPLITOT || action == SPLITORD) {
                 paying(action, table);
+            } else if(action==HELP){
+                help();
+            } else if(action==BACK){
+                logout();
             }
+    }
+
+    public void help() {
+        String message="";
+        message+="Help button: shows you what each aspect of the page does\n";
+        message+="Logout button: closes your current view and takes you back to enter a new pin\n";
+        message+="Logout button: closes your current view and takes you back to enter a new pin\n";
+        message+="Current user: displays the name of the person you are logged in as\n";
+        message+="Create order button: generates a new number for a brand new order, if an item is selected it will be added, must first select a table\n";
+        message+="View tables's orders button: prints all the items in each order and their price at the bottom of the page, must first select a table\n";
+        message+="Add to order button: adds selected item to selected order, must select an item, must select an order\n";
+        message+="Menu Panel: displays all the items in the menu that are available\n";
+        message+="Table panel: displays all the tables assigned to the logged in waiter\n";
+        message+="Order panel: closes your current view and takes you back to enter a new pin\n";
+    }
+
+    public void logout() {
+
     }
 
     public void ordering(String action, int tableNum, int orderNum, String itemName){
