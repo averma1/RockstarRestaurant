@@ -20,19 +20,9 @@ public class LoginView extends JPanel {
         LoginController loginController = new LoginController(this, managerAPI, stateController);
         this.font= new Font("Verdana", Font.PLAIN, 20);
         this.welcomeFont= new Font("Crystal",Font.BOLD, 25);
-        /*
-        JLabel pinLabel = new JLabel("Pin:");
-        pinEntryBox = new JTextArea(1, 15);
-        JButton loginButton = new JButton(LoginController.LOG_IN);
-        loginButton.setActionCommand(LoginController.LOG_IN);
-        loginButton.addActionListener(loginController);
-        */
+
         this.setLayout(new BorderLayout());
-        /*
-        this.add(pinLabel);
-        this.add(pinEntryBox);
-        this.add(loginButton);
-        */
+
         this.add(createTopPanel(),BorderLayout.NORTH);
         this.add(createPinEnterPanel(),BorderLayout.CENTER);
         this.add(createKeypadPanel(loginController),BorderLayout.SOUTH);
