@@ -97,7 +97,7 @@ public class BartenderGui extends JPanel {
         orderList.setVisibleRowCount(-1);
 
         JScrollPane orderListScroller = new JScrollPane(orderList);
-        orderListScroller.setPreferredSize(new Dimension(200, 200));
+        orderListScroller.setPreferredSize(new Dimension(200, 150));
 
         orderDisplayPanel.add(orderListScroller);
         orderDisplayPanel.setLocation(100, 0);
@@ -138,7 +138,7 @@ public class BartenderGui extends JPanel {
         menuList.setVisibleRowCount(-1);
 
         JScrollPane listScroller = new JScrollPane(menuList);
-        listScroller.setPreferredSize(new Dimension(200, 200));
+        listScroller.setPreferredSize(new Dimension(200, 150));
 
         menuDisplayPanel.add(listScroller);
         menuDisplayPanel.setLocation(100, 150);
