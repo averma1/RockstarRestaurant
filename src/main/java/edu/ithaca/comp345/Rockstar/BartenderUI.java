@@ -1,5 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
+import edu.ithaca.comp345.Rockstar.ui.RestaurantView;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
@@ -11,16 +13,19 @@ public class BartenderUI implements ActionListener {
     public static final String SEE = "View all orders";
     public static final String CREATE = "Create new Order";
     public static final String HELP = "Help";
-    public static final String BACK = "Logout";
+    public static final String LOGOUT = "Logout";
     public static final String SPLITOT = "Split Order by Number";
 
     public BartenderGui GUI;
     public BartenderApi API;
+    public RestaurantView restaurantView;
 
 
-    public BartenderUI(BartenderGui gui, BartenderApi api){
+
+    public BartenderUI(BartenderGui gui, BartenderApi api, RestaurantView restaurantView){
         GUI = gui;
         API = api;
+        this.restaurantView = restaurantView;
     }
 
     @Override
@@ -33,12 +38,12 @@ public class BartenderUI implements ActionListener {
             viewing();
         } else if(action== CREATE || action==ORDER){
             ordering(action, order, item);
+        } else if(action == LOGOUT){
+            restaurantView.moveToLogin();
         } else if(action==SPLITOT){
             splitPay(order);
         } else if(action==HELP){
             help();
-        } else if(action==BACK){
-            logout();
         } else {
                 if (order != -1 && item != null) {
                     makeChanges(action, order, item);
@@ -79,10 +84,6 @@ public class BartenderUI implements ActionListener {
         message+="Pay Order Button: \n \t gives you the total cost of all the orders, must select an order, that order will be deletes, available seats will be incremented by one\n";
         message+="Split Order by Number Button: \n \t gives you the amount each person must pay when the total cost is divided by the entered number, must enter a number, must select an order\n";
         GUI.showMessage(message);
-    }
-
-    public void logout() {
-
     }
 
     public void viewing(){

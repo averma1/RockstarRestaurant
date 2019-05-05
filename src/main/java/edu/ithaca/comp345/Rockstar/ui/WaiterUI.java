@@ -18,19 +18,21 @@ public class WaiterUI implements ActionListener {
     public static final String SPLITOT = "Split Bill by Number";
     public static final String SPLITORD = "Split Bill by Order";
     public static final String HELP = "Help";
-    public static final String BACK = "Logout";
+    public static final String LOGOUT = "Logout";
 
     public WaiterGui GUI;
     public waiterApi API;
     public List<Table> waitersTables;
     public Employee waiter;
+    private RestaurantView restaurantView;
 
 
-    public WaiterUI(WaiterGui gui, waiterApi api, Employee waiter){
+    public WaiterUI(WaiterGui gui, waiterApi api, Employee waiter, RestaurantView restaurantView){
         GUI = gui;
         API = api;
         waitersTables= API.waiters.get(waiter);
         this.waiter=waiter;
+        this.restaurantView = restaurantView;
     }
 
     @Override
@@ -47,8 +49,8 @@ public class WaiterUI implements ActionListener {
                 paying(action, table);
             } else if(action==HELP){
                 help();
-            } else if(action==BACK){
-                logout();
+            } else if(action==LOGOUT){
+                restaurantView.moveToLogin();
             }
     }
 

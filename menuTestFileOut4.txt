@@ -1,8 +1,8 @@
 @Cheese Burger
 $8.75
--ground beef,30
 -cheese,10
 -bun,40
+-ground beef,30
 ...
 @Chicken Parm
 $10.5

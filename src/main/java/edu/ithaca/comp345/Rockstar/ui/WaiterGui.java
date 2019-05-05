@@ -26,9 +26,11 @@ public class WaiterGui extends JPanel {
     private JList<String> menuList;
     private JList<Integer> tableList;
     public JPanel orderLists;
+    private RestaurantView restaurantView;
 
-    public WaiterGui(waiterApi WaiterAPI, Employee waiter){
-        this.controller = new WaiterUI(this, WaiterAPI, waiter);
+    public WaiterGui(waiterApi WaiterAPI, Employee waiter, RestaurantView restaurantView){
+        this.restaurantView = restaurantView;
+        this.controller = new WaiterUI(this, WaiterAPI, waiter, restaurantView);
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.add(createActionPanel4(controller));
@@ -278,8 +280,8 @@ public class WaiterGui extends JPanel {
         JPanel helpPanel = new JPanel();
         helpPanel.add(helpButton);
 
-        JButton backButton = new JButton(WaiterUI.BACK);
-        backButton.setActionCommand(WaiterUI.BACK);
+        JButton backButton = new JButton(WaiterUI.LOGOUT);
+        backButton.setActionCommand(WaiterUI.LOGOUT);
         backButton.addActionListener(controller);
         JPanel backPanel = new JPanel();
         backPanel.add(backButton);
