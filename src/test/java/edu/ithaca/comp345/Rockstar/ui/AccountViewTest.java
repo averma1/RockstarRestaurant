@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class AccountViewTest {
     public static Restaurant buildBaseRest(){
-        Restaurant main= new Restaurant("test.txt");
+        Restaurant main= new Restaurant("My Restaurant");
 
         main.createTable(1, 10);
         main.createTable(2, 10);

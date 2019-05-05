@@ -15,16 +15,19 @@ public class HostGUI extends JPanel{
 //    private JLabel seatDisplay;
     private JLabel tableDisplay;
     private DefaultListModel tableListModel;
+    private RestaurantView restaurantView;
     private JTextArea amountBox;
     private JButton tableButton;
     private JTextArea textArea;
+    private JButton logoutBtn;
 
     private JList<Integer> tableList;
 
-    public HostGUI(hostApi hostApi, Employee host){
-        this.controller = new HostUI(this, hostApi, host);
+    public HostGUI(hostApi hostApi, Employee host, RestaurantView restaurantView){
+        this.controller = new HostUI(this, hostApi, host, restaurantView);
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.add(createButtonPanel(controller));
         this.add(createTableDisplayPanel());
         this.add(createListOfTablesPanel());
         this.add(createActionPanel(controller));
@@ -121,6 +124,16 @@ public class HostGUI extends JPanel{
 
     public void showMessage(String message){
         JOptionPane.showMessageDialog(this, message);
+    }
+
+    private JPanel createButtonPanel(ActionListener controller) {
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2,2));
+        logoutBtn = new JButton("Logout");
+        buttonPanel.add(logoutBtn);
+        logoutBtn.setActionCommand(ManagerController.LOGOUT);
+        logoutBtn.addActionListener(controller);
+        return buttonPanel;
     }
 
 }

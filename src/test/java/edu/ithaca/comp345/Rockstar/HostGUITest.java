@@ -1,6 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
 import edu.ithaca.comp345.Rockstar.ui.HostGUI;
+import edu.ithaca.comp345.Rockstar.ui.RestaurantView;
 
 import java.io.IOException;
 
@@ -82,7 +83,8 @@ public class HostGUITest {
     public static void main(String[] args) throws IOException {
         Restaurant main = buildBaseRest();
         Employee test1= main.host.employees.get(main.host.findEmployee(2345));
-        SwingTestUtil.showPanelInTestFrame(new HostGUI(main.host, test1));
+        RestaurantView view = new RestaurantView(main);
+        SwingTestUtil.showPanelInTestFrame(new HostGUI(main.host, test1, view));
     }
 
 
