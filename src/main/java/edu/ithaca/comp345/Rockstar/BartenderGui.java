@@ -1,5 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
+import edu.ithaca.comp345.Rockstar.ui.RestaurantView;
+
 import java.awt.event.*;
 import java.awt.*;
 import java.util.List;
@@ -17,9 +19,11 @@ public class BartenderGui extends JPanel {
     private JList<Integer> orderList;
     private JList<String> menuList;
     private JTextArea amountBox;
+    public RestaurantView restaurantView;
 
-    public BartenderGui(BartenderApi BartenderAPI){
-        this.controller = new BartenderUI(this, BartenderAPI);
+    public BartenderGui(BartenderApi BartenderAPI, RestaurantView restaurantView){
+        this.restaurantView = restaurantView;
+        this.controller = new BartenderUI(this, BartenderAPI, restaurantView);
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.add(createActionPanel4(controller));
@@ -213,8 +217,8 @@ public class BartenderGui extends JPanel {
         JPanel helpPanel = new JPanel();
         helpPanel.add(helpButton);
 
-        JButton backButton = new JButton(BartenderUI.BACK);
-        backButton.setActionCommand(BartenderUI.BACK);
+        JButton backButton = new JButton(BartenderUI.LOGOUT);
+        backButton.setActionCommand(BartenderUI.LOGOUT);
         backButton.addActionListener(controller);
         JPanel backPanel = new JPanel();
         backPanel.add(backButton);
