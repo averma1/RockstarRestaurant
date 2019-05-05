@@ -1,6 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
 
+import java.lang.reflect.InaccessibleObjectException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +50,25 @@ public class BartenderApi extends waiterApi{
         int current= barTable.getFilledSeats();
         barTable.setFilledSeats(current-1);
         return price;
+    }
+
+    /**
+     * splits the bill by a given number
+     * @param split:
+     * @return
+     */
+    public static double splitBillByTotal(int split){
+        int index= findTable(bar);
+        if(index!=-1) {
+            Table table = allTables.get(index);
+            double price= table.getOrdersTotalPrice();
+            price= price/split;
+            price= Math.round(price * 100.0) / 100.0;
+            table.clearOrders();
+            return price;
+        } else {
+            throw new InaccessibleObjectException();
+        }
     }
 
     public static void setSeats(int seats){

@@ -12,6 +12,7 @@ public class RestaurantView extends JPanel {
     waiterApi waiterAPI;
     hostApi hostAPI;
     Employee employee;
+    StateController stateController;
 
 
     public RestaurantView(Restaurant restaurant){
@@ -19,7 +20,7 @@ public class RestaurantView extends JPanel {
         bartenderAPI= restaurant.bartender;
         waiterAPI= restaurant.waiter;
         hostAPI= restaurant.host;
-        StateController stateController = new StateController(this);
+        this.stateController = new StateController(this);
         this.add(new LoginView(managerAPI, stateController));
     }
 
@@ -29,7 +30,7 @@ public class RestaurantView extends JPanel {
 
     public void moveToBartenderView(String pin){
         this.removeAll();
-        this.add(new BartenderGui(bartenderAPI));
+        this.add(new BartenderGui(bartenderAPI, this));
         this.revalidate();
         this.repaint();
     }
@@ -43,14 +44,21 @@ public class RestaurantView extends JPanel {
 
     public void moveToWaiterView(String pin){
         this.removeAll();
-        this.add(new WaiterGui(waiterAPI, employee));
+        this.add(new WaiterGui(waiterAPI, employee, this));
         this.revalidate();
         this.repaint();
     }
 
     public void moveToHostView(String pin){
         this.removeAll();
-        this.add(new HostGUI(hostAPI,employee));
+        this.add(new HostGUI(hostAPI,employee, this));
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void moveToLogin(){
+        this.removeAll();
+        this.add(new LoginView(managerAPI, stateController));
         this.revalidate();
         this.repaint();
     }

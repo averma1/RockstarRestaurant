@@ -1,5 +1,7 @@
 package edu.ithaca.comp345.Rockstar;
 
+import edu.ithaca.comp345.Rockstar.ui.RestaurantView;
+
 import java.awt.event.*;
 import java.awt.*;
 import java.util.List;
@@ -16,17 +18,22 @@ public class BartenderGui extends JPanel {
     private DefaultListModel listModel;
     private JList<Integer> orderList;
     private JList<String> menuList;
+    private JTextArea amountBox;
+    public RestaurantView restaurantView;
 
-    public BartenderGui(BartenderApi BartenderAPI){
-        this.controller = new BartenderUI(this, BartenderAPI);
+    public BartenderGui(BartenderApi BartenderAPI, RestaurantView restaurantView){
+        this.restaurantView = restaurantView;
+        this.controller = new BartenderUI(this, BartenderAPI, restaurantView);
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.add(createActionPanel4(controller));
         this.add(createSeatDisplayPanel());
         this.add(createActionPanel(controller));
         this.add(createActionPanel2(controller));
         this.add(createListOfOrdersPanel());
         this.add(createListOfMenuItemsPanel());
         this.add(createOrderDisplayPanel());
+        this.add(createActionPanel5(controller));
         this.add(createActionPanel3(controller));
 
         this.setSize(1000, 1000);
@@ -189,11 +196,55 @@ public class BartenderGui extends JPanel {
         JPanel payPanel = new JPanel();
         payPanel.add(payButton);
 
+        JButton splitotButton = new JButton(BartenderUI.SPLITOT);
+        splitotButton.setActionCommand(BartenderUI.SPLITOT);
+        splitotButton.addActionListener(controller);
+        JPanel splitotPanel = new JPanel();
+        splitotPanel.add(splitotButton);
+
         JPanel actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
-        actionPanel.add(payPanel);
+        actionPanel.add(payPanel,BorderLayout.LINE_START);
+        actionPanel.add(splitotPanel,BorderLayout.LINE_END);
 
         return actionPanel;
+    }
+
+    private JPanel createActionPanel4(ActionListener controller){
+        JButton helpButton = new JButton(BartenderUI.HELP);
+        helpButton.setActionCommand(BartenderUI.HELP);
+        helpButton.addActionListener(controller);
+        JPanel helpPanel = new JPanel();
+        helpPanel.add(helpButton);
+
+        JButton backButton = new JButton(BartenderUI.LOGOUT);
+        backButton.setActionCommand(BartenderUI.LOGOUT);
+        backButton.addActionListener(controller);
+        JPanel backPanel = new JPanel();
+        backPanel.add(backButton);
+
+        JPanel actionPanel = new JPanel();
+        actionPanel.setLayout(new BorderLayout());
+        actionPanel.add(helpPanel,BorderLayout.LINE_START);
+        actionPanel.add(backPanel,BorderLayout.LINE_END);
+
+        return actionPanel;
+    }
+
+    private JPanel createActionPanel5(ActionListener controller){
+        JLabel Label = new JLabel("Enter Values Here:");
+        amountBox = new JTextArea();
+
+        JPanel actionPanel = new JPanel();
+        actionPanel.setLayout(new BorderLayout());
+        actionPanel.add(Label,BorderLayout.LINE_START);
+        actionPanel.add(amountBox,BorderLayout.PAGE_END);
+
+        return actionPanel;
+    }
+
+    public String getAmount(){
+        return amountBox.getText();
     }
 
     public void updateView(){
@@ -206,11 +257,7 @@ public class BartenderGui extends JPanel {
         else {
             seatButton.setEnabled(false);
         }
-        if(controller.getOrders().size()==0){
-            payButton.setEnabled(false);
-        } else {
-            payButton.setEnabled(true);
-        }
+        
     }
 
     public void showMessage(String message){
