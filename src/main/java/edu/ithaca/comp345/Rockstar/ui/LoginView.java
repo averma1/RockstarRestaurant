@@ -52,7 +52,7 @@ public class LoginView extends JPanel {
         pinEnter= new javax.swing.JTextField(pin);
         pinEnter.setEditable(false);
         pinEnterPanel.add(pinEnter);
-        pinEnter.setPreferredSize(new Dimension(600,100));
+        pinEnter.setPreferredSize(new Dimension(300,100));
         pinEnter.setHorizontalAlignment(JTextField.CENTER);
         pinEnter.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         pinEnter.setFont(font);
@@ -64,7 +64,7 @@ public class LoginView extends JPanel {
         keypad.setLayout(new GridLayout(4,3));
         for (int i = 9; i >= 1; i--) {
             button = new JButton(Integer.toString(i));
-            button.setPreferredSize(new Dimension(200,200));
+            button.setPreferredSize(new Dimension(100,100));
             button.setFont(font);
             keypad.add(button);
 
