@@ -12,7 +12,7 @@ public class BartenderUI implements ActionListener {
     public static final String CREATE = "Create new Order";
     public static final String HELP = "Help";
     public static final String BACK = "Logout";
-    public static final String SPLITOT = "Split Bill by Number";
+    public static final String SPLITOT = "Split Order by Number";
 
     public BartenderGui GUI;
     public BartenderApi API;
@@ -65,7 +65,20 @@ public class BartenderUI implements ActionListener {
     }
 
     public void help() {
-
+        String message="";
+        message+="Help Button: \n \t shows you what each aspect of the page does\n";
+        message+="Logout Button: \n \t closes your current view and takes you back to enter a new pin\n";
+        message+="Seat Customer Button: \n \t decrements the available seats by one\n";
+        message+="Amount of Seats: \n \t displays the current number of chairs still open at the bar\n";
+        message+="Create new Order Button: \n \t generates a new number for a brand new order, if an item is selected it will be added\n";
+        message+="Add to Order Button: \n \t adds selected item to selected order, must select an item, must select an order\n";
+        message+="View All Orders Button: \n \t prints all the items in each order and their price at the bottom of the page\n";
+        message+="Orders Panel: \n \t displays all the orders at the bar\n";
+        message+="Menu Panel: \n \t displays all the items in the menu that are available\n";
+        message+="Order Items: \n \t all the items in each order and their price, displayed by view all orders button\n";
+        message+="Pay Order Button: \n \t gives you the total cost of all the orders, must select an order, that order will be deletes, available seats will be incremented by one\n";
+        message+="Split Order by Number Button: \n \t gives you the amount each person must pay when the total cost is divided by the entered number, must enter a number, must select an order\n";
+        GUI.showMessage(message);
     }
 
     public void logout() {

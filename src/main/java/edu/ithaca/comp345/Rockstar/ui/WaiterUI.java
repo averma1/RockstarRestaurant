@@ -54,16 +54,20 @@ public class WaiterUI implements ActionListener {
 
     public void help() {
         String message="";
-        message+="Help button: shows you what each aspect of the page does\n";
-        message+="Logout button: closes your current view and takes you back to enter a new pin\n";
-        message+="Logout button: closes your current view and takes you back to enter a new pin\n";
-        message+="Current user: displays the name of the person you are logged in as\n";
-        message+="Create order button: generates a new number for a brand new order, if an item is selected it will be added, must first select a table\n";
-        message+="View tables's orders button: prints all the items in each order and their price at the bottom of the page, must first select a table\n";
-        message+="Add to order button: adds selected item to selected order, must select an item, must select an order\n";
-        message+="Menu Panel: displays all the items in the menu that are available\n";
-        message+="Table panel: displays all the tables assigned to the logged in waiter\n";
-        message+="Order panel: closes your current view and takes you back to enter a new pin\n";
+        message+="Help Button: \n \t shows you what each aspect of the page does\n";
+        message+="Logout Button: \n \t closes your current view and takes you back to enter a new pin\n";
+        message+="Current User: \n \t displays the name of the person you are logged in as\n";
+        message+="Create Order Button: \n \t generates a new number for a brand new order, if an item is selected it will be added, must first select a table\n";
+        message+="View Tables's Orders Button: \n \t prints all the items in each order and their price at the bottom of the page, must first select a table\n";
+        message+="Add to Order Button: \n \t adds selected item to selected order, must select an item, must select an order\n";
+        message+="Menu Panel: \n \t displays all the items in the menu that are available\n";
+        message+="Table Panel: \n \t displays all the tables assigned to the logged in waiter\n";
+        message+="Order Panel: \n \t displays all the orders of the table you have selected\n";
+        message+="Order Items: \n \t all the items in each order and their price, displayed by view table's orders button\n";
+        message+="Pay Total Bill Button: \n \t gives you the total cost of all the orders in selected table, must select a table, will delete all orders in that table\n";
+        message+="Split Bill by Number Button: \n \t gives you the amount each person must pay when the total cost is divided by the entered number, must enter a number, must select a table\n";
+        message+="Split Bill by Order Button: \n \t gives you the total cost each order must pay from the given table, must select a table\n";
+        GUI.showMessage(message);
     }
 
     public void logout() {

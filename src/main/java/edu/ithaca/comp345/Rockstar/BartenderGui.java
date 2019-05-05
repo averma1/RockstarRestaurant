@@ -200,8 +200,8 @@ public class BartenderGui extends JPanel {
 
         JPanel actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
-        actionPanel.add(payPanel);
-        actionPanel.add(splitotPanel);
+        actionPanel.add(payPanel,BorderLayout.LINE_START);
+        actionPanel.add(splitotPanel,BorderLayout.LINE_END);
 
         return actionPanel;
     }
@@ -253,11 +253,7 @@ public class BartenderGui extends JPanel {
         else {
             seatButton.setEnabled(false);
         }
-        if(controller.getOrders().size()==0){
-            payButton.setEnabled(false);
-        } else {
-            payButton.setEnabled(true);
-        }
+        
     }
 
     public void showMessage(String message){
