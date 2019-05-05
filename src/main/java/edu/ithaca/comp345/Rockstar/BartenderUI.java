@@ -37,7 +37,12 @@ public class BartenderUI implements ActionListener {
         if(action==SEE){
             viewing();
         } else if(action== CREATE || action==ORDER){
-            ordering(action, order, item);
+            try{
+                ordering(action, order, item);
+            } catch(IllegalArgumentException ee){
+                GUI.showMessage("Please select an Item to Order");
+            }
+
         } else if(action == LOGOUT){
             restaurantView.moveToLogin();
         } else if(action==SPLITOT){
