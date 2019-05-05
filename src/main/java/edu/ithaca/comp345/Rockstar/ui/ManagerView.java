@@ -12,7 +12,7 @@ public class ManagerView extends JPanel {
     private ManagerController managerController;
     private JLabel managerDisplay;
     private String strPin;
-
+    private JButton logoutBtn;
     //Visual Objects go here
 
     public ManagerView(String strPin, managerApi managerAPI, RestaurantView restaurantView){
@@ -56,6 +56,11 @@ public class ManagerView extends JPanel {
         buttonPanel.add(waiterButton);
         waiterButton.setActionCommand(ManagerController.WAITER);
         waiterButton.addActionListener(controller);
+
+        logoutBtn = new JButton("Logout");
+        buttonPanel.add(logoutBtn);
+        logoutBtn.setActionCommand(ManagerController.LOGOUT);
+        logoutBtn.addActionListener(controller);
         return buttonPanel;
     }
 

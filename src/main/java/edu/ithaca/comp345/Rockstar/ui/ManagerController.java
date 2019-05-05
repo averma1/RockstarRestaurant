@@ -14,6 +14,7 @@ public class ManagerController implements ActionListener {
     public static final String HOST= "Host";
     public static final String BARTENDER= "Bartender";
     public static final String WAITER= "Waiter";
+    public static final String LOGOUT= "Logout";
 
     public ManagerController(ManagerView managerView, managerApi managerAPI, RestaurantView restaurantView, String strPin){
         this.managerView = managerView;
@@ -39,6 +40,9 @@ public class ManagerController implements ActionListener {
             System.out.println("waiter");
            // System.exit(0);
             restaurantView.moveToWaiterView(strPin);
+        }
+        if(LOGOUT.equals(e.getActionCommand())){
+            restaurantView.moveToLogin();
         }
     }
 
