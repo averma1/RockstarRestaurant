@@ -1,6 +1,6 @@
 package edu.ithaca.comp345.Rockstar.ui;
 
-import edu.ithaca.comp345.Rockstar.managerApi;
+import edu.ithaca.comp345.Rockstar.ManagerApi;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class ManagerController implements ActionListener {
 
     private ManagerView managerView;
-    private managerApi managerAPI;
+    private ManagerApi managerAPI;
     private RestaurantView restaurantView;
     private String strPin;
     public static final String HOST= "Host";
@@ -16,7 +16,7 @@ public class ManagerController implements ActionListener {
     public static final String WAITER= "Waiter";
     public static final String LOGOUT= "Logout";
 
-    public ManagerController(ManagerView managerView, managerApi managerAPI, RestaurantView restaurantView, String strPin){
+    public ManagerController(ManagerView managerView, ManagerApi managerAPI, RestaurantView restaurantView, String strPin){
         this.managerView = managerView;
         this.managerAPI = managerAPI;
         this.restaurantView= restaurantView;

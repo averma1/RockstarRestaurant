@@ -1,28 +1,27 @@
 package edu.ithaca.comp345.Rockstar.ui;
 
 import edu.ithaca.comp345.Rockstar.Employee;
-import edu.ithaca.comp345.Rockstar.Restaurant;
 import edu.ithaca.comp345.Rockstar.Table;
-import edu.ithaca.comp345.Rockstar.hostApi;
+import edu.ithaca.comp345.Rockstar.HostApi;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class HostUI implements ActionListener {
+public class HostController implements ActionListener {
 
     public static final String SEAT = "Seat Customers";
     public static final String LOGOUT = "Logout";
 
-    public HostGUI GUI;
-    public hostApi API;
+    public HostView GUI;
+    public HostApi API;
     public RestaurantView restView;
 
     public List<Table> mTables;
 
     public Employee host;
 
-    public HostUI(HostGUI gui, hostApi api, Employee host, RestaurantView restaurantView){
+    public HostController(HostView gui, HostApi api, Employee host, RestaurantView restaurantView){
         GUI = gui;
         API = api;
         this.host=host;

@@ -3,13 +3,13 @@ package edu.ithaca.comp345.Rockstar.ui;
 import edu.ithaca.comp345.Rockstar.Employee;
 import edu.ithaca.comp345.Rockstar.Order;
 import edu.ithaca.comp345.Rockstar.Table;
-import edu.ithaca.comp345.Rockstar.waiterApi;
+import edu.ithaca.comp345.Rockstar.WaiterApi;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public class WaiterUI implements ActionListener {
+public class WaiterController implements ActionListener {
     public static final String ORDER = "Add to Order";
     public static final String CREATE = "Create Order";
     public static final String SEE = "View Table's Orders";
@@ -20,14 +20,14 @@ public class WaiterUI implements ActionListener {
     public static final String HELP = "Help";
     public static final String LOGOUT = "Logout";
 
-    public WaiterGui GUI;
-    public waiterApi API;
+    public WaiterView GUI;
+    public WaiterApi API;
     public List<Table> waitersTables;
     public Employee waiter;
     private RestaurantView restaurantView;
 
 
-    public WaiterUI(WaiterGui gui, waiterApi api, Employee waiter, RestaurantView restaurantView){
+    public WaiterController(WaiterView gui, WaiterApi api, Employee waiter, RestaurantView restaurantView){
         GUI = gui;
         API = api;
         waitersTables= API.waiters.get(waiter);

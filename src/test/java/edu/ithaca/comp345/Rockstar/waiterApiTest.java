@@ -3,8 +3,6 @@ package edu.ithaca.comp345.Rockstar;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InaccessibleObjectException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +28,7 @@ public class waiterApiTest {
     @Test
     public void payTotalBillTest(){
         Restaurant main= new Restaurant("Test");
-        waiterApi waiterApiTester= main.waiter;
+        WaiterApi waiterApiTester= main.waiter;
         main.createTable(1,3);
 
         MenuItem chickenParm= new MenuItem("chicken parm", 10.25);
@@ -55,7 +53,7 @@ public class waiterApiTest {
     @Test
     public void splitBillByTotalTest(){
         Restaurant main= new Restaurant("Test");
-        waiterApi waiterApiTester= main.waiter;
+        WaiterApi waiterApiTester= main.waiter;
         main.createTable(1,3);
 
         MenuItem chickenParm= new MenuItem("chicken parm", 10.25);
@@ -82,7 +80,7 @@ public class waiterApiTest {
     @Test
     public void splitBillByItemTest(){
         Restaurant main= new Restaurant("Test");
-        waiterApi waiterApiTester= main.waiter;
+        WaiterApi waiterApiTester= main.waiter;
         main.createTable(1,3);
 
         MenuItem chickenParm= new MenuItem("chicken parm", 10.25);
@@ -115,7 +113,7 @@ public class waiterApiTest {
     @Test
     public void viewOrderTest(){
         Restaurant main= new Restaurant("Test");
-        waiterApi testing= main.waiter;
+        WaiterApi testing= main.waiter;
         main.createTable(1,5);
 
         MenuItem chickenParm = new MenuItem("chicken parm", 10.25);
@@ -137,7 +135,7 @@ public class waiterApiTest {
     @Test
     public void getWaitersTablesTest(){
         Restaurant main= new Restaurant("test");
-        managerApi manager= main.manager;
+        ManagerApi manager= main.manager;
 
         manager.addEmployee(1234, "Kaylee", "waiter");
         manager.addEmployee(3234, "John", "waiter");

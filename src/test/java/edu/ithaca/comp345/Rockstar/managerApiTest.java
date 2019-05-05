@@ -2,7 +2,6 @@ package edu.ithaca.comp345.Rockstar;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.lang.reflect.InaccessibleObjectException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +15,14 @@ public class managerApiTest {
         //add Ingredients
 
 
-        managerApi.addIngredient("chicken", 9.50, 30);
-        managerApi.addIngredient("potatoes", 1.30, 50);
-        managerApi.addIngredient("onion", 2.00, 20);
+        ManagerApi.addIngredient("chicken", 9.50, 30);
+        ManagerApi.addIngredient("potatoes", 1.30, 50);
+        ManagerApi.addIngredient("onion", 2.00, 20);
 
         //test getIngredient
-        Ingredient testIngredient1 = managerApi.getIngredient("chicken");
-        Ingredient testIngredient2 = managerApi.getIngredient("potatoes");
-        Ingredient testIngredient3 = managerApi.getIngredient("pickels");
+        Ingredient testIngredient1 = ManagerApi.getIngredient("chicken");
+        Ingredient testIngredient2 = ManagerApi.getIngredient("potatoes");
+        Ingredient testIngredient3 = ManagerApi.getIngredient("pickels");
 
         assertTrue(testIngredient1.getName() == "chicken");
         assertTrue(testIngredient1.getQuantity() == 30);
@@ -33,24 +32,24 @@ public class managerApiTest {
     @Test
     public void checkIfAvailableAndRemoveIngredientTest(){
         //add Ingredients
-        managerApi.addIngredient("chicken", 9.50, 30);
-        managerApi.addIngredient("potatoes", 1.30, 50);
-        managerApi.addIngredient("onion", 2.00, 20);
+        ManagerApi.addIngredient("chicken", 9.50, 30);
+        ManagerApi.addIngredient("potatoes", 1.30, 50);
+        ManagerApi.addIngredient("onion", 2.00, 20);
 
         //check if Available
-        assertTrue(managerApi.isIngredientAvailable("chicken"));
-        assertFalse(managerApi.isIngredientAvailable("pickels"));
+        assertTrue(ManagerApi.isIngredientAvailable("chicken"));
+        assertFalse(ManagerApi.isIngredientAvailable("pickels"));
         //remove Ingredients
-        managerApi.removeIngredient("chicken");
+        ManagerApi.removeIngredient("chicken");
 
         //check if Available
-        assertFalse(managerApi.isIngredientAvailable("chicken"));
+        assertFalse(ManagerApi.isIngredientAvailable("chicken"));
     }
 
     @Test
     public void addEmployeeTest(){
         Restaurant main= new Restaurant("test");
-        managerApi manager= main.manager;
+        ManagerApi manager= main.manager;
 
         List<Integer> pins= new ArrayList<>();
         manager.addEmployee(1234, "Kaylee", "manager");
@@ -75,7 +74,7 @@ public class managerApiTest {
     @Test
     public void removeEmployeeTest(){
         Restaurant main= new Restaurant("test");
-        managerApi manager= main.manager;
+        ManagerApi manager= main.manager;
 
         manager.addEmployee(1234, "Kaylee", "manager");
         manager.addEmployee(2345, "Julia", "host");
@@ -94,7 +93,7 @@ public class managerApiTest {
     @Test
     public void changeEmployeePinTest(){
         Restaurant main= new Restaurant("test");
-        managerApi manager= main.manager;
+        ManagerApi manager= main.manager;
 
         manager.addEmployee(1234, "Kaylee", "manager");
         manager.changeEmployeePin(1234, 5432);
@@ -107,7 +106,7 @@ public class managerApiTest {
     @Test
     public void changeEmployeeTypeTest(){
         Restaurant main= new Restaurant("test");
-        managerApi manager= main.manager;
+        ManagerApi manager= main.manager;
 
         manager.addEmployee(1234, "Kaylee", "manager");
         manager.addEmployee(2345, "Julia", "host");
@@ -121,7 +120,7 @@ public class managerApiTest {
     @Test
     public void addTableToWaiterTest(){
         Restaurant main= new Restaurant("test");
-        managerApi manager= main.manager;
+        ManagerApi manager= main.manager;
 
         manager.addEmployee(1234, "Kaylee", "waiter");
         manager.addEmployee(3234, "John", "waiter");

@@ -6,15 +6,15 @@ import java.util.*;
 public class Restaurant {
     public String name;
     public static  List<Table> allTables;
-    public waiterApi waiter;
-    public hostApi host;
+    public WaiterApi waiter;
+    public HostApi host;
     public static Stock stock;
     private static int barNumber=420;
     public BartenderApi bartender;
     public Menu menu;
     public static List<Employee> employees;
     public static List<Integer> pins;
-    public managerApi manager;
+    public ManagerApi manager;
     public static HashMap<Employee, List<Table>> waiters;
 
     Restaurant(){}
@@ -27,14 +27,14 @@ public class Restaurant {
     public Restaurant(String name, String stockFileName, String tableFileName, String menuFileName, String employeeFileName) throws Exception{
         allTables= new ArrayList<>();
         this.name=name;
-        host= new hostApi();
-        waiter= new waiterApi();
+        host= new HostApi();
+        waiter= new WaiterApi();
         bartender= new BartenderApi();
         stock= new Stock();
         menu= new Menu("main", stock);
         employees= new ArrayList<>();
         pins= new ArrayList<>();
-        manager= new managerApi();
+        manager= new ManagerApi();
         waiters= new HashMap<>();
 
         //load from file
@@ -55,14 +55,14 @@ public class Restaurant {
     public Restaurant(String name){
         allTables= new ArrayList<>();
         this.name=name;
-        host= new hostApi();
-        waiter= new waiterApi();
+        host= new HostApi();
+        waiter= new WaiterApi();
         bartender= new BartenderApi();
         stock= new Stock();
         menu= new Menu("main", stock);
         employees= new ArrayList<>();
         pins= new ArrayList<>();
-        manager= new managerApi();
+        manager= new ManagerApi();
         waiters= new HashMap<>();
 
     }
@@ -191,7 +191,7 @@ public class Restaurant {
                 pin = Integer.parseInt(st.substring(0, st.indexOf('#')));
                 name = st.substring(st.indexOf('#')+1, st.indexOf('$'));
                 type = st.substring(st.indexOf('$')+1);
-                managerApi.addEmployee(pin, name, type);
+                ManagerApi.addEmployee(pin, name, type);
             }
             catch(StringIndexOutOfBoundsException | NumberFormatException e){
                 System.out.println("Invalid Input: " + st);

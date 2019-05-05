@@ -4,7 +4,7 @@ import java.lang.reflect.InaccessibleObjectException;
 import java.util.HashMap;
 import java.util.List;
 
-public class waiterApi extends Restaurant{
+public class WaiterApi extends Restaurant{
     /**
      * takes the order and adds to list of orders
      * @param item: the menuitem
@@ -113,7 +113,7 @@ public class waiterApi extends Restaurant{
     }
 
     public static List<Table> getWaitersTables(int pin, String name){
-        int index= managerApi.findEmployee(pin);
+        int index= ManagerApi.findEmployee(pin);
         if(index==-1){
             throw new InaccessibleObjectException();
         } else {

@@ -5,7 +5,7 @@ import java.lang.reflect.InaccessibleObjectException;
 import java.util.HashMap;
 import java.util.List;
 
-public class BartenderApi extends waiterApi{
+public class BartenderApi extends WaiterApi {
     public int seats;
     public static int bar;
     public Stock barStock;

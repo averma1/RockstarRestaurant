@@ -3,12 +3,12 @@ package edu.ithaca.comp345.Rockstar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class hostApi extends Restaurant{
+public class HostApi extends Restaurant{
 
     public static  List<MultiTable> MultiTables;
     public static List<Party> waitlist;
 
-    public hostApi(){
+    public HostApi(){
         MultiTables=new ArrayList<>();
         waitlist= new ArrayList<>();
     }

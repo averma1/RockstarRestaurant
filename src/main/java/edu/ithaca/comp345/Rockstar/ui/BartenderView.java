@@ -1,14 +1,16 @@
-package edu.ithaca.comp345.Rockstar;
+package edu.ithaca.comp345.Rockstar.ui;
 
-import edu.ithaca.comp345.Rockstar.ui.RestaurantView;
+import edu.ithaca.comp345.Rockstar.BartenderApi;
+import edu.ithaca.comp345.Rockstar.MenuItem;
+import edu.ithaca.comp345.Rockstar.Order;
 
 import java.awt.event.*;
 import java.awt.*;
 import java.util.List;
 import javax.swing.*;
 
-public class BartenderGui extends JPanel {
-    private BartenderUI controller;
+public class BartenderView extends JPanel {
+    private BartenderController controller;
 
     //Keep any visualized objects you intend to change as data members
     private JLabel seatDisplay;
@@ -21,9 +23,9 @@ public class BartenderGui extends JPanel {
     private JTextArea amountBox;
     public RestaurantView restaurantView;
 
-    public BartenderGui(BartenderApi BartenderAPI, RestaurantView restaurantView){
+    public BartenderView(BartenderApi BartenderAPI, RestaurantView restaurantView){
         this.restaurantView = restaurantView;
-        this.controller = new BartenderUI(this, BartenderAPI, restaurantView);
+        this.controller = new BartenderController(this, BartenderAPI, restaurantView);
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.add(createActionPanel4(controller));
@@ -57,7 +59,7 @@ public class BartenderGui extends JPanel {
         String message= "";
         for(int i=0; i<orders.size(); i++){
             Order currentOrder= orders.get(i);
-            List<MenuItem> currentItems= currentOrder.getItems();
+            List<edu.ithaca.comp345.Rockstar.MenuItem> currentItems= currentOrder.getItems();
             message= message+"Order #"+ currentOrder.getNumber()+": ";
             for(int x=0; x<currentItems.size(); x++){
                 MenuItem current= currentItems.get(x);
@@ -147,8 +149,8 @@ public class BartenderGui extends JPanel {
     }
 
     private JPanel createActionPanel(ActionListener controller){
-        seatButton = new JButton(BartenderUI.SEAT);
-        seatButton.setActionCommand(BartenderUI.SEAT);
+        seatButton = new JButton(BartenderController.SEAT);
+        seatButton.setActionCommand(BartenderController.SEAT);
         seatButton.addActionListener(controller);
         JPanel seatPanel = new JPanel();
         seatPanel.add(seatButton);
@@ -161,20 +163,20 @@ public class BartenderGui extends JPanel {
     }
 
     private JPanel createActionPanel2(ActionListener controller){
-        JButton createButton = new JButton(BartenderUI.CREATE);
-        createButton.setActionCommand(BartenderUI.CREATE);
+        JButton createButton = new JButton(BartenderController.CREATE);
+        createButton.setActionCommand(BartenderController.CREATE);
         createButton.addActionListener(controller);
         JPanel seatPanel = new JPanel();
         seatPanel.add(createButton);
 
-        JButton seeOrdersButton = new JButton(BartenderUI.SEE);
-        seeOrdersButton.setActionCommand(BartenderUI.SEE);
+        JButton seeOrdersButton = new JButton(BartenderController.SEE);
+        seeOrdersButton.setActionCommand(BartenderController.SEE);
         seeOrdersButton.addActionListener(controller);
         JPanel seeOrdersPanel = new JPanel();
         seeOrdersPanel.add(seeOrdersButton);
 
-        JButton orderButton = new JButton(BartenderUI.ORDER);
-        orderButton.setActionCommand(BartenderUI.ORDER);
+        JButton orderButton = new JButton(BartenderController.ORDER);
+        orderButton.setActionCommand(BartenderController.ORDER);
         orderButton.addActionListener(controller);
         JPanel orderPanel = new JPanel();
         orderPanel.add(orderButton);
@@ -190,14 +192,14 @@ public class BartenderGui extends JPanel {
     }
 
     private JPanel createActionPanel3(ActionListener controller){
-        payButton = new JButton(BartenderUI.PAY);
-        payButton.setActionCommand(BartenderUI.PAY);
+        payButton = new JButton(BartenderController.PAY);
+        payButton.setActionCommand(BartenderController.PAY);
         payButton.addActionListener(controller);
         JPanel payPanel = new JPanel();
         payPanel.add(payButton);
 
-        JButton splitotButton = new JButton(BartenderUI.SPLITOT);
-        splitotButton.setActionCommand(BartenderUI.SPLITOT);
+        JButton splitotButton = new JButton(BartenderController.SPLITOT);
+        splitotButton.setActionCommand(BartenderController.SPLITOT);
         splitotButton.addActionListener(controller);
         JPanel splitotPanel = new JPanel();
         splitotPanel.add(splitotButton);
@@ -211,14 +213,14 @@ public class BartenderGui extends JPanel {
     }
 
     private JPanel createActionPanel4(ActionListener controller){
-        JButton helpButton = new JButton(BartenderUI.HELP);
-        helpButton.setActionCommand(BartenderUI.HELP);
+        JButton helpButton = new JButton(BartenderController.HELP);
+        helpButton.setActionCommand(BartenderController.HELP);
         helpButton.addActionListener(controller);
         JPanel helpPanel = new JPanel();
         helpPanel.add(helpButton);
 
-        JButton backButton = new JButton(BartenderUI.LOGOUT);
-        backButton.setActionCommand(BartenderUI.LOGOUT);
+        JButton backButton = new JButton(BartenderController.LOGOUT);
+        backButton.setActionCommand(BartenderController.LOGOUT);
         backButton.addActionListener(controller);
         JPanel backPanel = new JPanel();
         backPanel.add(backButton);

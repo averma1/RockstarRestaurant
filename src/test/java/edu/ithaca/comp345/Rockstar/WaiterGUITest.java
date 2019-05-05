@@ -1,11 +1,9 @@
 package edu.ithaca.comp345.Rockstar;
 
 import edu.ithaca.comp345.Rockstar.ui.RestaurantView;
-import edu.ithaca.comp345.Rockstar.ui.WaiterGui;
+import edu.ithaca.comp345.Rockstar.ui.WaiterView;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
 
 public class WaiterGUITest {
     public static Restaurant buildBaseRest(){
@@ -93,6 +91,6 @@ public class WaiterGUITest {
         Restaurant main= buildBaseRest();
         RestaurantView restView = new RestaurantView(main);
         Employee test1= main.manager.employees.get(main.manager.findEmployee(1234));
-        SwingTestUtil.showPanelInTestFrame(new WaiterGui(main.waiter, test1, restView));
+        SwingTestUtil.showPanelInTestFrame(new WaiterView(main.waiter, test1, restView));
     }
 }

@@ -1,10 +1,9 @@
 package edu.ithaca.comp345.Rockstar.ui;
 
 //import edu.ithaca.comp345.Rockstar.loginController;
-import edu.ithaca.comp345.Rockstar.managerApi;
+import edu.ithaca.comp345.Rockstar.ManagerApi;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -15,7 +14,7 @@ public class LoginView extends JPanel {
     private Font font;
     private Font welcomeFont;
 
-    public LoginView(managerApi managerAPI, StateController stateController){
+    public LoginView(ManagerApi managerAPI, StateController stateController){
 
         LoginController loginController = new LoginController(this, managerAPI, stateController);
         this.font= new Font("Verdana", Font.PLAIN, 20);

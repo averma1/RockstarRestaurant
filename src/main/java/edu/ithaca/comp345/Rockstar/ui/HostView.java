@@ -2,16 +2,16 @@ package edu.ithaca.comp345.Rockstar.ui;
 
 import edu.ithaca.comp345.Rockstar.Employee;
 import edu.ithaca.comp345.Rockstar.Table;
-import edu.ithaca.comp345.Rockstar.hostApi;
+import edu.ithaca.comp345.Rockstar.HostApi;
 
 import java.awt.event.*;
 import java.awt.*;
 import java.util.List;
 import javax.swing.*;
 
-public class HostGUI extends JPanel{
+public class HostView extends JPanel{
 
-    private HostUI controller;
+    private HostController controller;
 //    private JLabel seatDisplay;
     private JLabel tableDisplay;
     private DefaultListModel tableListModel;
@@ -24,8 +24,8 @@ public class HostGUI extends JPanel{
     private JList<Integer> tableList;
     private JList<Integer> filledSeatsList;
 
-    public HostGUI(hostApi hostApi, Employee host, RestaurantView restaurantView){
-        this.controller = new HostUI(this, hostApi, host, restaurantView);
+    public HostView(HostApi hostApi, Employee host, RestaurantView restaurantView){
+        this.controller = new HostController(this, hostApi, host, restaurantView);
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.add(createButtonPanel(controller));
@@ -41,8 +41,8 @@ public class HostGUI extends JPanel{
     }
 
     private JPanel createActionPanel(ActionListener controller){
-        tableButton = new JButton(HostUI.SEAT);
-        tableButton.setActionCommand(HostUI.SEAT);
+        tableButton = new JButton(HostController.SEAT);
+        tableButton.setActionCommand(HostController.SEAT);
         tableButton.addActionListener(controller);
         JPanel seatPanel = new JPanel();
         seatPanel.add(tableButton);

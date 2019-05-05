@@ -1,5 +1,6 @@
 package edu.ithaca.comp345.Rockstar;
 
+import edu.ithaca.comp345.Rockstar.ui.BartenderView;
 import edu.ithaca.comp345.Rockstar.ui.RestaurantView;
 
 import java.io.IOException;
@@ -64,6 +65,6 @@ public class BartenderGUITest {
     public static void main(String[] args) throws IOException {
         Restaurant main= buildBaseRest();
         RestaurantView restaurantView = new RestaurantView(main);
-        SwingTestUtil.showPanelInTestFrame(new BartenderGui(main.bartender, restaurantView));
+        SwingTestUtil.showPanelInTestFrame(new BartenderView(main.bartender, restaurantView));
     }
 }

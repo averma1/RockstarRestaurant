@@ -7,10 +7,10 @@ import javax.swing.*;
 public class RestaurantView extends JPanel {
 
 
-    managerApi managerAPI;
+    ManagerApi managerAPI;
     BartenderApi bartenderAPI;
-    waiterApi waiterAPI;
-    hostApi hostAPI;
+    WaiterApi waiterAPI;
+    HostApi hostAPI;
     Employee employee;
     StateController stateController;
 
@@ -30,7 +30,7 @@ public class RestaurantView extends JPanel {
 
     public void moveToBartenderView(String pin){
         this.removeAll();
-        this.add(new BartenderGui(bartenderAPI, this));
+        this.add(new BartenderView(bartenderAPI, this));
         this.revalidate();
         this.repaint();
     }
@@ -44,14 +44,14 @@ public class RestaurantView extends JPanel {
 
     public void moveToWaiterView(String pin){
         this.removeAll();
-        this.add(new WaiterGui(waiterAPI, employee, this));
+        this.add(new WaiterView(waiterAPI, employee, this));
         this.revalidate();
         this.repaint();
     }
 
     public void moveToHostView(String pin){
         this.removeAll();
-        this.add(new HostGUI(hostAPI,employee, this));
+        this.add(new HostView(hostAPI,employee, this));
         this.revalidate();
         this.repaint();
     }

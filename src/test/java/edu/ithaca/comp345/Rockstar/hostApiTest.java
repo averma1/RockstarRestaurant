@@ -2,10 +2,8 @@ package edu.ithaca.comp345.Rockstar;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,11 +11,11 @@ public class hostApiTest {
     @Test
     public void pushTablesTest(){
         Restaurant main= new Restaurant("Test");
-        hostApi testin= main.host;
+        HostApi testin= main.host;
         Table table3;
         testin.createTable(5,5);
         testin.createTable(6,5);
-        table3=hostApi.pushTables(5,6);
+        table3= HostApi.pushTables(5,6);
 
         assertEquals(table3.getNumOfSeats(),10);
         assertNotEquals(0,table3.getNumOfSeats());
@@ -32,7 +30,7 @@ public class hostApiTest {
     @Test
     public void splitTableTest(){
         Restaurant main= new Restaurant("Test");
-        hostApi testin= main.host;
+        HostApi testin= main.host;
         testin.createTable(1,4);
         testin.createTable(4,5);
         Table bigTable= testin.pushTables(1,4);
@@ -50,7 +48,7 @@ public class hostApiTest {
     @Test
     public void removeTablesTest(){
         Restaurant main= new Restaurant("Test");
-        hostApi testin= main.host;
+        HostApi testin= main.host;
         testin.createTable(0,5);
         testin.removeTable(0);
         assertEquals(-1,testin.findTable(0));
@@ -61,7 +59,7 @@ public class hostApiTest {
     @Test
     public void clearTableTest(){
         Restaurant main= new Restaurant("Test");
-        hostApi testin= main.host;
+        HostApi testin= main.host;
         testin.createTable(0,5);
         testin.clearTable(0);
         assertTrue(testin.allTables.get(0).isTableEmpty());
@@ -71,7 +69,7 @@ public class hostApiTest {
     @Test
     public void seatCustomersTest(){
         Restaurant main= new Restaurant("Test");
-        hostApi testin= main.host;
+        HostApi testin= main.host;
         testin.createTable(0,4);
         testin.createTable(1,5);
         testin.seatCustomers(0, 3);
@@ -85,7 +83,7 @@ public class hostApiTest {
     @Test
     public void viewAllTablesTest(){
         Restaurant main= new Restaurant("Test");
-        hostApi testin= main.host;
+        HostApi testin= main.host;
         testin.createTable(0,4);
         testin.createTable(1,3);
         testin.createTable(2,6);
@@ -97,7 +95,7 @@ public class hostApiTest {
     @Test
     public void searchTableBySizeTest(){
         Restaurant main= new Restaurant("Test");
-        hostApi testin= main.host;
+        HostApi testin= main.host;
         testin.createTable(1,4);
         testin.createTable(2,6);
         testin.createTable(3,2);
@@ -111,16 +109,16 @@ public class hostApiTest {
     @Test
     public void addToWaitlistTest(){
         Restaurant main= new Restaurant("Test");
-        hostApi testing= main.host;
+        HostApi testing= main.host;
         testing.createTable(1,100);
         testing.addToWaitlist("Susan", 5);
-        assertEquals(0, hostApi.findParty("Susan"));
+        assertEquals(0, HostApi.findParty("Susan"));
 
         testing.addToWaitlist("John", 2);
-        assertEquals(1, hostApi.findParty("John"));
+        assertEquals(1, HostApi.findParty("John"));
 
         testing.addToWaitlist("Bill", 15);
-        assertEquals(2, hostApi.findParty("Bill"));
+        assertEquals(2, HostApi.findParty("Bill"));
 
         assertThrows(IndexOutOfBoundsException.class, ()->{ testing.addToWaitlist("Bill", 10); });
         assertThrows(IndexOutOfBoundsException.class, ()->{ testing.addToWaitlist("Chase", 0); });
@@ -131,7 +129,7 @@ public class hostApiTest {
     @Test
     public void viewWaitlistTest(){
         Restaurant main= new Restaurant("Test");
-        hostApi testing= main.host;
+        HostApi testing= main.host;
         testing.createTable(1,100);
         List<Party> actual= new LinkedList<>();
         Party test1= new Party("Susan", 5);
@@ -155,7 +153,7 @@ public class hostApiTest {
     @Test
     public void removeFromWaitlistTest(){
         Restaurant main= new Restaurant("Test");
-        hostApi testing= main.host;
+        HostApi testing= main.host;
         testing.createTable(1,100);
         List<Party> actual= new LinkedList<>();
         testing.addToWaitlist("Susan", 5);

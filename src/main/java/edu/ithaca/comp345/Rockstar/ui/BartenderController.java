@@ -1,12 +1,13 @@
-package edu.ithaca.comp345.Rockstar;
+package edu.ithaca.comp345.Rockstar.ui;
 
-import edu.ithaca.comp345.Rockstar.ui.RestaurantView;
+import edu.ithaca.comp345.Rockstar.BartenderApi;
+import edu.ithaca.comp345.Rockstar.Order;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public class BartenderUI implements ActionListener {
+public class BartenderController implements ActionListener {
     public static final String ORDER = "Add to Order";
     public static final String PAY = "Pay Order";
     public static final String SEAT = "Seat Customer";
@@ -16,13 +17,13 @@ public class BartenderUI implements ActionListener {
     public static final String LOGOUT = "Logout";
     public static final String SPLITOT = "Split Order by Number";
 
-    public BartenderGui GUI;
+    public BartenderView GUI;
     public BartenderApi API;
     public RestaurantView restaurantView;
 
 
 
-    public BartenderUI(BartenderGui gui, BartenderApi api, RestaurantView restaurantView){
+    public BartenderController(BartenderView gui, BartenderApi api, RestaurantView restaurantView){
         GUI = gui;
         API = api;
         this.restaurantView = restaurantView;

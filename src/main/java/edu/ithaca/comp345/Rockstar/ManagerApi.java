@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //TODO instead of extending Restaurant, it should hold onto the restaurant
-public class managerApi extends Restaurant{
+public class ManagerApi extends Restaurant{
     public static void addIngredient(String name, double cost, int quantity){
         stock.addIngredient(name, cost, quantity);
     }

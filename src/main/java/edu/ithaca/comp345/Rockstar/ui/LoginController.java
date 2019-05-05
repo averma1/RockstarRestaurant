@@ -1,6 +1,6 @@
 package edu.ithaca.comp345.Rockstar.ui;
 
-import edu.ithaca.comp345.Rockstar.managerApi;
+import edu.ithaca.comp345.Rockstar.ManagerApi;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,11 +21,11 @@ public class LoginController implements ActionListener {
     public static final String EXIT="Exit";
     public String pinString="";
 
-    private managerApi managerAPI;
+    private ManagerApi managerAPI;
     private LoginView loginView;
     private StateController stateController;
 
-    public LoginController(LoginView loginView, managerApi managerAPI, StateController stateController){
+    public LoginController(LoginView loginView, ManagerApi managerAPI, StateController stateController){
         this.managerAPI = managerAPI;
         this.loginView = loginView;
         this.stateController = stateController;
@@ -67,7 +67,14 @@ public class LoginController implements ActionListener {
             removeFromPin();
         }
         else if(ENTER.equals(e.getActionCommand())){
+            try{
             attemptLogin(pinString);
+            clearPin();
+
+            } catch(NumberFormatException ee){
+                loginView.showMessage("Invalid PIN");
+                clearPin();
+            }
         }
         else if(EXIT.equals(e.getActionCommand())){
             exitSystem();
@@ -87,10 +94,15 @@ public class LoginController implements ActionListener {
         pinString=pinString.substring(0,pinString.length()-1);
         updateStringView();
     }
+    private void clearPin(){
+        pinString = "Enter Pin";
+        updateStringView();
+    }
     public void updateStringView(){
         loginView.pinEnter.setText(getPinString());
         if (pinString.length()==0){
             loginView.pinEnter.setText(loginView.pin);
+
         }
     }
     public void exitSystem(){

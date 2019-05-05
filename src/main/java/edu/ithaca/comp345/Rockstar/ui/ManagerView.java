@@ -1,7 +1,6 @@
 package edu.ithaca.comp345.Rockstar.ui;
 
-import edu.ithaca.comp345.Rockstar.Employee;
-import edu.ithaca.comp345.Rockstar.managerApi;
+import edu.ithaca.comp345.Rockstar.ManagerApi;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -17,7 +16,7 @@ public class ManagerView extends JPanel {
     private Font managerFont;
     //Visual Objects go here
 
-    public ManagerView(String strPin, managerApi managerAPI, RestaurantView restaurantView){
+    public ManagerView(String strPin, ManagerApi managerAPI, RestaurantView restaurantView){
         this.managerController = new ManagerController(this, managerAPI, restaurantView, strPin);
         this.strPin = strPin;
         this.font= new Font("Verdana", Font.PLAIN, 20);

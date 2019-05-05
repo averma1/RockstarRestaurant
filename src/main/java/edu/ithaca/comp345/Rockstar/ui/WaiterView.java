@@ -4,15 +4,15 @@ import edu.ithaca.comp345.Rockstar.Employee;
 import edu.ithaca.comp345.Rockstar.MenuItem;
 import edu.ithaca.comp345.Rockstar.Order;
 import edu.ithaca.comp345.Rockstar.Table;
-import edu.ithaca.comp345.Rockstar.waiterApi;
+import edu.ithaca.comp345.Rockstar.WaiterApi;
 
 import java.awt.event.*;
 import java.awt.*;
 import java.util.List;
 import javax.swing.*;
 
-public class WaiterGui extends JPanel {
-    private WaiterUI controller;
+public class WaiterView extends JPanel {
+    private WaiterController controller;
 
     //Keep any visualized objects you intend to change as data members
     private JLabel seatDisplay;
@@ -28,9 +28,9 @@ public class WaiterGui extends JPanel {
     public JPanel orderLists;
     private RestaurantView restaurantView;
 
-    public WaiterGui(waiterApi WaiterAPI, Employee waiter, RestaurantView restaurantView){
+    public WaiterView(WaiterApi WaiterAPI, Employee waiter, RestaurantView restaurantView){
         this.restaurantView = restaurantView;
-        this.controller = new WaiterUI(this, WaiterAPI, waiter, restaurantView);
+        this.controller = new WaiterController(this, WaiterAPI, waiter, restaurantView);
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.add(createActionPanel4(controller));
@@ -202,20 +202,20 @@ public class WaiterGui extends JPanel {
     }
 
     private JPanel createActionPanel(ActionListener controller){
-        JButton orderButton = new JButton(WaiterUI.ORDER);
-        orderButton.setActionCommand(WaiterUI.ORDER);
+        JButton orderButton = new JButton(WaiterController.ORDER);
+        orderButton.setActionCommand(WaiterController.ORDER);
         orderButton.addActionListener(controller);
         JPanel orderPanel = new JPanel();
         orderPanel.add(orderButton);
 
-        createButton = new JButton(WaiterUI.CREATE);
-        createButton.setActionCommand(WaiterUI.CREATE);
+        createButton = new JButton(WaiterController.CREATE);
+        createButton.setActionCommand(WaiterController.CREATE);
         createButton.addActionListener(controller);
         JPanel seatPanel = new JPanel();
         seatPanel.add(createButton);
 
-        JButton seeOrdersButton = new JButton(WaiterUI.SEE);
-        seeOrdersButton.setActionCommand(WaiterUI.SEE);
+        JButton seeOrdersButton = new JButton(WaiterController.SEE);
+        seeOrdersButton.setActionCommand(WaiterController.SEE);
         seeOrdersButton.addActionListener(controller);
         JPanel seeOrdersPanel = new JPanel();
         seeOrdersPanel.add(seeOrdersButton);
@@ -246,20 +246,20 @@ public class WaiterGui extends JPanel {
     }
 
     private JPanel createActionPanel2(ActionListener controller){
-        payButton = new JButton(WaiterUI.PAY);
-        payButton.setActionCommand(WaiterUI.PAY);
+        payButton = new JButton(WaiterController.PAY);
+        payButton.setActionCommand(WaiterController.PAY);
         payButton.addActionListener(controller);
         JPanel payPanel = new JPanel();
         payPanel.add(payButton);
 
-        JButton splitotButton = new JButton(WaiterUI.SPLITOT);
-        splitotButton.setActionCommand(WaiterUI.SPLITOT);
+        JButton splitotButton = new JButton(WaiterController.SPLITOT);
+        splitotButton.setActionCommand(WaiterController.SPLITOT);
         splitotButton.addActionListener(controller);
         JPanel splitotPanel = new JPanel();
         splitotPanel.add(splitotButton);
 
-        JButton splitOrdsButton = new JButton(WaiterUI.SPLITORD);
-        splitOrdsButton.setActionCommand(WaiterUI.SPLITORD);
+        JButton splitOrdsButton = new JButton(WaiterController.SPLITORD);
+        splitOrdsButton.setActionCommand(WaiterController.SPLITORD);
         splitOrdsButton.addActionListener(controller);
         JPanel splitOrdPanel = new JPanel();
         splitOrdPanel.add(splitOrdsButton);
@@ -274,14 +274,14 @@ public class WaiterGui extends JPanel {
     }
 
     private JPanel createActionPanel4(ActionListener controller){
-        JButton helpButton = new JButton(WaiterUI.HELP);
-        helpButton.setActionCommand(WaiterUI.HELP);
+        JButton helpButton = new JButton(WaiterController.HELP);
+        helpButton.setActionCommand(WaiterController.HELP);
         helpButton.addActionListener(controller);
         JPanel helpPanel = new JPanel();
         helpPanel.add(helpButton);
 
-        JButton backButton = new JButton(WaiterUI.LOGOUT);
-        backButton.setActionCommand(WaiterUI.LOGOUT);
+        JButton backButton = new JButton(WaiterController.LOGOUT);
+        backButton.setActionCommand(WaiterController.LOGOUT);
         backButton.addActionListener(controller);
         JPanel backPanel = new JPanel();
         backPanel.add(backButton);
