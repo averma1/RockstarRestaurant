@@ -27,7 +27,6 @@ public class HostUI implements ActionListener {
         API = api;
         this.host=host;
         mTables = API.allTables;
-        System.out.println(API.allTables);
         this.restView = restaurantView;
 
     }
@@ -47,41 +46,20 @@ public class HostUI implements ActionListener {
 
 
     public void seating(String action, int tableNum){
-//        String amount= GUI.getAmount();
         String amount= GUI.getAmount();
         if(action== SEAT){
-            API.seatCustomers(tableNum, Integer.parseInt(amount));
-            API.printTableData(tableNum);
-
-//            try {
-//                int amount2=0;
-//                if(amount!=""){
-//                    amount2 = Integer.parseInt(amount);
-//                }
-//                if(amount2<=API.getSeats(tableNum)) {
-//                    API.seatAtTable(tableNum, amount2);
-//                    GUI.showMessage(API.seeFilledSeats(tableNum)+" people seated at table "+tableNum);
-//                } else {
-//                    GUI.showMessage("That many people will not fit at this table");
-//                }
-//            } catch (Exception e) {
-//                GUI.showMessage("Something went wrong, please check that there are only numbers in the text field.");
-//            }
+            try{
+                API.seatCustomers(tableNum, Integer.parseInt(amount));
+                GUI.updateFilledTables();
+            }
+            catch (Exception e){
+                GUI.showMessage("This tables has already been seated");
+            }
         }
-//        else if(action==SEE){
-//            GUI.viewOrders(tableNum);
-//        }
     }
 
     public String getName(){return host.getName();}
 
-    public List<Table> getTables(){
-
-        System.out.println(API.allTables);
-
-        return mTables;
-
-
-    }
+    public List<Table> getTables(){ return mTables; }
 
 }

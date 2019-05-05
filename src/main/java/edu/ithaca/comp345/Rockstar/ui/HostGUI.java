@@ -15,13 +15,14 @@ public class HostGUI extends JPanel{
 //    private JLabel seatDisplay;
     private JLabel tableDisplay;
     private DefaultListModel tableListModel;
+    private DefaultListModel seatsFilledListModel;
     private RestaurantView restaurantView;
-    private JTextArea amountBox;
     private JButton tableButton;
     private JTextArea textArea;
     private JButton logoutBtn;
 
     private JList<Integer> tableList;
+    private JList<Integer> filledSeatsList;
 
     public HostGUI(hostApi hostApi, Employee host, RestaurantView restaurantView){
         this.controller = new HostUI(this, hostApi, host, restaurantView);
@@ -30,17 +31,16 @@ public class HostGUI extends JPanel{
         this.add(createButtonPanel(controller));
         this.add(createTableDisplayPanel());
         this.add(createListOfTablesPanel());
-        this.add(createActionPanel(controller));
+        this.add(createTableFilledDisplayPanel());
+        this.add(createTablesFilledPanel());
+        this.add(createEntryDisplayPanel());
         this.add(entryBoxPanel());
+        this.add(createActionPanel(controller));
 
         this.setSize(1000, 1000);
-//        updateView();
-
     }
 
     private JPanel createActionPanel(ActionListener controller){
-        amountBox = new JTextArea();
-
         tableButton = new JButton(HostUI.SEAT);
         tableButton.setActionCommand(HostUI.SEAT);
         tableButton.addActionListener(controller);
@@ -49,7 +49,6 @@ public class HostGUI extends JPanel{
 
         JPanel actionPanel = new JPanel();
         actionPanel.setLayout(new BorderLayout());
-//        actionPanel.add(amountBox, BorderLayout.PAGE_END);
         actionPanel.add(seatPanel,BorderLayout.LINE_START);
 
         return actionPanel;
@@ -82,6 +81,32 @@ public class HostGUI extends JPanel{
         return tableDisplayPanel;
     }
 
+    private JPanel createTableFilledDisplayPanel(){
+        JPanel tableDisplayPanel = new JPanel();
+        tableDisplayPanel.setLayout(new FlowLayout());
+
+        JLabel tableLabel = new JLabel("Filled Seats: ");
+        tableDisplayPanel.add(tableLabel);
+
+        tableDisplay = new JLabel();
+        tableDisplayPanel.add(tableDisplay);
+
+        return tableDisplayPanel;
+    }
+
+    private JPanel createEntryDisplayPanel(){
+        JPanel tableDisplayPanel = new JPanel();
+        tableDisplayPanel.setLayout(new FlowLayout());
+
+        JLabel tableLabel = new JLabel("Enter a Number of People to Seat: ");
+        tableDisplayPanel.add(tableLabel);
+
+        tableDisplay = new JLabel();
+        tableDisplayPanel.add(tableDisplay);
+
+        return tableDisplayPanel;
+    }
+
     public int tableSelected(){
         if(tableList.getSelectedValue()==null){
             return -1;
@@ -98,8 +123,9 @@ public class HostGUI extends JPanel{
         List<Table> all = controller.getTables();
         if(all!=null) {
             for (int i = 0; i < all.size(); i++) {
-                addToTableList(all.get(i).getTableNumber());
-                addToTableList(all.get(i).getNumOfSeatsFilled());
+                if (all.get(i).getTableNumber() != 420){
+                    addToTableList(all.get(i).getTableNumber());
+                }
             }
         }
         tableList = new JList<>(tableListModel);
@@ -117,8 +143,53 @@ public class HostGUI extends JPanel{
     }
 
 
+    private JPanel createTablesFilledPanel() {
+
+        JPanel tableDisplayPanel = new JPanel();
+        seatsFilledListModel = new DefaultListModel();
+
+        List<Table> all = controller.getTables();
+        if (all != null) {
+            for (int i = 0; i < all.size(); i++) {
+                if (all.get(i).getTableNumber() != 420){
+                    addToFilledSeatsList(all.get(i).getNumOfSeatsFilled());
+                }
+            }
+        }
+
+        filledSeatsList = new JList<>(seatsFilledListModel);
+        filledSeatsList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        filledSeatsList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        filledSeatsList.setVisibleRowCount(-1);
+
+        JScrollPane tableListScroller = new JScrollPane(filledSeatsList);
+        tableListScroller.setPreferredSize(new Dimension(200, 200));
+
+        tableDisplayPanel.add(tableListScroller);
+        tableDisplayPanel.setLocation(100, 0);
+
+        return tableDisplayPanel;
+    }
+
+    public void updateFilledTables(){
+        List<Table> all = controller.getTables();
+        seatsFilledListModel.clear();
+        if (all != null) {
+            for (int i = 0; i < all.size(); i++) {
+                if (all.get(i).getTableNumber() != 420) {
+                    addToFilledSeatsList(all.get(i).getNumOfSeatsFilled());
+                }
+            }
+        }
+    }
+
+
     public void addToTableList(int num){
         tableListModel.addElement(num);
+    }
+
+    public void addToFilledSeatsList(int num){
+        seatsFilledListModel.addElement(num);
     }
 
 
