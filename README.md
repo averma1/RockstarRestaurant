@@ -45,3 +45,6 @@ A complete working graphic user interface that implements all the aspects of the
 
 # Product Goal
 Provide a POS software that manages the stock, menu, tables and orders of a restaurant all through a intuative and functional GUI.
+
+### [Sprint 3 Retrospective](https://docs.google.com/document/d/1GqNoI1fcKUfklS-eCVq5UXz7bTU946LA1quqlmmmE-M/edit?usp=sharing)
+
