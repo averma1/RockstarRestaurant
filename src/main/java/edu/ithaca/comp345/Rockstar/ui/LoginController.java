@@ -69,11 +69,9 @@ public class LoginController implements ActionListener {
         else if(ENTER.equals(e.getActionCommand())){
             try{
             attemptLogin(pinString);
-            clearPin();
 
             } catch(NumberFormatException ee){
                 loginView.showMessage("Invalid PIN");
-                clearPin();
             }
         }
         else if(EXIT.equals(e.getActionCommand())){
@@ -94,10 +92,7 @@ public class LoginController implements ActionListener {
         pinString=pinString.substring(0,pinString.length()-1);
         updateStringView();
     }
-    private void clearPin(){
-        pinString = "Enter Pin";
-        updateStringView();
-    }
+
     public void updateStringView(){
         loginView.pinEnter.setText(getPinString());
         if (pinString.length()==0){
