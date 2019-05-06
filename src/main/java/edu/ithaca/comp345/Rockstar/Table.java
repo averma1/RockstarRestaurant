@@ -41,6 +41,17 @@ public class Table {
         return this.tableNumber;
     }
 
+    public int getFilledSeats(){
+        return filledSeats;
+    }
+
+    public void setFilledSeats(int seats){
+        if(seats<=numOfSeats){
+            filledSeats=seats;
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+    }
     /**
      * sets the table number
      * @param tableNumber: table number to set
@@ -83,7 +94,10 @@ public class Table {
      * @return returns the number of seats filled
      */
     public int setNumOfSeatsFilled(int numOfSeats){
-        this.filledSeats=numOfSeats;
+
+        if(numOfSeats<=numOfSeats) {
+            this.filledSeats = numOfSeats;
+        }
         return this.filledSeats;
     }
 
@@ -253,5 +267,9 @@ public class Table {
      */
     public List<Order> getAllOrders(){
         return orders;
+    }
+
+    public void clearOrders(){
+        orders.clear();
     }
 }

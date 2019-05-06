@@ -1,85 +1,69 @@
 package edu.ithaca.comp345.Rockstar;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Restaurant {
     public String name;
     public static  List<Table> allTables;
-    public waiterApi waiter;
-    public hostApi host;
+    public WaiterApi waiter;
+    public HostApi host;
     public static Stock stock;
     private static int barNumber=420;
-    public bartenderApi bartender;
+    public BartenderApi bartender;
     public Menu menu;
+    public static List<Employee> employees;
+    public static List<Integer> pins;
+    public ManagerApi manager;
+    public static HashMap<Employee, List<Table>> waiters;
 
+    Restaurant(){}
 
-    public Restaurant(){}
+    public final String defaultStockFileName = "";
+    public final String defaultTableFileName = "";
+    public final String defaultMenuFileName = "";
+    public final String defaultPinFileName = "";
 
-    public Restaurant(String fileName, int nothing){
+    public Restaurant(String name, String stockFileName, String tableFileName, String menuFileName, String employeeFileName) throws Exception{
         allTables= new ArrayList<>();
-        this.name=fileName;
-        host= new hostApi();
-        waiter= new waiterApi();
-        bartender= new bartenderApi();
-        createBar(50);
+        this.name=name;
+        host= new HostApi();
+        waiter= new WaiterApi();
+        bartender= new BartenderApi();
         stock= new Stock();
         menu= new Menu("main", stock);
+        employees= new ArrayList<>();
+        pins= new ArrayList<>();
+        manager= new ManagerApi();
+        waiters= new HashMap<>();
 
-        createTable(2, 10);
+        //load from file
+        this.loadTablesFromFile(tableFileName);
+        stock.loadFromFile(stockFileName);
+        menu.loadMenuFromFile(menuFileName);
+        this.loadPinsFromFile(employeeFileName);
+    }
 
-        stock.addIngredient("ravioli", .50, 20);
-        stock.addIngredient("chicken", .50, 60);
-        stock.addIngredient("breadSticks", .50, 350);
+    public void saveRestaurantToFile(String stockFileName, String tableFileName, String menuFileName, String employeeFileName) throws Exception{
+        savePinsToFile(employeeFileName);
+        stock.saveStockToFile(stockFileName);
+        saveTablesToFile(tableFileName);
+        menu.saveMenuToFile(menuFileName);
 
-        MenuItem item1= new MenuItem("chicken parm", 10);
-        item1.addIngredient(stock.getIngredient("chicken"), 10);
-        MenuItem item2= new MenuItem("cheese ravioli", 10);
-        item2.addIngredient(stock.getIngredient("ravioli"), 5);
-        MenuItem item3= new MenuItem("bread sticks", 10);
-        item3.addIngredient(stock.getIngredient("breadSticks"), 50);
-        MenuItem item4= new MenuItem("coffee", 10);
-        MenuItem item5= new MenuItem("chocolate cake", 10);
-        MenuItem item6= new MenuItem("beer", 10);
-
-        menu.addMenuItem(item1);
-        menu.addMenuItem(item2);
-        menu.addMenuItem(item3);
-        menu.addMenuItem(item4);
-        menu.addMenuItem(item5);
-        menu.addMenuItem(item6);
-
-        bartender.barStock.addIngredient("tequila", .50, 20);
-        bartender.barStock.addIngredient("beer", .50, 60);
-        bartender.barStock.addIngredient("soup", .50, 350);
-
-        MenuItem item7= new MenuItem("margarita", 10);
-        item7.addIngredient(bartender.barStock.getIngredient("tequila"), 5);
-        MenuItem item8= new MenuItem("red wine", 10);
-        MenuItem item9= new MenuItem("soup", 10);
-        item9.addIngredient(bartender.barStock.getIngredient("soup"), 50);
-        MenuItem item10= new MenuItem("coffee", 10);
-        MenuItem item11= new MenuItem("mojito", 10);
-        MenuItem item12= new MenuItem("beer", 10);
-        item12.addIngredient(bartender.barStock.getIngredient("beer"), 10);
-
-        bartender.barMenu.addMenuItem(item7);
-        bartender.barMenu.addMenuItem(item8);
-        bartender.barMenu.addMenuItem(item9);
-        bartender.barMenu.addMenuItem(item10);
-        bartender.barMenu.addMenuItem(item11);
-        bartender.barMenu.addMenuItem(item12);
     }
 
     public Restaurant(String name){
         allTables= new ArrayList<>();
         this.name=name;
-        host= new hostApi();
-        waiter= new waiterApi();
-        bartender= new bartenderApi();
+        host= new HostApi();
+        waiter= new WaiterApi();
+        bartender= new BartenderApi();
         stock= new Stock();
         menu= new Menu("main", stock);
+        employees= new ArrayList<>();
+        pins= new ArrayList<>();
+        manager= new ManagerApi();
+        waiters= new HashMap<>();
 
     }
 
@@ -158,13 +142,68 @@ public class Restaurant {
 
     public static void createBar(int seatNumber){
         createTable(barNumber, seatNumber);
-        bartenderApi.setBar(barNumber);
-        bartenderApi.setSeats(seatNumber);
+        BartenderApi.setBar(barNumber);
+        BartenderApi.setSeats(seatNumber);
+    }
+
+    public static int findEmployee(int pin){
+        int index=-1;
+        for(int i=0; i<employees.size(); i++){
+            if(pin==employees.get(i).getPin()) {
+                index = i;
+            }
+        }
+        return index;
     }
 
     public static void saveToFile(String fileName){
 
     }
 
+    public static void savePinsToFile(String fileName) throws Exception{
+        FileWriter fileWriter = new FileWriter(fileName);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        Iterator<Employee> empItr = employees.iterator();
+        while(empItr.hasNext()){
+            Employee currEmployee = empItr.next();
+            printWriter.println(currEmployee.getPin() + "#" + currEmployee.getName() + "$" + currEmployee.getType());
+        }
+        printWriter.close();
+    }
+
+    public static void loadPinsFromFile(String fileName) throws Exception{
+        BufferedReader br = null;
+        try {
+            File file = new File(fileName);
+            br = new BufferedReader(new FileReader(file));
+        }
+        catch (FileNotFoundException e) {
+            throw new FileNotFoundException("The file " + fileName + " doesn't exist!");
+        }
+
+        String st;
+        int pin;
+        String name;
+        String type;
+        while((st = br.readLine()) != null){
+            try{
+                pin = Integer.parseInt(st.substring(0, st.indexOf('#')));
+                name = st.substring(st.indexOf('#')+1, st.indexOf('$'));
+                type = st.substring(st.indexOf('$')+1);
+                ManagerApi.addEmployee(pin, name, type);
+            }
+            catch(StringIndexOutOfBoundsException | NumberFormatException e){
+                System.out.println("Invalid Input: " + st);
+            }
+        }
+    }
+
+    public boolean isLoginPinValid(int pinIn){
+        if(pins.contains(pinIn))
+            return true;
+        else
+            return false;
+    }
 
 }

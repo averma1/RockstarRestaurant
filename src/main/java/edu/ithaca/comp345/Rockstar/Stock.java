@@ -204,7 +204,7 @@ public class Stock {
      * @throws IOException
      */
     public void saveStockToFile(String fileName) throws IOException {
-        FileWriter fileWriter = new FileWriter("stockOutputTest.txt");
+        FileWriter fileWriter = new FileWriter(fileName);
         PrintWriter printWriter = new PrintWriter(fileWriter);
 
         String name = "";
