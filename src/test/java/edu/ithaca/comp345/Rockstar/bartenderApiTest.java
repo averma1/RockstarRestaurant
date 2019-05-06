@@ -16,6 +16,9 @@ public class bartenderApiTest {
         main.createBar(50);
         BartenderApi bartenderApiTester= main.bartender;
 
+        main.menu.addMenuItem(ChickenParmSoda);
+        main.menu.addMenuItem(BulmersCider);
+
         bartenderApiTester.addToOrder(0,"Chicken Parm Soda");
         assertTrue(main.waiter.viewOrder(420, 0).size()==1);
         bartenderApiTester.addToOrder(0,"Bulmers Hard Cider");
