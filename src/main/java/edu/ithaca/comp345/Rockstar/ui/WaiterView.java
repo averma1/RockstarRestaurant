@@ -48,6 +48,10 @@ public class WaiterView extends JPanel {
         updateView();
     }
 
+    /**
+     * creates the panel where the orders are displayed
+     * @return seatDisplayPanel
+     */
     private JPanel createOrderDisplayPanel(){
         JPanel seatDisplayPanel = new JPanel();
         seatDisplayPanel.setLayout(new FlowLayout());
@@ -61,6 +65,10 @@ public class WaiterView extends JPanel {
         return seatDisplayPanel;
     }
 
+    /**
+     * creates the panel where the seats are displayed
+     * @return seatDisplayPanel
+     */
     private JPanel createSeatDisplayPanel(){
         JPanel seatDisplayPanel = new JPanel();
         seatDisplayPanel.setLayout(new FlowLayout());
@@ -77,6 +85,10 @@ public class WaiterView extends JPanel {
         return seatDisplayPanel;
     }
 
+    /**
+     * creates the list of orders panel
+     * @return orderDisplayPanel
+     */
     private JPanel createListOfOrdersPanel(){
         JPanel orderDisplayPanel = new JPanel();
 
@@ -97,6 +109,10 @@ public class WaiterView extends JPanel {
         return orderDisplayPanel;
     }
 
+
+    /**
+     * allows user to view orders
+     */
     public void viewOrders(int tableNum){
         orderListModel.clear();
         List<Order> all= controller.getOrders(tableNum);
@@ -107,14 +123,25 @@ public class WaiterView extends JPanel {
         }
     }
 
+    /**
+     * adds to order
+     * @param: num, the order num
+     */
     public void addToOrderList(int num){
         orderListModel.addElement(num);
     }
 
+    /**
+     * clears that order
+     */
     public void clearOrderList(){
         orderListModel.clear();
     }
 
+    /**
+     * sets the order list
+     * @param orders, list of orders
+     */
     public void setOrderList(List<Order> orders){
         String message= "";
         for(int i=0; i<orders.size(); i++){
@@ -142,6 +169,9 @@ public class WaiterView extends JPanel {
         }
     }
 
+    /**
+     * creates the list of menu items panel
+     */
     private JPanel createListOfMenuItemsPanel(){
         JPanel menuDisplayPanel = new JPanel();
 
@@ -163,6 +193,9 @@ public class WaiterView extends JPanel {
         return menuDisplayPanel;
     }
 
+    /**
+     * creates list of tables panel
+     */
     private JPanel createListOfTablesPanel(){
         JPanel tableDisplayPanel = new JPanel();
         tableListModel = new DefaultListModel();
@@ -189,6 +222,9 @@ public class WaiterView extends JPanel {
         return tableDisplayPanel;
     }
 
+    /**
+     * handles table selection
+     */
     public int tableSelected(){
         if(tableList.getSelectedValue()==null){
             return -1;
@@ -201,6 +237,9 @@ public class WaiterView extends JPanel {
         tableListModel.addElement(num);
     }
 
+    /**
+     * creates the action panel
+     */
     private JPanel createActionPanel(ActionListener controller){
         JButton orderButton = new JButton(WaiterController.ORDER);
         orderButton.setActionCommand(WaiterController.ORDER);

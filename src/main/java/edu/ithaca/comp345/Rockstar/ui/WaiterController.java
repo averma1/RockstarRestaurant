@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 public class WaiterController implements ActionListener {
+    /**
+     * setting up all the strings for buttons
+     */
     public static final String ORDER = "Add to Order";
     public static final String CREATE = "Create Order";
     public static final String SEE = "View Table's Orders";
@@ -26,7 +29,6 @@ public class WaiterController implements ActionListener {
     public Employee waiter;
     private RestaurantView restaurantView;
 
-
     public WaiterController(WaiterView gui, WaiterApi api, Employee waiter, RestaurantView restaurantView){
         GUI = gui;
         API = api;
@@ -35,6 +37,10 @@ public class WaiterController implements ActionListener {
         this.restaurantView = restaurantView;
     }
 
+    /**
+     * calls the corresponding function based on what the user enters
+     * @param ev: action event to check if action has been performed
+     */
     @Override
     public void actionPerformed(ActionEvent ev) {
         int order= GUI.orderSelected();
@@ -54,6 +60,10 @@ public class WaiterController implements ActionListener {
             }
     }
 
+    /**
+     * the help function: if the user clicks this button,
+     * it shows all information that might be helpful to the user regarding the buttons
+     */
     public void help() {
         String message="";
         message+="Help Button: \n \t shows you what each aspect of the page does\n";
@@ -76,6 +86,13 @@ public class WaiterController implements ActionListener {
 
     }
 
+    /**
+     * if the user clicks the order button, this function gets called
+     * @param action: the action the user takes
+     * @param tableNum: table number
+     * @param orderNum: order number
+     * @param itemName: name of the item in the order
+     */
     public void ordering(String action, int tableNum, int orderNum, String itemName){
         if (tableNum != -1) {
             if (action == ORDER) {
@@ -97,6 +114,13 @@ public class WaiterController implements ActionListener {
         }
     }
 
+    /**
+     * adds an item to a given order
+     * @param orderNum
+     * @param item
+     * @param tableNum
+     * @return true if adding to the order was successful
+     */
     public boolean addToOrderUI(int orderNum, String item, int tableNum){
         if(item==null){
             return false;
@@ -114,6 +138,10 @@ public class WaiterController implements ActionListener {
         }
     }
 
+    /**
+     * allows you to view the orders at that table number
+     * @param tableNum
+     */
     public void viewing(int tableNum){
         if(tableNum!=-1) {
             List<Order> orders = API.getOrders(tableNum);
@@ -124,6 +152,11 @@ public class WaiterController implements ActionListener {
         }
     }
 
+    /**
+     * allows the user to pay in multiple ways, given a table number
+     * @param action
+     * @param tableNum
+     */
     public void paying(String action, int tableNum){
         if(action== PAY){
             double amount= API.payTotalBill(tableNum);
@@ -148,6 +181,11 @@ public class WaiterController implements ActionListener {
             }
         }
     }
+
+    /**
+     * returns a list of menu items that are currently on the menu
+     * @return list of menu items
+     */
 
     public String[] getMenu(){
         HashMap gotten= API.getMenu();
