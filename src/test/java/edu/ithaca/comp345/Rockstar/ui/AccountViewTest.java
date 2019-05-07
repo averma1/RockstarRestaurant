@@ -44,14 +44,14 @@ public class AccountViewTest {
         main.stock.addIngredient("beer", .50, 60);
         main.stock.addIngredient("soup", .50, 350);
 
-        MenuItem item7= new MenuItem("margarita", 10);
+        MenuItem item7= new MenuItem("margarita", 5);
         item7.addIngredient(main.bartender.barStock.getIngredient("tequila"), 5);
-        MenuItem item8= new MenuItem("red wine", 10);
+        MenuItem item8= new MenuItem("red wine", 9);
         MenuItem item9= new MenuItem("soup", 10);
         item9.addIngredient(main.bartender.barStock.getIngredient("soup"), 50);
-        MenuItem item10= new MenuItem("coffee", 10);
-        MenuItem item11= new MenuItem("mojito", 10);
-        MenuItem item12= new MenuItem("beer", 10);
+        MenuItem item10= new MenuItem("coffee", 3);
+        MenuItem item11= new MenuItem("mojito", 5);
+        MenuItem item12= new MenuItem("beer", 2);
         item12.addIngredient(main.bartender.barStock.getIngredient("beer"), 10);
 
         main.bartender.barMenu.addMenuItem(item7);
