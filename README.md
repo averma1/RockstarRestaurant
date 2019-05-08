@@ -12,11 +12,11 @@ The motivation behind this software is to allow a faster more efficient system u
 
 ## [![Waffle.io - Columns and their card count](https://badge.waffle.io/averma1/RockstarRestaurant.svg?columns=all)](https://waffle.io/averma1/RockstarRestaurant)
 
-## [Narratives and Scenarios](https://docs.google.com/document/d/1mbCA1XFlC16uW3GntGZr3oNSqvGuuPp9TkEMHZ1b8vo/edit)
-
 ### [Final Class Diagram](https://drive.google.com/file/d/1n6TVjDfqmMCT7KH8EKzHm8sU8NDgLfKl/view?usp=sharing)
 
 ### [Final State Diagram Example](https://drive.google.com/file/d/1uq4jTQCT4PI2OnNgtlFXixcES0raKZYi/view?usp=sharing)
+
+## [Narratives and Scenarios](https://docs.google.com/document/d/1mbCA1XFlC16uW3GntGZr3oNSqvGuuPp9TkEMHZ1b8vo/edit)
 
 # Sprint 1
 The goal is to manage tables and basic stock implementation.
