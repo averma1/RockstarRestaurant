@@ -49,3 +49,5 @@ Provide a POS software that manages the stock, menu, tables and orders of a rest
 ### [Sprint 3 Retrospective](https://docs.google.com/document/d/1GqNoI1fcKUfklS-eCVq5UXz7bTU946LA1quqlmmmE-M/edit?usp=sharing)
 
 ### [Final Class Diagram](https://drive.google.com/file/d/1n6TVjDfqmMCT7KH8EKzHm8sU8NDgLfKl/view?usp=sharing)
+
+### [Final State Diagram Example] (https://drive.google.com/file/d/1uq4jTQCT4PI2OnNgtlFXixcES0raKZYi/view?usp=sharing)
